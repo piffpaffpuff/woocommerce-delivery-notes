@@ -306,12 +306,13 @@ if ( ! function_exists( 'wcdn_order_number' ) ) {
 
 		// try to get custom order number as provided by the plugin
 		// http://wordpress.org/extend/plugins/woocommerce-sequential-order-numbers/
-		$order_id     = $wcdn->print->order_id;
-		$order_number = $wcdn->print->get_order()->order_custom_fields['_order_number'][0];
-		
 		// if custom order number is zero, fall back to ID
-		if ( intval($order_number) != 0 ) $order_id = $order_number;
+		$order_id = $wcdn->print->order_id;
 
+		if ( !empty( $wcdn->print->get_order()->order_custom_fields['_order_number'] ) ) {
+			$order_id = $wcdn->print->get_order()->order_custom_fields['_order_number'];
+		}
+		
 		$number = $before . ( intval( $offset ) + intval( $order_id ) ) . $after;
 		return $number;
 	}
