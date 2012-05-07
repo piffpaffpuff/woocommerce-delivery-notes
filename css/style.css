@@ -1,0 +1,9 @@
+ul.woocommerce-delivery-notes-actions {
+	margin: 0px;
+}
+ul.woocommerce-delivery-notes-actions li {
+	text-align: center;
+	padding: 6px 0px;
+	margin: 0px;
+	width: 49%;
+}
