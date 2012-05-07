@@ -67,7 +67,7 @@ If you want to use your own template then all you need to do is copy the `/wp-co
 *Note:* This works with both single themes and child themes (if you use some framework like Genesis). If your current active theme is a child theme put the custom folder there! (e.g. `/wp-content/themes/your-child-theme-name/woocommerce`)
 
 = Can I use a different custom template for invoices and delivery notes? =
-Yes. Create in the `your-theme-name/woocommerce/delivery-notes` folder a file named `print-invoice.php` and another `print-delivery-note.php`. Now write some nice code to make your templates look as you like. 
+Yes. Create in the `your-theme-name/woocommerce/delivery-notes` folder a file named `print-invoice.php` and another `print-delivery-note.php`. Or just create a file `print.php` to use the same template for invoices and delivery notes. Now write some nice code to make your templates look as you like. 
 
 *Note:* The `print.php` isn't needed when you have a `print-invoice.php` and `print-delivery-note.php` file. However the template system falls back to the `print.php` file inside your themes folder and then inside the plugins folder when `print-invoice.php` and/or `print-delivery-note.php` weren't found.
 
@@ -77,7 +77,7 @@ Various functions are available in the template, especially many Delivery Notes 
 *Please note:* This is only intended for developers who know what they do! Please be careful with adding any code/functions! The default template and functions should fit most use cases.
 
 = What will actually get printed out? =
-No worries, the print buttons at the top and the bottom will automatically be hidden on print!
+No worries, the print bar at the top will automatically be hidden on print!
 
 The other sections get printed as styled via the packaged template (or your custom template if configured). For the shop/company name and all other notes sections: only these will get printed which are actually configured.
 
