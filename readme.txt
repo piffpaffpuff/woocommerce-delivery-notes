@@ -105,8 +105,9 @@ The basic intention is to have the plugin at the same time as leightweight and u
  * NEW: Company logo upload.
  * NEW: Custom order number.
  * NEW: New cleaner looking print template.
- * NEW: Template shows customer phone number (thanks welovewordpress).
  * NEW: Order numbering supports the sequential order numbers plugin (thanks welovewordpress).
+ * UPDATE: Template shows customer phone number (thanks welovewordpress).
+ * UPDATE: Template item list contains more data fields (thanks welovewordpress).
 * CODE: Restructured classes - plugin now completely relies on classes!
 * CODE: General code cleanup and numerous improvements.
 * UPDATE: Settings are now part of the "WooCommerce" settings, now see: WooCommerce > Settings > Tab "Print"
