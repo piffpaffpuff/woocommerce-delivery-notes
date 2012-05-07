@@ -94,18 +94,6 @@ if ( !function_exists( 'wcdn_template_print_button' ) ) {
 }
 	
 /**
- * Return default logo 
- *
- * @since 1.0
- */
-if ( !function_exists( 'wcdn_company_logo' ) ) {
-	function wcdn_company_logo() {
-		global $wcdn;
-		return $wcdn->print->get_setting( 'company_logo' );
-	}
-}
-
-/**
  * Return default title name of Delivery Note 
  *
  * @since 1.0
@@ -115,7 +103,7 @@ if ( !function_exists( 'wcdn_company_name' ) ) {
 		global $wcdn;
 		$name = trim( $wcdn->print->get_setting( 'custom_company_name' ) );
 		if( !empty( $name ) ) {
-			return wpautop( wptexturize( $name ) , 0);
+			return wpautop( $name );
 		} else {
 			return get_bloginfo( 'name' );
 		}
@@ -275,6 +263,21 @@ if ( ! function_exists( 'wcdn_shipping_notes' ) ) {
 }
 
 /**
+ * Return billing phone
+ *
+ * @since 1.0
+ *
+ * @global $wcdn->print
+ * @return string billing phone
+ */
+if ( ! function_exists( 'wcdn_billing_phone' ) ) {
+	function wcdn_billing_phone() {
+		global $wcdn;
+		return $wcdn->print->get_order()->billing_phone;
+	}
+}
+
+/**
  * Return order id
  *
  * @since 1.0
@@ -288,7 +291,16 @@ if ( ! function_exists( 'wcdn_order_number' ) ) {
 		$before = trim( $wcdn->print->get_setting( 'before_order_number' ) );
 		$after = trim( $wcdn->print->get_setting( 'after_order_number' ) );
 		$offset = trim( $wcdn->print->get_setting( 'order_number_offset' ) );
-		$number = $before . ( intval( $offset ) + intval( $wcdn->print->order_id ) ) . $after;
+
+		// try to get custom order number as provided by the plugin
+		// http://wordpress.org/extend/plugins/woocommerce-sequential-order-numbers/
+		$order_id     = $wcdn->print->order_id;
+		$order_number = $wcdn->print->get_order()->order_custom_fields['_order_number'][0];
+		
+		// if custom order number is zero, fall back to ID
+		if ( intval($order_number) != 0 ) $order_id = $order_number;
+
+		$number = $before . ( intval( $offset ) + intval( $order_id ) ) . $after;
 		return $number;
 	}
 }
