@@ -18,7 +18,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 * @since 1.0
 		 */
 		public function __construct() {			
-			$this->tab_name = 'delivery-notes';
+			$this->tab_name = 'woocommerce-delivery-notes';
 			$this->hidden_submit = WooCommerce_Delivery_Notes::$plugin_prefix . 'submit';
 		}
 
@@ -42,6 +42,41 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			add_action( 'woocommerce_settings_tabs_' . $this->tab_name, array( $this, 'create_settings_page' ) );
 			add_action( 'woocommerce_update_options_' . $this->tab_name, array( $this, 'save_settings_page' ) );
 			add_action( 'admin_init', array( $this, 'load_help' ), 20 );
+			add_action( 'admin_print_styles', array( $this, 'add_styles' ) );
+			add_action( 'admin_print_scripts', array( $this, 'add_scripts' ) );
+		}
+
+		/**
+		 * Add the styles
+		 */
+		public function add_styles() {
+			if( $this->is_settings_page() ) {
+				wp_enqueue_style( 'thickbox' );
+			}
+		}
+		
+		/**
+		 * Add the scripts
+		 */
+		public function add_scripts() {
+			if( $this->is_settings_page() ) {
+				wp_enqueue_script( 'media-upload' );
+				wp_enqueue_script( 'thickbox' );
+				wp_enqueue_script( 'woocommerce-delivery-notes-scripts', WooCommerce_Delivery_Notes::$plugin_url . 'js/script.js' );
+			}
+		}	
+		
+		/**
+		 * Check if we are on settings page
+		 *
+		 * @since 1.0
+		 */
+		public function is_settings_page() {
+			if ( isset($_GET['page']) && isset( $_GET['tab'] ) && $_GET['tab'] == $this->tab_name ) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 		
 		/**
@@ -63,7 +98,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 */
 		public function load_help() {
 			// Get the hookname and load the help tabs
-			if ( isset($_GET['page']) && isset( $_GET['tab'] ) && $_GET['tab'] == $this->tab_name ) {
+			if ( $this->is_settings_page() ) {
 				$menu_slug = plugin_basename( $_GET['page'] );
 				$hookname = get_plugin_page_hookname( $menu_slug, '' );
 		
@@ -131,7 +166,26 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			<h3><?php _e( 'Invoices and Delivery Notes', 'woocommerce-delivery-notes' ); ?></h3>
 			<table class="form-table">
 				<tbody>
-
+					<tr class="hide-if-no-js">
+						<?php
+						$attachment_id = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'company_logo_image_id' );
+						$attachment_src = wp_get_attachment_image_src( $option, array(100, 100) );
+						?>
+						<th>
+							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>company_logo_image_id"><?php _e( 'Company/Shop Logo', 'woocommerce-delivery-notes' ); ?></label>
+						</th>
+						<td>
+							<input id="company-logo-image-id" type="hidden" name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>company_logo_image_id" rows="2" class="regular-text" value="<?php echo $attachment_id ?>" />
+							<span id="company-logo-placeholder"><?php if( !empty( $attachment_src ) ) : ?><img src="<?php echo $attachment_src[0]; ?>" width="<?php echo $attachment_src[1]; ?>" height="<?php echo $attachment_src[2]; ?>" /><?php endif; ?></span>
+							<a href="#" id="company-logo-remove-button" <?php if( empty( $attachment_src ) ) : ?>style="display: none;"<?php endif; ?>><?php _e( 'Remove image', 'woocommerce-delivery-notes' ); ?></a>
+							<a href="media-upload.php?type=image&amp;TB_iframe=true" <?php if( !empty( $attachment_src ) ) : ?>style="display: none;"<?php endif; ?> id="company-logo-add-button" class="thickbox"><?php _e( 'Set image', 'woocommerce-delivery-notes' ); ?></a>
+							<span class="description">
+								<?php _e( 'A company/shop logo representing your business.', 'woocommerce-delivery-notes' ); ?>
+								<br /><strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
+								<?php _e( 'The Logo will be resized when it is bigger than 320px &times; 320px.', 'woocommerce-delivery-notes' ); ?>
+							</span>
+						</td>
+					</tr>
 					<tr>
 						<th>
 							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>custom_company_name"><?php _e( 'Company/Shop Name', 'woocommerce-delivery-notes' ); ?></label>

@@ -1,9 +1,4 @@
 <?php
-/**
- * Load all available data for the Delivery Notes printing page.
- */
-$id = $_GET['order'];
-$name = $_GET['name'];
 
 /**
  * Load Wordpress to use its functions
@@ -19,9 +14,15 @@ if ( !defined( 'ABSPATH' ) ) {
  *
  * @since 1.0
  */
-if (!current_user_can('manage_woocommerce_orders') || empty($id) || empty($name)) {
+if (!current_user_can('manage_woocommerce_orders') || empty($_GET['order']) || empty($_GET['name'])) {
 	wp_die( __( 'You do not have sufficient permissions to access this page.', 'woocommerce-delivery-notes' ) );
 }
+
+/**
+ * Load all available data for the Delivery Notes printing page.
+ */
+$id = $_GET['order'];
+$name = $_GET['name'];
 
 /**
  * Load the order
