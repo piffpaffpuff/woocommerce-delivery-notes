@@ -270,7 +270,7 @@ msgid "WooCommerce Print Invoices & Delivery Notes"
 msgstr ""
 
 #: woocommerce-delivery-notes.php:0
-msgid "https://github.com/deckerweb/woocommerce-delivery-notes"
+msgid "https://github.com/piffpaffpuff/woocommerce-delivery-notes"
 msgstr ""
 
 #: woocommerce-delivery-notes.php:0

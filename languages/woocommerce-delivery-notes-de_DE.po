@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Print Invoices & Delivery Notes (Plugin, SIE-Version)\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tags/woocommerce-delivery-notes\n"
 "POT-Creation-Date: 2012-05-06 19:17+0100\n"
-"PO-Revision-Date: 2012-05-06 19:52+0100\n"
+"PO-Revision-Date: 2012-05-07 10:17+0100\n"
 "Last-Translator: David Decker <deckerweb.mobil@googlemail.com>\n"
 "Language-Team: DECKERWEB <deckerweb.mobil@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -357,8 +357,8 @@ msgstr "WooCommerce Rechnungen & Lieferscheine drucken"
 #. translators: plugin header field 'PluginURI'
 #. translators: plugin header field 'AuthorURI'
 #: woocommerce-delivery-notes.php:0
-msgid "https://github.com/deckerweb/woocommerce-delivery-notes"
-msgstr "https://github.com/deckerweb/woocommerce-delivery-notes"
+msgid "https://github.com/piffpaffpuff/woocommerce-delivery-notes"
+msgstr "https://github.com/piffpaffpuff/woocommerce-delivery-notes"
 
 #@ woocommerce-delivery-notes
 #. translators: plugin header field 'Description'

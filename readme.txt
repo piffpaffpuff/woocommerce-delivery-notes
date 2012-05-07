@@ -37,7 +37,7 @@ The plugin adds a new side panel on the order page to allow shop administrators 
 Credit where credit is due: This plugin here is inspired and based on the work of Steve Clark, Trigvvy Gunderson and the awesome "Jigoshop Delivery Notes" plugin! See below how you can contribute to the further development of both:
 
 = Feedback =
-* We are open for your suggestions and feedback! Use the [plugin's forum](http://wordpress.org/tags/woocommerce-delivery-notes?forum_id=10) or [report & contribute on GitHub](https://github.com/deckerweb/woocommerce-delivery-notes/issues)
+* We are open for your suggestions and feedback! Use the [plugin's forum](http://wordpress.org/tags/woocommerce-delivery-notes?forum_id=10) or [report & contribute on GitHub](https://github.com/piffpaffpuff/woocommerce-delivery-notes/issues)
 * Drop Dave a line [@deckerweb](http://twitter.com/#!/deckerweb) on Twitter
 * Follow Dave on [my Facebook page](http://www.facebook.com/deckerweb.service)
 * Or follow Dave on [+David Decker](http://deckerweb.de/gplus) on Google Plus ;-)
@@ -142,8 +142,8 @@ Just released into the wild.
 == Plugin Links ==
 * [Translations (GlotPress)](http://translate.wpautobahn.com/projects/wordpress-plugins-deckerweb/woocommerce-delivery-notes)
 * [User support forums](http://wordpress.org/tags/woocommerce-delivery-notes?forum_id=10)
-* [Developers: reports bugs & issues](https://github.com/deckerweb/woocommerce-delivery-notes/issues)
-* [Developers: contribute](https://github.com/deckerweb/woocommerce-delivery-notes)
+* [Developers: reports bugs & issues](https://github.com/piffpaffpuff/woocommerce-delivery-notes/issues)
+* [Developers: contribute](https://github.com/piffpaffpuff/woocommerce-delivery-notes)
 
 == Donate ==
 Enjoy using *WooCommerce Print Invoices & Delivery Notes*? Please consider [making a small donation](http://genesisthemes.de/en/donate/) to support the project's continued development.
