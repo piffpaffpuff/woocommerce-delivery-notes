@@ -191,6 +191,18 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 					
 					// Set item dimensions
 					$data['dimensions'] = $product->get_dimensions();
+
+					// Get item tax rate
+					$data['taxrate'] = $item['taxrate'];
+
+					// Get line total price including tax
+					$data['price_with_tax'] = woocommerce_price( ( $item['line_total'] + $item['line_tax'] ), array( 'ex_tax_label' => 0 ) );
+
+					// Get single item price including tax
+					$data['single_price_with_tax'] = woocommerce_price( ( $item['line_total'] + $item['line_tax'] ) / $item['qty'], array( 'ex_tax_label' => 0 ) );
+
+					// Pass complete item array - more freedom for template developers
+					$data['item'] = $item;
 					
 					$data_list[] = $data;
 				}
