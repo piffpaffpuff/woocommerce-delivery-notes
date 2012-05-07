@@ -131,19 +131,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			<h3><?php _e( 'Invoices and Delivery Notes', 'woocommerce-delivery-notes' ); ?></h3>
 			<table class="form-table">
 				<tbody>
-					<tr>
-						<th>
-							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>company_logo"><?php _e( 'Company/Shop Logo', 'woocommerce-delivery-notes' ); ?></label>
-						</th>
-						<td>
-							<input type="text" name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>company_logo" rows="2" class="regular-text" value="<?php echo get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'company_logo' ); ?>" />
-							<span class="description">
-								<?php _e( 'A company/shop logo representing your business.', 'woocommerce-delivery-notes' ); ?>
-								<br /><strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
-								<?php _e( 'The Logo will be resized when it is bigger than 320px &times; 320px.', 'woocommerce-delivery-notes' ); ?>
-							</span>
-						</td>
-					</tr>
+
 					<tr>
 						<th>
 							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>custom_company_name"><?php _e( 'Company/Shop Name', 'woocommerce-delivery-notes' ); ?></label>

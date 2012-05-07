@@ -1,2 +1,0 @@
-woocommerce-delivery-notes
-==========================

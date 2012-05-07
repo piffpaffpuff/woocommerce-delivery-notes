@@ -1,6 +1,5 @@
 === WooCommerce Print Invoices & Delivery Notes ===
 Contributors: chabis, daveshine, deckerweb
-Donate link: http://genesisthemes.de/en/donate/
 Tags: delivery notes, delivery, shipping, print, order, invoice, invoices, woocommerce, woothemes, shop, shop manager, deckerweb
 Requires at least: 3.3 and WooCommerce 1.4+
 Tested up to: 3.4
@@ -21,6 +20,7 @@ The plugin adds a new side panel on the order page to allow shop administrators 
 * All setting fields on the plugin's settings pages are optional - you can leave them empty to not use them at all or only apply what you need.
 * If the company/shop name field is left empty then the regular website/blog title is used (defined via regular WordPress options)
 * If there are added "Customer Notes" (regular WooCommerce feature) for an order these will automatically displayed at the bottom of the delivery note.
+* Modify the order numbering by prepend or append text to it.
 * Included help tab system with new WordPress 3.3 standard! (Will also be extended if needed!)
 
 = Localization =
@@ -35,13 +35,6 @@ The plugin adds a new side panel on the order page to allow shop administrators 
 * *Your translation? - [Just send it in](http://genesisthemes.de/en/contact/)*
 
 Credit where credit is due: This plugin here is inspired and based on the work of Steve Clark, Trigvvy Gunderson and the awesome "Jigoshop Delivery Notes" plugin! See below how you can contribute to the further development of both:
-
-= Contribute =
-Since this is a fork I've made the plugin available in a developer repository at GitHub just like the original.
-
-* [Forked WooCommerce Delivery Notes repository at GitHub.com](https://github.com/deckerweb/woocommerce-delivery-notes)
-* [Original Jigoshop Delivery Notes repository at GitHub.com](https://github.com/piffpaffpuff/jigoshop-delivery-notes)
-* Thank you in advance for all feedback, suggestions, contributions/commits!
 
 = Feedback =
 * We are open for your suggestions and feedback! Use the [plugin's forum](http://wordpress.org/tags/woocommerce-delivery-notes?forum_id=10) or [report & contribute on GitHub](https://github.com/deckerweb/woocommerce-delivery-notes/issues)
@@ -97,11 +90,11 @@ The basic intention is to have the plugin at the same time as leightweight and u
 
 == Screenshots ==
 
-1. Plugin's settings page where you can set up to five fields for the delivery note. [Click for larger image view](http://s.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-1.png)
-2. Help tabs on the plugin's settings page with some info and important plugin links.
-3. Single Order Edit page with the meta box and the print buttons.
-4. Delivery Note printing page with default template - and the five custom sections marked (yellow). [Click for larger image view](http://s.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-4.png)
-5. Invoce printing page with default template - and the five custom sections marked (yellow). [Click for larger image view](http://s.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-5.png)
+1. Plugin's settings page where you can set up to five fields for the delivery note. [Click for larger image view](http://s.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-1.jpg)
+2. Single Order Edit page with the meta box and the print buttons.
+3. Invoice printing page with default template - and the five custom sections. [Click for larger image view](http://s.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-3.jpg)
+4. Delivery Note printing page with default template - and the five custom sections. [Click for larger image view](http://s.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-4.jpg)
+5. Help tabs on the plugin's settings page with some info and important plugin links. [Click for larger image view](http://s.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-5.jpg)
 
 == Changelog ==
 
