@@ -44,6 +44,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			add_action( 'admin_init', array( $this, 'load_help' ), 20 );
 			add_action( 'admin_print_styles', array( $this, 'add_styles' ) );
 			add_action( 'admin_print_scripts', array( $this, 'add_scripts' ) );
+			add_filter( 'attachment_fields_to_edit', array( $this, 'edit_media_options' ), 20, 2 );
 		}
 
 		/**
@@ -62,7 +63,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			if( $this->is_settings_page() ) {
 				wp_enqueue_script( 'media-upload' );
 				wp_enqueue_script( 'thickbox' );
-				wp_enqueue_script( 'woocommerce-delivery-notes-scripts', WooCommerce_Delivery_Notes::$plugin_url . 'js/script.js' );
+				wp_enqueue_script( 'woocommerce-delivery-notes-scripts', WooCommerce_Delivery_Notes::$plugin_url . 'js/script.js', array( 'jquery','media-upload','thickbox' ) );
 			}
 		}	
 		
@@ -77,6 +78,33 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			} else {
 				return false;
 			}
+		}
+		
+		/**
+		 * Modfy the media uploader input fields
+		 */
+		public function edit_media_options( $fields, $post ) {	
+			if ( isset( $_GET['post_id'] ) ) {
+				$calling_post_id = absint( $_GET['post_id'] );
+			} elseif ( isset( $_POST ) && count( $_POST ) ) {
+				$calling_post_id = $post->post_parent;
+			}
+			
+			// only add the category button to the
+			// category managment media.php
+			if( empty( $calling_post_id ) ) {
+				/*
+if ( isset( $fields['image-size'] ) && isset( $post->ID ) ) {
+*/
+					if( substr($post->post_mime_type, 0, 5) == 'image' && !isset( $_GET['attachment_id'] ) ) {
+						$attachment_id = $post->ID;
+						$attachment_src = wp_get_attachment_image_src( $attachment_id, 'thumbnail' );
+						$fields['buttons']['tr'] = '<tr class="taxonomy_image_row"><td></td><td class="savesend"><a href="#" class="button" id="set-media-content-button-' . $attachment_id . '" onclick="sendMediaToContent(\'' . $attachment_id . '\', \'' . $attachment_src[0] . '\');return false;">' . __( 'Use as image', 'woocommerce-delivery-notes' ) . '</a></td></tr>';
+					}
+				//}
+			}
+					
+			return $fields;
 		}
 		
 		/**
@@ -178,7 +206,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							<input id="company-logo-image-id" type="hidden" name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>company_logo_image_id" rows="2" class="regular-text" value="<?php echo $attachment_id ?>" />
 							<span id="company-logo-placeholder"><?php if( !empty( $attachment_src ) ) : ?><img src="<?php echo $attachment_src[0]; ?>" width="<?php echo $attachment_src[1]; ?>" height="<?php echo $attachment_src[2]; ?>" /><?php endif; ?></span>
 							<a href="#" id="company-logo-remove-button" <?php if( empty( $attachment_src ) ) : ?>style="display: none;"<?php endif; ?>><?php _e( 'Remove image', 'woocommerce-delivery-notes' ); ?></a>
-							<a href="media-upload.php?type=image&amp;TB_iframe=true" <?php if( !empty( $attachment_src ) ) : ?>style="display: none;"<?php endif; ?> id="company-logo-add-button" class="thickbox"><?php _e( 'Set image', 'woocommerce-delivery-notes' ); ?></a>
+							<a href="#" <?php if( !empty( $attachment_src ) ) : ?>style="display: none;"<?php endif; ?> id="company-logo-add-button"><?php _e( 'Set image', 'woocommerce-delivery-notes' ); ?></a>
 							<span class="description">
 								<?php _e( 'A company/shop logo representing your business.', 'woocommerce-delivery-notes' ); ?>
 								<br /><strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
