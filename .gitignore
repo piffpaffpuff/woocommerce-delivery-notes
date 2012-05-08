@@ -1,6 +1,0 @@
-.settings/*
-.buildpath
-.project
-nbproject
-deploy.sh
-.ds_store
