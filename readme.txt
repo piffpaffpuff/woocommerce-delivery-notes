@@ -90,11 +90,11 @@ The basic intention is to have the plugin at the same time as leightweight and u
 
 == Screenshots ==
 
-1. Plugin's settings page where you can set up to five fields for the delivery note. [Click for larger image view](http://s.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-1.jpg)
+1. Plugin's settings page where you can set up to five fields for the delivery note. [Click for larger image view](http://s.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-1.png)
 2. Single Order Edit page with the meta box and the print buttons.
-3. Invoice printing page with default template - and the five custom sections. [Click for larger image view](http://s.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-3.jpg)
-4. Delivery Note printing page with default template - and the five custom sections. [Click for larger image view](http://s.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-4.jpg)
-5. Help tabs on the plugin's settings page with some info and important plugin links. [Click for larger image view](http://s.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-5.jpg)
+3. Invoice printing page with default template - and the five custom sections. [Click for larger image view](http://s.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-3.png)
+4. Delivery Note printing page with default template - and the five custom sections. [Click for larger image view](http://s.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-4.png)
+5. Help tabs on the plugin's settings page with some info and important plugin links. [Click for larger image view](http://s.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-5.png)
 
 == Changelog ==
 
