@@ -1,13 +1,9 @@
 ul.woocommerce-delivery-notes-actions {
 	text-align: center;
-	margin: 0px;
-	padding: 5px;
 }
 ul.woocommerce-delivery-notes-actions li {
-	padding: 6px 0px;
-	margin: 0px;
-	width: 49%;
-	display: inline;
+	margin: 5px;
+	display: inline-block;
 }
 #company-logo-placeholder {
 	display: block;
