@@ -8,9 +8,4 @@ jQuery(document).ready(function($) {
 		win.sendImageToContent(id, image);
 		event.preventDefault();
 	});
-	
-	// move the button into the buttons row
-	$('#media-upload .describe').each(function() {
-		$(this).find('td.savesend').prepend($(this).find('.use-image-button'));
-	});
 });

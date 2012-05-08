@@ -121,7 +121,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 						$attachment_id = $post->ID;
 						$fields['additional_buttons']['label'] = '';  
 						$fields['additional_buttons']['input'] = 'html';
-						$fields['additional_buttons']['html'] = get_submit_button( __( 'Use as Company Logo', 'woocommerce-delivery-notes' ), 'secondary use-image-button', 'use-image-button-' . $attachment_id, false );
+						$fields['additional_buttons']['html'] = get_submit_button( __( 'Use as Company Logo', 'woocommerce-delivery-notes' ), 'button use-image-button', 'use-image-button-' . $attachment_id, false );
 					}
 				}
 			}

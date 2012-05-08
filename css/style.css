@@ -18,6 +18,9 @@ ul.woocommerce-delivery-notes-actions li {
 	background-repeat: no-repeat; 
 	height: 20px;
 }
-.savesend .button {
+.savesend input.button {
     display: none;
+}
+.savesend input.button.use-image-button {
+    display: block;
 }
