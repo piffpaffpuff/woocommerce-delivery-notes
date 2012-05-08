@@ -1,0 +1,29 @@
+ul.woocommerce-delivery-notes-actions {
+	text-align: center;
+	margin: 0px;
+	padding: 5px;
+}
+ul.woocommerce-delivery-notes-actions li {
+	padding: 6px 0px;
+	margin: 0px;
+	width: 49%;
+	display: inline;
+}
+#company-logo-placeholder {
+	display: block;
+}
+#company-logo-placeholder.loading {
+	background-image: url("../../../../wp-admin/images/loading.gif");
+	background-repeat: no-repeat; 
+	height: 20px;
+}
+#company-logo-placeholder img {
+	cursor: pointer;
+}
+#media-upload .savesend input.button,
+#media-upload #go_button {
+    display: none;
+}
+.savesend input.button.use-image-button {
+    display: block;
+}

@@ -1,0 +1,309 @@
+/* Table of Contents
+
+* CSS Reset
+* Delivery Note Page Layout
+* CSS Media Queries for Print
+
+*/
+
+/* Simple CSS Reset and Print options
+------------------------------------------*/
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, table, ol, ul {
+	border: 0 none;
+	font: inherit;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+
+body {
+	line-height: 1;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Options */
+#header {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+.options {
+	overflow: hidden;
+	padding: 0.5em;
+	text-shadow: 0px 1px 0px #ffffff;
+	filter: dropshadow(color=#ffffff, offx=0, offy=1);
+	background: #F1F1F1;
+	background-image: -ms-linear-gradient(top, #F9F9F9, #ECECEC);
+	background-image: -moz-linear-gradient(top, #F9F9F9, #ECECEC);
+	background-image: -o-linear-gradient(top, #F9F9F9, #ECECEC);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F9F9F9), to(#ECECEC));
+	background-image: -webkit-linear-gradient(top, #F9F9F9, #ECECEC);
+	background-image: linear-gradient(top, #F9F9F9, #ECECEC);
+	border-bottom: 1px solid #DFDFDF;
+	border-top: 1px solid #DFDFDF;
+}
+
+.options a {
+	border: 1px solid #bbb;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	-ms-border-radius: 12px;
+	-o-border-radius: 12px;
+	border-radius: 12px;
+	color: #464646;
+	display: block;
+	float: right;
+	font-size: 0.875em;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
+	text-decoration: none;
+	background: #F1F1F1;
+	background: -moz-linear-gradient(top, #ffffff 0%, #efefef 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#efefef));
+	background: -webkit-linear-gradient(top, #ffffff 0%,#efefef 100%);
+	background: -o-linear-gradient(top, #ffffff 0%,#efefef 100%);
+	background: -ms-linear-gradient(top, #ffffff 0%,#efefef 100%);
+	background: linear-gradient(top, #ffffff 0%,#efefef 100%);
+	-webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+	-moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+	-ms-box-shadow: inset 0px 1px 0px 0px #ffffff;
+	-o-box-shadow: inset 0px 1px 0px 0px #ffffff;
+	box-shadow: inset 0px 1px 0px 0px #ffffff;
+}
+
+.options a:hover {
+	border-color: #999;
+	color: #000;
+}
+
+.options a:active {
+	border-color: #666;
+	-webkit-box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.45);
+	-moz-box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.45);
+	-ms-box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.45);
+	-o-box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.45);
+	box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.45);
+	background: -moz-linear-gradient(top, #ffffff 0%, #efefef 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#efefef));
+	background: -webkit-linear-gradient(top, #efefef 0%,#e6e6e6 100%);
+	background: -o-linear-gradient(top, #ffffff 0%,#efefef 100%);
+	background: -ms-linear-gradient(top, #ffffff 0%,#efefef 100%);
+	background: linear-gradient(top, #ffffff 0%,#efefef 100%);
+}
+
+
+/* Template Page Layout
+------------------------------------------*/
+
+#content {
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 7%;
+	padding-left: 10%;
+	padding-right: 10%;
+	text-align: left;
+}
+
+/* Main Body */
+body {
+	background: #fff;
+	color: #000;
+	font-family: "HelveticaNeue", Helvetica, Arial, sans-serif;
+	font-size: 0.875em;
+	line-height: 125%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-weight: bold;
+}
+
+li,
+ul {
+	margin-bottom: 1.25em;
+}
+
+p + p {
+	margin-top: 1.25em;
+}
+
+/* Basic Table Styling */
+table {
+	border-top: 1px #ccc solid;
+}
+
+td,
+th {
+	border-left: 1px #ccc solid;
+	border-right: 1px #ccc solid;
+	border-bottom: 1px #ccc solid;
+	padding: 0.375em;
+	vertical-align: middle;
+}
+
+th {
+	color: #000;
+	font-weight: bold;
+	text-align: left;
+}
+
+/* Special Margin & Overflow Stylings */
+#letter-header,
+#order-items,
+#order-summary,
+#order-notes {
+	margin-bottom: 3em;
+}
+
+#order-info,
+#order-summary {
+	margin-bottom: 6em;
+}
+
+#page,
+#letter-header,
+#order-listing,
+#order-summary,
+#order-notes,
+#letter-footer {
+	overflow: hidden;
+}
+
+/* Delivery Notes Head */
+#letter-header .heading {
+	float: left;
+	width: 50%;
+	font-weight: bold;
+	font-size: 2em;
+	line-height: 125%;
+}
+
+
+#letter-header .company-name {
+font-weight: bold;
+}
+
+#letter-header .company-info {
+	float: right;
+	width: 35%;
+	margin-top: 0.45em;
+}
+
+/* Order Listing - #order-listing */
+#order-listing {
+	float: right;
+	width: 35%;
+}
+
+/* Order Info - #order-info */
+#order-info {
+	float: left;
+	width: 50%;
+}
+
+/* Order Items - #order-items */
+#order-items {
+	clear: both;
+}
+
+#order-items table {
+	width: 100%;
+}
+
+#order-items .description {
+	width: 65%;
+}
+
+#order-items .price {
+	width: 17.5%;
+}
+
+#order-items .sku,
+#order-items .weight {
+	color: #666;
+	font-size: 0.75em;
+	font-style: italic;
+}
+
+/* Order Summary - #order-summary */
+#order-summary table {
+	float: right;
+	width: 35%;
+}
+
+#order-summary .price {
+	width: 50%;
+}
+
+#order-summary #total-label,
+#order-summary #total-number {
+	border-top: 2px solid #000;
+	border-bottom: 2px solid #000;
+}
+
+#order-summary #total-number {
+	font-weight: bold;
+}
+
+
+/* Order Notes - #order-notes */
+
+#order-notes {
+}
+#order-notes .notes-shipping {
+	float: left;
+	width: 50%;
+}
+#order-notes .notes-personal {
+	float: right;
+	width: 35%;
+	font-weight: bold;
+}
+
+/* Footer Imprint */
+#letter-footer {
+	border-top: 1px solid #ccc;
+	padding-top: 1em;
+	color: #666;
+	font-size: 0.75em;
+	font-style: italic;
+}
+
+#letter-footer p + p {
+	margin-top: 1em;
+}
+
+#letter-footer .policies,
+#letter-footer .imprint {
+	margin-bottom: 1em;
+}
+
+
+/* CSS Media Queries for Print
+------------------------------------------*/
+
+@media print {
+	#header,
+	#footer {
+		display: none;
+	}
+	body {
+		font-size: 8pt;
+	}
+}
