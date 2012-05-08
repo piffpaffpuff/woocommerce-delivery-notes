@@ -11,12 +11,14 @@ ul.woocommerce-delivery-notes-actions li {
 }
 #company-logo-placeholder {
 	display: block;
-	
 }
 #company-logo-placeholder.loading {
 	background-image: url("../../../../wp-admin/images/loading.gif");
 	background-repeat: no-repeat; 
 	height: 20px;
+}
+#company-logo-placeholder img {
+	cursor: pointer;
 }
 .savesend input.button {
     display: none;
