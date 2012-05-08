@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
 	
 	// button to open the media uploader
 	$('#company-logo-add-button, #company-logo-placeholder img').on('click', function(event) {
-		tb_show('', 'media-upload.php?post_id=0$amp;type=image&amp;TB_iframe=true');
+		tb_show('', 'media-upload.php?post_id=0&amp;type=image&amp;TB_iframe=true');
 		event.preventDefault();
 	});
 	

@@ -44,10 +44,11 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			add_action( 'admin_init', array( $this, 'load_help' ), 20 );
 			add_action( 'admin_print_styles', array( $this, 'add_styles' ) );
 			add_action( 'admin_print_scripts', array( $this, 'add_scripts' ) );
-			add_action( 'admin_print_scripts-media-upload-popup', array( $this, 'add_media_scripts' ) );			
+			add_action( 'admin_print_scripts-media-upload-popup', array( $this, 'add_media_scripts_and_styles' ) );			
+			add_filter( 'media_upload_tabs', array( $this, 'remove_media_tabs' ) );
 			add_action( 'wp_ajax_load_thumbnail', array( $this, 'load_thumbnail_ajax' ) );
 			add_filter( 'attachment_fields_to_edit', array( $this, 'edit_media_options' ), 20, 2 );
-	}
+		}
 
 		/**
 		 * Add the styles
@@ -73,7 +74,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		/**
 		 * Add the media uploader scripts
 		 */
-		public function add_media_scripts() {
+		public function add_media_scripts_and_styles() {
 			wp_enqueue_style( 'woocommerce-delivery-notes-styles', WooCommerce_Delivery_Notes::$plugin_url . 'css/style.css' );
 			wp_enqueue_script( 'woocommerce-delivery-notes-media-scripts', WooCommerce_Delivery_Notes::$plugin_url . 'js/script-media-uploader.js', array( 'jquery' ) );
 		}
@@ -102,6 +103,16 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			} else {
 				return false;
 			}
+		}
+		
+		/**
+		 * Remove the media uploader tabs
+		 */
+		public function remove_media_tabs( $tabs ) {
+		    if( isset( $_GET['post_id'] ) && $_GET['post_id'] == 0 ) {
+	            unset( $tabs['type_url'] );
+		    }
+		    return $tabs;
 		}
 		
 		/**
