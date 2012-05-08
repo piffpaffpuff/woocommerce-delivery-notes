@@ -18,7 +18,7 @@
 		<div id="content">			
 			<div id="page">
 				<div id="letter-header">
-					<h3 class="heading"><?php if( !wcdn_company_logo() ) : ?><?php if( wcdn_template_name() == 'invoice' ) : ?><?php _e( 'Invoice', 'woocommerce-delivery-notes' ); ?><?php else : ?><?php _e( 'Delivery Note', 'woocommerce-delivery-notes' ); ?><?php endif; ?><?php endif; ?></h3>
+					<div class="heading"><?php if( wcdn_company_logo_id() ) : ?><?php echo wcdn_company_logo(); ?><?php else : ?><?php if( wcdn_template_name() == 'invoice' ) : ?><?php _e( 'Invoice', 'woocommerce-delivery-notes' ); ?><?php else : ?><?php _e( 'Delivery Note', 'woocommerce-delivery-notes' ); ?><?php endif; ?><?php endif; ?></div>
 					<div class="company-info">
 						<div class="company-name"><?php echo wcdn_company_name(); ?></div>
 						<div class="company-address"><?php echo wcdn_company_info(); ?></div>

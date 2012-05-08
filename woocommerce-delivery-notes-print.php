@@ -94,14 +94,31 @@ if ( !function_exists( 'wcdn_template_print_button' ) ) {
 }
 
 /**
- * Return default logo 
+ * Return logo id
+ *
+ * @since 1.0
+ */
+if ( !function_exists( 'wcdn_company_logo_id' ) ) {
+	function wcdn_company_logo_id() {
+		global $wcdn;
+		return $wcdn->print->get_setting( 'company_logo_image_id' );
+	}
+}
+
+/**
+ * Return logo html
  *
  * @since 1.0
  */
 if ( !function_exists( 'wcdn_company_logo' ) ) {
 	function wcdn_company_logo() {
 		global $wcdn;
-		return $wcdn->print->get_setting( 'company_logo' );
+		$attachment_id = $wcdn->print->get_setting( 'company_logo_image_id' );
+		if( !empty( $attachment_id ) ) {
+			$attachment_src = wp_get_attachment_image_src( $attachment_id, array( 300, 300 ), false );
+			return '<img src="' . $attachment_src[0] . '" width="' . $attachment_src[1] . '" height="' . $attachment_src[2] . '" />';
+		}
+		return;
 	}
 }
 
@@ -304,13 +321,13 @@ if ( ! function_exists( 'wcdn_order_number' ) ) {
 		$after = trim( $wcdn->print->get_setting( 'after_order_number' ) );
 		$offset = trim( $wcdn->print->get_setting( 'order_number_offset' ) );
 
-		// try to get custom order number as provided by the plugin
+		// get custom order number as provided by the plugin
 		// http://wordpress.org/extend/plugins/woocommerce-sequential-order-numbers/
 		// if custom order number is zero, fall back to ID
 		$order_id = $wcdn->print->order_id;
 
 		if ( !empty( $wcdn->print->get_order()->order_custom_fields['_order_number'] ) ) {
-			$order_id = $wcdn->print->get_order()->order_custom_fields['_order_number'];
+			$order_id = $wcdn->print->get_order()->order_custom_fields['_order_number'][0];
 		}
 		
 		$number = $before . ( intval( $offset ) + intval( $order_id ) ) . $after;

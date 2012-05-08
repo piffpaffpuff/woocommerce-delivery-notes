@@ -1,9 +1,9 @@
 === WooCommerce Print Invoices & Delivery Notes ===
 Contributors: chabis, daveshine, deckerweb
 Tags: delivery notes, delivery, shipping, print, order, invoice, invoices, woocommerce, woothemes, shop, shop manager, deckerweb
-Requires at least: 3.3 and WooCommerce 1.4+
+Requires at least: 3.3 and WooCommerce 1.5.3+
 Tested up to: 3.4
-Stable tag: 1.2
+Stable tag: 1.2.1
 License: GPLv3 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
 
@@ -98,16 +98,19 @@ The basic intention is to have the plugin at the same time as leightweight and u
 
 == Changelog ==
 
+= 1.2.1 (2012-05-08) =
+* NEW: Company logo upload.
+* NEW: Order numbering supports the sequential order numbers plugin. The offset field is removed because the plugin is much better. (thanks welovewordpress, FoxRunSoftware).
+* FIX: Print page doesn't block the user when get vars aren't set.
+* UPDATE: Template shows customer phone number (thanks welovewordpress).
+* UPDATE: Template item list contains more data fields (thanks welovewordpress).
+
 = 1.2 (2012-05-06) =
 * IMPORTANT CHANGE: New main development and authorship now: [WordPress.org user "chabis"](http://profiles.wordpress.org/chabis/) - with daveshine (David Decker) remaining as a co-author.
 * *New features:*
  * NEW: Basic invoice template support.
- * NEW: Company logo upload.
  * NEW: Custom order number.
  * NEW: New cleaner looking print template.
- * NEW: Order numbering supports the sequential order numbers plugin (thanks welovewordpress).
- * UPDATE: Template shows customer phone number (thanks welovewordpress).
- * UPDATE: Template item list contains more data fields (thanks welovewordpress).
 * CODE: Restructured classes - plugin now completely relies on classes!
 * CODE: General code cleanup and numerous improvements.
 * UPDATE: Settings are now part of the "WooCommerce" settings, now see: WooCommerce > Settings > Tab "Print"

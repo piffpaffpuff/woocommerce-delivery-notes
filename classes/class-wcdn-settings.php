@@ -44,8 +44,10 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			add_action( 'admin_init', array( $this, 'load_help' ), 20 );
 			add_action( 'admin_print_styles', array( $this, 'add_styles' ) );
 			add_action( 'admin_print_scripts', array( $this, 'add_scripts' ) );
+			add_action( 'admin_print_scripts-media-upload-popup', array( $this, 'add_media_scripts' ) );			
+			add_action( 'wp_ajax_load_thumbnail', array( $this, 'load_thumbnail_ajax' ) );
 			add_filter( 'attachment_fields_to_edit', array( $this, 'edit_media_options' ), 20, 2 );
-		}
+	}
 
 		/**
 		 * Add the styles
@@ -53,6 +55,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		public function add_styles() {
 			if( $this->is_settings_page() ) {
 				wp_enqueue_style( 'thickbox' );
+				wp_enqueue_style( 'woocommerce-delivery-notes-styles', WooCommerce_Delivery_Notes::$plugin_url . 'css/style.css' );
 			}
 		}
 		
@@ -63,9 +66,17 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			if( $this->is_settings_page() ) {
 				wp_enqueue_script( 'media-upload' );
 				wp_enqueue_script( 'thickbox' );
-				wp_enqueue_script( 'woocommerce-delivery-notes-scripts', WooCommerce_Delivery_Notes::$plugin_url . 'js/script.js', array( 'jquery','media-upload','thickbox' ) );
+				wp_enqueue_script( 'woocommerce-delivery-notes-scripts', WooCommerce_Delivery_Notes::$plugin_url . 'js/script.js', array( 'jquery', 'media-upload', 'thickbox' ) );
 			}
 		}	
+		
+		/**
+		 * Add the media uploader scripts
+		 */
+		public function add_media_scripts() {
+			wp_enqueue_style( 'woocommerce-delivery-notes-styles', WooCommerce_Delivery_Notes::$plugin_url . 'css/style.css' );
+			wp_enqueue_script( 'woocommerce-delivery-notes-media-scripts', WooCommerce_Delivery_Notes::$plugin_url . 'js/script-media-uploader.js', array( 'jquery' ) );
+		}
 		
 		/**
 		 * Check if we are on settings page
@@ -74,6 +85,19 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 */
 		public function is_settings_page() {
 			if ( isset($_GET['page']) && isset( $_GET['tab'] ) && $_GET['tab'] == $this->tab_name ) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		/**
+		 * Check if sequential order plugin is activated
+		 *
+		 * @since 1.0
+		 */
+		public function is_woocommerce_sequential_order_numbers_activated() {
+			if ( in_array( 'woocommerce-sequential-order-numbers/woocommerce-sequential-order-numbers.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 				return true;
 			} else {
 				return false;
@@ -90,18 +114,16 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 				$calling_post_id = $post->post_parent;
 			}
 			
-			// only add the category button to the
-			// category managment media.php
+			// only add the thickbox media managment page (media.php)
 			if( empty( $calling_post_id ) ) {
-				/*
-if ( isset( $fields['image-size'] ) && isset( $post->ID ) ) {
-*/
+				if ( isset( $fields['image-size'] ) && isset( $post->ID ) ) {
 					if( substr($post->post_mime_type, 0, 5) == 'image' && !isset( $_GET['attachment_id'] ) ) {
 						$attachment_id = $post->ID;
-						$attachment_src = wp_get_attachment_image_src( $attachment_id, 'thumbnail' );
-						$fields['buttons']['tr'] = '<tr class="taxonomy_image_row"><td></td><td class="savesend"><a href="#" class="button" id="set-media-content-button-' . $attachment_id . '" onclick="sendMediaToContent(\'' . $attachment_id . '\', \'' . $attachment_src[0] . '\');return false;">' . __( 'Use as image', 'woocommerce-delivery-notes' ) . '</a></td></tr>';
+						$fields['additional_buttons']['label'] = '';  
+						$fields['additional_buttons']['input'] = 'html';
+						$fields['additional_buttons']['html'] = get_submit_button( __( 'Use as Company Logo', 'woocommerce-delivery-notes' ), 'secondary use-image-button', 'use-image-button-' . $attachment_id, false );
 					}
-				//}
+				}
 			}
 					
 			return $fields;
@@ -184,6 +206,33 @@ if ( isset( $fields['image-size'] ) && isset( $post->ID ) ) {
 		}
 
 		/**
+		 * Load thumbnail with ajax
+		 */
+		public function load_thumbnail_ajax() {
+			$attachment_id = (int)$_POST['attachment_id']; 
+			
+			// Verify the id
+			if( !$attachment_id ) {
+				die();
+			}
+			
+			// create the thumbnail
+			$this->create_thumbnail( $attachment_id );
+			
+			exit;
+		}
+		
+		/**
+		 * Create the thumbnail
+		 */
+		public function create_thumbnail( $attachment_id ) {
+			$attachment_src = wp_get_attachment_image_src( $attachment_id, array( 200, 200 ), false );
+			?>
+			<img src="<?php echo $attachment_src[0]; ?>" width="<?php echo $attachment_src[1]; ?>" height="<?php echo $attachment_src[2]; ?>" />
+			<?php
+		}
+
+		/**
 		 * Create the settings page content
 		 *
 		 * @since 1.0
@@ -197,20 +246,19 @@ if ( isset( $fields['image-size'] ) && isset( $post->ID ) ) {
 					<tr class="hide-if-no-js">
 						<?php
 						$attachment_id = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'company_logo_image_id' );
-						$attachment_src = wp_get_attachment_image_src( $option, array(100, 100) );
 						?>
 						<th>
 							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>company_logo_image_id"><?php _e( 'Company/Shop Logo', 'woocommerce-delivery-notes' ); ?></label>
 						</th>
 						<td>
 							<input id="company-logo-image-id" type="hidden" name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>company_logo_image_id" rows="2" class="regular-text" value="<?php echo $attachment_id ?>" />
-							<span id="company-logo-placeholder"><?php if( !empty( $attachment_src ) ) : ?><img src="<?php echo $attachment_src[0]; ?>" width="<?php echo $attachment_src[1]; ?>" height="<?php echo $attachment_src[2]; ?>" /><?php endif; ?></span>
-							<a href="#" id="company-logo-remove-button" <?php if( empty( $attachment_src ) ) : ?>style="display: none;"<?php endif; ?>><?php _e( 'Remove image', 'woocommerce-delivery-notes' ); ?></a>
-							<a href="#" <?php if( !empty( $attachment_src ) ) : ?>style="display: none;"<?php endif; ?> id="company-logo-add-button"><?php _e( 'Set image', 'woocommerce-delivery-notes' ); ?></a>
+							<span id="company-logo-placeholder"><?php if( !empty( $attachment_id ) ) : ?><?php $this->create_thumbnail( $attachment_id ); ?><?php endif; ?></span>
+							<a href="#" id="company-logo-remove-button" <?php if( empty( $attachment_id ) ) : ?>style="display: none;"<?php endif; ?>><?php _e( 'Remove Logo', 'woocommerce-delivery-notes' ); ?></a>
+							<a href="#" <?php if( !empty( $attachment_id ) ) : ?>style="display: none;"<?php endif; ?> id="company-logo-add-button"><?php _e( 'Set Logo', 'woocommerce-delivery-notes' ); ?></a>
 							<span class="description">
 								<?php _e( 'A company/shop logo representing your business.', 'woocommerce-delivery-notes' ); ?>
 								<br /><strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
-								<?php _e( 'The Logo will be resized when it is bigger than 320px &times; 320px.', 'woocommerce-delivery-notes' ); ?>
+								<?php _e( 'The Logo will be resized if it is larger than 300px &times; 300px.', 'woocommerce-delivery-notes' ); ?>
 							</span>
 						</td>
 					</tr>
@@ -318,14 +366,14 @@ if ( isset( $fields['image-size'] ) && isset( $post->ID ) ) {
 					</tr>
 					<tr>
 						<th>
-							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>order_number_offset"><?php _e( 'Number Offset', 'woocommerce-delivery-notes' ); ?></label>
+							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>order_number_offset"><?php _e( 'Sequential order number', 'woocommerce-delivery-notes' ); ?></label>
 						</th>
 						<td>
-							<?php $value = intval( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'order_number_offset' ) ); ?>
-							<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>order_number_offset" type="text" value="<?php echo ( is_int( $value ) ? wp_kses_stripslashes( $value ) : '' ); ?>" />
-							<span class="description"><?php _e( 'This adds an offset to the WooCommerce order number. Helpful for a contiguous numbering.', 'woocommerce-delivery-notes' ); ?>
-							<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong> 
-							<?php _e( 'Only positive or negative numbers are allowed.', 'woocommerce-delivery-notes' ); ?></span>
+							<?php if( $this->is_woocommerce_sequential_order_numbers_activated() ) : ?>
+								<?php _e( 'Sequential numbering is enabled.', 'woocommerce-delivery-notes' ); ?>
+							<?php else : ?>
+								<?php printf( __( 'Install and activate the free <a href="%s">WooCommerce Sequential Order Numbers</a> Plugin.', 'woocommerce-delivery-notes' ), 'http://wordpress.org/extend/plugins/woocommerce-sequential-order-numbers/' ); ?>
+							<?php endif; ?>
 						</td>
 					</tr>
 				</tbody>
