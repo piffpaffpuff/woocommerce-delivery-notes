@@ -367,7 +367,7 @@ if ( ! function_exists( 'wcdn_get_order_items' ) ) {
 }
 
 /**
- * Return the order items price
+ * Return the formatted price
  *
  * @since 1.0
  *

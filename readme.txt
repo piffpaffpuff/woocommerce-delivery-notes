@@ -100,7 +100,7 @@ The basic intention is to have the plugin at the same time as leightweight and u
 
 = 1.2.1 (2012-05-08) =
 * NEW: Company logo upload.
-* NEW: Order numbering supports the sequential order numbers plugin. The offset field is removed because the plugin is much better. (thanks welovewordpress, FoxRunSoftware).
+* NEW: Order numbering supports the sequential order numbers plugin. The offset field was removed because the plugin is much better. (thanks FoxRunSoftware, welovewordpress).
 * FIX: Print page doesn't block the user when get vars aren't set.
 * UPDATE: Template shows customer phone number (thanks welovewordpress).
 * UPDATE: Template item list contains more data fields (thanks welovewordpress).
@@ -136,6 +136,9 @@ The basic intention is to have the plugin at the same time as leightweight and u
 * Forked and extended from original plugin for Jigoshop ("Jigoshop Delivery Notes" at GitHub)
 
 == Upgrade Notice ==
+
+= 1.2.1 =
+The sequential order numbers plugin requires at least WooCommerce 1.5.3.
 
 = 1.2 =
 Major additions & improvements: Now with basic invoice support. Code cleanup & improvements. Added new partial translations, updated German translations plus .pot file for translators. Also, new plugin authorship!
