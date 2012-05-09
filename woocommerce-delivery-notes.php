@@ -99,6 +99,9 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 */
 		public function load_hooks() {	
 			if ( $this->is_woocommerce_activated() ) {					
+				load_plugin_textdomain( 'woocommerce-delivery-notes', false, dirname( self::$plugin_basefile ) . '/../../languages/woocommerce-delivery-notes/' );
+				load_plugin_textdomain( 'woocommerce-delivery-notes', false, dirname( self::$plugin_basefile ) . '/languages' );
+
 				$this->includes();
 				$this->writepanel = new WooCommerce_Delivery_Notes_Writepanel();
 				$this->writepanel->load();
@@ -106,9 +109,6 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 				$this->settings->load();
 				$this->print = new WooCommerce_Delivery_Notes_Print();
 				$this->print->load();
-					
-				load_plugin_textdomain( 'woocommerce-delivery-notes', false, dirname( self::$plugin_basefile ) . '/../../languages/woocommerce-delivery-notes/' );
-				load_plugin_textdomain( 'woocommerce-delivery-notes', false, dirname( self::$plugin_basefile ) . '/languages' );
 			}
 		}
 		
