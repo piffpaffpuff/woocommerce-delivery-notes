@@ -60,7 +60,7 @@
 						<thead>
 							<tr>
 								<th class="description" id="description-label"><?php _e('Product', 'woocommerce'); ?></th>
-								<th class="quantity" id="quantity-label"><?php _e('Qty', 'woocommerce'); ?></th>
+								<th class="quantity" id="quantity-label"><?php _e('Quantity', 'woocommerce'); ?></th>
 								<th class="price" id="price-label"><?php _e('Totals', 'woocommerce'); ?></th>
 							</tr>
 						</thead>

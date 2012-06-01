@@ -3,7 +3,7 @@ Contributors: chabis, daveshine, deckerweb
 Tags: delivery notes, delivery, shipping, print, order, invoice, invoices, woocommerce, woothemes, shop, shop manager, deckerweb
 Requires at least: 3.3 and WooCommerce 1.5.6+
 Tested up to: 3.4
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GPLv3 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
 
@@ -98,7 +98,9 @@ The basic intention is to have the plugin at the same time as leightweight and u
 
 == Changelog ==
 
-= 1.2.3 (2012-06-03) =
+= 1.2.4 =
+
+= 1.2.3 (2012-06-01) =
 * UPDATE: Order totals are now displayed the same way as when the customer reviews the order online (Update custom template to use the feature).
 * UPDATE: Variations and Attributes are now properly displayed (Update custom template to use the feature).
 
