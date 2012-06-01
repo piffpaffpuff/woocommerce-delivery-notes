@@ -3,7 +3,7 @@ Contributors: chabis, daveshine, deckerweb
 Tags: delivery notes, delivery, shipping, print, order, invoice, invoices, woocommerce, woothemes, shop, shop manager, deckerweb
 Requires at least: 3.3 and WooCommerce 1.5.6+
 Tested up to: 3.4
-Stable tag: 1.2.4
+Stable tag: 1.2.3
 License: GPLv3 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
 
@@ -97,8 +97,6 @@ The basic intention is to have the plugin at the same time as leightweight and u
 5. Help tabs on the plugin's settings page with some info and important plugin links. [Click for larger image view](http://www.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-5.png)
 
 == Changelog ==
-
-= 1.2.4 =
 
 = 1.2.3 (2012-06-01) =
 * UPDATE: Order totals are now displayed the same way as when the customer reviews the order online (Update custom template to use the feature).
