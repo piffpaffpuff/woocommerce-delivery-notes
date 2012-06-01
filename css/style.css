@@ -16,10 +16,3 @@ ul.woocommerce-delivery-notes-actions li {
 #company-logo-placeholder img {
 	cursor: pointer;
 }
-#media-upload .savesend input.button,
-#media-upload #go_button {
-    display: none;
-}
-.savesend input.button.use-image-button {
-    display: block;
-}

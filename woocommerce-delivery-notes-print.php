@@ -44,7 +44,7 @@ if ( !function_exists( 'wcdn_template_url' ) ) {
 }
 
 /**
- * Return Type of print
+ * Return Type of template
  *
  * @since 1.0
  */
@@ -52,6 +52,21 @@ if ( !function_exists( 'wcdn_template_name' ) ) {
 	function wcdn_template_name() {
 		global $wcdn;
 		return $wcdn->print->template_name;
+	}
+}
+
+/**
+ * Return the template title depending on type
+ *
+ * @since 1.0
+ */
+if ( !function_exists( 'wcdn_template_title' ) ) {
+	function wcdn_template_title() {
+		if( wcdn_template_name() == 'invoice' ) {
+			return __( 'Invoice', 'woocommerce-delivery-notes' );
+		} else {
+			return __( 'Delivery Note', 'woocommerce-delivery-notes' );
+		}
 	}
 }
 
@@ -437,7 +452,7 @@ if ( ! function_exists( 'wcdn_order_shipping' ) ) {
 if ( ! function_exists( 'wcdn_order_discount' ) ) {
 	function wcdn_order_discount() {
 		global $wcdn;
-		return woocommerce_price( $wcdn->print->get_order()->order_discount );
+		return woocommerce_price( $wcdn->print->get_order()->get_order_discount() );
 	}
 }
 
@@ -452,7 +467,29 @@ if ( ! function_exists( 'wcdn_order_discount' ) ) {
 if ( ! function_exists( 'wcdn_order_total' ) ) {
 	function wcdn_order_total() {
 		global $wcdn;
-		return woocommerce_price( $wcdn->print->get_order()->order_total );
+		return woocommerce_price( $wcdn->print->get_order()->get_order_total() );
+	}
+}
+
+/**
+ * Return the order totals listing
+ *
+ * @since 1.0
+ *
+ * @global $wcdn->print
+ * @return array order totals list
+ */
+if ( ! function_exists( 'wcdn_order_totals_list' ) ) {
+	function wcdn_order_totals_list() {
+		global $wcdn;		
+		
+		// remove the semicolon
+		$input = $wcdn->print->get_order()->get_order_item_totals();
+		$keys = array_keys($input);
+		$values = array_values($input);
+		$result = preg_replace('/:$/', '', $keys);
+		$output = array_combine($result, $values);
+		return $output;
 	}
 }
 

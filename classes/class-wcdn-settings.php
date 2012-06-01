@@ -44,7 +44,8 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			add_action( 'admin_init', array( $this, 'load_help' ), 20 );
 			add_action( 'admin_print_styles', array( $this, 'add_styles' ) );
 			add_action( 'admin_print_scripts', array( $this, 'add_scripts' ) );
-			add_action( 'admin_print_scripts-media-upload-popup', array( $this, 'add_media_scripts_and_styles' ) );			
+			add_action( 'admin_print_scripts-media-upload-popup', array( $this, 'add_media_scripts' ) );		
+			add_action( 'admin_print_styles-media-upload-popup', array( $this, 'add_media_styles' ) );		
 			add_filter( 'media_upload_tabs', array( $this, 'remove_media_tabs' ) );
 			add_action( 'wp_ajax_load_thumbnail', array( $this, 'load_thumbnail_ajax' ) );
 			add_filter( 'attachment_fields_to_edit', array( $this, 'edit_media_options' ), 20, 2 );
@@ -72,11 +73,21 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		}	
 		
 		/**
+		 * Add the media uploader styles
+		 */
+		public function add_media_styles() {
+			if( $this->is_media_uploader_page() ) {
+				wp_enqueue_style( 'woocommerce-delivery-notes-media-styles', WooCommerce_Delivery_Notes::$plugin_url . 'css/style-media-uploader.css' );
+			}
+		}
+		
+		/**
 		 * Add the media uploader scripts
 		 */
-		public function add_media_scripts_and_styles() {
-			wp_enqueue_style( 'woocommerce-delivery-notes-styles', WooCommerce_Delivery_Notes::$plugin_url . 'css/style.css' );
-			wp_enqueue_script( 'woocommerce-delivery-notes-media-scripts', WooCommerce_Delivery_Notes::$plugin_url . 'js/script-media-uploader.js', array( 'jquery' ) );
+		public function add_media_scripts() {
+			if( $this->is_media_uploader_page() ) {
+				wp_enqueue_script( 'woocommerce-delivery-notes-media-scripts', WooCommerce_Delivery_Notes::$plugin_url . 'js/script-media-uploader.js', array( 'jquery' ) );
+			}
 		}
 		
 		/**
@@ -86,6 +97,20 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 */
 		public function is_settings_page() {
 			if ( isset($_GET['page']) && isset( $_GET['tab'] ) && $_GET['tab'] == $this->tab_name ) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		/**
+		 * Check if we are on media uploader page
+		 *
+		 * @since 1.0
+		 */
+		public function is_media_uploader_page() {
+		
+			if( isset($_GET['post_id']) && isset($_GET['custom_uploader_page']) && $_GET['post_id'] == '0' && $_GET['custom_uploader_page'] == 'true' ) {
 				return true;
 			} else {
 				return false;

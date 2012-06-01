@@ -35,6 +35,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 			add_filter( 'plugin_row_meta', array( $this, 'add_support_links' ), 10, 2 );			
 			add_action( 'add_meta_boxes_shop_order', array( $this, 'add_box' ) );
 			add_action( 'admin_print_styles-post.php', array( $this, 'print_styles' ) );
+			add_action( 'admin_print_styles-post-new.php', array( $this, 'print_styles' ) );
 		}
 
 		/**
