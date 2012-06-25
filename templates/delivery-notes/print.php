@@ -2,56 +2,47 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title><?php echo wcdn_template_title(); ?></title>
-	<link rel="stylesheet" href="<?php echo wcdn_template_url(); ?>css/style.css" type="text/css" media="screen,print" charset="utf-8"/>
-	<?php echo wcdn_template_javascript(); ?>
+	<?php wcdn_template_head(); ?>
+	<link rel="stylesheet" href="<?php wcdn_template_url(); ?>css/style.css" type="text/css" media="screen,print" charset="utf-8"/>
 </head>
 
 <body>
+	<?php wcdn_template_navigation(); ?>
 	<div id="container">
-		<div id="header">
-			<div class="options">
-				<?php echo wcdn_template_print_button(); ?>
-			</div><!-- .options -->
-		</div><!-- #header -->
-
 		<div id="content">			
 			<div id="page">
 				<div id="letter-header">
-					<div class="heading"><?php if( wcdn_company_logo_id() ) : ?><?php echo wcdn_company_logo(); ?><?php else : ?><?php echo wcdn_template_title(); ?><?php endif; ?></div>
+					<div class="heading"><?php if( wcdn_get_company_logo_id() ) : ?><?php wcdn_company_logo(); ?><?php else : ?><?php wcdn_template_title(); ?><?php endif; ?></div>
 					<div class="company-info">
-						<div class="company-name"><?php echo wcdn_company_name(); ?></div>
-						<div class="company-address"><?php echo wcdn_company_info(); ?></div>
+						<div class="company-name"><?php wcdn_company_name(); ?></div>
+						<div class="company-address"><?php wcdn_company_info(); ?></div>
 					</div>
 				</div><!-- #letter-header -->
 				
 				<div id="order-listing">
 					<h3><?php _e( 'Recipient', 'woocommerce-delivery-notes' ); ?></h3>
 					<div class="shipping-info">
-						<?php if( wcdn_shipping_company() ) : ?><?php echo wcdn_shipping_company(); ?><br /><?php endif; ?>
-						<?php echo wcdn_shipping_name(); ?><br />
-						<?php echo wcdn_shipping_address_1(); ?><br />
-						<?php if( wcdn_shipping_address_2() ) : ?><?php echo wcdn_shipping_address_2(); ?><br /><?php endif; ?>
-						<?php echo wcdn_shipping_city(); ?>, <?php echo wcdn_shipping_state(); ?><br />
-						<?php echo wcdn_shipping_postcode(); ?>
-
-						<?php if( wcdn_shipping_country() ) : ?><br /><?php echo wcdn_shipping_country(); ?><?php endif; ?>
+						<?php if( wcdn_get_template_type() == 'invoice' ) : ?>
+							<?php wcdn_billing_address(); ?>
+						<?php else : ?>
+							<?php wcdn_shipping_address(); ?>
+						<?php endif ?>
 					</div><!-- .shipping-info -->
 				</div><!-- #order-listing -->
 				
 				<ul id="order-info">
-					<?php if( wcdn_company_logo() ) : ?>
+					<?php if( wcdn_get_company_logo_id() ) : ?>
 					<li>
-						<h3 class="order-number-label"><?php echo wcdn_template_title(); ?></h3>
+						<h3 class="order-number-label"><?php wcdn_template_title(); ?></h3>
 					</li>
 					<?php endif; ?>
 					<li>
 						<h3 class="order-number-label"><?php _e( 'Order No.', 'woocommerce-delivery-notes' ); ?></h3>
-						<span class="order-number"><?php echo wcdn_order_number(); ?></span>
+						<span class="order-number"><?php wcdn_order_number(); ?></span>
 					</li>
 					<li>
 						<h3 class="order-date-label"><?php _e( 'Order Date', 'woocommerce-delivery-notes' ); ?></h3>
-						<span class="order-date"><?php echo wcdn_order_date(); ?></span>
+						<span class="order-date"><?php wcdn_order_date(); ?></span>
 					</li>
 				</ul><!-- #order-info -->
 					
@@ -84,7 +75,7 @@
 				<div id="order-summary">
 					<table>
 						<tfoot>
-							<?php foreach( wcdn_order_totals_list() as $label => $price ) : ?>
+							<?php foreach( wcdn_get_order_totals() as $label => $price ) : ?>
 							<tr>
 								<th class="description"><?php echo $label; ?></th>
 								<td class="price"><?php echo $price; ?></td>
@@ -96,25 +87,22 @@
 	
 				<div id="order-notes">
 					<div class="notes-shipping">
-						<?php if ( wcdn_shipping_notes() ) : ?>
+						<?php if ( wcdn_get_shipping_notes() ) : ?>
 							<h3><?php _e( 'Customer Notes', 'woocommerce-delivery-notes' ); ?></h3>
-							<?php echo wcdn_shipping_notes(); ?>
+							<?php wcdn_shipping_notes(); ?>
 						<?php endif; ?>
 					</div>
-					<div class="notes-personal"><?php echo wcdn_personal_notes(); ?></div>
+					<div class="notes-personal"><?php wcdn_personal_notes(); ?></div>
 				</div><!-- #order-notes -->
 					
-				<?php if ( wcdn_policies_conditions() || wcdn_footer_imprint() ) : ?>
+				<?php if ( wcdn_get_policies_conditions() || wcdn_get_footer_imprint() ) : ?>
 					<div id="letter-footer">
-						<div class="policies"><?php echo wcdn_policies_conditions(); ?></div>
-						<div class="imprint"><?php echo wcdn_footer_imprint(); ?></div>
+						<div class="policies"><?php wcdn_policies_conditions(); ?></div>
+						<div class="imprint"><?php wcdn_footer_imprint(); ?></div>
 					</div><!-- #letter-footer -->
 				<?php endif; ?>
 			</div><!-- #page -->
 		</div><!-- #content -->
-		
-		<div id="footer">
-		</div><!-- #footer -->
 	</div><!-- #container -->
 </body>
 </html>

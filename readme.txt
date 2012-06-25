@@ -1,9 +1,9 @@
 === WooCommerce Print Invoices & Delivery Notes ===
 Contributors: chabis, daveshine, deckerweb
 Tags: delivery notes, delivery, shipping, print, order, invoice, invoices, woocommerce, woothemes, shop, shop manager, deckerweb
-Requires at least: 3.3 and WooCommerce 1.5.6+
+Requires at least: 3.4 and WooCommerce 1.5.6
 Tested up to: 3.4
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GPLv3 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
 
@@ -98,6 +98,13 @@ The basic intention is to have the plugin at the same time as leightweight and u
 
 == Changelog ==
 
+= 1.2.4 =
+* ATTENTION: update your custom template php-code, many functions changed.
+* NEW: The company logo isn't resized anymore and is displayed at the size it was uploaded. Make sure that your original image file has the desired dimensions!
+* NEW: Removed the custom/sequential order number settings. They are now handled by the additional plugin.
+* UPDATE: Renamed many template functions. Please update your custom template.
+* UPDATE: The print navigation is now seperated from the template file.
+
 = 1.2.3 (2012-06-01) =
 * UPDATE: Order totals are now displayed the same way as when the customer reviews the order online (Update custom template to use the feature).
 * UPDATE: Variations and Attributes are now properly displayed (Update custom template to use the feature).
@@ -143,6 +150,9 @@ The basic intention is to have the plugin at the same time as leightweight and u
 * Forked and extended from original plugin for Jigoshop ("Jigoshop Delivery Notes" at GitHub)
 
 == Upgrade Notice ==
+
+= 1.2.4 =
+Many template functions were updated. Please update your custom template too or everything breaks!
 
 = 1.2.1 =
 The sequential order numbers plugin requires at least WooCommerce 1.5.3.

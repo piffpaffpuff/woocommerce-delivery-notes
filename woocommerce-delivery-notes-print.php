@@ -32,71 +32,183 @@ $name = $_GET['name'];
 $wcdn->print->load( $id );
 
 /**
- * Return Delivery Note template url
- *
- * @since 1.0
- */
-if ( !function_exists( 'wcdn_template_url' ) ) {
-	function wcdn_template_url() {
-		global $wcdn;
-		return $wcdn->print->template_url;
-	}
-}
-
-/**
  * Return Type of template
  *
  * @since 1.0
  */
-if ( !function_exists( 'wcdn_template_name' ) ) {
-	function wcdn_template_name() {
+if ( !function_exists( 'wcdn_get_template_type' ) ) {
+	function wcdn_get_template_type() {
 		global $wcdn;
 		return $wcdn->print->template_name;
 	}
 }
 
 /**
- * Return the template title depending on type
+ * Show the template head
  *
  * @since 1.0
  */
-if ( !function_exists( 'wcdn_template_title' ) ) {
-	function wcdn_template_title() {
-		if( wcdn_template_name() == 'invoice' ) {
-			return __( 'Invoice', 'woocommerce-delivery-notes' );
-		} else {
-			return __( 'Delivery Note', 'woocommerce-delivery-notes' );
-		}
+if ( !function_exists( 'wcdn_template_head' ) ) {
+	function wcdn_template_head() {
+		?>
+		<title><?php wcdn_template_title(); ?></title>
+		<?php wcdn_template_javascript(); ?>
+		<style type="text/css">
+			#navigation {
+				font-family: Helvetica, Arial, sans-serif;
+				position: fixed;
+				top: 0px;
+				left: 0px;
+				right: 0px;
+				padding-top: 6px;
+				padding-left: 6px;
+				padding-right: 6px;
+				height: 28px;
+				text-shadow: 0px 1px 0px #ffffff;
+				filter: dropshadow(color=#ffffff, offx=0, offy=1);
+				background: #F1F1F1;
+				background-image: -ms-linear-gradient(top, #F9F9F9, #ECECEC);
+				background-image: -moz-linear-gradient(top, #F9F9F9, #ECECEC);
+				background-image: -o-linear-gradient(top, #F9F9F9, #ECECEC);
+				background-image: -webkit-gradient(linear, left top, left bottom, from(#F9F9F9), to(#ECECEC));
+				background-image: -webkit-linear-gradient(top, #F9F9F9, #ECECEC);
+				background-image: linear-gradient(top, #F9F9F9, #ECECEC);
+				border-bottom: 1px solid #DFDFDF;
+				border-top: 1px solid #DFDFDF;
+			}
+			
+			.options {
+				overflow: hidden;
+			}
+			
+			.options a {
+				border: 1px solid #bbb;
+				-webkit-border-radius: 12px;
+				-moz-border-radius: 12px;
+				-ms-border-radius: 12px;
+				-o-border-radius: 12px;
+				border-radius: 12px;
+				color: #464646;
+				display: block;
+				float: right;
+				font-size: 0.875em;
+				height: 20px;
+				line-height: 20px;
+				padding-left: 15px;
+				padding-right: 15px;
+				text-decoration: none;
+				background: #F1F1F1;
+				background: -moz-linear-gradient(top, #ffffff 0%, #efefef 100%);
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#efefef));
+				background: -webkit-linear-gradient(top, #ffffff 0%,#efefef 100%);
+				background: -o-linear-gradient(top, #ffffff 0%,#efefef 100%);
+				background: -ms-linear-gradient(top, #ffffff 0%,#efefef 100%);
+				background: linear-gradient(top, #ffffff 0%,#efefef 100%);
+				-webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+				-moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+				-ms-box-shadow: inset 0px 1px 0px 0px #ffffff;
+				-o-box-shadow: inset 0px 1px 0px 0px #ffffff;
+				box-shadow: inset 0px 1px 0px 0px #ffffff;
+			}
+			
+			.options a:hover {
+				border-color: #999;
+				color: #000;
+			}
+			
+			.options a:active {
+				border-color: #666;
+				-webkit-box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.45);
+				-moz-box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.45);
+				-ms-box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.45);
+				-o-box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.45);
+				box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.45);
+				background: -moz-linear-gradient(top, #ffffff 0%, #efefef 100%);
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#efefef));
+				background: -webkit-linear-gradient(top, #efefef 0%,#e6e6e6 100%);
+				background: -o-linear-gradient(top, #ffffff 0%,#efefef 100%);
+				background: -ms-linear-gradient(top, #ffffff 0%,#efefef 100%);
+				background: linear-gradient(top, #ffffff 0%,#efefef 100%);
+			}
+
+			@media print {
+				#navigation {
+					display: none;
+				}
+			}		
+		</style>
+		<?php
 	}
 }
 
 /**
- * Return javascript
+ * Show javascript
  *
  * @since 1.0
  */
 if ( !function_exists( 'wcdn_template_javascript' ) ) {
 	function wcdn_template_javascript() {
 		global $wcdn;
-		
-		$js = '<script type="text/javascript">
+		?>
+		<script type="text/javascript">
 			function openPrintWindow() {
 		    	window.print();
 		    	return false;
-			}';
-		
-		if( checked( $wcdn->print->get_setting( 'open_print_window' ), 'yes', false ) ) {
-			$js .= 'window.onload = openPrintWindow;';
-		}
-		
-		$js .= '</script>';
-		
-		return $js;
+			}
+			<?php if( checked( $wcdn->print->get_setting( 'open_print_window' ), 'yes', false ) ) : ?>
+				window.onload = openPrintWindow;
+			<?php endif ?>
+		</script>
+		<?php
 	}
 }
 
 /**
- * Return print button
+ * Show Delivery Note template url
+ *
+ * @since 1.0
+ */
+if ( !function_exists( 'wcdn_template_url' ) ) {
+	function wcdn_template_url() {
+		global $wcdn;
+		echo $wcdn->print->template_url;
+	}
+}
+
+/**
+ * Show the template nav bar
+ *
+ * @since 1.0
+ */
+if ( !function_exists( 'wcdn_template_navigation' ) ) {
+	function wcdn_template_navigation() {
+		?>
+		<div id="navigation">
+			<div class="options">
+				<?php echo wcdn_template_print_button(); ?>
+			</div>
+		</div>
+		<?php
+	}
+}
+
+/**
+ * Show the template title depending on type
+ *
+ * @since 1.0
+ */
+if ( !function_exists( 'wcdn_template_title' ) ) {
+	function wcdn_template_title() {
+		if( wcdn_get_template_type() == 'invoice' ) {
+			echo __( 'Invoice', 'woocommerce-delivery-notes' );
+		} else {
+			echo __( 'Delivery Note', 'woocommerce-delivery-notes' );
+		}
+	}
+}
+
+/**
+ * Show print button
  *
  * @since 1.0
  */
@@ -113,25 +225,27 @@ if ( !function_exists( 'wcdn_template_print_button' ) ) {
  *
  * @since 1.0
  */
-if ( !function_exists( 'wcdn_company_logo_id' ) ) {
-	function wcdn_company_logo_id() {
+if ( !function_exists( 'wcdn_get_company_logo_id' ) ) {
+	function wcdn_get_company_logo_id() {
 		global $wcdn;
 		return $wcdn->print->get_setting( 'company_logo_image_id' );
 	}
 }
 
 /**
- * Return logo html
+ * Show logo html
  *
  * @since 1.0
  */
 if ( !function_exists( 'wcdn_company_logo' ) ) {
 	function wcdn_company_logo() {
 		global $wcdn;
-		$attachment_id = $wcdn->print->get_setting( 'company_logo_image_id' );
-		if( !empty( $attachment_id ) ) {
-			$attachment_src = wp_get_attachment_image_src( $attachment_id, array( 300, 300 ), false );
-			return '<img src="' . $attachment_src[0] . '" width="' . $attachment_src[1] . '" height="' . $attachment_src[2] . '" />';
+		$attachment_id = wcdn_get_company_logo_id();
+		if( $attachment_id ) {
+			$attachment_src = wp_get_attachment_image_src( $attachment_id, 'full', false );
+			?>
+			<img src="<?php echo $attachment_src[0]; ?>" width="<?php echo $attachment_src[1]; ?>" height="<?php echo $attachment_src[2]; ?>" />
+			<?php
 		}
 		return;
 	}
@@ -147,9 +261,9 @@ if ( !function_exists( 'wcdn_company_name' ) ) {
 		global $wcdn;
 		$name = trim( $wcdn->print->get_setting( 'custom_company_name' ) );
 		if( !empty( $name ) ) {
-			return wpautop( wptexturize( $name ) );
+			echo wpautop( wptexturize( $name ) );
 		} else {
-			return get_bloginfo( 'name' );
+			echo get_bloginfo( 'name' );
 		}
 	}
 }
@@ -158,183 +272,90 @@ if ( !function_exists( 'wcdn_company_name' ) ) {
  * Return shop/company info if provided
  *
  * @since 1.0
- *
- * @global $wcdn->print
- * @return string company address
  */
 if ( ! function_exists( 'wcdn_company_info' ) ) {
 	function wcdn_company_info() {
 		global $wcdn;
-		return wpautop( wptexturize( $wcdn->print->get_setting( 'company_address' ) ) );
+		echo wpautop( wptexturize( $wcdn->print->get_setting( 'company_address' ) ) );
 	}
 }
 
 /**
- * Return shipping name
+ * Show billing phone
  *
  * @since 1.0
- *
- * @global $wcdn->print
- * @return string shipping name
- */
-if ( ! function_exists( 'wcdn_shipping_name' ) ) {
-	function wcdn_shipping_name() {
-		global $wcdn;
-		return $wcdn->print->get_order()->shipping_first_name . ' ' . $wcdn->print->get_order()->shipping_last_name;
-	}
-}
-
-/**
- * Return shipping company
- *
- * @since 1.0
- *
- * @global $wcdn->print
- * @return string shipping company
- */
-if ( ! function_exists( 'wcdn_shipping_company' ) ) {
-	function wcdn_shipping_company() {
-		global $wcdn;
-		return $wcdn->print->get_order()->shipping_company;
-	}
-}
-
-/**
- * Return shipping address 1
- *
- * @since 1.0
- *
- * @global $wcdn->print
- * @return string shipping address
- */
-if ( ! function_exists( 'wcdn_shipping_address_1' ) ) {
-	function wcdn_shipping_address_1() {
-		global $wcdn;
-		return $wcdn->print->get_order()->shipping_address_1;
-	}
-}
-
-/**
- * Return shipping address 2
- *
- * @since 1.0
- *
- * @global $wcdn->print
- * @return string shipping address 2
- */
-if ( ! function_exists( 'wcdn_shipping_address_2' ) ) {
-	function wcdn_shipping_address_2() {
-		global $wcdn;
-		return $wcdn->print->get_order()->shipping_address_2;
-	}
-}
-
-/**
- * Return shipping city
- *
- * @since 1.0
- *
- * @global $wcdn->print
- * @return string shipping city
- */
-if ( ! function_exists( 'wcdn_shipping_city' ) ) {
-	function wcdn_shipping_city() {
-		global $wcdn;
-		return $wcdn->print->get_order()->shipping_city;
-	}
-}
-
-/**
- * Return shipping state
- *
- * @since 1.0
- *
- * @global $wcdn->print
- * @return string shipping state
- */
-if ( ! function_exists( 'wcdn_shipping_state' ) ) {
-	function wcdn_shipping_state() {
-		global $wcdn;
-		return $wcdn->print->get_order()->shipping_state;
-	}
-}
-
-/**
- * Return shipping postcode
- *
- * @since 1.0
- *
- * @global $wcdn->print
- * @return string shipping postcode
- */
-if ( ! function_exists( 'wcdn_shipping_postcode' ) ) {
-	function wcdn_shipping_postcode() {
-		global $wcdn;
-		return $wcdn->print->get_order()->shipping_postcode;
-	}
-}
-
-/**
- * Return shipping country
- *
- * @since 1.0
- *
- * @global $wcdn->print
- * @return string shipping country
- */
-if ( ! function_exists( 'wcdn_shipping_country' ) ) {
-	function wcdn_shipping_country() {
-		global $wcdn, $woocommerce;
-		$country = $wcdn->print->get_order()->shipping_country;
-		$full_country = ( isset( $woocommerce->countries->countries[$country] ) ) ? $woocommerce->countries->countries[$country] : $country;
-		return $full_country;
-	}
-}
-
-/**
- * Return shipping notes
- *
- * @since 1.0
- *
- * @global $wcdn->print
- * @return string shipping notes
- */
-if ( ! function_exists( 'wcdn_shipping_notes' ) ) {
-	function wcdn_shipping_notes() {
-		global $wcdn;
-		return wpautop( wptexturize( $wcdn->print->get_order()->customer_note ) );
-	}
-}
-
-/**
- * Return billing phone
- *
- * @since 1.0
- *
- * @global $wcdn->print
- * @return string billing phone
  */
 if ( ! function_exists( 'wcdn_billing_phone' ) ) {
 	function wcdn_billing_phone() {
 		global $wcdn;
-		return $wcdn->print->get_order()->billing_phone;
+		echo $wcdn->print->get_order()->billing_phone;
 	}
 }
 
 /**
- * Return order id
+ * Show billing email
  *
  * @since 1.0
+ */
+if ( ! function_exists( 'wcdn_billing_email' ) ) {
+	function wcdn_billing_email() {
+		global $wcdn;
+		echo $wcdn->print->get_order()->billing_email;
+	}
+}
+
+/**
+ * Show billing address
  *
- * @global $wcdn->print
- * @return string order id
+ * @since 1.0
+ */
+if ( ! function_exists( 'wcdn_billing_address' ) ) {
+	function wcdn_billing_address() {
+		global $wcdn;
+		$address = $wcdn->print->get_order()->get_formatted_billing_address();
+		if( !$address ) {
+			$address = _e('N/A', 'woocommerce');
+		}
+		echo $address;
+	}
+}
+
+/**
+ * Show shipping address
+ *
+ * @since 1.0
+ */
+if ( ! function_exists( 'wcdn_shipping_address' ) ) {
+	function wcdn_shipping_address() {
+		global $wcdn;
+		$address = $wcdn->print->get_order()->get_formatted_shipping_address();
+		if( !$address ) {
+			$address = _e('N/A', 'woocommerce');
+		}
+		echo $address;
+	}
+}
+
+/**
+ * Get order
+ *
+ * @since 1.0
+ */
+if ( ! function_exists( 'wcdn_get_order' ) ) {
+	function wcdn_get_order() {
+		global $wcdn;
+		return $wcdn->print->get_order();
+	}
+}
+
+/**
+ * Show order number
+ *
+ * @since 1.0
  */
 if ( ! function_exists( 'wcdn_order_number' ) ) {
 	function wcdn_order_number() {
 		global $wcdn;
-		$before = trim( $wcdn->print->get_setting( 'before_order_number' ) );
-		$after = trim( $wcdn->print->get_setting( 'after_order_number' ) );
-		$offset = trim( $wcdn->print->get_setting( 'order_number_offset' ) );
 
 		// get custom order number as provided by the plugin
 		// http://wordpress.org/extend/plugins/woocommerce-sequential-order-numbers/
@@ -345,24 +366,20 @@ if ( ! function_exists( 'wcdn_order_number' ) ) {
 			$order_id = $wcdn->print->get_order()->order_custom_fields['_order_number'][0];
 		}
 		
-		$number = $before . ( intval( $offset ) + intval( $order_id ) ) . $after;
-		return $number;
+		echo $order_id;
 	}
 }
 
 /**
- * Return the order date
+ * Show the order date
  *
  * @since 1.0
- *
- * @global $wcdn->print
- * @return string order date
  */
 if ( ! function_exists( 'wcdn_order_date' ) ) {
 	function wcdn_order_date() {
 		global $wcdn;
 		$order = $wcdn->print->get_order();
-		return date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) );
+		echo date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) );
 	}
 }
 
@@ -370,9 +387,6 @@ if ( ! function_exists( 'wcdn_order_date' ) ) {
  * Return the order items
  *
  * @since 1.0
- *
- * @global $wcdn->print
- * @return strings order items
  */
 if ( ! function_exists( 'wcdn_get_order_items' ) ) {
 	function wcdn_get_order_items() {
@@ -382,105 +396,12 @@ if ( ! function_exists( 'wcdn_get_order_items' ) ) {
 }
 
 /**
- * Return the formatted price
- *
- * @since 1.0
- *
- * @global $wcdn->print
- * @return string items price
- */
-if ( !function_exists( 'wcdn_format_price' ) ) {
-	function wcdn_format_price( $price, $tax_rate = 0 ) {
-		$tax_included = ( $tax_rate > 0 ) ? 0 : 1;
-		return woocommerce_price( ( ( $price / 100 ) * $tax_rate ) + $price, array( 'ex_tax_label' => $tax_included ) );
-	}
-}
-
-/**
- * Return the order subtotal
- *
- * @since 1.0
- *
- * @global $wcdn->print
- * @return string order subtotal
- */
-if ( !function_exists( 'wcdn_order_subtotal' ) ) {
-	function wcdn_order_subtotal() {
-		global $wcdn;
-		return $wcdn->print->get_order()->get_subtotal_to_display();
-	}
-}
-
-/**
- * Return the order tax
- *
- * @since 1.0
- *
- * @global $wcdn->print
- * @return string order tax
- */
-if ( ! function_exists( 'wcdn_order_tax' ) ) {
-	function wcdn_order_tax() {
-		global $wcdn;
-		return woocommerce_price( $wcdn->print->get_order()->get_total_tax() );
-	}
-}
-
-/**
- * Return the order shipping cost
- *
- * @since 1.0
- *
- * @global $wcdn->print
- * @return string order shipping cost
- */
-if ( ! function_exists( 'wcdn_order_shipping' ) ) {
-	function wcdn_order_shipping() {
-		global $wcdn;
-		return $wcdn->print->get_order()->get_shipping_to_display();
-	}
-}
-
-/**
- * Return the order discount
- *
- * @since 1.0
- *
- * @global $wcdn->print
- * @return string order discount
- */
-if ( ! function_exists( 'wcdn_order_discount' ) ) {
-	function wcdn_order_discount() {
-		global $wcdn;
-		return woocommerce_price( $wcdn->print->get_order()->get_order_discount() );
-	}
-}
-
-/**
- * Return the order grand total
- *
- * @since 1.0
- *
- * @global $wcdn->print
- * @return string grand total
- */
-if ( ! function_exists( 'wcdn_order_total' ) ) {
-	function wcdn_order_total() {
-		global $wcdn;
-		return woocommerce_price( $wcdn->print->get_order()->get_order_total() );
-	}
-}
-
-/**
  * Return the order totals listing
  *
  * @since 1.0
- *
- * @global $wcdn->print
- * @return array order totals list
  */
-if ( ! function_exists( 'wcdn_order_totals_list' ) ) {
-	function wcdn_order_totals_list() {
+if ( ! function_exists( 'wcdn_get_order_totals' ) ) {
+	function wcdn_get_order_totals() {
 		global $wcdn;		
 		
 		// remove the semicolon
@@ -494,47 +415,26 @@ if ( ! function_exists( 'wcdn_order_totals_list' ) ) {
 }
 
 /**
- * Return if the order has a shipping
+ * Return has shipping notes
  *
  * @since 1.0
- *
- * @global $wcdn->print
- * @return boolean
  */
-if ( ! function_exists( 'wcdn_has_shipping' ) ) {
-	function wcdn_has_shipping() {
+if ( ! function_exists( 'wcdn_get_shipping_notes' ) ) {
+	function wcdn_get_shipping_notes() {
 		global $wcdn;
-		return ( $wcdn->print->get_order()->order_shipping > 0 ) ? true : false;
+		return wpautop( wptexturize( $wcdn->print->get_order()->customer_note ) );
 	}
 }
 
 /**
- * Return if the order has a tax
+ * Show shipping notes
  *
  * @since 1.0
- *
- * @global $wcdn->print
- * @return boolean
  */
-if ( ! function_exists( 'wcdn_has_tax' ) ) {
-	function wcdn_has_tax() {
+if ( ! function_exists( 'wcdn_shipping_notes' ) ) {
+	function wcdn_shipping_notes() {
 		global $wcdn;
-		return ( $wcdn->print->get_order()->get_total_tax() > 0 ) ? true : false;
-	}
-}
-
-/**
- * Return if the order has a discount
- *
- * @since 1.0
- *
- * @global $wcdn->print
- * @return boolean
- */
-if ( ! function_exists( 'wcdn_has_discount' ) ) {
-	function wcdn_has_discount() {
-		global $wcdn;
-		return ( $wcdn->print->get_order()->order_discount > 0 ) ? true : false;
+		echo wcdn_get_shipping_notes();
 	}
 }
 
@@ -542,14 +442,23 @@ if ( ! function_exists( 'wcdn_has_discount' ) ) {
  * Return personal notes, season greetings etc.
  *
  * @since 1.0
+ */
+if ( ! function_exists( 'wcdn_get_personal_notes' ) ) {
+	function wcdn_get_personal_notes() {
+		global $wcdn;
+		return wpautop( wptexturize( $wcdn->print->get_setting( 'personal_notes' ) ) );
+	}
+}
+
+/**
+ * Show personal notes, season greetings etc.
  *
- * @global $wcdn->print
- * @return string personal notes
+ * @since 1.0
  */
 if ( ! function_exists( 'wcdn_personal_notes' ) ) {
 	function wcdn_personal_notes() {
 		global $wcdn;
-		return wpautop( wptexturize( $wcdn->print->get_setting( 'personal_notes' ) ) );
+		echo wcdn_get_personal_notes();
 	}
 }
 
@@ -557,14 +466,23 @@ if ( ! function_exists( 'wcdn_personal_notes' ) ) {
  * Return policy for returns
  *
  * @since 1.0
+ */
+if ( ! function_exists( 'wcdn_get_policies_conditions' ) ) {
+	function wcdn_get_policies_conditions() {
+		global $wcdn;
+		return wpautop( wptexturize( $wcdn->print->get_setting( 'policies_conditions' ) ) );
+	}
+}
+
+/**
+ * Show policy for returns
  *
- * @global $wcdn->print
- * @return string policy
+ * @since 1.0
  */
 if ( ! function_exists( 'wcdn_policies_conditions' ) ) {
 	function wcdn_policies_conditions() {
 		global $wcdn;
-		return wpautop( wptexturize( $wcdn->print->get_setting( 'policies_conditions' ) ) );
+		echo wcdn_get_policies_conditions();
 	}
 }
 
@@ -572,14 +490,23 @@ if ( ! function_exists( 'wcdn_policies_conditions' ) ) {
  * Return shop/company footer imprint, copyright etc.
  *
  * @since 1.0
+ */
+if ( ! function_exists( 'wcdn_get_footer_imprint' ) ) {
+	function wcdn_get_footer_imprint() {
+		global $wcdn;
+		return wpautop( wptexturize( $wcdn->print->get_setting( 'footer_imprint' ) ) );
+	}
+}
+
+/**
+ * Show shop/company footer imprint, copyright etc.
  *
- * @global $wcdn->print
- * @return string footer imprint
+ * @since 1.0
  */
 if ( ! function_exists( 'wcdn_footer_imprint' ) ) {
 	function wcdn_footer_imprint() {
 		global $wcdn;
-		return wpautop( wptexturize( $wcdn->print->get_setting( 'footer_imprint' ) ) );
+		echo wcdn_get_footer_imprint();
 	}
 }
 
@@ -587,8 +514,5 @@ if ( ! function_exists( 'wcdn_footer_imprint' ) ) {
  * Show the template
  *
  * @since 1.0
- *
- * @global $wcdn->print
- * @return string footer imprint
  */
 echo $wcdn->print->get_print_page( $name );

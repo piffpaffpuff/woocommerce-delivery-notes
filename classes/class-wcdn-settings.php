@@ -381,25 +381,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			</table>
 			<h3><?php _e( 'Order Numbering Options', 'woocommerce-delivery-notes' ); ?></h3>
 			<table class="form-table">
-				<tbody>		
-					<tr>
-						<th>
-							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>before_order_number"><?php _e( 'Before order number', 'woocommerce-delivery-notes' ); ?></label>
-						</th>
-						<td>
-							<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>before_order_number" type="text" value="<?php echo wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'before_order_number' ) ); ?>" />
-							<span class="description"><?php _e( 'This text will be placed before the order number ie. "YOUR-TEXT123".', 'woocommerce-delivery-notes' ); ?></span>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>after_order_number"><?php _e( 'After order number', 'woocommerce-delivery-notes' ); ?></label>
-						</th>
-						<td>
-							<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>after_order_number" type="text" value="<?php echo wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'after_order_number' ) ); ?>" />
-							<span class="description"><?php _e( 'This text will be placed after the order number ie. "123YOUR-TEXT".', 'woocommerce-delivery-notes' ); ?></span>
-						</td>
-					</tr>
+				<tbody>	
 					<tr>
 						<th>
 							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>order_number_offset"><?php _e( 'Sequential order number', 'woocommerce-delivery-notes' ); ?></label>
