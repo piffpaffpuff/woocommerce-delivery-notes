@@ -13,6 +13,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		public $template_dir;
 		public $template_base;
 		public $template_name;
+		public $template_stylesheet_url;
 		public $theme_base;
 		public $theme_path;
 		public $order_id;
@@ -40,6 +41,8 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			$this->template_base = 'templates/';
 			$this->theme_base = $woocommerce->template_url;
 			$this->template_dir = 'delivery-notes/';
+			$this->template_url = WooCommerce_Delivery_Notes::$plugin_url . $this->template_base . $this->template_dir;
+			$this->template_stylesheet_url = $this->template_url;
 			$this->theme_path = trailingslashit( get_stylesheet_directory() ); 
 			
 			if ( $this->order_id > 0 ) {
@@ -79,6 +82,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			if ( !$template && $name && file_exists( $template_file) ) {
 				$template = $template_file;
 				$this->template_url = trailingslashit( get_stylesheet_directory_uri() ) . $this->theme_base . $this->template_dir;
+				$this->template_stylesheet_url = $this->template_url;
 			} 
 						
 			// Fall back to slug.php in yourtheme/woocommerce/delivery-notes/			
@@ -86,27 +90,25 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			if ( !$template && file_exists( $template_file ) ) {
 				$template = $template_file;
 				$this->template_url = trailingslashit( get_stylesheet_directory_uri() ) . $this->theme_base . $this->template_dir;
+				$this->template_stylesheet_url = $this->template_url;
 			}
 			
-			// Legacy support for old custom template folder structure
-			$template_file = $this->theme_path . $this->theme_base . 'delivery-note-template/template.php';
-			if ( !$template && file_exists( $template_file ) ) {
-				$template = $template_file;
-				$this->template_url = trailingslashit( get_stylesheet_directory_uri() ) . 'delivery-note-template/';
+			// No php file found but maybe there is a custom css			
+			$template_stylesheet_file = $this->theme_path . $this->theme_base . $this->template_dir . 'style.css';
+			if ( !$template && file_exists( $template_stylesheet_file ) ) {
+				$this->template_stylesheet_url = trailingslashit( get_stylesheet_directory_uri() ) . $this->theme_base . $this->template_dir;
 			}
-			
+				
 			// Look in pluginname/templates/delivery-notes/
 			$template_file = WooCommerce_Delivery_Notes::$plugin_path . $this->template_base . $this->template_dir . $slug.'-'.$name.'.php';
 			if ( !$template && $name && file_exists( $template_file ) ) {
 				$template = $template_file;
-				$this->template_url = WooCommerce_Delivery_Notes::$plugin_url . $this->template_base . $this->template_dir;
 			}
 
 			// Fall back to slug.php in pluginname/templates/delivery-notes/			
 			$template_file = WooCommerce_Delivery_Notes::$plugin_path . $this->template_base . $this->template_dir . $slug.'.php';
 			if ( !$template && file_exists( $template_file ) ) {
 				$template = $template_file;
-				$this->template_url = WooCommerce_Delivery_Notes::$plugin_url . $this->template_base . $this->template_dir;
 			}
 			
 			// Return the content of the template
@@ -120,7 +122,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			// Return no content when no file was found
 			return;
 		}
-				
+						
 		/**
 		 * Get the current order
 		 *

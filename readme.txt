@@ -100,9 +100,10 @@ The basic intention is to have the plugin at the same time as leightweight and u
 
 = 1.2.4 =
 * ATTENTION: update your custom template php-code, many functions changed.
+* NEW: The custom `style.css` is now loaded when it is saved at `yourthemename/woocommerce/delivery-notes/style.css`. Like this the default template look can be altered without editing the template html code.
 * NEW: The company logo isn't resized anymore and is displayed at the size it was uploaded. Make sure that your original image file has the desired dimensions!
 * NEW: Removed the custom/sequential order number settings. They are now handled by the additional plugin.
-* UPDATE: Renamed many template functions. Please update your custom template.
+* UPDATE: Renamed or removed many template functions. Please update your custom template.
 * UPDATE: The print navigation is now seperated from the template file.
 
 = 1.2.3 (2012-06-01) =

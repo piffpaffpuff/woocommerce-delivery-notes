@@ -164,7 +164,7 @@ if ( !function_exists( 'wcdn_template_javascript' ) ) {
 }
 
 /**
- * Show Delivery Note template url
+ * Show template url
  *
  * @since 1.0
  */
@@ -172,6 +172,18 @@ if ( !function_exists( 'wcdn_template_url' ) ) {
 	function wcdn_template_url() {
 		global $wcdn;
 		echo $wcdn->print->template_url;
+	}
+}
+
+/**
+ * Show template stylesheet url
+ *
+ * @since 1.0
+ */
+if ( !function_exists( 'wcdn_template_stylesheet_url' ) ) {
+	function wcdn_template_stylesheet_url() {
+		global $wcdn;
+		echo $wcdn->print->template_stylesheet_url;
 	}
 }
 

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<?php wcdn_template_head(); ?>
-	<link rel="stylesheet" href="<?php wcdn_template_url(); ?>css/style.css" type="text/css" media="screen,print" charset="utf-8"/>
+	<link rel="stylesheet" href="<?php wcdn_template_stylesheet_url(); ?>style.css" type="text/css" media="screen,print" charset="utf-8"/>
 </head>
 
 <body>
