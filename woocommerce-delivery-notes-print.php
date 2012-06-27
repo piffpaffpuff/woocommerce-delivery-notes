@@ -44,6 +44,18 @@ if ( !function_exists( 'wcdn_get_template_type' ) ) {
 }
 
 /**
+ * Show the template class
+ *
+ * @since 1.0
+ */
+if ( !function_exists( 'wcdn_template_class' ) ) {
+	function wcdn_template_class() {
+		global $wcdn;
+		echo sanitize_key( wcdn_get_template_type() );
+	}
+}
+
+/**
  * Show the template head
  *
  * @since 1.0

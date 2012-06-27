@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="<?php wcdn_template_class(); ?>">
 <head>
 	<meta charset="utf-8">
 	<?php wcdn_template_head(); ?>

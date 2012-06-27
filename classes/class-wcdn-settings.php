@@ -294,7 +294,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							<span class="description">
 								<?php _e( 'A company/shop logo representing your business.', 'woocommerce-delivery-notes' ); ?>
 								<br /><strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
-								<?php _e( 'The Logo will be resized if it is larger than 300px &times; 300px.', 'woocommerce-delivery-notes' ); ?>
+								<?php _e( 'The Logo will be resized to a fourth of its original pixel size to make it look sharp when it is printed.', 'woocommerce-delivery-notes' ); ?>
 							</span>
 						</td>
 					</tr>
