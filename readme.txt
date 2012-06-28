@@ -102,10 +102,10 @@ For custom and update-secure language files please upload them to `/wp-content/l
 
 = 1.2.4 =
 * ATTENTION: This update breaks your custom template because many functions were renamed or removed. Please update your custom template.
-* NEW: The custom `style.css` is now loaded even when there is no `print.php` in your theme folder `yourthemename/woocommerce/delivery-notes`. Like this the default template look can be altered without editing `print.php` file.
+* NEW: The custom `style.css` is now loaded even when there is no `print.php` in your theme folder `yourthemename/woocommerce/delivery-notes`. Like this the look of the default template can be changed without editing the `print.php` file.
 * NEW: The company logo isn't resized anymore. Instead it is loaded with the original pixel dimensions but is then resized via CSS to a fourth. Make sure that your original image file has the desired pixel dimensions!
 * NEW: Removed the custom/sequential order number settings. They are now fully handled by the additional plugin.
-* UPDATE: Renamed or removed many template functions. Please update your custom template or use the CSS styling in future.
+* UPDATE: Renamed or removed many template functions. Please update your custom template.
 * UPDATE: The print navigation is now separated from the template file. Please update your custom template.
 
 = 1.2.3 (2012-06-01) =
