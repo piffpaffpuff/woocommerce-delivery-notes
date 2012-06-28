@@ -49,7 +49,7 @@ Credit where credit is due: This plugin here is inspired and based on the work o
 = Why is my company logo not displayed at the size I've uploaded it? =
 Printed sheets need a higher pixel density for images than the screen. To make your printed logo look nice and crisp it will be resized via CSS to a fourth of the uploaded pixel size. This means: An image of 400p x 400px will be displayed as a 100px x 100px image but will be printed with the original amount of pixels.
 
-= How can modify the recipients address format? =
+= How can I change the address format of the recipient? =
 WooCommerce includes address formats for many different countries. But maybe your country format isn't included. For such cases you can define your own format with a filter in your `functions.php` if you know your country code (ie `LI`).
 
 `
@@ -60,12 +60,12 @@ function custom_localisation_address_formats($formats) {
 add_filter('woocommerce_localisation_address_formats', 'custom_localisation_address_formats');
 `
 
-= How can I modify the look of the printing page with CSS? =
-Copy the `style.css` from the `/wp-content/plugins/woocommerce-delivery-notes/templates/delivery-notes` folder and paste it inside your `/wp-content/themes/your-theme-name/woocommerce/delivery-notes` folder (if not there just create it). You can modify this to fit your own needs.
+= How can I use a custom CSS file for the printing page without modifing the `print.php` file? =
+Copy the `style.css` from the `/wp-content/plugins/woocommerce-delivery-notes/templates/delivery-notes` folder and paste it inside your `/wp-content/themes/your-theme-name/woocommerce/delivery-notes` folder (if not there just create it). You can modify CSS to fit your own needs. 
 
-*Note:* This will still use the default `print.php` from the `/wp-content/plugins/woocommerce-delivery-notes/templates/delivery-notes` folder. See the next question if you want to modify the html output too.
+*Note:* *Don't* copy/paste the `print.php` file to the new folder. Like this it will use the default `print.php` from the `/wp-content/plugins/woocommerce-delivery-notes/templates/delivery-notes` folder. See the next question if you want to modify the html output too.
 
-*Second Note:* There is an `.invoice` or `.delivery-note` class assigned to the html tag that helps you to target the type of style in your CSS.
+*Second Note:* There is automatically an `.invoice` or `.delivery-note` class assigned to the html tag that helps you to target the template-type in your CSS.
 
 = How can I use a custom template for the printing page? =
 If you want to use your own template then all you need to do is copy the `/wp-content/plugins/woocommerce-delivery-notes/templates/delivery-notes` folder and paste it inside your `/wp-content/themes/your-theme-name/woocommerce` folder (if not there just create it). The folder from the plugin comes with the default template and the basic CSS stylesheet file. You can modifiy this to fit your own needs.
