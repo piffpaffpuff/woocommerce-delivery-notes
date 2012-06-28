@@ -1,0 +1,18 @@
+ul.woocommerce-delivery-notes-actions {
+	text-align: center;
+}
+ul.woocommerce-delivery-notes-actions li {
+	margin: 5px;
+	display: inline-block;
+}
+#company-logo-placeholder {
+	display: block;
+}
+#company-logo-placeholder.loading {
+	background-image: url("../../../../wp-admin/images/loading.gif");
+	background-repeat: no-repeat; 
+	height: 20px;
+}
+#company-logo-placeholder img {
+	cursor: pointer;
+}
