@@ -1,6 +1,5 @@
 <?php
 /**
- * Main plugin file.
  * Print order invoices & delivery notes for WooCommerce shop plugin.
  * You can add company/shop info as well as personal notes & policies to print pages.
  *
