@@ -428,12 +428,17 @@ if ( ! function_exists( 'wcdn_get_order_totals' ) ) {
 	function wcdn_get_order_totals() {
 		global $wcdn;		
 		
-		// remove the semicolon
-		$input = $wcdn->print->get_order()->get_order_item_totals();
-		$keys = array_keys($input);
-		$values = array_values($input);
-		$result = preg_replace('/:$/', '', $keys);
-		$output = array_combine($result, $values);
+		// get totals and remove the semicolon
+		$totals = $wcdn->print->get_order()->get_order_item_totals();
+		
+		$output = array();
+		
+		foreach ( $totals as $total ) {
+			$label = preg_replace('/:$/', '', $total['label'] ); 
+			$value = $total['value'];
+			$output[$label] = $value;
+		}
+
 		return $output;
 	}
 }
