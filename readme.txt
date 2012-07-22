@@ -47,7 +47,7 @@ Credit where credit is due: This plugin here is inspired and based on the work o
 == Frequently Asked Questions ==
 
 = Why is my company logo not displayed at the size I've uploaded it? =
-Printed sheets need a higher pixel density for images than the screen. To make your printed logo look nice and crisp it will be resized via CSS to a fourth of the uploaded pixel size. This means: An image of 400p x 400px will be displayed as a 100px x 100px image but will be printed with the original amount of pixels.
+Printed paper needs a higher pixel density for images than the screen. To make your printed logo look nice and crisp it will be resized via CSS to a fourth of the uploaded pixel size. This means: An image of 400p x 400px will be displayed as a 100px x 100px image but will be printed with the original amount of pixels. With the resizing, 288 pixels of the original image width correspond to about 1 printed inch.
 
 = How can I change the address format of the recipient? =
 WooCommerce includes address formats for many different countries. But maybe your country format isn't included. For such cases you can define your own format with a filter in your `functions.php` if you know your country code (ie `LI`).

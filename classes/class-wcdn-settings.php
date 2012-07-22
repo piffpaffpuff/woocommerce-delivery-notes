@@ -294,7 +294,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							<span class="description">
 								<?php _e( 'A company/shop logo representing your business.', 'woocommerce-delivery-notes' ); ?>
 								<br /><strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
-								<?php _e( 'The Logo will be resized to a fourth of its original pixel size to make it look sharp when it is printed.', 'woocommerce-delivery-notes' ); ?>
+								<?php _e( 'When the image is printed, its pixel density will automatically be eight times higher than the original. This means, 1 printed inch will correspond to about 288 pixels on the screen. Example: an image with a width of 576 pixels and a height of 288 pixels will have a printed size of about 2 inches to 1 inch.', 'woocommerce-delivery-notes' ); ?>
 							</span>
 						</td>
 					</tr>
