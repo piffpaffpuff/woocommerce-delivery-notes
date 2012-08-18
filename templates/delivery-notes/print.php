@@ -75,10 +75,10 @@
 				<div id="order-summary">
 					<table>
 						<tfoot>
-							<?php foreach( wcdn_get_order_totals() as $label => $price ) : ?>
+							<?php foreach( wcdn_get_order_totals() as $total ) : ?>
 							<tr>
-								<th class="description"><?php echo $label; ?></th>
-								<td class="price"><?php echo $price; ?></td>
+								<th class="description"><?php echo $total['label']; ?></th>
+								<td class="price"><?php echo $total['value']; ?></td>
 							</tr>
 							<?php endforeach; ?>
 						</tfoot>

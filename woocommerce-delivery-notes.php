@@ -13,7 +13,7 @@
  * Plugin Name: WooCommerce Print Invoices & Delivery Notes
  * Plugin URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * Description: Print order invoices & delivery notes for WooCommerce shop plugin. You can add company/shop info as well as personal notes & policies to print pages.
- * Version: 1.2.4
+ * Version: 1.5
  * Author: Steve Clark, Triggvy Gunderson, David Decker
  * Author URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * License: GPLv3 or later
@@ -43,8 +43,6 @@
 
 /**
  * Base class
- *
- * @since 1.0
  */
 if ( ! class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 
@@ -61,8 +59,6 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 
 		/**
 		 * Constructor
-		 *
-		 * @since 1.0
 		 */
 		public function __construct() {
 			self::$plugin_prefix = 'wcdn_';
@@ -73,8 +69,6 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		
 		/**
 		 * Load the hooks
-		 *
-		 * @since 1.0
 		 */
 		public function load() {
 			add_action( 'init', array( $this, 'load_hooks' ) );
@@ -82,8 +76,6 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		
 		/**
 		 * Load the main plugin classes and functions
-		 *
-		 * @since 1.0
 		 */
 		public function includes() {
 			include_once( 'classes/class-wcdn-writepanel.php' );
@@ -93,8 +85,6 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 
 		/**
 		 * Load the hooks
-		 *
-		 * @since 1.0
 		 */
 		public function load_hooks() {	
 			if ( $this->is_woocommerce_activated() ) {					
@@ -113,8 +103,6 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		
 		/**
 		 * Check if woocommerce is activated
-		 *
-		 * @since 1.0
 		 */
 		public function is_woocommerce_activated() {
 			if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
@@ -129,8 +117,6 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 
 /**
  * Instance of plugin
- *
- * @since 1.0
  */
 $wcdn = new WooCommerce_Delivery_Notes();
 $wcdn->load();

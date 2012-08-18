@@ -1,9 +1,9 @@
 === WooCommerce Print Invoices & Delivery Notes ===
 Contributors: chabis, daveshine, deckerweb
 Tags: delivery notes, delivery, shipping, print, order, invoice, invoices, woocommerce, woothemes, shop, shop manager, deckerweb
-Requires at least: 3.4 and WooCommerce 1.5.6
+Requires at least: 3.4 and WooCommerce 1.6.3
 Tested up to: 3.4
-Stable tag: 1.2.4
+Stable tag: 1.3
 License: GPLv3 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
 
@@ -87,6 +87,13 @@ The page will be printed as you see it in your browser but without the navigatio
 
 Beyond the styling of the template be aware of any special features of the used browser. They may not print websites properly or add a pagination or website url. Use the "Print Preview" feature of the browser which all current versions of Firefox, Chrome and Opera support.
 
+= How do I add more info or custom fields to the printed page? =
+Create a custom template (see questions above). Then edit the `print.php` file to your needs. All functions that are available in WordPress or any activated plugin or theme can be used. 
+
+Example: Show an order custom field (`'_my_custom_field'`) that was added by another plugin:
+
+`echo wcdn_get_order_custom_field('_my_custom_field');` 
+
 = How can I translate the plugin with my own wording? =
 For custom and update-secure language files please upload them to `/wp-content/languages/woocommerce-delivery-notes/` (just create this folder) - This enables you to use fully custom translations that won't be overridden on plugin updates. Also, complete custom English wording is possible with that, just use a language file like `woocommerce-delivery-notes-en_US.mo/.po` to achieve that (for creating one see the tools on "Other Notes"). And finally contact one of the developers if you would like to add your translation to the standard distribution. 
 
@@ -100,6 +107,9 @@ For custom and update-secure language files please upload them to `/wp-content/l
 
 == Changelog ==
 
+= 1.5 =
+- FIX: Order totals are now properly displayed again.
+
 = 1.2.4 =
 * ATTENTION: This update breaks your custom template because many functions were renamed or removed. Please update your custom template.
 * NEW: The custom `style.css` is now loaded even when there is no `print.php` in your theme folder `yourthemename/woocommerce/delivery-notes`. Like this the look of the default template can be changed without editing the `print.php` file.
@@ -108,21 +118,21 @@ For custom and update-secure language files please upload them to `/wp-content/l
 * UPDATE: Renamed or removed many template functions. Please update your custom template.
 * UPDATE: The print navigation is now separated from the template file. Please update your custom template.
 
-= 1.2.3 (2012-06-01) =
+= 1.2.3 =
 * UPDATE: Order totals are now displayed the same way as when the customer reviews the order online (Update custom template to use the feature).
 * UPDATE: Variations and Attributes are now properly displayed (Update custom template to use the feature).
 
-= 1.2.2 (2012-05-10) =
+= 1.2.2 =
 * FIX: The media management button "Insert into Post" is now visible again. It was hidden by a the css.
 
-= 1.2.1 (2012-05-08) =
+= 1.2.1 =
 * NEW: Company logo upload.
 * NEW: Order numbering supports the sequential order numbers plugin. The offset field was removed because the plugin is much better. (thanks FoxRunSoftware, welovewordpress).
 * FIX: Print page doesn't block the user when get vars aren't set.
 * UPDATE: Template shows customer phone number (thanks welovewordpress).
 * UPDATE: Template item list contains more data fields (thanks welovewordpress).
 
-= 1.2 (2012-05-06) =
+= 1.2 =
 * IMPORTANT CHANGE: New main development and authorship now: [WordPress.org user "chabis"](http://profiles.wordpress.org/chabis/) - with daveshine (David Decker) remaining as a co-author.
 * *New features:*
  * NEW: Basic invoice template support.
@@ -140,7 +150,7 @@ For custom and update-secure language files please upload them to `/wp-content/l
 * NEW: Added banner image on WordPress.org for better plugin branding :)
 * NEW: Easy plugin translation platform with GlotPress tool: [Translate "WooCommerce Print Invoices & Delivery Notes"...](http://translate.wpautobahn.com/projects/wordpress-plugins-deckerweb/woocommerce-delivery-notes)
 
-= 1.1 (2012-02-07) =
+= 1.1 =
 * *Maintenance release*
 * UPDATE: Changed product price calculation due to changes in WooCommerce itself -- this led to **new required versions** for this plugin: **at least WordPress 3.3 and WooCommerce 1.4** or higher (Note: If you still have WooCommerc 1.3.x running then use version 1.0 of the Delivery Notes plugin!)
 * UPDATE: Custom fields on settings page now accept proper `img` tags, so you can add logo images or such via HTML IMG tag (for example: `<img src="your-image-url" width="100" height="100" alt="Logo" title="My Shop" />`)
@@ -148,7 +158,7 @@ For custom and update-secure language files please upload them to `/wp-content/l
 * NEW: Added Swedish translation - Thanx to Christopher Anderton
 * UPDATE: Updated German translations and also the .pot file for all translators!
 
-= 1.0 (2011-12-30) =
+= 1.0 =
 * Initial release
 * Forked and extended from original plugin for Jigoshop ("Jigoshop Delivery Notes" at GitHub)
 

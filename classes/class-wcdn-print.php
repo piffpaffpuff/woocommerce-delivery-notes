@@ -2,8 +2,6 @@
 
 /**
  * Print class
- *
- * @since 1.0
  */
 if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 
@@ -22,16 +20,12 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 
 		/**
 		 * Constructor
-		 *
-		 * @since 1.0
 		 */
 		public function __construct() {					
 		}
 		
 		/**
 		 * Load the class
-		 *
-		 * @since 1.0
 		 */
 		public function load( $order_id = 0 ) {
 			global $woocommerce;
@@ -52,16 +46,12 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 
 		/**
 		 * Load the admin hooks
-		 *
-		 * @since 1.0
 		 */
 		public function load_hooks() {
 		}
 
 		/**
 		 * Read the template file
-		 *
-		 * @since 1.0
 		 */
 		public function get_print_page( $template_name = 'delivery-note' ) {
 			$this->template_name = $template_name;
@@ -70,8 +60,6 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 
 		/**
 		 * Read the template file content
-		 *
-		 * @since 1.0
 		 */
 		private function get_template_content( $slug, $name = '' ) {
 			$template = null;
@@ -125,8 +113,6 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 						
 		/**
 		 * Get the current order
-		 *
-		 * @since 1.0
 		 */
 		public function get_order() {
 			return $this->order;
@@ -134,17 +120,10 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 
 		/**
 		 * Get the current order items
-		 *
-		 * @since 1.0
-		 * @version 1.1
 		 */
 		public function get_order_items() {
 			global $woocommerce;
 			global $_product;
-
-			if(!$this->order) {
-				return;
-			}
 
 			$items = $this->order->get_items();
 			$data_list = array();
@@ -209,11 +188,19 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 
 			return $data_list;
 		}
-
+		
+		/**
+		 * Get order custom field
+		 */
+		function get_order_field( $field ) {
+			if( isset( $this->get_order()->order_custom_fields[$field] ) ) {
+				return $this->get_order()->order_custom_fields[$field][0];
+			} 
+			return;
+		}
+		
 		/**
 		 * Get the content for an option
-		 *
-		 * @since 1.0
 		 */
 		public function get_setting( $name ) {
 			return get_option( WooCommerce_Delivery_Notes::$plugin_prefix . $name );

@@ -2,8 +2,6 @@
 
 /**
  * Writepanel class
- *
- * @since 1.0
  */
 if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 
@@ -11,16 +9,12 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 
 		/**
 		 * Constructor
-		 *
-		 * @since 1.0
 		 */
 		public function __construct() {
 		}
 		
 		/**
 		 * Load the class
-		 *
-		 * @since 1.0
 		 */
 		public function load() {
 			add_action( 'admin_init', array( $this, 'load_hooks' ) );
@@ -28,8 +22,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 
 		/**
 		 * Load the admin hooks
-		 *
-		 * @since 1.0
 		 */
 		public function load_hooks() {	
 			add_filter( 'plugin_row_meta', array( $this, 'add_support_links' ), 10, 2 );			
@@ -40,8 +32,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 
 		/**
 		 * Load the styles
-		 *
-		 * @since 1.0
 		 */
 		public function print_styles() {
 			global $post_type;
@@ -53,8 +43,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 		
 		/**
 		 * Add various support links to plugin page
-		 *
-		 * @since 1.0
 		 */
 		public function add_support_links( $links, $file ) {
 			if ( !current_user_can( 'install_plugins' ) ) {
@@ -72,8 +60,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 
 		/**
 		 * Add the meta box on the single order page
-		 *
-		 * @since 1.0
 		 */
 		public function add_box() {
 			add_meta_box( 'woocommerce-delivery-notes-box', __( 'Order Print', 'woocommerce-delivery-notes' ), array( $this, 'create_box_content' ), 'shop_order', 'side', 'default' );
@@ -81,8 +67,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 
 		/**
 		 * Create the meta box content on the single order page
-		 *
-		 * @since 1.0
 		 */
 		public function create_box_content() {
 			global $post_id;

@@ -2,8 +2,6 @@
 
 /**
  * Load Wordpress to use its functions
- *
- * @since 1.0
  */
 if ( !defined( 'ABSPATH' ) ) {
 	require_once '../../../wp-load.php';
@@ -11,8 +9,6 @@ if ( !defined( 'ABSPATH' ) ) {
 
 /**
  * Check the current user capabilities
- *
- * @since 1.0
  */
 if (!current_user_can('manage_woocommerce_orders') || empty($_GET['order']) || empty($_GET['name'])) {
 	wp_die( __( 'You do not have sufficient permissions to access this page.', 'woocommerce-delivery-notes' ) );
@@ -26,15 +22,11 @@ $name = $_GET['name'];
 
 /**
  * Load the order
- *
- * @since 1.0
  */
 $wcdn->print->load( $id );
 
 /**
  * Return Type of template
- *
- * @since 1.0
  */
 if ( !function_exists( 'wcdn_get_template_type' ) ) {
 	function wcdn_get_template_type() {
@@ -45,8 +37,6 @@ if ( !function_exists( 'wcdn_get_template_type' ) ) {
 
 /**
  * Show the template class
- *
- * @since 1.0
  */
 if ( !function_exists( 'wcdn_template_class' ) ) {
 	function wcdn_template_class() {
@@ -57,8 +47,6 @@ if ( !function_exists( 'wcdn_template_class' ) ) {
 
 /**
  * Show the template head
- *
- * @since 1.0
  */
 if ( !function_exists( 'wcdn_template_head' ) ) {
 	function wcdn_template_head() {
@@ -155,8 +143,6 @@ if ( !function_exists( 'wcdn_template_head' ) ) {
 
 /**
  * Show javascript
- *
- * @since 1.0
  */
 if ( !function_exists( 'wcdn_template_javascript' ) ) {
 	function wcdn_template_javascript() {
@@ -177,8 +163,6 @@ if ( !function_exists( 'wcdn_template_javascript' ) ) {
 
 /**
  * Show template url
- *
- * @since 1.0
  */
 if ( !function_exists( 'wcdn_template_url' ) ) {
 	function wcdn_template_url() {
@@ -189,8 +173,6 @@ if ( !function_exists( 'wcdn_template_url' ) ) {
 
 /**
  * Show template stylesheet url
- *
- * @since 1.0
  */
 if ( !function_exists( 'wcdn_template_stylesheet_url' ) ) {
 	function wcdn_template_stylesheet_url() {
@@ -201,8 +183,6 @@ if ( !function_exists( 'wcdn_template_stylesheet_url' ) ) {
 
 /**
  * Show the template nav bar
- *
- * @since 1.0
  */
 if ( !function_exists( 'wcdn_template_navigation' ) ) {
 	function wcdn_template_navigation() {
@@ -218,8 +198,6 @@ if ( !function_exists( 'wcdn_template_navigation' ) ) {
 
 /**
  * Show the template title depending on type
- *
- * @since 1.0
  */
 if ( !function_exists( 'wcdn_template_title' ) ) {
 	function wcdn_template_title() {
@@ -233,8 +211,6 @@ if ( !function_exists( 'wcdn_template_title' ) ) {
 
 /**
  * Show print button
- *
- * @since 1.0
  */
 if ( !function_exists( 'wcdn_template_print_button' ) ) {
 	function wcdn_template_print_button() {
@@ -246,8 +222,6 @@ if ( !function_exists( 'wcdn_template_print_button' ) ) {
 
 /**
  * Return logo id
- *
- * @since 1.0
  */
 if ( !function_exists( 'wcdn_get_company_logo_id' ) ) {
 	function wcdn_get_company_logo_id() {
@@ -258,8 +232,6 @@ if ( !function_exists( 'wcdn_get_company_logo_id' ) ) {
 
 /**
  * Show logo html
- *
- * @since 1.0
  */
 if ( !function_exists( 'wcdn_company_logo' ) ) {
 	function wcdn_company_logo() {
@@ -277,8 +249,6 @@ if ( !function_exists( 'wcdn_company_logo' ) ) {
 
 /**
  * Return default title name of Delivery Note 
- *
- * @since 1.0
  */
 if ( !function_exists( 'wcdn_company_name' ) ) {
 	function wcdn_company_name() {
@@ -294,8 +264,6 @@ if ( !function_exists( 'wcdn_company_name' ) ) {
 
 /**
  * Return shop/company info if provided
- *
- * @since 1.0
  */
 if ( ! function_exists( 'wcdn_company_info' ) ) {
 	function wcdn_company_info() {
@@ -306,8 +274,6 @@ if ( ! function_exists( 'wcdn_company_info' ) ) {
 
 /**
  * Show billing phone
- *
- * @since 1.0
  */
 if ( ! function_exists( 'wcdn_billing_phone' ) ) {
 	function wcdn_billing_phone() {
@@ -318,8 +284,6 @@ if ( ! function_exists( 'wcdn_billing_phone' ) ) {
 
 /**
  * Show billing email
- *
- * @since 1.0
  */
 if ( ! function_exists( 'wcdn_billing_email' ) ) {
 	function wcdn_billing_email() {
@@ -330,8 +294,6 @@ if ( ! function_exists( 'wcdn_billing_email' ) ) {
 
 /**
  * Show billing address
- *
- * @since 1.0
  */
 if ( ! function_exists( 'wcdn_billing_address' ) ) {
 	function wcdn_billing_address() {
@@ -346,8 +308,6 @@ if ( ! function_exists( 'wcdn_billing_address' ) ) {
 
 /**
  * Show shipping address
- *
- * @since 1.0
  */
 if ( ! function_exists( 'wcdn_shipping_address' ) ) {
 	function wcdn_shipping_address() {
@@ -362,8 +322,6 @@ if ( ! function_exists( 'wcdn_shipping_address' ) ) {
 
 /**
  * Get order
- *
- * @since 1.0
  */
 if ( ! function_exists( 'wcdn_get_order' ) ) {
 	function wcdn_get_order() {
@@ -373,9 +331,17 @@ if ( ! function_exists( 'wcdn_get_order' ) ) {
 }
 
 /**
+ * Get order custom field
+ */
+if ( ! function_exists( 'wcdn_get_order_custom_field' ) ) {
+	function wcdn_get_order_custom_field( $field ) {
+		global $wcdn;
+		return $wcdn->print->get_order_field( $field );
+	}
+}
+
+/**
  * Show order number
- *
- * @since 1.0
  */
 if ( ! function_exists( 'wcdn_order_number' ) ) {
 	function wcdn_order_number() {
@@ -385,19 +351,15 @@ if ( ! function_exists( 'wcdn_order_number' ) ) {
 		// http://wordpress.org/extend/plugins/woocommerce-sequential-order-numbers/
 		// if custom order number is zero, fall back to ID
 		$order_id = $wcdn->print->order_id;
-
-		if ( !empty( $wcdn->print->get_order()->order_custom_fields['_order_number'] ) ) {
-			$order_id = $wcdn->print->get_order()->order_custom_fields['_order_number'][0];
+		if( $wcdn->settings->is_woocommerce_sequential_order_numbers_activated() && $wcdn->print->get_order_field( '_order_number' ) ) {
+			$order_id = $wcdn->print->get_order_field( '_order_number' );
 		}
-		
 		echo $order_id;
 	}
 }
 
 /**
  * Show the order date
- *
- * @since 1.0
  */
 if ( ! function_exists( 'wcdn_order_date' ) ) {
 	function wcdn_order_date() {
@@ -409,8 +371,6 @@ if ( ! function_exists( 'wcdn_order_date' ) ) {
 
 /**
  * Return the order items
- *
- * @since 1.0
  */
 if ( ! function_exists( 'wcdn_get_order_items' ) ) {
 	function wcdn_get_order_items() {
@@ -421,8 +381,6 @@ if ( ! function_exists( 'wcdn_get_order_items' ) ) {
 
 /**
  * Return the order totals listing
- *
- * @since 1.0
  */
 if ( ! function_exists( 'wcdn_get_order_totals' ) ) {
 	function wcdn_get_order_totals() {
@@ -431,22 +389,22 @@ if ( ! function_exists( 'wcdn_get_order_totals' ) ) {
 		// get totals and remove the semicolon
 		$totals = $wcdn->print->get_order()->get_order_item_totals();
 		
-		$output = array();
-		
-		foreach ( $totals as $total ) {
-			$label = preg_replace('/:$/', '', $total['label'] ); 
-			$value = $total['value'];
-			$output[$label] = $value;
+		// remove the colon for every label
+		foreach ( $totals as $key => $total ) {
+			$label = $total['label'];
+			$colon = strrpos( $label, ':' );
+			if( $colon !== false ) {
+				$label = substr_replace( $label, '', $colon, 1 );
+			}		
+			$totals[$key]['label'] = $label;
 		}
 
-		return $output;
+		return $totals;
 	}
 }
 
 /**
  * Return has shipping notes
- *
- * @since 1.0
  */
 if ( ! function_exists( 'wcdn_get_shipping_notes' ) ) {
 	function wcdn_get_shipping_notes() {
@@ -457,8 +415,6 @@ if ( ! function_exists( 'wcdn_get_shipping_notes' ) ) {
 
 /**
  * Show shipping notes
- *
- * @since 1.0
  */
 if ( ! function_exists( 'wcdn_shipping_notes' ) ) {
 	function wcdn_shipping_notes() {
@@ -469,8 +425,6 @@ if ( ! function_exists( 'wcdn_shipping_notes' ) ) {
 
 /**
  * Return personal notes, season greetings etc.
- *
- * @since 1.0
  */
 if ( ! function_exists( 'wcdn_get_personal_notes' ) ) {
 	function wcdn_get_personal_notes() {
@@ -481,8 +435,6 @@ if ( ! function_exists( 'wcdn_get_personal_notes' ) ) {
 
 /**
  * Show personal notes, season greetings etc.
- *
- * @since 1.0
  */
 if ( ! function_exists( 'wcdn_personal_notes' ) ) {
 	function wcdn_personal_notes() {
@@ -493,8 +445,6 @@ if ( ! function_exists( 'wcdn_personal_notes' ) ) {
 
 /**
  * Return policy for returns
- *
- * @since 1.0
  */
 if ( ! function_exists( 'wcdn_get_policies_conditions' ) ) {
 	function wcdn_get_policies_conditions() {
@@ -505,8 +455,6 @@ if ( ! function_exists( 'wcdn_get_policies_conditions' ) ) {
 
 /**
  * Show policy for returns
- *
- * @since 1.0
  */
 if ( ! function_exists( 'wcdn_policies_conditions' ) ) {
 	function wcdn_policies_conditions() {
@@ -517,8 +465,6 @@ if ( ! function_exists( 'wcdn_policies_conditions' ) ) {
 
 /**
  * Return shop/company footer imprint, copyright etc.
- *
- * @since 1.0
  */
 if ( ! function_exists( 'wcdn_get_footer_imprint' ) ) {
 	function wcdn_get_footer_imprint() {
@@ -529,8 +475,6 @@ if ( ! function_exists( 'wcdn_get_footer_imprint' ) ) {
 
 /**
  * Show shop/company footer imprint, copyright etc.
- *
- * @since 1.0
  */
 if ( ! function_exists( 'wcdn_footer_imprint' ) ) {
 	function wcdn_footer_imprint() {
@@ -541,7 +485,5 @@ if ( ! function_exists( 'wcdn_footer_imprint' ) ) {
 
 /**
  * Show the template
- *
- * @since 1.0
  */
 echo $wcdn->print->get_print_page( $name );
