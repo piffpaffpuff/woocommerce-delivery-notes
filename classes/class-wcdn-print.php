@@ -7,110 +7,105 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 
 	class WooCommerce_Delivery_Notes_Print {
 
-		public $template_url;
-		public $template_dir;
-		public $template_base;
-		public $template_name;
-		public $template_stylesheet_url;
-		public $theme_base;
-		public $theme_path;
-		public $order_id;
-
+		private $template_directory_name;
+		private $template_path;
+		private $template_default_path;
+		private $template_uri;
+		private $template_default_uri;
 		private $order;
+		
+		public $template_type;
+		public $order_id;
 
 		/**
 		 * Constructor
 		 */
 		public function __construct() {					
+			global $woocommerce;
+			$this->order = new WC_Order();
+			$this->template_directory_name = 'print';
+			$this->template_path = $woocommerce->template_url . $this->template_directory_name . '/';
+			$this->template_default_path = WooCommerce_Delivery_Notes::$plugin_path . 'templates/' . $this->template_directory_name . '/';
+			$this->template_uri = get_template_directory_uri() . '/' . $this->template_path;
+			$this->template_default_uri = WooCommerce_Delivery_Notes::$plugin_url . 'templates/' . $this->template_directory_name . '/';
 		}
 		
 		/**
 		 * Load the class
 		 */
-		public function load( $order_id = 0 ) {
-			global $woocommerce;
-			
-			$this->order_id = $order_id;
-			$this->template_name = 'delivery-note';
-			$this->template_base = 'templates/';
-			$this->theme_base = $woocommerce->template_url;
-			$this->template_dir = 'delivery-notes/';
-			$this->template_url = WooCommerce_Delivery_Notes::$plugin_url . $this->template_base . $this->template_dir;
-			$this->template_stylesheet_url = $this->template_url;
-			$this->theme_path = trailingslashit( get_stylesheet_directory() ); 
-			
-			if ( $this->order_id > 0 ) {
-				$this->order = new WC_Order( $this->order_id );
-			}			
+		public function load() {
+			add_action( 'admin_init', array( $this, 'load_hooks' ) );
 		}
 
 		/**
 		 * Load the admin hooks
 		 */
-		public function load_hooks() {
+		public function load_hooks() {	
+			add_action('wp_ajax_woocommerce_delivery_notes_generate_print_content', array($this, 'generate_print_content_ajax'));
 		}
 
 		/**
-		 * Read the template file
+		 * Generate the template output
 		 */
-		public function get_print_page( $template_name = 'delivery-note' ) {
-			$this->template_name = $template_name;
-			return $this->get_template_content( 'print', $this->template_name );
+		public function generate_print_content( $template_type, $order_id ) {
+			$this->template_type = $template_type;
+			$this->order_id = $order_id;
+			$this->order->get_order( $this->order_id );
+			$this->get_template( 'print-' . $this->template_type . '.php' );
 		}
-
+		
 		/**
-		 * Read the template file content
+		 * Load and generate the template output with ajax
 		 */
-		private function get_template_content( $slug, $name = '' ) {
-			$template = null;
-			$template_file = null;
-			
-			// Look in yourtheme/woocommerce/delivery-notes/
-			$template_file = $this->theme_path . $this->theme_base . $this->template_dir . $slug.'-'.$name.'.php';
-			if ( !$template && $name && file_exists( $template_file) ) {
-				$template = $template_file;
-				$this->template_url = trailingslashit( get_stylesheet_directory_uri() ) . $this->theme_base . $this->template_dir;
-				$this->template_stylesheet_url = $this->template_url;
-			} 
-						
-			// Fall back to slug.php in yourtheme/woocommerce/delivery-notes/			
-			$template_file = $this->theme_path . $this->theme_base . $this->template_dir . $slug.'.php';
-			if ( !$template && file_exists( $template_file ) ) {
-				$template = $template_file;
-				$this->template_url = trailingslashit( get_stylesheet_directory_uri() ) . $this->theme_base . $this->template_dir;
-				$this->template_stylesheet_url = $this->template_url;
+		public function generate_print_content_ajax() {		
+			// Let the admin only access the page
+			if( !is_admin() ) {
+				wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 			}
 			
-			// No php file found but maybe there is a custom css			
-			$template_stylesheet_file = $this->theme_path . $this->theme_base . $this->template_dir . 'style.css';
-			if ( !$template && file_exists( $template_stylesheet_file ) ) {
-				$this->template_stylesheet_url = trailingslashit( get_stylesheet_directory_uri() ) . $this->theme_base . $this->template_dir;
-			}
-				
-			// Look in pluginname/templates/delivery-notes/
-			$template_file = WooCommerce_Delivery_Notes::$plugin_path . $this->template_base . $this->template_dir . $slug.'-'.$name.'.php';
-			if ( !$template && $name && file_exists( $template_file ) ) {
-				$template = $template_file;
-			}
-
-			// Fall back to slug.php in pluginname/templates/delivery-notes/			
-			$template_file = WooCommerce_Delivery_Notes::$plugin_path . $this->template_base . $this->template_dir . $slug.'.php';
-			if ( !$template && file_exists( $template_file ) ) {
-				$template = $template_file;
+			// Check the user privileges and nonce
+			if( !current_user_can( 'manage_woocommerce_orders' ) || empty( $_GET['action'] ) || !check_admin_referer( $_GET['action'] ) ) {
+				wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 			}
 			
-			// Return the content of the template
-			if ( $template ) {
-				ob_start();
-				require_once( $template );
-				$content = ob_get_clean();
-				return $content;
+			// Check if all parameters are set
+			if( empty( $_GET['template_type'] ) || empty( $_GET['order_id'] ) ) {
+				wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 			}
 			
-			// Return no content when no file was found
-			return;
+			// Generate the output
+			$this->generate_print_content( $_GET['template_type'], $_GET['order_id'] );
+			
+			exit;
 		}
-						
+		
+		/**
+		 * Get the template url for a file
+		 */
+		public function get_template_url( $name ) {
+			global $woocommerce;
+			$url = $this->template_uri;
+			$template = locate_template(
+				array(
+					$this->template_path . $name
+				)
+			);
+			
+			// Set the url to the theme directory
+			if( !$template ) {
+				$url = $this->template_default_uri;
+			}
+			
+			return $url . $name;
+		}
+		
+		/**
+		 * Load the template file content
+		 */
+		public function get_template( $name ) {
+			woocommerce_get_template( $name, null, $this->template_path, $this->template_default_path );
+		}
+							
 		/**
 		 * Get the current order
 		 */
@@ -128,7 +123,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			$items = $this->order->get_items();
 			$data_list = array();
 		
-			if ( sizeof( $items ) > 0 ) {
+			if( sizeof( $items ) > 0 ) {
 				foreach ( $items as $item ) {
 					// Array with data for the printing template
 					$data = array();
@@ -192,20 +187,14 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		/**
 		 * Get order custom field
 		 */
-		function get_order_field( $field ) {
+		public function get_order_field( $field ) {
 			if( isset( $this->get_order()->order_custom_fields[$field] ) ) {
 				return $this->get_order()->order_custom_fields[$field][0];
 			} 
 			return;
 		}
-		
-		/**
-		 * Get the content for an option
-		 */
-		public function get_setting( $name ) {
-			return get_option( WooCommerce_Delivery_Notes::$plugin_prefix . $name );
-		}
-	
 	}
 
 }
+
+?>

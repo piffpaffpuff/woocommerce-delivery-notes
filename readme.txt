@@ -3,7 +3,7 @@ Contributors: chabis, daveshine, deckerweb
 Tags: delivery notes, delivery, shipping, print, order, invoice, invoices, woocommerce, woothemes, shop, shop manager, deckerweb
 Requires at least: 3.4 and WooCommerce 1.6.3
 Tested up to: 3.4
-Stable tag: 1.3
+Stable tag: 1.4
 License: GPLv3 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
 
@@ -60,39 +60,28 @@ function custom_localisation_address_formats($formats) {
 add_filter('woocommerce_localisation_address_formats', 'custom_localisation_address_formats');
 `
 
-= How can I use a custom CSS file for the printing page without modifing the `print.php` file? =
-Copy the `style.css` from the `/wp-content/plugins/woocommerce-delivery-notes/templates/delivery-notes` folder and paste it inside your `/wp-content/themes/your-theme-name/woocommerce/delivery-notes` folder (if not there just create it). You can modify CSS to fit your own needs. 
+= How can I use a custom CSS file for the printing page without copying and editing the template files? =
+Copy the `style.css` (and no other file) from the `/wp-content/plugins/woocommerce-delivery-notes/templates/print` folder and paste it inside your `/wp-content/themes/your-theme-name/woocommerce/print` folder (if not there just create it). You can modify CSS to fit your own needs. 
 
-*Note:* *Don't* copy/paste the `print.php` file to the new folder. Like this it will use the default `print.php` from the `/wp-content/plugins/woocommerce-delivery-notes/templates/delivery-notes` folder. See the next question if you want to modify the html output too.
-
-*Second Note:* There is automatically an `.invoice` or `.delivery-note` class assigned to the html tag that helps you to target the template-type in your CSS.
+*Note:* There is automatically a class assigned to the html tag that helps you to target the template-type in your CSS.
 
 = How can I use a custom template for the printing page? =
-If you want to use your own template then all you need to do is copy the `/wp-content/plugins/woocommerce-delivery-notes/templates/delivery-notes` folder and paste it inside your `/wp-content/themes/your-theme-name/woocommerce` folder (if not there just create it). The folder from the plugin comes with the default template and the basic CSS stylesheet file. You can modifiy this to fit your own needs.
-
-*Note:* This works with both single themes and child themes (if you use some framework like Genesis). If your current active theme is a child theme put the custom folder there! (e.g. `/wp-content/themes/your-child-theme-name/woocommerce`)
-
-= How can I use a different custom template for invoices and delivery notes? =
-Create in the `your-theme-name/woocommerce/delivery-notes` folder a file named `print-invoice.php` and another `print-delivery-note.php`. Or just create a file `print.php` to use the same template for invoices and delivery notes. Now write some nice code to make your templates look as you like. 
-
-*Note:* The `print.php` isn't needed when you have a `print-invoice.php` and `print-delivery-note.php` file. However the template system falls back to the `print.php` file inside your themes folder and then inside the plugins folder when `print-invoice.php` and/or `print-delivery-note.php` weren't found.
+If you want to use your own template then all you need to do is copy the the files you want to edit from `/wp-content/plugins/woocommerce-delivery-notes/templates/print` folder and paste them inside your `/wp-content/themes/your-theme-name/woocommerce/print` folder (if not there just create it). The folder from the plugin comes with the default templates and the basic CSS files. You can modifiy those to fit your own needs.
 
 = What template functions can I use? =
-Various functions are available in the template, especially many Delivery Notes specific template functions. Open the `woocommerce-delivery-notes/woocommerce-delivery-notes-print.php` file to see all available functions.
+All WordPress and all functions from other plugins and themes can be used. There are also many many specific template functions. Open the `/wp-content/plugins/woocommerce-delivery-notes/woocommerce-delivery-notes.php` file to see all of them.
 
-*Note:* This is only intended for developers who know what they do! Please be careful with adding any code/functions! The default template and functions should fit most use cases.
+= How do I add more info or custom fields to the templates? =
+Create a custom template (see questions above). Then edit the file to your needs. You can use all functions that are available in WordPress or any activated plugin or theme. 
+
+Example: Show an order custom field that was added by another plugin (e.g. `'_my_custom_field'`)
+
+`echo wcdn_get_order_custom_field('_my_custom_field');` 
 
 = What will actually get printed out? =
 The page will be printed as you see it in your browser but without the navigation-bar at the top. 
 
 Beyond the styling of the template be aware of any special features of the used browser. They may not print websites properly or add a pagination or website url. Use the "Print Preview" feature of the browser which all current versions of Firefox, Chrome and Opera support.
-
-= How do I add more info or custom fields to the printed page? =
-Create a custom template (see questions above). Then edit the `print.php` file to your needs. All functions that are available in WordPress or any activated plugin or theme can be used. 
-
-Example: Show an order custom field (`'_my_custom_field'`) that was added by another plugin:
-
-`echo wcdn_get_order_custom_field('_my_custom_field');` 
 
 = How can I translate the plugin with my own wording? =
 For custom and update-secure language files please upload them to `/wp-content/languages/woocommerce-delivery-notes/` (just create this folder) - This enables you to use fully custom translations that won't be overridden on plugin updates. Also, complete custom English wording is possible with that, just use a language file like `woocommerce-delivery-notes-en_US.mo/.po` to achieve that (for creating one see the tools on "Other Notes"). And finally contact one of the developers if you would like to add your translation to the standard distribution. 
@@ -107,8 +96,13 @@ For custom and update-secure language files please upload them to `/wp-content/l
 
 == Changelog ==
 
-= 1.5 =
-- FIX: Order totals are now properly displayed again.
+= 1.4 =
+* ATTENTION: For custom template creators: This update breaks your custom template because of some new features. Please update your template PHP code and CSS.
+* NEW: Print buttons on the orders list page.
+* NEW: Print preview window opens in lightbox.
+* NEW: Print immediately, without preview window.
+* FIX: Order totals are now properly displayed again.
+* FIX: Close unclosed `<tr>` tag in the template.
 
 = 1.2.4 =
 * ATTENTION: This update breaks your custom template because many functions were renamed or removed. Please update your custom template.

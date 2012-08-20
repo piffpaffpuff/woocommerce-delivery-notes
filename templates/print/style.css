@@ -1,10 +1,3 @@
-/* Table of Contents
-
-* CSS Reset
-* Delivery Note Page Layout
-* CSS Media Queries for Print
-
-*/
 
 /* Simple CSS Reset and Print options
 ------------------------------------------*/
@@ -34,18 +27,6 @@ table {
 /* Template Page Layout
 ------------------------------------------*/
 
-#container {
-	page-break-after: always;	
-}
-
-#content {
-	margin-left: auto;
-	margin-right: auto;
-	padding-top: 5%;
-	padding-left: 10%;
-	padding-right: 10%;
-	text-align: left;
-}
 
 /* Main Body */
 body {
@@ -74,11 +55,12 @@ p + p {
 
 /* Basic Table Styling */
 table {
-	border-top: 1px #ccc solid;
 	page-break-inside: auto;
 }
 
 tr {
+	border-top: 1px #ccc solid;
+	border-bottom: 1px #ccc solid;
 	page-break-inside: avoid;
 	page-break-after: auto;	
 }
@@ -87,7 +69,6 @@ td,
 th {
 	border-left: 1px #ccc solid;
 	border-right: 1px #ccc solid;
-	border-bottom: 1px #ccc solid;
 	padding: 0.375em;
 	vertical-align: middle;
 }
@@ -98,7 +79,19 @@ th {
 	text-align: left;
 }
 
+
 /* Special Margin & Overflow Stylings */
+#page {
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	padding-left: 10%;
+	padding-right: 10%;
+	text-align: left;
+	page-break-after: always;	
+}
+
 #letter-header,
 #order-items,
 #order-summary,
@@ -120,6 +113,14 @@ th {
 	overflow: hidden;
 }
 
+#order-items,
+#order-summary,
+#order-notes,
+#letter-footer {
+	page-break-before: auto;
+	page-break-after: auto;
+}
+
 /* Delivery Notes Head */
 #letter-header .heading {
 	float: left;
@@ -135,7 +136,7 @@ th {
 }
 
 #letter-header .company-name {
-font-weight: bold;
+	font-weight: bold;
 }
 
 #letter-header .company-info {
@@ -194,17 +195,21 @@ font-weight: bold;
 }
 
 /* Order Summary - #order-summary */
-#order-summary table {
+#order-summary {
 	float: right;
 	width: 50%;
+}
+
+#order-summary table {
+	width: 100%;
+	page-break-inside: avoid;
 }
 
 #order-summary .price {
 	width: 50%;
 }
 
-#order-summary tr:last-child th,
-#order-summary tr:last-child td {
+#order-summary tr:last-child {
 	border-top: 2px solid #000;
 	border-bottom: 2px solid #000;
 	font-weight: bold;
@@ -217,6 +222,7 @@ font-weight: bold;
 
 /* Order Notes - #order-notes */
 #order-notes {
+	clear: both;
 }
 #order-notes .notes-shipping {
 	float: left;

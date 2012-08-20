@@ -191,7 +191,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			
 			// Create arrays with help tab titles
 			$screen->add_help_tab(array(
-				'id' => 'wcdn-usage',
+				'id' => 'woocommerce-delivery-notes-usage',
 				'title' => __( 'About the Plugin', 'woocommerce-delivery-notes' ),
 				'content' => 
 					'<h3>' . __( 'Plugin: WooCommerce Print Invoices & Delivery Notes', 'woocommerce-delivery-notes' ) . '</h3>' .
@@ -345,11 +345,15 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 				<tbody>	
 					<tr>
 						<th>
-							<?php _e( 'Preview opens', 'woocommerce-delivery-notes' ); ?>
+							<?php _e( 'Preview window', 'woocommerce-delivery-notes' ); ?>
 						</th>
 						<td>
-							<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>open_print_window" type="hidden" value="no" />
-							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>open_print_window"><input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>open_print_window" type="checkbox" value="yes" <?php checked( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'open_print_window' ), 'yes' );?> /> <?php _e( 'Start printing when the preview page opens', 'woocommerce-delivery-notes' ); ?></label>
+							<fieldset>
+								<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>show_print_preview" type="hidden" value="no" />
+								<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>show_print_preview">
+									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>show_print_preview" id="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>show_print_preview" type="checkbox" value="yes" <?php checked( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'show_print_preview' ), 'yes' );?> /> <?php _e( 'Show the print preview window', 'woocommerce-delivery-notes' ); ?>
+								</label>
+							</fieldset>
 						</td>
 					</tr>
 				</tbody>
@@ -377,6 +381,13 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		}
 		
 		/**
+		 * Get the content for an option
+		 */
+		public function get_setting( $name ) {
+			return get_option( WooCommerce_Delivery_Notes::$plugin_prefix . $name );
+		}
+		
+		/**
 		 * Save all settings
 		 */
 		public function save_settings_page() {
@@ -401,3 +412,5 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 	}
 	
 }
+
+?>
