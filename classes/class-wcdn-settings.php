@@ -7,8 +7,8 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 
 	class WooCommerce_Delivery_Notes_Settings {
 	
-		private $tab_name;
-		private $hidden_submit;
+		public $tab_name;
+		public $hidden_submit;
 		
 		/**
 		 * Constructor
@@ -29,64 +29,52 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 * Load the admin hooks
 		 */
 		public function load_hooks() {	
-			add_filter( 'plugin_action_links_' . WooCommerce_Delivery_Notes::$plugin_basefile, array( $this, 'add_settings_link') );
 			add_filter( 'woocommerce_settings_tabs_array', array( $this, 'add_settings_tab' ) );
 			add_action( 'woocommerce_settings_tabs_' . $this->tab_name, array( $this, 'create_settings_page' ) );
 			add_action( 'woocommerce_update_options_' . $this->tab_name, array( $this, 'save_settings_page' ) );
-			add_action( 'admin_init', array( $this, 'load_help' ), 20 );
-			add_action( 'admin_print_styles', array( $this, 'add_styles' ) );
-			add_action( 'admin_print_scripts', array( $this, 'add_scripts' ) );
-			add_action( 'admin_print_scripts-media-upload-popup', array( $this, 'add_media_scripts' ) );		
-			add_action( 'admin_print_styles-media-upload-popup', array( $this, 'add_media_styles' ) );		
-			add_filter( 'media_upload_tabs', array( $this, 'remove_media_tabs' ) );
+			add_action( 'current_screen', array( $this, 'load_screen_hooks' ) );
 			add_action( 'wp_ajax_load_thumbnail', array( $this, 'load_thumbnail_ajax' ) );
-			add_filter( 'attachment_fields_to_edit', array( $this, 'edit_media_options' ), 20, 2 );
+		}
+		
+		/**
+		 * Add the scripts
+		 */
+		public function load_screen_hooks() {
+			$screen = get_current_screen();
+
+			if( $this->is_settings_page() ) {
+				add_action( 'admin_print_styles', array( $this, 'add_styles' ) );
+				add_action( 'admin_print_scripts', array( $this, 'add_scripts' ) );
+				add_action( 'load-' . $screen->id, array( $this, 'add_help_tabs' ) );
+			}
+			
+			if( $this->is_media_uploader_page() ) {
+				add_filter( 'media_upload_tabs', array( $this, 'remove_media_tabs' ) );
+			}
 		}
 
 		/**
 		 * Add the styles
 		 */
 		public function add_styles() {
-			if( $this->is_settings_page() ) {
-				wp_enqueue_style( 'thickbox' );
-				wp_enqueue_style( 'woocommerce-delivery-notes-styles', WooCommerce_Delivery_Notes::$plugin_url . 'css/style.css' );
-			}
+			wp_enqueue_style( 'thickbox' );
+			wp_enqueue_style( 'woocommerce-delivery-notes-styles', WooCommerce_Delivery_Notes::$plugin_url . 'css/style.css' );
 		}
 		
 		/**
 		 * Add the scripts
 		 */
 		public function add_scripts() {
-			if( $this->is_settings_page() ) {
-				wp_enqueue_script( 'media-upload' );
-				wp_enqueue_script( 'thickbox' );
-				wp_enqueue_script( 'woocommerce-delivery-notes-scripts', WooCommerce_Delivery_Notes::$plugin_url . 'js/script.js', array( 'jquery', 'media-upload', 'thickbox' ) );
-			}
-		}	
-		
-		/**
-		 * Add the media uploader styles
-		 */
-		public function add_media_styles() {
-			if( $this->is_media_uploader_page() ) {
-				wp_enqueue_style( 'woocommerce-delivery-notes-media-styles', WooCommerce_Delivery_Notes::$plugin_url . 'css/style-media-uploader.css' );
-			}
-		}
-		
-		/**
-		 * Add the media uploader scripts
-		 */
-		public function add_media_scripts() {
-			if( $this->is_media_uploader_page() ) {
-				wp_enqueue_script( 'woocommerce-delivery-notes-media-scripts', WooCommerce_Delivery_Notes::$plugin_url . 'js/script-media-uploader.js', array( 'jquery' ) );
-			}
+			wp_enqueue_script( 'media-upload' );
+			wp_enqueue_script( 'thickbox' );
+			wp_enqueue_script( 'woocommerce-delivery-notes-scripts', WooCommerce_Delivery_Notes::$plugin_url . 'js/script.js', array( 'jquery', 'media-upload', 'thickbox' ) );
 		}
 		
 		/**
 		 * Check if we are on settings page
 		 */
 		public function is_settings_page() {
-			if ( isset($_GET['page']) && isset( $_GET['tab'] ) && $_GET['tab'] == $this->tab_name ) {
+			if( isset( $_GET['page'] ) && isset( $_GET['tab'] ) && $_GET['tab'] == $this->tab_name ) {
 				return true;
 			} else {
 				return false;
@@ -97,8 +85,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 * Check if we are on media uploader page
 		 */
 		public function is_media_uploader_page() {
-		
-			if( isset($_GET['post_id']) && isset($_GET['custom_uploader_page']) && $_GET['post_id'] == '0' && $_GET['custom_uploader_page'] == 'true' ) {
+			if( isset( $_GET['post_id'] ) && isset( $_GET['company_logo_image'] ) && $_GET['post_id'] == '0' && $_GET['company_logo_image'] == 'true'  ) {
 				return true;
 			} else {
 				return false;
@@ -117,75 +104,12 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		}
 		
 		/**
-		 * Remove the media uploader tabs
-		 */
-		public function remove_media_tabs( $tabs ) {
-		    if( isset( $_GET['post_id'] ) && $_GET['post_id'] == 0 ) {
-	            unset( $tabs['type_url'] );
-		    }
-		    return $tabs;
-		}
-		
-		/**
-		 * Modfy the media uploader input fields
-		 */
-		public function edit_media_options( $fields, $post ) {	
-			if ( isset( $_GET['post_id'] ) ) {
-				$calling_post_id = absint( $_GET['post_id'] );
-			} elseif ( isset( $_POST ) && count( $_POST ) ) {
-				$calling_post_id = $post->post_parent;
-			}
-			
-			// only add the thickbox media managment page (media.php)
-			if( empty( $calling_post_id ) ) {
-				if ( isset( $fields['image-size'] ) && isset( $post->ID ) ) {
-					if( substr($post->post_mime_type, 0, 5) == 'image' && !isset( $_GET['attachment_id'] ) ) {
-						$attachment_id = $post->ID;
-						$fields['additional_buttons']['label'] = '';  
-						$fields['additional_buttons']['input'] = 'html';
-						$fields['additional_buttons']['html'] = get_submit_button( __( 'Use as Company Logo', 'woocommerce-delivery-notes' ), 'button use-image-button', 'use-image-button-' . $attachment_id, false );
-					}
-				}
-			}
-					
-			return $fields;
-		}
-		
-		/**
-		 * Add "Settings" link to plugin page
-		 */
-		public function add_settings_link( $links ) {
-			$settings = sprintf( '<a href="%s" title="%s">%s</a>' , admin_url( 'admin.php?page=woocommerce&tab=' . $this->tab_name ) , __( 'Go to the settings page', 'woocommerce-delivery-notes' ) , __( 'Settings', 'woocommerce-delivery-notes' ) );
-			array_unshift( $links, $settings );
-		
-			return $links;	
-		}
-		
-		/**
-		 * Load the help system
-		 */
-		public function load_help() {
-			// Get the hookname and load the help tabs
-			if ( $this->is_settings_page() ) {
-				$menu_slug = plugin_basename( $_GET['page'] );
-				$hookname = get_plugin_page_hookname( $menu_slug, '' );
-		
-				add_action( 'load-' . $hookname, array( $this, 'add_help_tabs' ) );
-			}
-		}
-		
-		/**
 		 * Add the help tabs
 		 */
 		public function add_help_tabs() {
 			// Check current admin screen
 			$screen = get_current_screen();
-		
-			// Don't load help tab system prior WordPress 3.3
-			if ( ! class_exists( 'WP_Screen' ) || ! $screen ) {
-				return;
-			}
-		
+
 			// Remove all existing tabs
 			$screen->remove_help_tabs();
 			
@@ -204,9 +128,9 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			$screen->set_help_sidebar(
 				'<p><strong>' . __( 'For more information:', 'woocommerce-delivery-notes' ) . '</strong></p>'.
 				'<p><a href="http://wordpress.org/extend/plugins/woocommerce-delivery-notes/faq/" target="_blank">' . __( 'Frequently Asked Questions', 'woocommerce-delivery-notes' ) . '</a></p>' .
+				'<p><a href="http://wordpress.org/support/plugin/woocommerce-delivery-notes" target="_blank">' . __( 'Get Community Support', 'woocommerce-delivery-notes' ) . '</a></p>' .
 				'<p><a href="http://wordpress.org/extend/plugins/woocommerce-delivery-notes/" target="_blank">' . __( 'Project on WordPress.org', 'woocommerce-delivery-notes' ) . '</a></p>' .
-				'<p><a href="https://github.com/deckerweb/woocommerce-delivery-notes" target="_blank">' . __( 'Project on GitHub', 'woocommerce-delivery-notes' ) . '</a></p>' . 
-				'<p><a href="http://wordpress.org/tags/woocommerce-delivery-notes?forum_id=10" target="_blank">' . __( 'Discuss in the Forum', 'woocommerce-delivery-notes' ) . '</a></p>'
+				'<p><a href="https://github.com/deckerweb/woocommerce-delivery-notes" target="_blank">' . __( 'Project on GitHub', 'woocommerce-delivery-notes' ) . '</a></p>' 
 			);
 		}
 		
@@ -242,7 +166,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		public function create_thumbnail( $attachment_id ) {
 			$attachment_src = wp_get_attachment_image_src( $attachment_id, array( 200, 200 ), false );
 			?>
-			<img src="<?php echo $attachment_src[0]; ?>" width="<?php echo $attachment_src[1]; ?>" height="<?php echo $attachment_src[2]; ?>" />
+			<img src="<?php echo $attachment_src[0]; ?>" width="<?php echo $attachment_src[1]; ?>" height="<?php echo $attachment_src[2]; ?>" alt="" />
 			<?php
 		}
 

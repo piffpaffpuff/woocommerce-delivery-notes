@@ -3,7 +3,7 @@ Contributors: chabis, daveshine, deckerweb
 Tags: delivery notes, delivery, shipping, print, order, invoice, invoices, woocommerce, woothemes, shop, shop manager, deckerweb
 Requires at least: 3.4 and WooCommerce 1.6.3
 Tested up to: 3.4
-Stable tag: 1.4
+Stable tag: 1.4.1
 License: GPLv3 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
 
@@ -95,6 +95,10 @@ For custom and update-secure language files please upload them to `/wp-content/l
 5. Help tabs on the plugin's settings page with some info and important plugin links. [Click for larger image view](http://www.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-5.png)
 
 == Changelog ==
+
+= 1.4.1 =
+* FIX: Logo uploader button.
+* UPDATE: Indicate when the print page is loading.
 
 = 1.4 =
 * ATTENTION: For custom template creators: This update breaks your custom template because of some new features. Please update your template PHP code and CSS.

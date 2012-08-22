@@ -1,15 +1,27 @@
-ul.woocommerce-delivery-notes-actions {
+#woocommerce-delivery-notes-box {
 	text-align: center;
 }
-ul.woocommerce-delivery-notes-actions li {
-	margin: 5px;
+#woocommerce-delivery-notes-box ul {
 	display: inline-block;
+}
+#woocommerce-delivery-notes-box ul li {
+	margin: 3px;
+	display: inline-block;
+}
+#woocommerce-delivery-notes-box img.loading,
+.type-shop_order .column-order_actions img.loading {
+	display: none;
+	vertical-align: middle;
+}
+.type-shop_order .column-order_actions img.loading {
+	float: left;
+	margin-top: 3px;
 }
 #company-logo-placeholder {
 	display: block;
 }
 #company-logo-placeholder.loading {
-	background-image: url("../../../../wp-admin/images/loading.gif");
+	background-image: url("../../../../wp-admin/images/wpspin_light.gif");
 	background-repeat: no-repeat; 
 	height: 20px;
 }

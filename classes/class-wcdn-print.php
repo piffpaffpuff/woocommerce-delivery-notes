@@ -41,7 +41,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		 * Load the admin hooks
 		 */
 		public function load_hooks() {	
-			add_action('wp_ajax_woocommerce_delivery_notes_generate_print_content', array($this, 'generate_print_content_ajax'));
+			add_action('wp_ajax_generate_print_content', array($this, 'generate_print_content_ajax'));
 		}
 
 		/**

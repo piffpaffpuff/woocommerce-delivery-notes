@@ -14,6 +14,9 @@ jQuery(document).ready(function($) {
 				frames[name].print();
 			});
 		} else {
+			$('#woocommerce-delivery-notes-box .loading').show();
+			$(this).parent().find('.loading').show();
+			
 			// print the page with a hidden preview window
 			if(!$('#printPreview')[0]) {
 				// create a new iframe
@@ -22,6 +25,8 @@ jQuery(document).ready(function($) {
 				
 				// print when the iframe is loaded
 				$('#printPreview').on('load',function() {  
+					$('#woocommerce-delivery-notes-box .loading').hide();
+					$(this).parent().find('.loading').hide();
 					frames['printPreview'].focus();
 					frames['printPreview'].print();
 				});
@@ -30,13 +35,12 @@ jQuery(document).ready(function($) {
 				$('#printPreview').attr('src', url);
 			}		
 		}
-		
 		event.preventDefault();
 	});
 		
 	// button to open the media uploader
-	$('#company-logo-add-button, #company-logo-placeholder img').on('click', function(event) {
-		tb_show('', 'media-upload.php?post_id=0&amp;custom_uploader_page=true&amp;type=image&amp;TB_iframe=true');
+	$('#company-logo-add-button, #company-logo-placeholder').on('click', function(event) {
+		tb_show('', 'media-upload.php?post_id=0&company_logo_image=true&type=image&TB_iframe=true');
 		event.preventDefault();
 	});
 	
@@ -46,32 +50,32 @@ jQuery(document).ready(function($) {
 		event.preventDefault();
 	});
 	
-	// this javascript is called from the custom 
-	// button inside the media manager. see the
-	// script-media-uploader.js for details.
-	// close the media uploader and set the media 
-	window.sendImageToContent = function(id, image) {
-		console.log(this);
+	// called when the "Insert into post" button is clicked
+	window.send_to_editor = function(html) {
+		removeImage();
 		tb_remove();
 		
-		$('#company-logo-image-id').val(id);		
-		$('#company-logo-placeholder').addClass('loading').empty();
-
+		// find the attachment id
+		var tag = $(html);
+		var imgClass = $('img', tag).attr('class');
+		var imgID = parseInt(imgClass.replace(/\D/g, ''), 10);
+		
 		// load the image		
 		var data = {
-			attachment_id: id,
+			attachment_id: imgID,
 			action: 'load_thumbnail'
 		}
 		
 		$.post(ajaxurl, data, function(response) {
-			$('#company-logo-placeholder').removeClass('loading').append(response);
+			$('#company-logo-image-id').val(data.attachment_id);		
+			$('#company-logo-placeholder').removeClass('loading').html(response);
 			$('#company-logo-add-button').hide();
 			$('#company-logo-remove-button').show();
 		}).error(function() {
 			removeImage();
 		});
 	}
-	
+
 	// remove media 
 	function removeImage() {
 		$('#company-logo-image-id').val('');		

@@ -13,7 +13,7 @@
  * Plugin Name: WooCommerce Print Invoices & Delivery Notes
  * Plugin URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * Description: Print order invoices & delivery notes for WooCommerce shop plugin. You can add company/shop info as well as personal notes & policies to print pages.
- * Version: 1.4
+ * Version: 1.4.1
  * Author: Steve Clark, Triggvy Gunderson, David Decker
  * Author URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * License: GPLv3 or later
@@ -72,8 +72,9 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 */
 		public function load() {
 			add_action( 'init', array( $this, 'load_hooks' ) );
+			add_action( 'admin_init', array( $this, 'load_admin_hooks' ) );
 		}
-		
+	
 		/**
 		 * Load the main plugin classes and functions
 		 */
@@ -82,16 +83,15 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 			include_once( 'classes/class-wcdn-settings.php' );
 			include_once( 'classes/class-wcdn-print.php' );
 		}
-		
 
 		/**
-		 * Load the hooks
+		 * Load the init hooks
 		 */
 		public function load_hooks() {	
 			if ( $this->is_woocommerce_activated() ) {					
 				load_plugin_textdomain( 'woocommerce-delivery-notes', false, dirname( self::$plugin_basefile ) . '/../../languages/woocommerce-delivery-notes/' );
 				load_plugin_textdomain( 'woocommerce-delivery-notes', false, dirname( self::$plugin_basefile ) . '/languages' );
-
+				
 				$this->includes();
 				$this->writepanel = new WooCommerce_Delivery_Notes_Writepanel();
 				$this->writepanel->load();
@@ -100,6 +100,38 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 				$this->print = new WooCommerce_Delivery_Notes_Print();
 				$this->print->load();
 			}
+		}
+		
+		/**
+		 * Load the admin hooks
+		 */
+		public function load_admin_hooks() {
+			add_filter( 'plugin_row_meta', array( $this, 'add_support_links' ), 10, 2 );			
+			add_filter( 'plugin_action_links_' . self::$plugin_basefile, array( $this, 'add_settings_link') );
+		}
+			
+		/**
+		 * Add various support links to plugin page
+		 */
+		public function add_support_links( $links, $file ) {
+			if ( !current_user_can( 'install_plugins' ) ) {
+				return $links;
+			}
+		
+			if ( $file == WooCommerce_Delivery_Notes::$plugin_basefile ) {
+				$links[] = '<a href="http://wordpress.org/extend/plugins/woocommerce-delivery-notes/faq/" target="_blank" title="' . __( 'FAQ', 'woocommerce-delivery-notes' ) . '">' . __( 'FAQ', 'woocommerce-delivery-notes' ) . '</a>';
+				$links[] = '<a href="http://wordpress.org/support/plugin/woocommerce-delivery-notes" target="_blank" title="' . __( 'Support', 'woocommerce-delivery-notes' ) . '">' . __( 'Support', 'woocommerce-delivery-notes' ) . '</a>';
+			}
+			return $links;
+		}
+		
+		/**
+		 * Add settings link to plugin page
+		 */
+		public function add_settings_link( $links ) {
+			$settings = sprintf( '<a href="%s" title="%s">%s</a>' , admin_url( 'admin.php?page=woocommerce&tab=' . $this->settings->tab_name ) , __( 'Go to the settings page', 'woocommerce-delivery-notes' ) , __( 'Settings', 'woocommerce-delivery-notes' ) );
+			array_unshift( $links, $settings );
+			return $links;	
 		}
 		
 		/**
