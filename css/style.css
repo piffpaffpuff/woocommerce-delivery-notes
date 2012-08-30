@@ -2,10 +2,11 @@
 	text-align: center;
 }
 #woocommerce-delivery-notes-box .inside ul {
+	margin: 0px;
 	display: inline-block;
 }
 #woocommerce-delivery-notes-box .inside ul li {
-	margin: 3px;
+	margin: 7px 3px;
 	display: inline-block;
 }
 #woocommerce-delivery-notes-box .inside img.loading,

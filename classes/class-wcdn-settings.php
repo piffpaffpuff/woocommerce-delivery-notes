@@ -104,6 +104,14 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		}
 		
 		/**
+		 * Remove the media uploader tabs
+		 */
+		public function remove_media_tabs( $tabs ) {
+			unset( $tabs['type_url'] );
+		    return $tabs;
+		}
+		
+		/**
 		 * Add the help tabs
 		 */
 		public function add_help_tabs() {
