@@ -74,8 +74,14 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 		 */
 		public function add_listing_actions( $order ) {
 			?>
-			<a href="<?php echo wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_print_content&template_type=invoice&order_id=' . $order->id ), 'generate_print_content' ); ?>" class="button print-preview-button" target="_blank"><?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?></a>
-			<a href="<?php echo wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_print_content&template_type=delivery-note&order_id=' . $order->id ), 'generate_print_content' ); ?>" class="button print-preview-button" target="_blank"><?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?></a>
+			<a href="<?php echo wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_print_content&template_type=invoice&order_id=' . $order->id ), 'generate_print_content' ); ?>" class="button tips print-preview-button" target="_blank" alt="<?php esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>" data-tip="<?php esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>">
+				<span><?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?></span>
+				<img src="<?php echo WooCommerce_Delivery_Notes::$plugin_url . 'images/print-invoice.png'; ?>" alt="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-invoice' ); ?>" width="14">
+			</a>
+			<a href="<?php echo wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_print_content&template_type=delivery-note&order_id=' . $order->id ), 'generate_print_content' ); ?>" class="button tips print-preview-button" target="_blank" alt="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>" data-tip="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>">
+				<span><?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?></span>
+				<img src="<?php echo WooCommerce_Delivery_Notes::$plugin_url . 'images/print-delivery-note.png'; ?>" alt="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>" width="14">
+			</a>
 			<img src="<?php echo admin_url( 'images/wpspin_light.gif' ); ?>" class="loading" alt="">
 			<?php
 		}
@@ -94,8 +100,8 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 			global $post_id;
 			?>
 			<ul class="woocommerce-delivery-notes-actions">
-				<li><a href="<?php echo wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_print_content&template_type=invoice&order_id=' . $post_id ), 'generate_print_content' ); ?>" class="button print-preview-button" target="_blank"><?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?></a></li>
-				<li><a href="<?php echo wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_print_content&template_type=delivery-note&order_id=' . $post_id ), 'generate_print_content' ); ?>" class="button print-preview-button" target="_blank"><?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?></a></li>
+				<li><a href="<?php echo wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_print_content&template_type=invoice&order_id=' . $post_id ), 'generate_print_content' ); ?>" class="button print-preview-button" target="_blank" alt="<?php esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?></a></li>
+				<li><a href="<?php echo wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_print_content&template_type=delivery-note&order_id=' . $post_id ), 'generate_print_content' ); ?>" class="button print-preview-button" target="_blank" alt="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?></a></li>
 			</ul>
 			<img src="<?php echo admin_url( 'images/wpspin_light.gif' ); ?>" class="loading" alt="">
 			<?php

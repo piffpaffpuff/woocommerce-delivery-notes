@@ -130,10 +130,10 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 					
 					// Create the product
 					$product = $this->order->get_product_from_item( $item );
-					
+
 					// Set the variation
 					if( isset( $item['variation_id'] ) && $item['variation_id'] > 0 ) {
-						$data['variation'] = woocommerce_get_formatted_variation( $product->get_variation_attributes(), true );
+						$data['variation'] = woocommerce_get_formatted_variation( $product->get_variation_attributes() );
 					} else {
 						$data['variation'] = null;
 					}
@@ -143,10 +143,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 					
 					// Set item quantity
 					$data['quantity'] = $item['qty'];
-					
-					// Set item meta
-					$data['meta'] = new order_item_meta( $item['item_meta'] );
-										
+															
 					// Set item download url					
 					if( $product->exists() && $product->is_downloadable() && ( $this->order->status == 'completed' || ( get_option( 'woocommerce_downloads_grant_access_after_payment' ) == 'yes' && $this->order->status == 'processing' ) ) ) {
 						$data['download_url'] = $this->order->get_downloadable_file_url( $item['id'], $item['variation_id'] );
@@ -156,9 +153,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 
 					// Set the price
 					$data['price'] = $this->order->get_formatted_line_subtotal( $item );
-					
-					//print_r($item);
-					
+									
 					// Set the single price
 					$data['single_price'] = $product->get_price();
 									
@@ -170,6 +165,11 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 					
 					// Set item dimensions
 					$data['dimensions'] = $product->get_dimensions();
+					
+					// Set the whole WC data in the array
+					// Set item meta
+					$meta = new WC_Order_Item_Meta( $item['item_meta'] );	
+					$data['meta'] = $meta->display();
 					
 	                // Pass complete item array
 	                $data['item'] = $item;

@@ -55,7 +55,8 @@
 						<tbody>
 							<?php $items = wcdn_get_order_items(); if( sizeof( $items > 0 ) ) : foreach( $items as $item ) : ?><tr>
 								<td class="description"><?php echo $item['name']; ?>
-									<?php $item['meta']->display(); ?>
+									<?php echo $item['variation']; ?>
+									<?php echo $item['meta']; ?>
 									<dl class="meta">
 										<?php if( $item['sku'] ) : ?><dt><?php _e( 'SKU:', 'woocommerce-delivery-notes' ); ?></dt><dd><?php echo $item['sku']; ?></dd><?php endif; ?>
 										<?php if( $item['weight'] ) : ?><dt><?php _e( 'Weight:', 'woocommerce-delivery-notes' ); ?></dt><dd><?php echo $item['weight']; ?><?php echo get_option('woocommerce_weight_unit'); ?></dd><?php endif; ?>

@@ -1,14 +1,14 @@
-#woocommerce-delivery-notes-box {
+#woocommerce-delivery-notes-box .inside {
 	text-align: center;
 }
-#woocommerce-delivery-notes-box ul {
+#woocommerce-delivery-notes-box .inside ul {
 	display: inline-block;
 }
-#woocommerce-delivery-notes-box ul li {
+#woocommerce-delivery-notes-box .inside ul li {
 	margin: 3px;
 	display: inline-block;
 }
-#woocommerce-delivery-notes-box img.loading,
+#woocommerce-delivery-notes-box .inside img.loading,
 .type-shop_order .column-order_actions img.loading {
 	display: none;
 	vertical-align: middle;
@@ -16,6 +16,9 @@
 .type-shop_order .column-order_actions img.loading {
 	float: left;
 	margin-top: 3px;
+}
+.type-shop_order .column-order_actions .print-preview-button span {
+	display:  none;
 }
 #company-logo-placeholder {
 	display: block;
