@@ -53,9 +53,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							<?php $items = wcdn_get_order_items(); if( sizeof( $items > 0 ) ) : foreach( $items as $item ) : ?><tr>
+							<?php $items = wcdn_get_order_items(); if( sizeof( $items ) > 0 ) : foreach( $items as $item ) : ?><tr>
 								<td class="description"><?php echo $item['name']; ?>
-									<?php echo $item['variation']; ?>
 									<?php echo $item['meta']; ?>
 									<dl class="meta">
 										<?php if( $item['sku'] ) : ?><dt><?php _e( 'SKU:', 'woocommerce-delivery-notes' ); ?></dt><dd><?php echo $item['sku']; ?></dd><?php endif; ?>

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=warta
 Tags: delivery notes, delivery, shipping, print, order, invoice, invoices, woocommerce, woothemes, shop, shop manager, deckerweb
 Requires at least: 3.4 and WooCommerce 1.6.3
 Tested up to: 3.4
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 License: GPLv3 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
 
@@ -97,11 +97,15 @@ For custom and update-secure language files please upload them to `/wp-content/l
 
 == Changelog ==
 
+= 1.4.4 =
+* FIX: Product variations are returned instead of echoed.
+* UPDATE: Better product meta data display.
+
 = 1.4.3 =
 * FIX: Logo uploader tabs.
 
 = 1.4.2 =
-* FIX: Display Product Variations.
+* FIX: Display Product variations.
 * NEW: Icon buttons for the order actions.
 
 = 1.4.1 =

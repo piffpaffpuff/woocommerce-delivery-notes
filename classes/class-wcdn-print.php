@@ -138,14 +138,21 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 						$data['variation'] = null;
 					}
 					
+					// Set item meta and replace it when it is empty
+					$meta = new WC_Order_Item_Meta( $item['item_meta'] );	
+					$data['meta'] = $meta->display( false, true );
+					if( empty( $data['meta'] ) ) {
+						$data['meta'] = $data['variation'];
+					}
+										
 					// Set item name
 					$data['name'] = $item['name'];
 					
 					// Set item quantity
 					$data['quantity'] = $item['qty'];
 															
-					// Set item download url					
-					if( $product->exists() && $product->is_downloadable() && ( $this->order->status == 'completed' || ( get_option( 'woocommerce_downloads_grant_access_after_payment' ) == 'yes' && $this->order->status == 'processing' ) ) ) {
+					// Set item download url									
+					if( $product->exists() && $product->is_downloadable() && $product->has_file() && ( $this->order->status == 'completed' || ( get_option( 'woocommerce_downloads_grant_access_after_payment' ) == 'yes' && $this->order->status == 'processing' ) ) ) {
 						$data['download_url'] = $this->order->get_downloadable_file_url( $item['id'], $item['variation_id'] );
 					} else {
 						$data['download_url'] = null;
@@ -165,12 +172,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 					
 					// Set item dimensions
 					$data['dimensions'] = $product->get_dimensions();
-					
-					// Set the whole WC data in the array
-					// Set item meta
-					$meta = new WC_Order_Item_Meta( $item['item_meta'] );	
-					$data['meta'] = $meta->display();
-					
+										
 	                // Pass complete item array
 	                $data['item'] = $item;
 
