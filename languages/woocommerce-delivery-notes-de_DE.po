@@ -1,4 +1,4 @@
-# This German Language File: Copyright (C) 2011-2012 by David Decker of deckerweb.de & genesisthemes.de
+# This German Language File: Copyright (C) 2012 by David Decker of deckerweb.de & genesisthemes.de
 # This file is distributed under the same license as the WooCommerce Print Invoices & Delivery Notes Plugin package.
 #
 # Weitere deutsche Sprachdateien fuer WooCommerce und WordPress sind hier zu finden:
@@ -6,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Print Invoices & Delivery Notes (Plugin, SIE-Version)\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tags/woocommerce-delivery-notes\n"
+"Project-Id-Version: WooCommerce Print Invoices & Delivery Notes v1.4.5\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/woocommerce-delivery-notes\n"
 "POT-Creation-Date: 2012-05-06 19:17+0100\n"
-"PO-Revision-Date: 2012-05-08 22:02+0100\n"
+"PO-Revision-Date: 2012-09-11 22:25+0100\n"
 "Last-Translator: David Decker <deckerweb.mobil@googlemail.com>\n"
 "Language-Team: DECKERWEB <deckerweb.mobil@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -24,307 +24,227 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #@ woocommerce-delivery-notes
-#: templates/delivery-notes/print.php:5
-#: templates/delivery-notes/print.php:21
-#: templates/delivery-notes/print.php:45
+#: woocommerce-delivery-notes.php:191
 msgid "Delivery Note"
 msgstr "Lieferschein"
 
-#@ woocommerce-delivery-notes
-#: woocommerce-delivery-notes-print.php:91
-msgid "Print Page"
-msgstr "Seite ausdrucken"
-
-#@ woocommerce-delivery-notes
-#: templates/delivery-notes/print.php:63
+#@ woocommerce
+#: templates/print/print-delivery-note.php:51
 msgid "Quantity"
 msgstr "Menge"
 
-#@ woocommerce-delivery-notes
-#: templates/delivery-notes/print.php:64
-msgid "Price"
-msgstr "Preis"
-
-#@ woocommerce-delivery-notes
-#: templates/delivery-notes/print.php:84
-msgid "Subtotal"
-msgstr "Zwischensumme"
-
-#@ woocommerce-delivery-notes
-#: templates/delivery-notes/print.php:89
-msgid "Shipping"
-msgstr "Versand"
-
-#@ woocommerce-delivery-notes
-#: templates/delivery-notes/print.php:95
-msgid "Tax"
-msgstr "Mwst."
-
-#@ woocommerce-delivery-notes
-#: templates/delivery-notes/print.php:101
-msgid "Discount"
-msgstr "Rabatt"
-
-#@ woocommerce-delivery-notes
-#: templates/delivery-notes/print.php:106
-msgid "Grand Total"
-msgstr "Gesamtsumme"
-
-#@ woocommerce-delivery-notes
-#: woocommerce-delivery-notes-print.php:18
+#@ default
+#: classes/class-wcdn-print.php:63
+#: classes/class-wcdn-print.php:68
+#: classes/class-wcdn-print.php:73
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Sie haben keine ausreichende Rechte, um auf diese Seite zugreifen zu können."
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:149
+#: woocommerce-delivery-notes.php:125
 msgid "Go to the settings page"
 msgstr "Zur Einstellungsseite des Plugins"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:149
+#: woocommerce-delivery-notes.php:125
 msgid "Settings"
 msgstr "Einstellungen"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-writepanel.php:64
+#: woocommerce-delivery-notes.php:115
 msgid "FAQ"
 msgstr "FAQ - Häufige Fragen"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-writepanel.php:65
+#: woocommerce-delivery-notes.php:116
 msgid "Support"
 msgstr "Hilfe und Unterstützung (Support)"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-writepanel.php:66
-msgid "http://genesisthemes.de/en/donate/"
-msgstr "http://genesisthemes.de/spenden/"
-
-#@ woocommerce-delivery-notes
-#: classes/class-wcdn-writepanel.php:66
-msgid "Donate"
-msgstr "Spenden"
-
-#@ woocommerce-delivery-notes
-#: templates/delivery-notes/print.php:62
-msgid "Product Name"
-msgstr "Produktbezeichnung"
-
-#@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:317
+#: classes/class-wcdn-settings.php:249
 msgid "Returns Policy, Conditions, etc.:"
 msgstr "Rückgabe- und sonstige Bedingungen:"
 
 #@ woocommerce-delivery-notes
-#: templates/delivery-notes/print.php:49
+#: templates/print/print-delivery-note.php:37
 msgid "Order No."
 msgstr "Bestell-Nr."
 
 #@ woocommerce-delivery-notes
-#: templates/delivery-notes/print.php:53
+#: templates/print/print-delivery-note.php:41
 msgid "Order Date"
 msgstr "Bestelldatum"
 
 #@ woocommerce-delivery-notes
-#: templates/delivery-notes/print.php:70
+#: templates/print/print-delivery-note.php:60
 msgid "SKU:"
 msgstr "Art.-Nr.:"
 
 #@ woocommerce-delivery-notes
-#: templates/delivery-notes/print.php:70
+#: templates/print/print-delivery-note.php:61
 msgid "Weight:"
 msgstr "Gewicht:"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:192
+#: classes/class-wcdn-settings.php:129
 msgid "Plugin: WooCommerce Print Invoices & Delivery Notes"
 msgstr "Plugin: WooCommerce Rechnungen & Lieferscheine drucken"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:271
-#: classes/class-wcdn-settings.php:284
-#: classes/class-wcdn-settings.php:297
-#: classes/class-wcdn-settings.php:310
-#: classes/class-wcdn-settings.php:323
-#: classes/class-wcdn-settings.php:336
+#: classes/class-wcdn-settings.php:203
+#: classes/class-wcdn-settings.php:216
+#: classes/class-wcdn-settings.php:229
+#: classes/class-wcdn-settings.php:242
+#: classes/class-wcdn-settings.php:255
+#: classes/class-wcdn-settings.php:268
 msgid "Note:"
 msgstr "Hinweis:"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:296
+#: classes/class-wcdn-settings.php:228
 msgid "The postal address of the company/shop, which gets printed right of the company/shop name, above the order listings."
 msgstr "Die Postanschrift der Firma bzw. des Shops, welche rechts neben dem Firmen-/ Shopname ausgegeben wird, über den Bestelldaten."
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:309
+#: classes/class-wcdn-settings.php:241
 msgid "Add some personal notes, or season greetings or whatever (e.g. Thank You for Your Order!, Merry Christmas!, etc.)."
 msgstr "Fügen Sie einige persönliche Anmerkungen wie Dank, jahreszeitliche Grüße hinzu (z.B.: Danke für Ihre Bestellung!, Frohe Weihnachten!, etc.)."
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:335
+#: classes/class-wcdn-settings.php:267
 msgid "Add some further footer imprint, copyright notes etc. to get the printed sheets a bit more branded to your needs."
 msgstr "Fügen Sie Impressumangaben in der Fußzeile hinzu. Damit können die Ausdrucke noch stärker an Ihr CI bzw. rechtliche Anforderungen angepasst werden."
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:190
-#: classes/class-wcdn-settings.php:193
+#: classes/class-wcdn-settings.php:127
+#: classes/class-wcdn-settings.php:130
 msgid "About the Plugin"
 msgstr "Über das Plugin"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:200
+#: classes/class-wcdn-settings.php:137
 msgid "For more information:"
 msgstr "Weitere Informationen:"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:201
+#: classes/class-wcdn-settings.php:138
 msgid "Frequently Asked Questions"
 msgstr "Häufige Fragen (FAQ)"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:202
+#: classes/class-wcdn-settings.php:140
 msgid "Project on WordPress.org"
 msgstr "Projekt bei WordPress.org"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:203
+#: classes/class-wcdn-settings.php:141
 msgid "Project on GitHub"
 msgstr "Projekt bei GitHub"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:204
-msgid "Discuss in the Forum"
-msgstr "Im Forum diskutieren"
-
-#@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:214
+#: classes/class-wcdn-settings.php:149
 msgid "Print"
 msgstr "Druck"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:254
+#: classes/class-wcdn-settings.php:186
 msgid "Invoices and Delivery Notes"
 msgstr "Rechnungen und Lieferscheine"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:278
+#: classes/class-wcdn-settings.php:210
 msgid "Company/Shop Name"
 msgstr "Firmen-/ Shopname"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:285
+#: classes/class-wcdn-settings.php:217
 msgid "Leave blank to use the default Website/ Blog title defined in WordPress settings."
 msgstr "Leer lassen, um den standardmäßigen Webseiten- bzw. Blogtitel zu verwenden, der in den WordPress-Einstellungen festgelegt wird."
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:291
+#: classes/class-wcdn-settings.php:223
 msgid "Company/Shop Address"
 msgstr "Firmen-/ Shop-Anschrift"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:298
+#: classes/class-wcdn-settings.php:230
 msgid "Leave blank to not print an address."
 msgstr "Leer lassen, um keine Anschrift mit auszudrucken."
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:304
+#: classes/class-wcdn-settings.php:236
 msgid "Personal Notes"
 msgstr "Persönliche Anmerkungen"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:311
+#: classes/class-wcdn-settings.php:243
 msgid "Leave blank to not print any personal notes."
 msgstr "Leer lassen, um keine persönlichen Anmerkungen mit auszudrucken."
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:322
+#: classes/class-wcdn-settings.php:254
 msgid "Here you can add some more policies, conditions etc. For example add a returns policy in case the client would like to send back some goods. In some countries (e.g. in the European Union) this is required so please add any required info in accordance with the statutory regulations."
 msgstr "Hier können Sie einige weitere Bedingungen angeben. Zum Beispiel Bedingungen für die Rückgabe, Widerrufsbelehrung etc. In einigen Ländern (z.B. innerhalb der EU) ist dies sogar vorgeschrieben - informieren Sie sich daher über die entsprechenden gesetzlichen Bestimmungen für Ihr Land."
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:324
+#: classes/class-wcdn-settings.php:256
 msgid "Leave blank to not print any policies or conditions."
 msgstr "Leer lassen, um keine Bedingungen mit auszudrucken."
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:330
+#: classes/class-wcdn-settings.php:262
 msgid "Footer Imprint"
 msgstr "Fußzeile Impressum"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:337
+#: classes/class-wcdn-settings.php:269
 msgid "Leave blank to not print a footer."
 msgstr "Leer lassen, um keine Impressumangaben in der Fußzeile mit auszudrucken."
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:343
+#: classes/class-wcdn-settings.php:275
 msgid "Preview Options"
 msgstr "Vorschau-Optionen"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:348
-msgid "Preview opens"
-msgstr "Vorschau öffnet"
-
-#@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:352
-msgid "Start printing when the preview page opens"
-msgstr "Mit dem Druck beginnen, wenn die Druckvorschau-Seite öffnet"
-
-#@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:357
+#: classes/class-wcdn-settings.php:293
 msgid "Order Numbering Options"
 msgstr "Bestellnummern-Optionen"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:362
-msgid "Before order number"
-msgstr "Vor der Bestellnummer"
-
-#@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:366
-msgid "This text will be placed before the order number ie. \"YOUR-TEXT123\"."
-msgstr "Dieser Text wird der Bestellnummer vorangestellt, zum Beispiel <code>IHR-TEXT123</code>."
-
-#@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:371
-msgid "After order number"
-msgstr "Nach der Bestellnummer"
-
-#@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:375
-msgid "This text will be placed after the order number ie. \"123YOUR-TEXT\"."
-msgstr "Dieser Text wird nach der Bestellnummer angefügt, zum Beispiel <code>123IHR-TEXT</code>."
-
-#@ woocommerce-delivery-notes
-#: classes/class-wcdn-writepanel.php:78
+#: classes/class-wcdn-writepanel.php:93
 msgid "Order Print"
 msgstr "Bestellung drucken"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-writepanel.php:91
+#: classes/class-wcdn-writepanel.php:77
+#: classes/class-wcdn-writepanel.php:78
+#: classes/class-wcdn-writepanel.php:103
 msgid "Print Invoice"
 msgstr "Rechnung drucken"
 
+#@ woocommerce-invoice
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-writepanel.php:92
+#: classes/class-wcdn-writepanel.php:79
+#: classes/class-wcdn-writepanel.php:81
+#: classes/class-wcdn-writepanel.php:82
+#: classes/class-wcdn-writepanel.php:83
+#: classes/class-wcdn-writepanel.php:104
 msgid "Print Delivery Note"
 msgstr "Lieferschein drucken"
 
 #@ woocommerce-delivery-notes
-#: templates/delivery-notes/print.php:5
-#: templates/delivery-notes/print.php:21
-#: templates/delivery-notes/print.php:45
+#: woocommerce-delivery-notes.php:189
 msgid "Invoice"
 msgstr "Rechnung"
 
 #@ woocommerce-delivery-notes
-#: templates/delivery-notes/print.php:29
+#: templates/print/print-delivery-note.php:20
 msgid "Recipient"
 msgstr "Empfänger"
 
 #@ woocommerce-delivery-notes
-#: templates/delivery-notes/print.php:116
+#: templates/print/print-delivery-note.php:88
 msgid "Customer Notes"
 msgstr "Kundennotizen"
 
@@ -348,63 +268,53 @@ msgid "Steve Clark, Triggvy Gunderson, David Decker"
 msgstr "Steve Clark, Triggvy Gunderson, David Decker"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:194
+#: classes/class-wcdn-settings.php:131
 msgid "This plugin enables you to add a Invoice or simple Delivery Note page for printing for your orders in WooCommerce shop plugin. You can add your company postal address, further add personal notes, refund or other policies and a footer note/branding. This helps speed up your daily shop and order management. In some countries (e.g. in the European Union) it is also required to advice the customer with proper refund policies so this little plugin might help you a bit with that too."
 msgstr "Dieses Plugin ermöglicht es, eine einfache Rechnung oder einen einfachen Lieferschein zum Ausdrucken für das WooCommerce Shop-Plugin zu erhalten. Sie können Ihre Firmen-/ Shop-Informationen, ebenso persönliche Anmerkungen, weiterhin Bedingungen/ Widerrufsbelehrung u.Ä. sowie eine Fußzeile (Impressum/ Branding) hinzufügen. Damit beschleunigen Sie die tägliche Shop-Verwaltung. Da in Ländern der Europäischen Union oftmals vorgeschrieben ist, Widerrufsbelehrungen u.Ä. der Bestellung beizulegen, können Sie dies hiermit besser erfüllen und außerdem Ihren Kunden bequem die Bestell-Infos in die Hand geben."
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:195
+#: classes/class-wcdn-settings.php:132
 #, php-format
 msgid "Just look under <a href=\"%1$s\">WooCommerce > Orders</a> and there go to a single order view. On the right side you will see the Order Print meta box. Click one of the buttons and you get the invoice or delivery note printing page. Yes, it is that easy :-)."
 msgstr "Schauen Sie einfach unter <a href=\"%1$s\">WooCommerce > Bestellungen</a> und rufen Sie dort eine einzelne Bestellung auf. Auf rechten Seite erscheint die <em>Bestellung drucken</em> Metabox. Klicken Sie dort und es öffnet sich die Rechnung oder der Lieferschein zum Ausdrucken. Das ist schon alles :-)."
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:135
-msgid "Use as Company Logo"
-msgstr "Als Firmenlogo verwenden"
-
-#@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:262
+#: classes/class-wcdn-settings.php:194
 msgid "Company/Shop Logo"
 msgstr "Firmen-/ Shop-Logo"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:267
+#: classes/class-wcdn-settings.php:199
 msgid "Remove Logo"
 msgstr "Logo entfernen"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:268
+#: classes/class-wcdn-settings.php:200
 msgid "Set Logo"
 msgstr "Logo festlegen"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:270
+#: classes/class-wcdn-settings.php:202
 msgid "A company/shop logo representing your business."
 msgstr "Ein Firmen-/ Shop-Logo, welches Ihr Geschäft repräsentiert."
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:272
-msgid "The Logo will be resized if it is larger than 300px &times; 300px."
-msgstr "Das Logo wird entsprechend verkleinert, falls es größer als 300 &times; 300 Pixel sein sollte."
-
-#@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:283
+#: classes/class-wcdn-settings.php:215
 msgid "Your company/shop name for the Delivery Note."
 msgstr "Ihr Firmen-/ Shop-Name für den Lieferschein/ die Rechnung."
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:380
+#: classes/class-wcdn-settings.php:298
 msgid "Sequential order number"
 msgstr "Fortlaufende Bestellnummer"
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:384
+#: classes/class-wcdn-settings.php:302
 msgid "Sequential numbering is enabled."
 msgstr "Fortlaufende Nummerierung ist aktiviert."
 
 #@ woocommerce-delivery-notes
-#: classes/class-wcdn-settings.php:386
+#: classes/class-wcdn-settings.php:304
 #, php-format
 msgid "Install and activate the free <a href=\"%s\">WooCommerce Sequential Order Numbers</a> Plugin."
 msgstr "Installieren und aktivieren Sie das kostenlose Plugin <a href=\"%s\">WooCommerce Sequential Order Numbers</a>."
@@ -416,8 +326,49 @@ msgid "Print order invoices & delivery notes for WooCommerce shop plugin. You ca
 msgstr "Dieses Plugin stellt einfache Rechnungen und Lieferscheine für das WooCommerce Shop Plugin bereit. Es können dabei auch Firmen-/ Shop-Infos ebenso wie persönliche Anmerkungen oder Bedingungen/ Widerrufsbelehrungen zu den Druckseiten hinzugefügt werden."
 
 #@ woocommerce-delivery-notes
+#: classes/class-wcdn-settings.php:139
+msgid "Get Community Support"
+msgstr "Community-Support erhalten"
+
+#@ woocommerce-delivery-notes
+#: classes/class-wcdn-settings.php:204
+msgid "When the image is printed, its pixel density will automatically be eight times higher than the original. This means, 1 printed inch will correspond to about 288 pixels on the screen. Example: an image with a width of 576 pixels and a height of 288 pixels will have a printed size of about 2 inches to 1 inch."
+msgstr "Wenn das Bild gedruckt wird, wird dessen Pixeldichte automatisch höher sein als das Original. Dies bedeutet, die Fläche von einem gedruckten Quadratzoll (ca. 2.54cm x 2.54cm) wird mit 288 Pixeln auf dem Bildschirm in Verbindung stehen. Beispiel: Ein Bild mit einer Breite von 576 Pixeln und einer Höhe von 288 Pixeln wird eine gedruckte Größe von etwa 2 Zoll x 1 Zoll aufweisen (ca. 5.08 cm x 2.54cm)."
+
+#@ woocommerce-delivery-notes
+#: classes/class-wcdn-settings.php:280
+msgid "Preview window"
+msgstr "Vorschaufenster"
+
+#@ woocommerce-delivery-notes
+#: classes/class-wcdn-settings.php:286
+msgid "Show the print preview window"
+msgstr "Das Druckvorschaufenster anzeigen"
+
+#@ woocommerce
+#: templates/print/print-delivery-note.php:50
+msgid "Product"
+msgstr "Produkt"
+
+#@ woocommerce
+#: templates/print/print-delivery-note.php:52
+msgid "Totals"
+msgstr "Gesamt"
+
+#@ woocommerce-delivery-notes
+#: templates/print/print-delivery-note.php:62
+msgid "Download:"
+msgstr "Download:"
+
+#@ woocommerce-delivery-notes
 #. translators: plugin header field 'Version'
 #: woocommerce-delivery-notes.php:0
-msgid "1.2.1"
-msgstr "1.2.1"
+msgid "1.4.5"
+msgstr "1.4.5"
+
+#@ woocommerce
+#: woocommerce-delivery-notes.php:277
+#: woocommerce-delivery-notes.php:291
+msgid "N/A"
+msgstr "k.A."
 
