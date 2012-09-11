@@ -97,6 +97,9 @@ For custom and update-secure language files please upload them to `/wp-content/l
 
 == Changelog ==
 
+= 1.4.5 =
+* UPDATE: Better order number support for the sequential order numbers plugin. (thanks FoxRunSoftware)
+
 = 1.4.4 =
 * FIX: Product variations are returned instead of echoed.
 * UPDATE: Better product meta data display.
