@@ -56,8 +56,9 @@ jQuery(document).ready(function($) {
 		tb_remove();
 		
 		// find the attachment id
-		var tag = $(html);
-		var imgClass = $('img', tag).attr('class');
+		var tag = $('<div></div>');
+		tag.append(html);
+		var imgClass = $('img', tag).attr('class');		
 		var imgID = parseInt(imgClass.replace(/\D/g, ''), 10);
 		
 		// load the image		
