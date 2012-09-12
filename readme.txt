@@ -83,9 +83,9 @@ Example: Show an order custom field that was added by another plugin (e.g. `'_my
 `echo wcdn_get_order_custom_field('_my_custom_field');` 
 
 = What will actually get printed out? =
-The page will be printed as you see it in your browser but without the navigation-bar at the top. 
+The page will be printed as you see it in your browser when you enabled the preview. 
 
-Beyond the styling of the template be aware of any special features of the used browser. They may not print websites properly or add a pagination or website url. Use the "Print Preview" feature of the browser which all current versions of Firefox, Chrome and Opera support.
+Beyond the styling of the template be aware of any special features of the used browser. They may not print websites properly or add a pagination or website url. Use a "Print Preview" feature of your browser which all current versions of Firefox, Chrome, Safari and Opera support.
 
 = How can I translate the plugin with my own wording? =
 For custom and update-secure language files please upload them to `/wp-content/languages/woocommerce-delivery-notes/` (just create this folder) - This enables you to use fully custom translations that won't be overridden on plugin updates. Also, complete custom English wording is possible with that, just use a language file like `woocommerce-delivery-notes-en_US.mo/.po` to achieve that (for creating one see the tools on "Other Notes"). And finally contact one of the developers if you would like to add your translation to the standard distribution. 
