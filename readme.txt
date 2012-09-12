@@ -211,7 +211,7 @@ Just released into the wild.
 * Swedish (sv_SE): Svenska - user-submitted by [Christopher Anderton](http://www.deluxive.se/)
 * Spanish (es_ES): Español - user-submitted by @JAVidania
 * French (fr_FR): Français - user-submitted by Olivier
-* Danish (dk_DK): Dansk - user-submitted by [boldt](http://boldt.325.dk/)
+* Danish (da_DK): Dansk - user-submitted by [boldt](http://boldt.325.dk/)
 * For custom and update-secure language files please upload them to `/wp-content/languages/woocommerce-delivery-notes/` (just create this folder) - This enables you to use fully custom translations that won't be overridden on plugin updates. Also, complete custom English wording is possible with that as well, just use a language file like `woocommerce-delivery-notes-en_US.mo/.po` to achieve that.
 
 **Easy plugin translation platform with GlotPress tool:** [Translate the plugin here](http://translate.wpautobahn.com/projects/wordpress-plugins-deckerweb/woocommerce-delivery-notes)

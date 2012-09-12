@@ -1,0 +1,372 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Print Invoices & Delivery Notes v1.4.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2012-08-31 06:03:26+0000\n"
+"Last-Translator: Mikael Boldt <mikael.boldt@mail.dk>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: woocommerce-delivery-notes.php:125
+#@ woocommerce-delivery-notes
+msgid "Go to the settings page"
+msgstr "Gå til indstillinger"
+
+#: woocommerce-delivery-notes.php:125
+#@ woocommerce-delivery-notes
+msgid "Settings"
+msgstr "Indstillinger"
+
+#: classes/class-wcdn-settings.php:127
+#: classes/class-wcdn-settings.php:130
+#@ woocommerce-delivery-notes
+msgid "About the Plugin"
+msgstr "Om plugin'en"
+
+#: classes/class-wcdn-settings.php:129
+#@ woocommerce-delivery-notes
+msgid "Plugin: WooCommerce Print Invoices & Delivery Notes"
+msgstr "Plugin: WooCommerce udskriv Fakturaer og Leveringsbetingelser"
+
+#: classes/class-wcdn-settings.php:131
+#@ woocommerce-delivery-notes
+msgid "This plugin enables you to add a Invoice or simple Delivery Note page for printing for your orders in WooCommerce shop plugin. You can add your company postal address, further add personal notes, refund or other policies and a footer note/branding. This helps speed up your daily shop and order management. In some countries (e.g. in the European Union) it is also required to advice the customer with proper refund policies so this little plugin might help you a bit with that too."
+msgstr ""
+"Denne plugin giver dig mulighed for at tilføje en Faktura eller Leveringsbetingelse til udskrift af dine ordre i WooCommerce shop plugin. Du kan tilføje dit firma's post-adresse og andre personlige meddelelser, politik om refundering og andet, fodnoter og andet. Dette kan hjælpe dig i den daglige administration af din shop. \n"
+"I nogle lande (f.eks i Den Europæiske Union) er det også nødvendigt at rådgive kunden med rette tilbagebetaling politikker, så det kan denne lille plugin også hjælpe dig med."
+
+#: classes/class-wcdn-settings.php:132
+#, php-format
+#@ woocommerce-delivery-notes
+msgid "Just look under <a href=\"%1$s\">WooCommerce > Orders</a> and there go to a single order view. On the right side you will see the Order Print meta box. Click one of the buttons and you get the invoice or delivery note printing page. Yes, it is that easy :-)."
+msgstr "Se under <a href=\"%1$s\"> WooCommerce> Ordrer </ a>, og derfra gå til den enkelte ordre udsigt. På højre side vil du se Udskriv Ordrer meta boks. Klik på en af knapperne, og du får en faktura eller følgeseddel udskrivning side. Ja, det er faktisk så let :-)."
+
+#: classes/class-wcdn-settings.php:137
+#@ woocommerce-delivery-notes
+msgid "For more information:"
+msgstr "For mere information:"
+
+#: classes/class-wcdn-settings.php:138
+#@ woocommerce-delivery-notes
+msgid "Frequently Asked Questions"
+msgstr "Ofte Stillede Spørgsmål"
+
+#: classes/class-wcdn-settings.php:140
+#@ woocommerce-delivery-notes
+msgid "Project on WordPress.org"
+msgstr "Projekt på WordPress.org"
+
+#: classes/class-wcdn-settings.php:141
+#@ woocommerce-delivery-notes
+msgid "Project on GitHub"
+msgstr "Projekt på GitHub"
+
+#: classes/class-wcdn-settings.php:149
+#@ woocommerce-delivery-notes
+msgid "Print"
+msgstr "Udskriv"
+
+#: classes/class-wcdn-settings.php:186
+#@ woocommerce-delivery-notes
+msgid "Invoices and Delivery Notes"
+msgstr "Fakturaer og Følgesedler"
+
+#: classes/class-wcdn-settings.php:194
+#@ woocommerce-delivery-notes
+msgid "Company/Shop Logo"
+msgstr "Firma/Shop Logo"
+
+#: classes/class-wcdn-settings.php:199
+#@ woocommerce-delivery-notes
+msgid "Remove Logo"
+msgstr "Fjern Logo"
+
+#: classes/class-wcdn-settings.php:200
+#@ woocommerce-delivery-notes
+msgid "Set Logo"
+msgstr "Indsæt Logo"
+
+#: classes/class-wcdn-settings.php:202
+#@ woocommerce-delivery-notes
+msgid "A company/shop logo representing your business."
+msgstr "Et firma/Shop Logo præsenterer din forretning"
+
+#: classes/class-wcdn-settings.php:203
+#: classes/class-wcdn-settings.php:216
+#: classes/class-wcdn-settings.php:229
+#: classes/class-wcdn-settings.php:242
+#: classes/class-wcdn-settings.php:255
+#: classes/class-wcdn-settings.php:268
+#@ woocommerce-delivery-notes
+msgid "Note:"
+msgstr "Note:"
+
+#: classes/class-wcdn-settings.php:204
+#@ woocommerce-delivery-notes
+msgid "When the image is printed, its pixel density will automatically be eight times higher than the original. This means, 1 printed inch will correspond to about 288 pixels on the screen. Example: an image with a width of 576 pixels and a height of 288 pixels will have a printed size of about 2 inches to 1 inch."
+msgstr "Når billedet udskrives, vil dens pixeltæthed automatisk være otte gange højere end den oprindelige. Dette betyder, at 1 cm papir er ca 113 pixels på skærmen. Eksempel: et billede med en bredde på 600 pixel og en højde på 400 pixels har en trykt størrelse på omkring 5,3 * 3,5 cm."
+
+#: classes/class-wcdn-settings.php:210
+#@ woocommerce-delivery-notes
+msgid "Company/Shop Name"
+msgstr "Firme/Shop Navn"
+
+#: classes/class-wcdn-settings.php:215
+#@ woocommerce-delivery-notes
+msgid "Your company/shop name for the Delivery Note."
+msgstr "Dit firma/shop navn for Følgesedlen."
+
+#: classes/class-wcdn-settings.php:217
+#@ woocommerce-delivery-notes
+msgid "Leave blank to use the default Website/ Blog title defined in WordPress settings."
+msgstr "Efterlad tom for at bruge standard-hjemmeside / blog titel defineret under WordPress-indstillinger."
+
+#: classes/class-wcdn-settings.php:223
+#@ woocommerce-delivery-notes
+msgid "Company/Shop Address"
+msgstr "Firma/Shop Adresse"
+
+#: classes/class-wcdn-settings.php:228
+#@ woocommerce-delivery-notes
+msgid "The postal address of the company/shop, which gets printed right of the company/shop name, above the order listings."
+msgstr "Postadressen bliver trykt til højre for Firma/Shop navn, ovenover ordrelisten."
+
+#: classes/class-wcdn-settings.php:230
+#@ woocommerce-delivery-notes
+msgid "Leave blank to not print an address."
+msgstr "Efterlad tomt felt for ikke at udskrive en adresse."
+
+#: classes/class-wcdn-settings.php:236
+#@ woocommerce-delivery-notes
+msgid "Personal Notes"
+msgstr "Personlige Besked:"
+
+#: classes/class-wcdn-settings.php:241
+#@ woocommerce-delivery-notes
+msgid "Add some personal notes, or season greetings or whatever (e.g. Thank You for Your Order!, Merry Christmas!, etc.)."
+msgstr "Tilføj nogle personlige beskeder, eller lignende (f.eks Tak for din bestilling!, Glædelig Jul!, Osv.)."
+
+#: classes/class-wcdn-settings.php:243
+#@ woocommerce-delivery-notes
+msgid "Leave blank to not print any personal notes."
+msgstr "Efterlad tomt felt for ikke at udskrive nogen besked."
+
+#: classes/class-wcdn-settings.php:249
+#@ woocommerce-delivery-notes
+msgid "Returns Policy, Conditions, etc.:"
+msgstr "Returpolitik, Salgsbetingelser mv:"
+
+#: classes/class-wcdn-settings.php:254
+#@ woocommerce-delivery-notes
+msgid "Here you can add some more policies, conditions etc. For example add a returns policy in case the client would like to send back some goods. In some countries (e.g. in the European Union) this is required so please add any required info in accordance with the statutory regulations."
+msgstr "Her kan du tilføje vilkår mv. For eksempel tilføje en returpolitik i tilfælde af at kunden gerne vil sende varer tilbage. I nogle lande (f.eks i Den Europæiske Union) dette er påkrævet, så kan du tilføje alle nødvendige oplysninger i overensstemmelse med de lovmæssige bestemmelser."
+
+#: classes/class-wcdn-settings.php:256
+#@ woocommerce-delivery-notes
+msgid "Leave blank to not print any policies or conditions."
+msgstr "Efterlad tomt felt for ikke at udskrive noget."
+
+#: classes/class-wcdn-settings.php:262
+#@ woocommerce-delivery-notes
+msgid "Footer Imprint"
+msgstr "Footer Imprint"
+
+#: classes/class-wcdn-settings.php:267
+#@ woocommerce-delivery-notes
+msgid "Add some further footer imprint, copyright notes etc. to get the printed sheets a bit more branded to your needs."
+msgstr "Tilføj nogle yderligere Footer imprints, ophavsret bemærkninger osv. "
+
+#: classes/class-wcdn-settings.php:269
+#@ woocommerce-delivery-notes
+msgid "Leave blank to not print a footer."
+msgstr "Efterlad tomt felt for ikke at udskrive footer."
+
+#: classes/class-wcdn-settings.php:275
+#@ woocommerce-delivery-notes
+msgid "Preview Options"
+msgstr "Forhåndsvisning"
+
+#: classes/class-wcdn-settings.php:293
+#@ woocommerce-delivery-notes
+msgid "Order Numbering Options"
+msgstr "Ordrer Nummererings-muligheder"
+
+#: classes/class-wcdn-settings.php:298
+#@ woocommerce-delivery-notes
+msgid "Sequential order number"
+msgstr "Sekventiel ordrenummer"
+
+#: classes/class-wcdn-settings.php:302
+#@ woocommerce-delivery-notes
+msgid "Sequential numbering is enabled."
+msgstr "Sekventiel ordrenummer er aktiveret"
+
+#: classes/class-wcdn-settings.php:304
+#, php-format
+#@ woocommerce-delivery-notes
+msgid "Install and activate the free <a href=\"%s\">WooCommerce Sequential Order Numbers</a> Plugin."
+msgstr "Installer og aktiver den gratis <a href=\"%s\">WooCommerce Sekventil ordrenummer</ a>Plugin."
+
+#: woocommerce-delivery-notes.php:115
+#@ woocommerce-delivery-notes
+msgid "FAQ"
+msgstr "OSS"
+
+#: woocommerce-delivery-notes.php:116
+#@ woocommerce-delivery-notes
+msgid "Support"
+msgstr "Support"
+
+#: classes/class-wcdn-writepanel.php:93
+#@ woocommerce-delivery-notes
+msgid "Order Print"
+msgstr "Udskriv Ordrer"
+
+#: classes/class-wcdn-writepanel.php:77
+#: classes/class-wcdn-writepanel.php:78
+#: classes/class-wcdn-writepanel.php:103
+#@ woocommerce-delivery-notes
+msgid "Print Invoice"
+msgstr "Udskriv Faktura"
+
+#: classes/class-wcdn-writepanel.php:79
+#: classes/class-wcdn-writepanel.php:81
+#: classes/class-wcdn-writepanel.php:82
+#: classes/class-wcdn-writepanel.php:83
+#: classes/class-wcdn-writepanel.php:104
+#@ woocommerce-invoice
+#@ woocommerce-delivery-notes
+msgid "Print Delivery Note"
+msgstr "Udskriv Følgeseddel"
+
+#: templates/print/print-delivery-note.php:20
+#@ woocommerce-delivery-notes
+msgid "Recipient"
+msgstr "Modtager"
+
+#: templates/print/print-delivery-note.php:37
+#@ woocommerce-delivery-notes
+msgid "Order No."
+msgstr "Ordre nr."
+
+#: templates/print/print-delivery-note.php:41
+#@ woocommerce-delivery-notes
+msgid "Order Date"
+msgstr "Ordre Dato"
+
+#: templates/print/print-delivery-note.php:50
+#@ woocommerce
+msgid "Product"
+msgstr "Produkt"
+
+#: templates/print/print-delivery-note.php:51
+#@ woocommerce
+msgid "Quantity"
+msgstr "Antal"
+
+#: templates/print/print-delivery-note.php:52
+#@ woocommerce
+msgid "Totals"
+msgstr "I alt"
+
+#: templates/print/print-delivery-note.php:61
+#@ woocommerce-delivery-notes
+msgid "SKU:"
+msgstr "SKU:"
+
+#: templates/print/print-delivery-note.php:62
+#@ woocommerce-delivery-notes
+msgid "Weight:"
+msgstr "Vægt:"
+
+#: templates/print/print-delivery-note.php:63
+#@ woocommerce-delivery-notes
+msgid "Download:"
+msgstr "Download:"
+
+#: templates/print/print-delivery-note.php:89
+#@ woocommerce-delivery-notes
+msgid "Customer Notes"
+msgstr "Kundebemærkninger"
+
+#: classes/class-wcdn-print.php:63
+#: classes/class-wcdn-print.php:68
+#: classes/class-wcdn-print.php:73
+#@ default
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Du har ikke tilladelse til at se denne side."
+
+#: woocommerce-delivery-notes.php:189
+#@ woocommerce-delivery-notes
+msgid "Invoice"
+msgstr "Faktura"
+
+#: woocommerce-delivery-notes.php:191
+#@ woocommerce-delivery-notes
+msgid "Delivery Note"
+msgstr "Følgesedler"
+
+#: woocommerce-delivery-notes.php:277
+#: woocommerce-delivery-notes.php:291
+#@ woocommerce
+msgid "N/A"
+msgstr "N/A"
+
+#. translators: plugin header field 'Name'
+#: woocommerce-delivery-notes.php:0
+#@ woocommerce-delivery-notes
+msgid "WooCommerce Print Invoices & Delivery Notes"
+msgstr "WooCommerce Udskriver Faktura og Følgesedler"
+
+#. translators: plugin header field 'PluginURI'
+#. translators: plugin header field 'AuthorURI'
+#: woocommerce-delivery-notes.php:0
+#@ woocommerce-delivery-notes
+msgid "https://github.com/piffpaffpuff/woocommerce-delivery-notes"
+msgstr "https://github.com/piffpaffpuff/woocommerce-delivery-notes"
+
+#. translators: plugin header field 'Description'
+#: woocommerce-delivery-notes.php:0
+#@ woocommerce-delivery-notes
+msgid "Print order invoices & delivery notes for WooCommerce shop plugin. You can add company/shop info as well as personal notes & policies to print pages."
+msgstr "Udskriv ordrer, fakturaer og følgesedler for WooCommerce butik plugin. Du kan tilføje firma/shop info samt personlige noter og politikker til de udskrivne sider."
+
+#. translators: plugin header field 'Author'
+#: woocommerce-delivery-notes.php:0
+#@ woocommerce-delivery-notes
+msgid "Steve Clark, Triggvy Gunderson, David Decker"
+msgstr "Steve Clark, Triggvy Gunderson, David Decker"
+
+#: classes/class-wcdn-settings.php:280
+#@ woocommerce-delivery-notes
+msgid "Preview window"
+msgstr "Vis Vindue"
+
+#: classes/class-wcdn-settings.php:286
+#@ woocommerce-delivery-notes
+msgid "Show the print preview window"
+msgstr "Vis Udskrift"
+
+#: classes/class-wcdn-settings.php:139
+#@ woocommerce-delivery-notes
+msgid "Get Community Support"
+msgstr "Få Community Support"
+
+#. translators: plugin header field 'Version'
+#: woocommerce-delivery-notes.php:0
+#@ woocommerce-delivery-notes
+msgid "1.4.3"
+msgstr "1.4.3"
+
