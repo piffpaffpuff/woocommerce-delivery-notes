@@ -10,8 +10,8 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		private $template_directory_name;
 		private $template_path;
 		private $template_default_path;
-		private $template_uri;
 		private $template_default_uri;
+
 		private $order;
 		
 		public $template_type;
@@ -26,7 +26,6 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			$this->template_directory_name = 'print';
 			$this->template_path = $woocommerce->template_url . $this->template_directory_name . '/';
 			$this->template_default_path = WooCommerce_Delivery_Notes::$plugin_path . 'templates/' . $this->template_directory_name . '/';
-			$this->template_uri = get_template_directory_uri() . '/' . $this->template_path;
 			$this->template_default_uri = WooCommerce_Delivery_Notes::$plugin_url . 'templates/' . $this->template_directory_name . '/';
 		}
 		
@@ -80,23 +79,25 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		}
 		
 		/**
-		 * Get the template url for a file
+		 * Get the template url for a file. locate by file existience
+		 * and then return the corresponding url.
 		 */
 		public function get_template_url( $name ) {
 			global $woocommerce;
-			$url = $this->template_uri;
-			$template = locate_template(
-				array(
-					$this->template_path . $name
-				)
-			);
 			
-			// Set the url to the theme directory
-			if( !$template ) {
-				$url = $this->template_default_uri;
+			$uri = $this->template_default_uri . $name;
+			$child_theme_path = get_stylesheet_directory() . '/' . $this->template_path;
+			$child_theme_uri = get_stylesheet_directory_uri() . '/' . $this->template_path;
+			$theme_path = get_template_directory() . '/' . $this->template_path;
+			$theme_uri = get_template_directory_uri() . '/' . $this->template_path;
+	
+			if( file_exists( $child_theme_path . $name ) ) {
+				$uri = $child_theme_uri . $name;
+			} elseif( file_exists( $theme_path . $name ) ) {
+				$uri = $theme_uri . $name;
 			}
 			
-			return $url . $name;
+			return $uri;
 		}
 		
 		/**

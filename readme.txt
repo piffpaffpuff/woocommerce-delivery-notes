@@ -100,6 +100,9 @@ For custom and update-secure language files please upload them to `/wp-content/l
 
 == Changelog ==
 
+= 1.4.6 =
+* FIX: Child theme template files are now correctly loaded.
+
 = 1.4.5 =
 * UPDATE: Better order number support for the sequential order numbers plugin. (thanks FoxRunSoftware)
 * NEW: Danish localization. (thanks brandt)
