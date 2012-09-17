@@ -15,7 +15,7 @@ msgstr ""
 
 #: classes/class-wcdn-settings.php:139
 msgid "Get Community Support"
-msgstr ""
+msgstr "Obtenir l'aide de la communauté"
 
 #: classes/class-wcdn-settings.php:204
 msgid "When the image is printed, its pixel density will automatically be eight times higher than the original. This means, 1 printed inch will correspond to about 288 pixels on the screen. Example: an image with a width of 576 pixels and a height of 288 pixels will have a printed size of about 2 inches to 1 inch."
@@ -23,23 +23,23 @@ msgstr ""
 
 #: classes/class-wcdn-settings.php:280
 msgid "Preview window"
-msgstr ""
+msgstr "Fenêtre de prévisualisation"
 
 #: classes/class-wcdn-settings.php:286
 msgid "Show the print preview window"
-msgstr ""
+msgstr "Ouvrir la fenêtre de prévisualisation d'impression"
 
 #: templates/print/print-delivery-note.php:50
 msgid "Product"
-msgstr ""
+msgstr "Produit"
 
 #: templates/print/print-delivery-note.php:52
 msgid "Totals"
-msgstr ""
+msgstr "Totaux"
 
 #: templates/print/print-delivery-note.php:62
 msgid "Download:"
-msgstr ""
+msgstr "Télécharger:"
 
 #: woocommerce-delivery-notes.php:0
 msgid "1.4.5"
@@ -48,39 +48,39 @@ msgstr "1.4.5"
 #: woocommerce-delivery-notes.php:277
 #: woocommerce-delivery-notes.php:291
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: classes/class-wcdn-settings.php:194
 msgid "Company/Shop Logo"
-msgstr ""
+msgstr "Logo de la boutique/société"
 
 #: classes/class-wcdn-settings.php:199
 msgid "Remove Logo"
-msgstr ""
+msgstr "Supprimer le logo"
 
 #: classes/class-wcdn-settings.php:200
 msgid "Set Logo"
-msgstr ""
+msgstr "Mettre à jour le logo"
 
 #: classes/class-wcdn-settings.php:202
 msgid "A company/shop logo representing your business."
-msgstr ""
+msgstr "Un logo représentant votre société"
 
 #: classes/class-wcdn-settings.php:215
 msgid "Your company/shop name for the Delivery Note."
-msgstr ""
+msgstr "Le nom de votre boutique qui apparaitra sur le bon de livraison"
 
 #: classes/class-wcdn-settings.php:298
 msgid "Sequential order number"
-msgstr ""
+msgstr "Numéro de commande séquentiel"
 
 #: classes/class-wcdn-settings.php:302
 msgid "Sequential numbering is enabled."
-msgstr ""
+msgstr "La numérotation séquentielle est activée."
 
 #: classes/class-wcdn-settings.php:304
 msgid "Install and activate the free <a href=\"%s\">WooCommerce Sequential Order Numbers</a> Plugin."
-msgstr ""
+msgstr "Installer et activer le plugin gratuit <a href=\"%s\">WooCommerce Sequential Order Numbers</a>."
 
 #: woocommerce-delivery-notes.php:0
 msgid "https://github.com/piffpaffpuff/woocommerce-delivery-notes"
@@ -138,7 +138,7 @@ msgstr "Poids:"
 
 #: classes/class-wcdn-settings.php:129
 msgid "Plugin: WooCommerce Print Invoices & Delivery Notes"
-msgstr ""
+msgstr "Plugin: WooCommerce Print Invoices & Delivery Notes"
 
 #: classes/class-wcdn-settings.php:203
 #: classes/class-wcdn-settings.php:216
@@ -164,11 +164,11 @@ msgstr "Ajouter des mentions de bas de page, droits d'auteur etc."
 #: classes/class-wcdn-settings.php:127
 #: classes/class-wcdn-settings.php:130
 msgid "About the Plugin"
-msgstr ""
+msgstr "A propos du plugin"
 
 #: classes/class-wcdn-settings.php:137
 msgid "For more information:"
-msgstr ""
+msgstr "Pour plus d'informations:"
 
 #: classes/class-wcdn-settings.php:138
 msgid "Frequently Asked Questions"
