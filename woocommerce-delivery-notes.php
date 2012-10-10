@@ -64,6 +64,13 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 * Load the hooks
 		 */
 		public function load() {
+			// load localization
+			if ( $this->is_woocommerce_activated() ) {				
+				load_plugin_textdomain( 'woocommerce-delivery-notes', false, dirname( self::$plugin_basefile ) . '/../../languages/woocommerce-delivery-notes/' );
+				load_plugin_textdomain( 'woocommerce-delivery-notes', false, dirname( self::$plugin_basefile ) . '/languages' );
+			}
+			
+			// load the hooks
 			add_action( 'init', array( $this, 'load_hooks' ) );
 			add_action( 'admin_init', array( $this, 'load_admin_hooks' ) );
 		}
@@ -81,10 +88,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 * Load the init hooks
 		 */
 		public function load_hooks() {	
-			if ( $this->is_woocommerce_activated() ) {					
-				load_plugin_textdomain( 'woocommerce-delivery-notes', false, dirname( self::$plugin_basefile ) . '/../../languages/woocommerce-delivery-notes/' );
-				load_plugin_textdomain( 'woocommerce-delivery-notes', false, dirname( self::$plugin_basefile ) . '/languages' );
-				
+			if ( $this->is_woocommerce_activated() ) {
 				$this->includes();
 				$this->writepanel = new WooCommerce_Delivery_Notes_Writepanel();
 				$this->writepanel->load();
