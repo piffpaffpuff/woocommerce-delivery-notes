@@ -58,16 +58,22 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 */
 		public function add_styles() {
 			wp_enqueue_style( 'thickbox' );
-			wp_enqueue_style( 'woocommerce-delivery-notes-styles', WooCommerce_Delivery_Notes::$plugin_url . 'css/style.css' );
+			wp_enqueue_style( 'woocommerce-delivery-notes', WooCommerce_Delivery_Notes::$plugin_url . 'css/style.css' );
 		}
 		
 		/**
 		 * Add the scripts
 		 */
 		public function add_scripts() {
+			?>
+			<script type="text/javascript">
+				var show_print_preview = 'yes';
+				var test_print_template = 'yes';
+			</script>
+			<?php 			
 			wp_enqueue_script( 'media-upload' );
 			wp_enqueue_script( 'thickbox' );
-			wp_enqueue_script( 'woocommerce-delivery-notes-scripts', WooCommerce_Delivery_Notes::$plugin_url . 'js/script.js', array( 'jquery', 'media-upload', 'thickbox' ) );
+			wp_enqueue_script( 'woocommerce-delivery-notes', WooCommerce_Delivery_Notes::$plugin_url . 'js/script.js', array( 'jquery', 'media-upload', 'thickbox' ) );
 		}
 		
 		/**
@@ -172,9 +178,12 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 * Create the thumbnail
 		 */
 		public function create_thumbnail( $attachment_id ) {
-			$attachment_src = wp_get_attachment_image_src( $attachment_id, array( 200, 200 ), false );
+			$attachment_src = wp_get_attachment_image_src( $attachment_id, 'full', false );
+			
+			// resize the image to a 1/4 of the original size
+			// to have a printing point density of about 288ppi.
 			?>
-			<img src="<?php echo $attachment_src[0]; ?>" width="<?php echo $attachment_src[1]; ?>" height="<?php echo $attachment_src[2]; ?>" alt="" />
+			<img src="<?php echo $attachment_src[0]; ?>" width="<?php echo $attachment_src[1] / 4; ?>" height="<?php echo $attachment_src[2] / 4; ?>" alt="" />
 			<?php
 		}
 
@@ -268,6 +277,32 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 								<br /><strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong> 
 								<?php _e('Leave blank to not print a footer.', 'woocommerce-delivery-notes' ); ?>
 							</span>
+						</td>
+					</tr>
+					<tr>
+						<th>
+						</th>
+						<td>
+							<?php 
+							// show template preview links when an order is available	
+							$args = array(
+								'post_type' => 'shop_order',
+								'posts_per_page' => 1
+							);
+							$query = new WP_Query( $args );
+						
+							if($query->have_posts()) : ?>
+								<?php
+								$results = $query->get_posts();
+								$test_id = $results[0]->ID;
+								$invoice_url = wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_print_content&template_type=invoice&order_id=' . $test_id ), 'generate_print_content' );
+								$note_url = wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_print_content&template_type=delivery-note&order_id=' . $test_id ), 'generate_print_content' );
+								?>
+								<span class="description">
+									<?php printf( __( 'You can <a href="%s" target="_blank" class="print-preview-button">preview the invoice template</a> or <a href="%s" target="_blank" class="print-preview-button">the delivery note template</a>.', 'woocommerce-delivery-notes' ), $invoice_url, $note_url ); ?>
+									<?php _e( 'For more advanced control copy <code>woocommerce-delivery-notes/templates/print/style.css</code> to <code>your-theme-name/woocommerce/print/style.css</code>.', 'woocommerce-delivery-notes' ); ?>
+								</span>
+							<?php endif; ?>
 						</td>
 					</tr>
 				</tbody>

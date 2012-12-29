@@ -6,7 +6,7 @@
  * Plugin Name: WooCommerce Print Invoices & Delivery Notes
  * Plugin URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * Description: Print order invoices & delivery notes for WooCommerce shop plugin. You can add company/shop info as well as personal notes & policies to print pages.
- * Version: 1.4.6
+ * Version: 1.5
  * Author: Steve Clark, Triggvy Gunderson, David Decker
  * Author URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * License: GPLv3 or later
@@ -103,8 +103,10 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 * Load the admin hooks
 		 */
 		public function load_admin_hooks() {
-			add_filter( 'plugin_row_meta', array( $this, 'add_support_links' ), 10, 2 );			
-			add_filter( 'plugin_action_links_' . self::$plugin_basefile, array( $this, 'add_settings_link') );
+			if ( $this->is_woocommerce_activated() ) {
+				add_filter( 'plugin_row_meta', array( $this, 'add_support_links' ), 10, 2 );			
+				add_filter( 'plugin_action_links_' . self::$plugin_basefile, array( $this, 'add_settings_link') );
+			}
 		}
 			
 		/**
@@ -217,8 +219,11 @@ if ( !function_exists( 'wcdn_company_logo' ) ) {
 		$company = $wcdn->settings->get_setting( 'custom_company_name' );
 		if( $attachment_id ) {
 			$attachment_src = wp_get_attachment_image_src( $attachment_id, 'full', false );
+			
+			// resize the image to a 1/4 of the original size
+			// to have a printing point density of about 288ppi.
 			?>
-			<img src="<?php echo $attachment_src[0]; ?>" width="<?php echo $attachment_src[1]; ?>" height="<?php echo $attachment_src[2]; ?>" alt="<?php echo esc_attr( $company ); ?>"/>
+			<img src="<?php echo $attachment_src[0]; ?>" width="<?php echo $attachment_src[1] / 4; ?>" height="<?php echo $attachment_src[2] / 4; ?>" alt="<?php echo esc_attr( $company ); ?>" />
 			<?php
 		}
 		return;

@@ -36,7 +36,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 		public function add_styles() {
 			if( $this->is_order_edit_page() ) {
 				wp_enqueue_style( 'thickbox' );
-				wp_enqueue_style( 'woocommerce-delivery-notes-styles', WooCommerce_Delivery_Notes::$plugin_url . 'css/style.css' );
+				wp_enqueue_style( 'woocommerce-delivery-notes', WooCommerce_Delivery_Notes::$plugin_url . 'css/style.css' );
 			}
 		}
 		
@@ -53,7 +53,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 				<?php 
 				wp_enqueue_script( 'media-upload' );
 				wp_enqueue_script( 'thickbox' );
-				wp_enqueue_script( 'woocommerce-delivery-notes-scripts', WooCommerce_Delivery_Notes::$plugin_url . 'js/script.js', array( 'jquery', 'media-upload', 'thickbox' ) );
+				wp_enqueue_script( 'woocommerce-delivery-notes', WooCommerce_Delivery_Notes::$plugin_url . 'js/script.js', array( 'jquery', 'media-upload', 'thickbox' ) );
 			}
 		}	
 			

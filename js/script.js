@@ -10,8 +10,13 @@ jQuery(document).ready(function($) {
 			
 			$('#TB_iframeContent').on('load', function(event) {
 				var name = $('#TB_iframeContent').attr('name');
-				frames[name].focus();
-				frames[name].print();
+				
+				// test_print_preview is set in the 
+				// settings to have a preview of the template.
+				if(!test_print_template) {
+					frames[name].focus();
+					frames[name].print();
+				}
 			});
 		} else {
 			$('#woocommerce-delivery-notes-box .loading').show();

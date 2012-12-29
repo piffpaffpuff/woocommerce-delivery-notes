@@ -100,8 +100,14 @@ For custom and update-secure language files please upload them to `/wp-content/l
 
 == Changelog ==
 
+= 1.5 =
+* FIX: The Hi-DPI resizing of the company logo is working better now.
+* UPDATE: More accurate company logo preview in the settings page.
+* NEW: Template preview links in the settings page (only visible when there is at least one order).
+
 = 1.4.6 =
-* FIX: Child theme template files are now correctly loaded.
+* FIX: Child theme template files are better loaded.
+* UPDATE: Translations are better loaded.
 
 = 1.4.5 =
 * UPDATE: Better order number support for the sequential order numbers plugin. (thanks FoxRunSoftware)
