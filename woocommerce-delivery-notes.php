@@ -182,7 +182,7 @@ if ( !function_exists( 'wcdn_get_template' ) ) {
 if ( !function_exists( 'wcdn_stylesheet_url' ) ) {
 	function wcdn_stylesheet_url( $name ) {
 		global $wcdn;
-		echo $wcdn->print->get_template_url( $name );
+		echo apply_filters( 'wcdn_stylesheet_url', $wcdn->print->get_template_url( $name ) );
 	}
 }
 
@@ -192,9 +192,9 @@ if ( !function_exists( 'wcdn_stylesheet_url' ) ) {
 if ( !function_exists( 'wcdn_template_title' ) ) {
 	function wcdn_template_title() {
 		if( wcdn_get_template_type() == 'invoice' ) {
-			echo __( 'Invoice', 'woocommerce-delivery-notes' );
+			echo apply_filters( 'wcdn_template_title', __( 'Invoice', 'woocommerce-delivery-notes' ) );
 		} else {
-			echo __( 'Delivery Note', 'woocommerce-delivery-notes' );
+			echo apply_filters( 'wcdn_template_title', __( 'Delivery Note', 'woocommerce-delivery-notes' ) );
 		}
 	}
 }
@@ -205,7 +205,7 @@ if ( !function_exists( 'wcdn_template_title' ) ) {
 if ( !function_exists( 'wcdn_get_company_logo_id' ) ) {
 	function wcdn_get_company_logo_id() {
 		global $wcdn;
-		return $wcdn->settings->get_setting( 'company_logo_image_id' );
+		return apply_filters( 'wcdn_company_logo_id', $wcdn->settings->get_setting( 'company_logo_image_id' ) );
 	}
 }
 
@@ -226,7 +226,6 @@ if ( !function_exists( 'wcdn_company_logo' ) ) {
 			<img src="<?php echo $attachment_src[0]; ?>" width="<?php echo $attachment_src[1] / 4; ?>" height="<?php echo $attachment_src[2] / 4; ?>" alt="<?php echo esc_attr( $company ); ?>" />
 			<?php
 		}
-		return;
 	}
 }
 
@@ -238,9 +237,9 @@ if ( !function_exists( 'wcdn_company_name' ) ) {
 		global $wcdn;
 		$name = trim( $wcdn->settings->get_setting( 'custom_company_name' ) );
 		if( !empty( $name ) ) {
-			echo wpautop( wptexturize( $name ) );
+			echo apply_filters( 'wcdn_company_name', wpautop( wptexturize( $name ) ) );
 		} else {
-			echo get_bloginfo( 'name' );
+			echo apply_filters( 'wcdn_company_name', get_bloginfo( 'name' ) );
 		}
 	}
 }
@@ -283,9 +282,9 @@ if ( !function_exists( 'wcdn_billing_address' ) ) {
 		global $wcdn;
 		$address = $wcdn->print->get_order()->get_formatted_billing_address();
 		if( !$address ) {
-			$address = _e('N/A', 'woocommerce');
+			$address = __('N/A', 'woocommerce');
 		}
-		echo $address;
+		echo apply_filters( 'wcdn_billing_address', $address );
 	}
 }
 
@@ -297,9 +296,28 @@ if ( !function_exists( 'wcdn_shipping_address' ) ) {
 		global $wcdn;
 		$address = $wcdn->print->get_order()->get_formatted_shipping_address();
 		if( !$address ) {
-			$address = _e('N/A', 'woocommerce');
+			$address = __('N/A', 'woocommerce');
 		}
-		echo $address;
+		echo apply_filters( 'wcdn_shipping_address', $address );
+	}
+}
+
+/**
+ * Show the current date
+ */
+if ( !function_exists( 'wcdn_date' ) ) {
+	function wcdn_date() {
+		echo apply_filters( 'wcdn_date', date_i18n( get_option( 'date_format' ) ) );
+	}
+}
+
+/**
+ * Show payment method  
+ */
+if ( !function_exists( 'wcdn_payment_method' ) ) {
+	function wcdn_payment_method() {
+		global $wcdn;
+		echo apply_filters( 'wcdn_payment_method', $wcdn->print->get_order()->payment_method_title );
 	}
 }
 
@@ -344,7 +362,7 @@ if ( !function_exists( 'wcdn_order_date' ) ) {
 	function wcdn_order_date() {
 		global $wcdn;
 		$order = $wcdn->print->get_order();
-		echo date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) );
+		echo apply_filters( 'wcdn_order_date', date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) ) );
 	}
 }
 
@@ -354,7 +372,7 @@ if ( !function_exists( 'wcdn_order_date' ) ) {
 if ( !function_exists( 'wcdn_get_order_items' ) ) {
 	function wcdn_get_order_items() {
 		global $wcdn;
-		return $wcdn->print->get_order_items();
+		return apply_filters( 'wcdn_order_items', $wcdn->print->get_order_items() );
 	}
 }
 
@@ -366,7 +384,7 @@ if ( !function_exists( 'wcdn_get_order_totals' ) ) {
 		global $wcdn;		
 		
 		// get totals and remove the semicolon
-		$totals = $wcdn->print->get_order()->get_order_item_totals();
+		$totals = apply_filters( 'wcdn_raw_order_totals', $wcdn->print->get_order()->get_order_item_totals() );
 		
 		// remove the colon for every label
 		foreach ( $totals as $key => $total ) {
@@ -378,7 +396,7 @@ if ( !function_exists( 'wcdn_get_order_totals' ) ) {
 			$totals[$key]['label'] = $label;
 		}
 
-		return $totals;
+		return apply_filters( 'wcdn_order_totals', $totals );
 	}
 }
 

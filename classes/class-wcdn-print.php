@@ -50,7 +50,8 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			$this->template_type = $template_type;
 			$this->order_id = $order_id;
 			$this->order->get_order( $this->order_id );
-			$this->get_template( 'print-' . $this->template_type . '.php' );
+			$this->get_template( apply_filters( 'wcdn_template_file_name', 'print-' . $this->template_type . '.php', $template_type, $order_id, $this ) );
+			do_action( 'wcdn_generate_print_content' );
 		}
 		
 		/**
@@ -173,6 +174,9 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 					
 					// Set item dimensions
 					$data['dimensions'] = $product->get_dimensions();
+						
+					// Set the id
+					$data['id'] = $product->id;
 										
 	                // Pass complete item array
 	                $data['item'] = $item;

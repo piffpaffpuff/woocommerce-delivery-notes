@@ -104,6 +104,9 @@ For custom and update-secure language files please upload them to `/wp-content/l
 * FIX: The Hi-DPI resizing of the company logo is working better now.
 * UPDATE: More accurate company logo preview in the settings page.
 * NEW: Template preview links in the settings page (only visible when there is at least one order).
+* NEW: Many template functions can now be filtered with `add_filter`.
+* NEW: In the template the payment method is now displayed via the `wcdn_payment_method` function.
+* NEW: In the template the today's date is now used as default instead of the order date.
 
 = 1.4.6 =
 * FIX: Child theme template files are better loaded.
@@ -190,6 +193,9 @@ For custom and update-secure language files please upload them to `/wp-content/l
 * Forked and extended from original plugin for Jigoshop ("Jigoshop Delivery Notes" at GitHub)
 
 == Upgrade Notice ==
+
+= 1.5 =
+Update your custom style.css. Remove any width and height CSS properties that were assigned to the img tag.
 
 = 1.2.4 =
 Many template functions were updated. Please update your custom template too or everything breaks!
