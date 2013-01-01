@@ -35,7 +35,7 @@
 					<?php endif; ?>
 					<li>
 						<h3 class="order-date-label"><?php if( wcdn_get_template_type() == 'invoice' ) : ?>
-							<?php _e( 'Invoice Date', 'woocommerce-delivery-notes' ); ?>
+							<?php _e( 'Billing Date', 'woocommerce-delivery-notes' ); ?>
 						<?php else : ?>
 							<?php _e( 'Shipping Date', 'woocommerce-delivery-notes' ); ?>
 						<?php endif ?></h3>
