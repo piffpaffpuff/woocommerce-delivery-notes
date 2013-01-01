@@ -137,7 +137,10 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 * Check if woocommerce is activated
 		 */
 		public function is_woocommerce_activated() {
-			if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+			$blog_plugins = get_option( 'active_plugins', array() );
+			$site_plugins = get_site_option( 'active_sitewide_plugins', array() );
+
+			if ( in_array( 'woocommerce/woocommerce.php', $blog_plugins ) || isset( $site_plugins['woocommerce/woocommerce.php'] ) ) {
 				return true;
 			} else {
 				return false;

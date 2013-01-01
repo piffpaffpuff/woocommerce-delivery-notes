@@ -102,6 +102,7 @@ For custom and update-secure language files please upload them to `/wp-content/l
 
 = 1.5 =
 * FIX: The Hi-DPI resizing of the company logo is working better now.
+* FIX: Plugin activates correctly on a multisite installation.
 * UPDATE: More accurate company logo preview in the settings page.
 * NEW: Template preview links in the settings page (only visible when there is at least one order).
 * NEW: Many template functions can now be filtered with `add_filter`.
