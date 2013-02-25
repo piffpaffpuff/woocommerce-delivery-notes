@@ -3,7 +3,7 @@ Contributors: chabis, daveshine, deckerweb
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=wartamau%40gmail%2ecom&lc=US&item_name=piffpaffpuff&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
 Tags: delivery notes, delivery, shipping, print, order, invoice, invoices, woocommerce, woothemes, shop, shop manager, deckerweb
 Requires at least: 3.4 and WooCommerce 1.6.6
-Tested up to: 3.5 and WooCommerce 2.0 beta
+Tested up to: 3.5.1 and WooCommerce 2.0
 Stable tag: trunk
 License: GPLv3 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
@@ -100,10 +100,13 @@ For custom and update-secure language files please upload them to `/wp-content/l
 
 == Changelog ==
 
-= 1.5 =
+= 2.0 =
+* FIX: Print privileges for WooCommerce 2.0.
 * FIX: The Hi-DPI resizing of the company logo is working better now.
 * FIX: Plugin activates correctly on a multisite installation.
-* UPDATE: More accurate company logo preview in the settings page.
+* UPDATE: More stable cross-browser print support.
+* UPDATE: Printing without thickbox.
+* UPDATE: Remove the thickbox preview
 * NEW: Template preview links in the settings page (only visible when there is at least one order).
 * NEW: Many template functions can now be filtered with `add_filter`.
 * NEW: In the template the payment method is now displayed via the `wcdn_payment_method` function.

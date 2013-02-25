@@ -45,10 +45,9 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 		 */
 		public function add_scripts() {
 			if( $this->is_order_edit_page() ) {
-				$settings = new WooCommerce_Delivery_Notes_Settings();
 				?>
 				<script type="text/javascript">
-					var show_print_preview = '<?php echo $settings->get_setting( 'show_print_preview' ); ?>';
+					var show_print_preview = 'no';
 				</script>
 				<?php 
 				wp_enqueue_script( 'media-upload' );

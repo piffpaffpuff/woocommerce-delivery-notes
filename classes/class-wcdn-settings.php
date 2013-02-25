@@ -68,7 +68,6 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			?>
 			<script type="text/javascript">
 				var show_print_preview = 'yes';
-				var test_print_template = 'yes';
 			</script>
 			<?php 			
 			wp_enqueue_script( 'media-upload' );
@@ -209,7 +208,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							<a href="#" <?php if( !empty( $attachment_id ) ) : ?>style="display: none;"<?php endif; ?> id="company-logo-add-button"><?php _e( 'Set Logo', 'woocommerce-delivery-notes' ); ?></a>
 							<span class="description">
 								<?php _e( 'A company/shop logo representing your business.', 'woocommerce-delivery-notes' ); ?>
-								<br /><strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
+								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
 								<?php _e( 'When the image is printed, its pixel density will automatically be eight times higher than the original. This means, 1 printed inch will correspond to about 288 pixels on the screen. Example: an image with a width of 576 pixels and a height of 288 pixels will have a printed size of about 2 inches to 1 inch.', 'woocommerce-delivery-notes' ); ?>
 							</span>
 						</td>
@@ -222,7 +221,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>custom_company_name" rows="2" class="large-text"><?php echo wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'custom_company_name' ) ); ?></textarea>
 							<span class="description">
 								<?php _e( 'Your company/shop name for the Delivery Note.', 'woocommerce-delivery-notes' ); ?>
-								<br /><strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
+								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
 								<?php _e( 'Leave blank to use the default Website/ Blog title defined in WordPress settings.', 'woocommerce-delivery-notes' ); ?>
 							</span>
 						</td>
@@ -235,7 +234,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>company_address" rows="5" class="large-text"><?php echo wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'company_address' ) ); ?></textarea>
 							<span class="description">
 								<?php _e( 'The postal address of the company/shop, which gets printed right of the company/shop name, above the order listings.', 'woocommerce-delivery-notes' ); ?>
-								<br /><strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
+								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
 								<?php _e('Leave blank to not print an address.', 'woocommerce-delivery-notes' ); ?>
 							</span>
 						</td>
@@ -248,7 +247,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>personal_notes" rows="5" class="large-text"><?php echo wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'personal_notes' ) ); ?></textarea>
 							<span class="description">
 								<?php _e( 'Add some personal notes, or season greetings or whatever (e.g. Thank You for Your Order!, Merry Christmas!, etc.).', 'woocommerce-delivery-notes' ); ?>
-								<br /><strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
+								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
 								<?php _e('Leave blank to not print any personal notes.', 'woocommerce-delivery-notes' ); ?>
 							</span>
 						</td>
@@ -261,7 +260,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>policies_conditions" rows="5" class="large-text"><?php echo wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'policies_conditions' ) ); ?></textarea>
 							<span class="description">
 								<?php _e( 'Here you can add some more policies, conditions etc. For example add a returns policy in case the client would like to send back some goods. In some countries (e.g. in the European Union) this is required so please add any required info in accordance with the statutory regulations.', 'woocommerce-delivery-notes' ); ?>
-								<br /><strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong> 
+								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong> 
 								<?php _e('Leave blank to not print any policies or conditions.', 'woocommerce-delivery-notes' ); ?>
 							</span>
 						</td>
@@ -274,7 +273,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>footer_imprint" rows="5" class="large-text"><?php echo wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'footer_imprint' ) ); ?></textarea>
 							<span class="description">
 								<?php _e( 'Add some further footer imprint, copyright notes etc. to get the printed sheets a bit more branded to your needs.', 'woocommerce-delivery-notes' ); ?>
-								<br /><strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong> 
+								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong> 
 								<?php _e('Leave blank to not print a footer.', 'woocommerce-delivery-notes' ); ?>
 							</span>
 						</td>
@@ -303,24 +302,6 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 									<?php _e( 'For more advanced control copy <code>woocommerce-delivery-notes/templates/print/style.css</code> to <code>your-theme-name/woocommerce/print/style.css</code>.', 'woocommerce-delivery-notes' ); ?>
 								</span>
 							<?php endif; ?>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<h3><?php _e( 'Preview Options', 'woocommerce-delivery-notes' ); ?></h3>
-			<table class="form-table">
-				<tbody>	
-					<tr>
-						<th>
-							<?php _e( 'Preview window', 'woocommerce-delivery-notes' ); ?>
-						</th>
-						<td>
-							<fieldset>
-								<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>show_print_preview" type="hidden" value="no" />
-								<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>show_print_preview">
-									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>show_print_preview" id="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>show_print_preview" type="checkbox" value="yes" <?php checked( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'show_print_preview' ), 'yes' );?> /> <?php _e( 'Show the print preview window', 'woocommerce-delivery-notes' ); ?>
-								</label>
-							</fieldset>
 						</td>
 					</tr>
 				</tbody>
