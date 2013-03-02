@@ -1,5 +1,6 @@
 #woocommerce-delivery-notes-box .inside {
 	text-align: left;
+	position: relative;
 }
 #woocommerce-delivery-notes-box .inside ul {
 	overflow: hidden;
@@ -8,6 +9,11 @@
 #woocommerce-delivery-notes-box .inside ul li {
 	float: left;
 	margin: 3px;
+}
+#woocommerce-delivery-notes-box .inside img.loading {
+	position: absolute;
+	right: 7px;
+	top: 0px;
 }
 #woocommerce-delivery-notes-box .inside img.loading,
 .type-shop_order .column-order_actions img.loading {
