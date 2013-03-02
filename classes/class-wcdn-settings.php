@@ -298,7 +298,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 								$note_url = wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_print_content&template_type=delivery-note&order_id=' . $test_id ), 'generate_print_content' );
 								?>
 								<span class="description">
-									<?php printf( __( 'You can <a href="%s" target="_blank" class="print-preview-button">preview the invoice template</a> or <a href="%s" target="_blank" class="print-preview-button">the delivery note template</a>.', 'woocommerce-delivery-notes' ), $invoice_url, $note_url ); ?>
+									<?php printf( __( 'You can <a href="%1$s" target="%3$s" class="%4$s">preview the invoice template</a> or <a href="%2$s" target="%3$s" class="%4$s">the delivery note template</a>.', 'woocommerce-delivery-notes' ), $invoice_url, $note_url, '_blank', 'print-preview-button' ); ?>
 									<?php _e( 'For more advanced control copy <code>woocommerce-delivery-notes/templates/print/style.css</code> to <code>your-theme-name/woocommerce/print/style.css</code>.', 'woocommerce-delivery-notes' ); ?>
 								</span>
 							<?php endif; ?>
