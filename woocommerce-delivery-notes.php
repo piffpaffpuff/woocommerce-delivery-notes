@@ -323,7 +323,7 @@ if ( !function_exists( 'wcdn_date' ) ) {
 if ( !function_exists( 'wcdn_payment_method' ) ) {
 	function wcdn_payment_method() {
 		global $wcdn;
-		echo apply_filters( 'wcdn_payment_method', $wcdn->print->get_order()->payment_method_title );
+		echo apply_filters( 'wcdn_payment_method', __( $wcdn->print->get_order()->payment_method_title, 'woocommerce' ) );
 	}
 }
 
