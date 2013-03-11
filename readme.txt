@@ -1,5 +1,5 @@
 === WooCommerce Print Invoices & Delivery Notes ===
-Contributors: chabis, daveshine, deckerweb
+Contributors: chabis, daveshine
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=wartamau%40gmail%2ecom&lc=US&item_name=piffpaffpuff&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
 Tags: delivery notes, delivery, shipping, print, order, invoice, invoices, woocommerce, woothemes, shop, shop manager, deckerweb
 Requires at least: 3.4 and WooCommerce 1.6.6
@@ -32,13 +32,9 @@ Credit where credit is due: This plugin here is inspired and based on the work o
 
 = Feedback =
 * We are open for your suggestions and feedback! Use the [plugin's forum](http://wordpress.org/tags/woocommerce-delivery-notes?forum_id=10) or [report & contribute on GitHub](https://github.com/piffpaffpuff/woocommerce-delivery-notes/issues)
-* Drop Dave a line [@deckerweb](http://twitter.com/#!/deckerweb) on Twitter
-* Follow Dave on [Facebook](http://www.facebook.com/deckerweb.service)
-* Or follow Dave on [+David Decker](http://deckerweb.de/gplus)
 
 = More =
 * [Other plugins by main plugin author](http://github.com/piffpaffpuff)
-* [Other plugins by co-author Dave](http://genesisthemes.de/en/wp-plugins/) or see [his WordPress.org profile page](http://profiles.wordpress.org/daveshine/)
 
 == Installation ==
 
