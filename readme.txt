@@ -23,7 +23,7 @@ The plugin adds a new side panel on the order page to allow shop administrators 
 * If there are added "Customer Notes" (regular WooCommerce feature) for an order these will automatically displayed at the bottom of the delivery note.
 * Custom order numbering via the free [WooCommerce Sequential Order Numbers](http://wordpress.org/extend/plugins/woocommerce-sequential-order-numbers/) plugin.
 * Included help tab system.
-* Localized in English, German, Dutch, Swedish, Spanish and French. (thanks to all translators, submit your translation)
+* Localized in English, German, Dutch, Swedish, Spanish, French, Italian, Polish, Russian, Turkish, Slovakian, Finnish and Portuguese (BR). (thanks to all translators, submit your translation) - some of them only partial yet (we'd love to see you [complete them](http://translate.wpautobahn.com/projects/wordpress-plugins-deckerweb/woocommerce-delivery-notes) :).
 
 Credit where credit is due: This plugin here is inspired and based on the work of Steve Clark, Trigvvy Gunderson and the awesome "Jigoshop Delivery Notes" plugin! See below how you can contribute to the further development of both:
 
@@ -227,6 +227,13 @@ Just released into the wild.
 * Spanish (es_ES): Español - user-submitted by @JAVidania
 * French (fr_FR): Français - user-submitted by Olivier
 * Danish (da_DK): Dansk - user-submitted by [boldt](http://boldt.325.dk/)
+* Polish (pl_PL): Polski - user-submitted
+* Russian (ru_RU): русский - user-submitted
+* Finnish (fi): Suomi - user-submitted
+* Italian (it_IT): Italiano - user-submitted
+* Portuguse, Brazilian (pt_BR): Português - user-submitted
+* Slovakian (sk_SK): Slovenčina - user-submitted
+* Turkish (tr_TR): Türk - user-submitted
 * For custom and update-secure language files please upload them to `/wp-content/languages/woocommerce-delivery-notes/` (just create this folder) - This enables you to use fully custom translations that won't be overridden on plugin updates. Also, complete custom English wording is possible with that as well, just use a language file like `woocommerce-delivery-notes-en_US.mo/.po` to achieve that.
 
 **Easy plugin translation platform with GlotPress tool:** [Translate the plugin here](http://translate.wpautobahn.com/projects/wordpress-plugins-deckerweb/woocommerce-delivery-notes)
