@@ -1,0 +1,295 @@
+# Translation of WooCommerce Print Invoices & Delivery Notes in Finnish
+# This file is distributed under the same license as the WooCommerce Print Invoices & Delivery Notes package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2013-03-11 14:49+0100\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/0.1\n"
+"Project-Id-Version: WooCommerce Print Invoices & Delivery Notes\n"
+"POT-Creation-Date: \n"
+"Last-Translator: David Decker <deckerweb.mobil@googlemail.com>\n"
+"Language-Team: \n"
+
+#: classes/class-wcdn-settings.php:301
+msgid "You can <a href=\"%1$s\" target=\"%3$s\" class=\"%4$s\">preview the invoice template</a> or <a href=\"%2$s\" target=\"%3$s\" class=\"%4$s\">the delivery note template</a>."
+msgstr ""
+
+#: classes/class-wcdn-settings.php:302
+msgid "For more advanced control copy <code>woocommerce-delivery-notes/templates/print/style.css</code> to <code>your-theme-name/woocommerce/print/style.css</code>."
+msgstr ""
+
+#: templates/print/print-delivery-note.php:38
+msgid "Billing Date"
+msgstr ""
+
+#: templates/print/print-delivery-note.php:40
+msgid "Shipping Date"
+msgstr ""
+
+#: templates/print/print-delivery-note.php:45
+msgid "Order Number"
+msgstr ""
+
+#: templates/print/print-delivery-note.php:49
+msgid "Payment Method"
+msgstr ""
+
+#: woocommerce-delivery-notes.php:0
+msgid "2.0"
+msgstr "2.0"
+
+#: classes/class-wcdn-settings.php:144
+msgid "Get Community Support"
+msgstr "Hanki yhteisön tukea"
+
+#: classes/class-wcdn-settings.php:212
+msgid "When the image is printed, its pixel density will automatically be eight times higher than the original. This means, 1 printed inch will correspond to about 288 pixels on the screen. Example: an image with a width of 576 pixels and a height of 288 pixels will have a printed size of about 2 inches to 1 inch."
+msgstr "Kun kuva tulostetaan, sen pikselitiheys tulee automaattisesti olemaan kahdeksan kertaa korkeampi kuin alkuperäinen. Tämä tarkoittaa sitä, että 1 tulostettu cm vastaa noin 113 pikseliä näytöllä. Esimerkki: kuva jonka leveys on 576 pikseliä ja korkeus 288 pikseliä tulee näkymään tulostettuna suurinpiirtein koossa 6 cm / 3 cm."
+
+#: templates/print/print-delivery-note.php:58
+msgid "Product"
+msgstr "Tuote"
+
+#: templates/print/print-delivery-note.php:60
+msgid "Totals"
+msgstr "Yhteensä"
+
+#: templates/print/print-delivery-note.php:70
+msgid "Download:"
+msgstr "Lataa:"
+
+#: woocommerce-delivery-notes.php:291
+#: woocommerce-delivery-notes.php:305
+msgid "N/A"
+msgstr "N/A"
+
+#: classes/class-wcdn-settings.php:202
+msgid "Company/Shop Logo"
+msgstr "Yrityksen/kaupan logo"
+
+#: classes/class-wcdn-settings.php:207
+msgid "Remove Logo"
+msgstr "Poista logo"
+
+#: classes/class-wcdn-settings.php:208
+msgid "Set Logo"
+msgstr "Aseta logo"
+
+#: classes/class-wcdn-settings.php:210
+msgid "A company/shop logo representing your business."
+msgstr "Liiketoimintaasi edustava yrityksen/kaupan logo."
+
+#: classes/class-wcdn-settings.php:223
+msgid "Your company/shop name for the Delivery Note."
+msgstr "Lähetteessä näkyvä yrityksen/kaupan nimi."
+
+#: classes/class-wcdn-settings.php:314
+msgid "Sequential order number"
+msgstr "Juokseva tilausnumero"
+
+#: classes/class-wcdn-settings.php:318
+msgid "Sequential numbering is enabled."
+msgstr "Juokseva numerointi on käytössä."
+
+#: classes/class-wcdn-settings.php:320
+msgid "Install and activate the free <a href=\"%s\">WooCommerce Sequential Order Numbers</a> Plugin."
+msgstr "Asenna ja aktivoi ilmainen <a href=\"%s\">WooCommerce Sequential Order Numbers</a> -lisäosa."
+
+#: woocommerce-delivery-notes.php:0
+msgid "https://github.com/piffpaffpuff/woocommerce-delivery-notes"
+msgstr "https://github.com/piffpaffpuff/woocommerce-delivery-notes"
+
+#: woocommerce-delivery-notes.php:203
+msgid "Delivery Note"
+msgstr "Lähete"
+
+#: templates/print/print-delivery-note.php:59
+msgid "Quantity"
+msgstr "Määrä"
+
+#: classes/class-wcdn-print.php:63
+#: classes/class-wcdn-print.php:68
+#: classes/class-wcdn-print.php:73
+#: classes/class-wcdn-print.php:78
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Sinulla ei ole riittäviä käyttöoikeuksia päästäksesi tälle sivulle."
+
+#: woocommerce-delivery-notes.php:134
+msgid "Go to the settings page"
+msgstr "Siirry asetukset-sivulle"
+
+#: woocommerce-delivery-notes.php:134
+msgid "Settings"
+msgstr "Asetukset"
+
+#: woocommerce-delivery-notes.php:124
+msgid "FAQ"
+msgstr "UKK"
+
+#: woocommerce-delivery-notes.php:125
+msgid "Support"
+msgstr "Tuki"
+
+#: classes/class-wcdn-settings.php:257
+msgid "Returns Policy, Conditions, etc.:"
+msgstr "Palautusoikeudet, ehdot, jne.:"
+
+#: templates/print/print-delivery-note.php:68
+msgid "SKU:"
+msgstr "Tnro:"
+
+#: templates/print/print-delivery-note.php:69
+msgid "Weight:"
+msgstr "Paino:"
+
+#: classes/class-wcdn-settings.php:134
+msgid "Plugin: WooCommerce Print Invoices & Delivery Notes"
+msgstr "Lisäosa: WooCommerce Print Invoices & Delivery Notes"
+
+#: classes/class-wcdn-settings.php:211
+#: classes/class-wcdn-settings.php:224
+#: classes/class-wcdn-settings.php:237
+#: classes/class-wcdn-settings.php:250
+#: classes/class-wcdn-settings.php:263
+#: classes/class-wcdn-settings.php:276
+msgid "Note:"
+msgstr "Huomio:"
+
+#: classes/class-wcdn-settings.php:236
+msgid "The postal address of the company/shop, which gets printed right of the company/shop name, above the order listings."
+msgstr "Yrityksen/kaupan postiosoite, joka tulostetaan heti yrityksen/kaupan nimen jälkeen, tilausrivien yläpuolelle."
+
+#: classes/class-wcdn-settings.php:249
+msgid "Add some personal notes, or season greetings or whatever (e.g. Thank You for Your Order!, Merry Christmas!, etc.)."
+msgstr "Lisää joitain henkilökohtaisia huomioita, vuodenaikoihin liittyviä tervehdyksiä tai mitä tahansa (esim. Kiitos tilauksesta!, Hyvää joulua!, jne.)."
+
+#: classes/class-wcdn-settings.php:275
+msgid "Add some further footer imprint, copyright notes etc. to get the printed sheets a bit more branded to your needs."
+msgstr "Lisää edelleen alatunnisteeseen tekstiä, tekijänoikeushuomautuksen tms. saadaksesi tulostussivun vastaamaan paremmin tarpeitasi."
+
+#: classes/class-wcdn-settings.php:132
+#: classes/class-wcdn-settings.php:135
+msgid "About the Plugin"
+msgstr "Tietoja lisäosasta"
+
+#: classes/class-wcdn-settings.php:142
+msgid "For more information:"
+msgstr "Lisätietoja:"
+
+#: classes/class-wcdn-settings.php:143
+msgid "Frequently Asked Questions"
+msgstr "Usein kysytyt kysymykset"
+
+#: classes/class-wcdn-settings.php:145
+msgid "Project on WordPress.org"
+msgstr "Projekti WordPress.org:ssa"
+
+#: classes/class-wcdn-settings.php:146
+msgid "Project on GitHub"
+msgstr "Projekti GitHubissa"
+
+#: classes/class-wcdn-settings.php:154
+msgid "Print"
+msgstr "Tulosta"
+
+#: classes/class-wcdn-settings.php:194
+msgid "Invoices and Delivery Notes"
+msgstr "Laskut ja lähetteet"
+
+#: classes/class-wcdn-settings.php:218
+msgid "Company/Shop Name"
+msgstr "Yrityksen/kaupan nimi"
+
+#: classes/class-wcdn-settings.php:225
+msgid "Leave blank to use the default Website/ Blog title defined in WordPress settings."
+msgstr "Jätä tyhjäksi käyttääksesi WordPress-asetuksissa määriteltyä verkkosivun/blogin otsikkoa."
+
+#: classes/class-wcdn-settings.php:231
+msgid "Company/Shop Address"
+msgstr "Yrityksen/kaupan osoite"
+
+#: classes/class-wcdn-settings.php:238
+msgid "Leave blank to not print an address."
+msgstr "Jätä tyhjäksi jättääksesi osoitteen tulostamatta."
+
+#: classes/class-wcdn-settings.php:244
+msgid "Personal Notes"
+msgstr "Henkilökohtaiset huomiot"
+
+#: classes/class-wcdn-settings.php:251
+msgid "Leave blank to not print any personal notes."
+msgstr "Jätä tyhjäksi jättääksesi henkilökohtaiset huomiot tulostamatta."
+
+#: classes/class-wcdn-settings.php:262
+msgid "Here you can add some more policies, conditions etc. For example add a returns policy in case the client would like to send back some goods. In some countries (e.g. in the European Union) this is required so please add any required info in accordance with the statutory regulations."
+msgstr "Täällä voit lisätä lisää käytäntöjä, ehtoja yms. Lisää esimerkiksi palautusehdot siinä tapauksessa, että asiakas haluaa lähettää joitain tuotteita takaisin. Joissain maissa (kuten Euroopan Unionissa) tämä vaaditaan, joten lisää kaikki vaadittava lakisääteinen tieto."
+
+#: classes/class-wcdn-settings.php:264
+msgid "Leave blank to not print any policies or conditions."
+msgstr "Jätä tyhjäksi jättääksesi käytännöt ja ehdot tulostamatta."
+
+#: classes/class-wcdn-settings.php:270
+msgid "Footer Imprint"
+msgstr "Alatunnisteen merkintä"
+
+#: classes/class-wcdn-settings.php:277
+msgid "Leave blank to not print a footer."
+msgstr "Jätä tyhjäksi jättääksesi alatunnisteen tulostumatta."
+
+#: classes/class-wcdn-settings.php:309
+msgid "Order Numbering Options"
+msgstr "Tilauksen numerointivalinnat"
+
+#: classes/class-wcdn-writepanel.php:92
+msgid "Order Print"
+msgstr "Tilauksen tulostus"
+
+#: classes/class-wcdn-writepanel.php:76
+#: classes/class-wcdn-writepanel.php:77
+#: classes/class-wcdn-writepanel.php:102
+msgid "Print Invoice"
+msgstr "Tulosta lasku"
+
+#: classes/class-wcdn-writepanel.php:78
+#: classes/class-wcdn-writepanel.php:80
+#: classes/class-wcdn-writepanel.php:81
+#: classes/class-wcdn-writepanel.php:82
+#: classes/class-wcdn-writepanel.php:103
+msgid "Print Delivery Note"
+msgstr "Tulosta lähete"
+
+#: woocommerce-delivery-notes.php:201
+msgid "Invoice"
+msgstr "Lasku"
+
+#: templates/print/print-delivery-note.php:20
+msgid "Recipient"
+msgstr "Vastaanottaja"
+
+#: templates/print/print-delivery-note.php:96
+msgid "Customer Notes"
+msgstr "Asiakkaan huomautukset"
+
+#: woocommerce-delivery-notes.php:0
+msgid "WooCommerce Print Invoices & Delivery Notes"
+msgstr " WooCommerce Print Invoices & Delivery Notes"
+
+#: woocommerce-delivery-notes.php:0
+msgid "Print order invoices & delivery notes for WooCommerce shop plugin. You can add company/shop info as well as personal notes & policies to print pages."
+msgstr "WooCommerce-kaupan lisäosa, joka tulostaa tilauksen laskut & lähetteet. Voit lisätä tulostussivulle yrityksen/kaupan tiedot kuten myös henkilökohtaiset huomiot & käytännöt."
+
+#: woocommerce-delivery-notes.php:0
+msgid "Steve Clark, Triggvy Gunderson, David Decker"
+msgstr "Steve Clark, Triggvy Gunderson, David Decker"
+
+#: classes/class-wcdn-settings.php:136
+msgid "This plugin enables you to add a Invoice or simple Delivery Note page for printing for your orders in WooCommerce shop plugin. You can add your company postal address, further add personal notes, refund or other policies and a footer note/branding. This helps speed up your daily shop and order management. In some countries (e.g. in the European Union) it is also required to advice the customer with proper refund policies so this little plugin might help you a bit with that too."
+msgstr "Tämä lisäosa mahdollistaa laskun tai yksinkertaisen lähetesivujen tulostamisen WooCommerce-kaupan tilauksista. Voit lisätä yrityksen postiosoitteen, henkilökohtaisen huomion, palautusoikeudet ja muut käytännöt sekä alatunnisteen huomiot. Tämä auttaa nopeuttamaan päivittäistä kaupan- ja tilaustenhallintaa. Joissain maissa (kuten Euroopan Unionissa) vaaditaan, että asiakkaille on palautuskäytännöt ohjeistettu riittävällä tasolla, joten tämä pieni lisäosa saattaa auttaa sinua myös hieman tässä."
+
+#: classes/class-wcdn-settings.php:137
+msgid "Just look under <a href=\"%1$s\">WooCommerce > Orders</a> and there go to a single order view. On the right side you will see the Order Print meta box. Click one of the buttons and you get the invoice or delivery note printing page. Yes, it is that easy :-)."
+msgstr "Katso kohdasta <a href=\"%1$s\">WooCommerce > Tilaukset</a> ja mene siellä yksittäisen tilauksen näkymään. Näet oikealla puolella Tilauksen tulostus -laatikon. Napsauta jotain painikkeista ja saat laskun tai lähetteen tulostussivun. Kyllä, se on niin helppoa :-)."
+
