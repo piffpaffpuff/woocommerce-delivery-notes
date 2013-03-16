@@ -16,7 +16,7 @@ jQuery(document).ready(function($) {
 			return false;	
 		} else {
 			// just open the href link when iframe printing is not supported			
-			if($.browser.opera || $.browser.msie) {				
+			if($.browser.opera || ($.browser.msie && parseInt($.browser.version) > 9)) {				
 				return;
 			}
 			
