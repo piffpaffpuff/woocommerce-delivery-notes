@@ -8,66 +8,42 @@ jQuery(document).ready(function($) {
 		var button = $(this);
 		var url = $(this).attr('href');
 		
-		// show the print settings preview in thickbox
+		// print
 		if(show_print_preview == 'yes') {
+			// show the print settings preview in thickbox
 			tb_show('', url + '&TB_iframe=true&width=720&height=460');
 					
 			return false;	
-		}
-		
-		// remove old iframe
-		$('#printIFrame').remove();
-				
-		// open tab or iframe
-		if($.browser.opera) {
-			tab = window.open('about:blank');
-            tab.document.location = url; 
-        } else {
-        	iframe = $('<iframe id="printIFrame" name="printIFrame" src="about:blank" style="position:absolute;top:-9999px;left:-9999px;border:0px;overfow:none; z-index:-1"></iframe>');
-        	$('body').append(iframe);
-        	
-        	// show loader
-        	$('#woocommerce-delivery-notes-box .loading').show();
-			button.parent().find('.loading').show();
-        	
-        	// load content
-	       	iframe.attr('src', url);	       
-        }
-		
-		// use a timeout to make it work cross-browser, kind of a hack
-		setTimeout(function() {
-			
-			// check browser
-			if ($.browser.opera) {
-				var doc = tab.document;
-				var win = tab;
-			} else {
-				var doc = iframe.contents();
-				var win = iframe.get(0).contentWindow;
+		} else {
+			// just open the href link when iframe printing is not supported			
+			if($.browser.opera || $.browser.msie) {				
+				return;
 			}
-				        
-	        // focus window
-	        win.focus();
-	    
-	        setTimeout(function() { 
-	        	// print window
-	        	win.print();
-	        	
-	        	// close tab if it exists
-		        if(tab) { 
-			        tab.close(); 
-		        } 
-		        
-		        // hide the loader
-				$('#woocommerce-delivery-notes-box .loading').hide();
-				button.parent().find('.loading').hide();
-		    }, 1000);
-	         
-	        //removed iframe after 60 seconds
-	        setTimeout(function() {
-		    	iframe.remove();
-		    }, (30 * 1000));
-	    }, 333);
+			
+			// wotherwise continue to show the loader
+			$('#woocommerce-delivery-notes-box .loading').show();
+			$(this).parent().find('.loading').show();
+	
+			// print the page with a hidden preview window
+			if(!$('#printPreview')[0]) {
+				// create a new iframe
+				var iframe = '<iframe id="printPreview" name="printPreview" src=' + url + ' style="position:absolute;top:-9999px;left:-9999px;border:0px;overfow:none; z-index:-1"></iframe>';
+				$('body').append(iframe);
+	
+				// print when the iframe is loaded
+				$('#printPreview').on('load',function() {  
+					$('#woocommerce-delivery-notes-box .loading').hide();
+					$(this).parent().find('.loading').hide();
+					frames['printPreview'].focus();
+					frames['printPreview'].print();
+				});
+			} else {
+				// change the iframe src when the iframe is already appended
+				$('#printPreview').attr('src', url);
+			}
+			
+			return false;	
+		}
 		
 		return false;
 	});

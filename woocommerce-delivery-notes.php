@@ -206,6 +206,19 @@ if ( !function_exists( 'wcdn_template_title' ) ) {
 }
 
 /**
+ * Create meta navigation
+ */
+if ( !function_exists( 'wcdn_navigation' ) ) {
+	function wcdn_navigation() {
+		?>
+		<div id="navigation">
+			<a href="#" class="button" onclick="window.print();return false;"><?php _e( 'Print', 'woocommerce-delivery-notes' ); ?></a>
+		</div>
+		<?php
+	}
+}
+
+/**
  * Return logo id
  */
 if ( !function_exists( 'wcdn_get_company_logo_id' ) ) {

@@ -2,10 +2,12 @@
 <html class="<?php echo wcdn_get_template_type(); ?>">
 <head>
 	<meta charset="utf-8">
+	<title><?php wcdn_template_title(); ?></title>
 	<link rel="stylesheet" href="<?php wcdn_stylesheet_url( 'style.css' ); ?>" type="text/css" media="screen,print" />
 </head>
 <body>
 	<div id="container">
+		<?php wcdn_navigation(); ?>
 		<div id="content">
 			<div id="page">
 				<div id="letter-header">

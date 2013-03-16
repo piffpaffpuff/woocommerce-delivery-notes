@@ -6,11 +6,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Print Invoices & Delivery Notes v1.4.5\n"
+"Project-Id-Version: WooCommerce Print Invoices & Delivery Notes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-02 14:35+0100\n"
-"PO-Revision-Date: 2013-03-11 14:33+0100\n"
-"Last-Translator: David Decker <deckerweb.mobil@googlemail.com>\n"
+"POT-Creation-Date: 2013-03-16 17:08+0100\n"
+"PO-Revision-Date: 2013-03-16 17:09+0100\n"
+"Last-Translator: \n"
 "Language-Team: DECKERWEB <deckerweb.mobil@googlemail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,10 +59,17 @@ msgstr "Rechnung"
 msgid "Delivery Note"
 msgstr "Lieferschein"
 
+# @ woocommerce-delivery-notes
+#: /Volumes/Macintosh
+#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/woocommerce-delivery-notes.php:215
+#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/classes/class-wcdn-settings.php:154
+msgid "Print"
+msgstr "Drucken"
+
 # @ woocommerce
 #: /Volumes/Macintosh
-#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/woocommerce-delivery-notes.php:291
-#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/woocommerce-delivery-notes.php:305
+#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/woocommerce-delivery-notes.php:304
+#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/woocommerce-delivery-notes.php:318
 msgid "N/A"
 msgstr "k.A."
 
@@ -130,12 +137,6 @@ msgstr "Projekt bei WordPress.org"
 #: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/classes/class-wcdn-settings.php:146
 msgid "Project on GitHub"
 msgstr "Projekt bei GitHub"
-
-# @ woocommerce-delivery-notes
-#: /Volumes/Macintosh
-#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/classes/class-wcdn-settings.php:154
-msgid "Print"
-msgstr "Druck"
 
 # @ woocommerce-delivery-notes
 #: /Volumes/Macintosh
@@ -333,70 +334,71 @@ msgstr "Bestellung drucken"
 
 # @ woocommerce-delivery-notes
 #: /Volumes/Macintosh
-#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:20
+#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:22
 msgid "Recipient"
 msgstr "Empfänger"
 
+# @ woocommerce-delivery-notes
 #: /Volumes/Macintosh
-#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:38
-msgid "Billing Date"
-msgstr "Rechnungsdatum"
-
-#: /Volumes/Macintosh
-#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:40
-msgid "Shipping Date"
-msgstr "Versanddatum"
+#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:39
+msgid "Order Date"
+msgstr "Bestelldatum"
 
 # @ woocommerce-delivery-notes
 #: /Volumes/Macintosh
-#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:45
+#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:43
 msgid "Order Number"
 msgstr "Bestellnummer"
 
 #: /Volumes/Macintosh
-#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:49
+#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:47
 msgid "Payment Method"
 msgstr "Zahlungsart"
 
 # @ woocommerce
 #: /Volumes/Macintosh
-#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:58
+#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:56
 msgid "Product"
 msgstr "Produkt"
 
 # @ woocommerce
 #: /Volumes/Macintosh
-#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:59
+#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:57
 msgid "Quantity"
 msgstr "Menge"
 
 # @ woocommerce
 #: /Volumes/Macintosh
-#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:60
+#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:58
 msgid "Totals"
 msgstr "Gesamt"
 
 # @ woocommerce-delivery-notes
 #: /Volumes/Macintosh
-#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:68
+#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:66
 msgid "SKU:"
 msgstr "Art.-Nr.:"
 
 # @ woocommerce-delivery-notes
 #: /Volumes/Macintosh
-#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:69
+#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:67
 msgid "Weight:"
 msgstr "Gewicht:"
 
 # @ woocommerce-delivery-notes
 #: /Volumes/Macintosh
-#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:70
+#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:68
 msgid "Download:"
 msgstr "Download:"
 
 # @ woocommerce-delivery-notes
 #: /Volumes/Macintosh
-#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:96
+#: HD/Users/negro/Projekte/wordpress/programming/wp-content/plugins/woocommerce-delivery-notes/templates/print/print-delivery-note.php:94
 msgid "Customer Notes"
 msgstr "Kundennotizen"
 
+#~ msgid "Billing Date"
+#~ msgstr "Rechnungsdatum"
+
+#~ msgid "Shipping Date"
+#~ msgstr "Versanddatum"
