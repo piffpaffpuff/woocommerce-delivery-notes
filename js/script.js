@@ -6,19 +6,19 @@ jQuery(document).ready(function($) {
 		var iframe = null;
 		var url = $(this).attr('href');
 		
-		// print
+		// just open the href link when iframe printing is not supported			
+		if($.browser.opera || ($.browser.msie && parseInt($.browser.version) > 9)) {				
+			return;
+		}
+		
+		// otherwise continue with the cool iframe printing
 		if(show_print_preview == 'yes') {
 			// show the print settings preview in thickbox
 			tb_show('', url + '&TB_iframe=true&width=720&height=460');
 					
 			return false;	
 		} else {
-			// just open the href link when iframe printing is not supported			
-			if($.browser.opera || ($.browser.msie && parseInt($.browser.version) > 9)) {				
-				return;
-			}
-			
-			// wotherwise continue to show the loader
+			// create the iframe and print dialogue
 			$('#woocommerce-delivery-notes-box .loading').show();
 			$(this).parent().find('.loading').show();
 	
