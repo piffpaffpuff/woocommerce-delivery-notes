@@ -213,6 +213,7 @@ if ( !function_exists( 'wcdn_head' ) ) {
 		?>
 		<style>
 			#navigation {
+				font-family: sans-serif;
 				background-color: #f7f7f7;
 				z-index: 200;
 				border-bottom: 1px solid #dfdfdf;
