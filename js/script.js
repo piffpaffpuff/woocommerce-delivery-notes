@@ -3,9 +3,7 @@ jQuery(document).ready(function($) {
 	// click print button
 	$('.print-preview-button').on('click', function(event) {
 		
-		var tab = null;
 		var iframe = null;
-		var button = $(this);
 		var url = $(this).attr('href');
 		
 		// print
