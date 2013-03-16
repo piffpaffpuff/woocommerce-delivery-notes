@@ -210,7 +210,8 @@ th {
 	font-weight: bold;
 }
 
-#order-summary small {
+#order-summary small,
+#order-summary .includes_tax {
 	font-size: 0.75em;
 	color: #666;
 }

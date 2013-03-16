@@ -2,7 +2,7 @@
 Contributors: chabis, daveshine
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=wartamau%40gmail%2ecom&lc=US&item_name=piffpaffpuff&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
 Tags: delivery notes, delivery, shipping, print, order, invoice, invoices, woocommerce, woothemes, shop, shop manager, deckerweb
-Requires at least: 3.4 and WooCommerce 1.6.6
+Requires at least: 3.5 and WooCommerce 1.6.6
 Tested up to: 3.5.1 and WooCommerce 2.0
 Stable tag: trunk
 License: GPLv3 or later

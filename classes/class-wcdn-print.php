@@ -189,11 +189,11 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 					// Pass complete product object
 	                $data['product'] = $product;
 					
-					$data_list[] = $data;
+					$data_list[] = apply_filters( 'wcdn_order_item_data', $data );
 				}
 			}
 
-			return $data_list;
+			return apply_filters( 'wcdn_order_items_data', $data_list );
 		}
 		
 		/**

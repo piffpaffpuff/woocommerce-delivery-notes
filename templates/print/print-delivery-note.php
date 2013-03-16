@@ -34,12 +34,8 @@
 					</li>
 					<?php endif; ?>
 					<li>
-						<h3 class="order-date-label"><?php if( wcdn_get_template_type() == 'invoice' ) : ?>
-							<?php _e( 'Billing Date', 'woocommerce-delivery-notes' ); ?>
-						<?php else : ?>
-							<?php _e( 'Shipping Date', 'woocommerce-delivery-notes' ); ?>
-						<?php endif ?></h3>
-						<span class="order-date"><?php wcdn_date(); ?></span>
+						<h3 class="order-date-label"><?php _e( 'Order Date', 'woocommerce-delivery-notes' ); ?></h3>
+						<span class="order-date"><?php wcdn_order_date(); ?></span>
 					</li>
 					<li>
 						<h3 class="order-number-label"><?php _e( 'Order Number', 'woocommerce-delivery-notes' ); ?></h3>
