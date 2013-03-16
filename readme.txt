@@ -97,7 +97,7 @@ For custom and update-secure language files please upload them to `/wp-content/l
 == Changelog ==
 
 = 2.0.1 =
-* FIX: Updated print method for better cross-browser support.
+* FIX: Updated print functionality for better cross-browser support.
 
 = 2.0 =
 * FIX: Print privileges for WooCommerce 2.0.
