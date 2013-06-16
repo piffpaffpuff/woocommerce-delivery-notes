@@ -135,60 +135,58 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 					// Array with data for the printing template
 					$data = array();
 					
-					// Create the product
-					$product = $this->order->get_product_from_item( $item );
-
-					// Set the variation
-					if( isset( $item['variation_id'] ) && $item['variation_id'] > 0 ) {
-						$data['variation'] = woocommerce_get_formatted_variation( $product->get_variation_attributes() );
-					} else {
-						$data['variation'] = null;
-					}
-					
-					// Set item meta and replace it when it is empty
-					$meta = new WC_Order_Item_Meta( $item['item_meta'] );	
-					$data['meta'] = $meta->display( false, true );
-					if( empty( $data['meta'] ) ) {
-						$data['meta'] = $data['variation'];
-					}
+					// Set the id
+					$data['product_id'] = $item['product_id'];
+					$data['variation_id'] = $item['variation_id'];
 										
 					// Set item name
 					$data['name'] = $item['name'];
 					
 					// Set item quantity
 					$data['quantity'] = $item['qty'];
-															
-					// Set item download url									
-					if( $product->exists() && $product->is_downloadable() && $product->has_file() && ( $this->order->status == 'completed' || ( get_option( 'woocommerce_downloads_grant_access_after_payment' ) == 'yes' && $this->order->status == 'processing' ) ) ) {
-						$data['download_url'] = $this->order->get_downloadable_file_url( $item['id'], $item['variation_id'] );
-					} else {
-						$data['download_url'] = null;
+
+					// Set the subtotal for the number of products
+					$data['line_total'] = $item['line_total'];
+					$data['line_tax'] = $item['line_tax'];
+					
+					// Set the final subtotal for all products
+					$data['line_subtotal'] = $item['line_subtotal'];
+					$data['line_subtotal_tax'] = $item['line_subtotal_tax'];
+					$data['formatted_line_subtotal'] = $this->order->get_formatted_line_subtotal( $item );
+					$data['price'] = $data['formatted_line_subtotal'];
+					
+					// Set item meta and replace it when it is empty
+					$meta = new WC_Order_Item_Meta( $item['item_meta'] );	
+					$data['meta'] = $meta->display( false, true );
+
+					// Pass complete item array
+	                $data['item'] = $item;
+					
+					// Create the product to display more info
+					$data['product'] = null;
+					
+					$product = $this->order->get_product_from_item( $item );
+					
+					// Checking fo existance, thanks to MDesigner0 
+					if(!empty($product)) {	
+						// Set the single price
+						$data['single_price'] = $product->get_price();
+										
+						// Set item SKU
+						$data['sku'] = $product->get_sku();
+		
+						// Set item weight
+						$data['weight'] = $product->get_weight();
+						
+						
+						// Set item dimensions
+						$data['dimensions'] = $product->get_dimensions();
+					
+						// Pass complete product object
+						$data['product'] = $product;
+					
 					}
 
-					// Set the price
-					$data['price'] = $this->order->get_formatted_line_subtotal( $item );
-									
-					// Set the single price
-					$data['single_price'] = $product->get_price();
-									
-					// Set item SKU
-					$data['sku'] = $product->get_sku();
-	
-					// Set item weight
-					$data['weight'] = $product->get_weight();
-					
-					// Set item dimensions
-					$data['dimensions'] = $product->get_dimensions();
-						
-					// Set the id
-					$data['id'] = $product->id;
-										
-	                // Pass complete item array
-	                $data['item'] = $item;
-
-					// Pass complete product object
-	                $data['product'] = $product;
-					
 					$data_list[] = apply_filters( 'wcdn_order_item_data', $data );
 				}
 			}

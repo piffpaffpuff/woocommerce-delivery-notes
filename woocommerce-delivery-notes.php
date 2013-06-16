@@ -388,7 +388,7 @@ if ( !function_exists( 'wcdn_billing_address' ) ) {
 		global $wcdn;
 		$address = $wcdn->print->get_order()->get_formatted_billing_address();
 		if( !$address ) {
-			$address = __('N/A', 'woocommerce');
+			$address = __('N/A', 'woocommerce-delivery-notes');
 		}
 		echo apply_filters( 'wcdn_billing_address', $address );
 	}
@@ -402,7 +402,7 @@ if ( !function_exists( 'wcdn_shipping_address' ) ) {
 		global $wcdn;
 		$address = $wcdn->print->get_order()->get_formatted_shipping_address();
 		if( !$address ) {
-			$address = __('N/A', 'woocommerce');
+			$address = __('N/A', 'woocommerce-delivery-notes');
 		}
 		echo apply_filters( 'wcdn_shipping_address', $address );
 	}

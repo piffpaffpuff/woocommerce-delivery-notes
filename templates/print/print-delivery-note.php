@@ -48,15 +48,23 @@
 						<h3 class="order-payment-label"><?php _e( 'Payment Method', 'woocommerce-delivery-notes' ); ?></h3>
 						<span class="order-payment"><?php wcdn_payment_method(); ?></span>
 					</li>
+					<li>
+						<h3 class="order-telephone-label"><?php _e( 'Email', 'woocommerce-delivery-notes' ); ?></h3>
+						<span class="order-payment"><?php wcdn_billing_email(); ?></span>
+					</li>
+					<li>
+						<h3 class="order-email-label"><?php _e( 'Phone', 'woocommerce-delivery-notes' ); ?></h3>
+						<span class="order-payment"><?php wcdn_billing_phone(); ?></span>
+					</li>
 				</ul><!-- #order-info -->
 					
 				<div id="order-items">
 					<table>
 						<thead>
 							<tr>
-								<th class="product-label"><?php _e('Product', 'woocommerce'); ?></th>
-								<th class="quantity-label"><?php _e('Quantity', 'woocommerce'); ?></th>
-								<th class="totals-label"><?php _e('Totals', 'woocommerce'); ?></th>
+								<th class="product-label"><?php _e('Product', 'woocommerce-delivery-notes'); ?></th>
+								<th class="quantity-label"><?php _e('Quantity', 'woocommerce-delivery-notes'); ?></th>
+								<th class="totals-label"><?php _e('Totals', 'woocommerce-delivery-notes'); ?></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -64,10 +72,16 @@
 								<td class="description"><?php echo $item['name']; ?>
 									<?php echo $item['meta']; ?>
 									<dl class="meta">
-										<?php if( $item['sku'] ) : ?><dt><?php _e( 'SKU:', 'woocommerce-delivery-notes' ); ?></dt><dd><?php echo $item['sku']; ?></dd><?php endif; ?>
-										<?php if( $item['weight'] ) : ?><dt><?php _e( 'Weight:', 'woocommerce-delivery-notes' ); ?></dt><dd><?php echo $item['weight']; ?><?php echo get_option('woocommerce_weight_unit'); ?></dd><?php endif; ?>
-										<?php if( $item['download_url'] ) : ?><dt><?php _e( 'Download:', 'woocommerce-delivery-notes' ); ?></dt><dd><?php echo $item['download_url']; ?></dd><?php endif; ?>
+										<?php if( !empty( $item['sku'] ) ) : ?><dt><?php _e( 'SKU:', 'woocommerce-delivery-notes' ); ?></dt><dd><?php echo $item['sku']; ?></dd><?php endif; ?>
+										<?php if( !empty( $item['weight'] ) ) : ?><dt><?php _e( 'Weight:', 'woocommerce-delivery-notes' ); ?></dt><dd><?php echo $item['weight']; ?><?php echo get_option('woocommerce_weight_unit'); ?></dd><?php endif; ?>
 									</dl>
+									<?php if( !empty( $item['download_urls'] ) ) : ?>
+									<dl class="download">
+										<?php foreach( $item['download_urls'] as $url ) : ?>
+											<dt><?php _e( 'Download:', 'woocommerce-delivery-notes' ); ?></dt><dd><?php echo $url; ?></dd>
+										<?php endforeach; ?>
+									</dl>
+									<?php endif; ?>
 								</td>
 								<td class="quantity"><?php echo $item['quantity']; ?></td>
 								<td class="price"><?php echo $item['price']; ?></td>
