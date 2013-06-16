@@ -75,13 +75,6 @@
 										<?php if( !empty( $item['sku'] ) ) : ?><dt><?php _e( 'SKU:', 'woocommerce-delivery-notes' ); ?></dt><dd><?php echo $item['sku']; ?></dd><?php endif; ?>
 										<?php if( !empty( $item['weight'] ) ) : ?><dt><?php _e( 'Weight:', 'woocommerce-delivery-notes' ); ?></dt><dd><?php echo $item['weight']; ?><?php echo get_option('woocommerce_weight_unit'); ?></dd><?php endif; ?>
 									</dl>
-									<?php if( !empty( $item['download_urls'] ) ) : ?>
-									<dl class="download">
-										<?php foreach( $item['download_urls'] as $url ) : ?>
-											<dt><?php _e( 'Download:', 'woocommerce-delivery-notes' ); ?></dt><dd><?php echo $url; ?></dd>
-										<?php endforeach; ?>
-									</dl>
-									<?php endif; ?>
 								</td>
 								<td class="quantity"><?php echo $item['quantity']; ?></td>
 								<td class="price"><?php echo $item['price']; ?></td>
