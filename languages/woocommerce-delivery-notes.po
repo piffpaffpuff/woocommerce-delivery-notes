@@ -1,13 +1,26 @@
+# Translation of WooCommerce Print Invoices & Delivery Notes in Esperanto
 # This file is distributed under the same license as the WooCommerce Print Invoices & Delivery Notes package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2013-03-11 13:33:23+0000\n"
+"PO-Revision-Date: 2013-06-18 07:16:09+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/0.1\n"
 "Project-Id-Version: WooCommerce Print Invoices & Delivery Notes\n"
+
+#: templates/print/print-delivery-note.php:52
+msgid "Email"
+msgstr ""
+
+#: templates/print/print-delivery-note.php:56
+msgid "Phone"
+msgstr ""
+
+#: woocommerce-delivery-notes.php:0
+msgid "2.0.2"
+msgstr ""
 
 #: classes/class-wcdn-settings.php:301
 msgid "You can <a href=\"%1$s\" target=\"%3$s\" class=\"%4$s\">preview the invoice template</a> or <a href=\"%2$s\" target=\"%3$s\" class=\"%4$s\">the delivery note template</a>."
@@ -17,24 +30,12 @@ msgstr ""
 msgid "For more advanced control copy <code>woocommerce-delivery-notes/templates/print/style.css</code> to <code>your-theme-name/woocommerce/print/style.css</code>."
 msgstr ""
 
-#: templates/print/print-delivery-note.php:38
-msgid "Billing Date"
-msgstr ""
-
-#: templates/print/print-delivery-note.php:40
-msgid "Shipping Date"
-msgstr ""
-
-#: templates/print/print-delivery-note.php:45
+#: templates/print/print-delivery-note.php:44
 msgid "Order Number"
 msgstr ""
 
-#: templates/print/print-delivery-note.php:49
+#: templates/print/print-delivery-note.php:48
 msgid "Payment Method"
-msgstr ""
-
-#: woocommerce-delivery-notes.php:0
-msgid "2.0"
 msgstr ""
 
 #: classes/class-wcdn-settings.php:144
@@ -45,19 +46,15 @@ msgstr ""
 msgid "When the image is printed, its pixel density will automatically be eight times higher than the original. This means, 1 printed inch will correspond to about 288 pixels on the screen. Example: an image with a width of 576 pixels and a height of 288 pixels will have a printed size of about 2 inches to 1 inch."
 msgstr ""
 
-#: templates/print/print-delivery-note.php:58
+#: templates/print/print-delivery-note.php:65
 msgid "Product"
 msgstr ""
 
-#: templates/print/print-delivery-note.php:60
+#: templates/print/print-delivery-note.php:67
 msgid "Totals"
 msgstr ""
 
-#: templates/print/print-delivery-note.php:70
-msgid "Download:"
-msgstr ""
-
-#: woocommerce-delivery-notes.php:291 woocommerce-delivery-notes.php:305
+#: woocommerce-delivery-notes.php:391 woocommerce-delivery-notes.php:405
 msgid "N/A"
 msgstr ""
 
@@ -101,7 +98,7 @@ msgstr ""
 msgid "Delivery Note"
 msgstr ""
 
-#: templates/print/print-delivery-note.php:59
+#: templates/print/print-delivery-note.php:66
 msgid "Quantity"
 msgstr ""
 
@@ -130,11 +127,15 @@ msgstr ""
 msgid "Returns Policy, Conditions, etc.:"
 msgstr ""
 
-#: templates/print/print-delivery-note.php:68
+#: templates/print/print-delivery-note.php:40
+msgid "Order Date"
+msgstr ""
+
+#: templates/print/print-delivery-note.php:75
 msgid "SKU:"
 msgstr ""
 
-#: templates/print/print-delivery-note.php:69
+#: templates/print/print-delivery-note.php:76
 msgid "Weight:"
 msgstr ""
 
@@ -180,7 +181,7 @@ msgstr ""
 msgid "Project on GitHub"
 msgstr ""
 
-#: classes/class-wcdn-settings.php:154
+#: classes/class-wcdn-settings.php:154 woocommerce-delivery-notes.php:302
 msgid "Print"
 msgstr ""
 
@@ -251,11 +252,11 @@ msgstr ""
 msgid "Invoice"
 msgstr ""
 
-#: templates/print/print-delivery-note.php:20
+#: templates/print/print-delivery-note.php:23
 msgid "Recipient"
 msgstr ""
 
-#: templates/print/print-delivery-note.php:96
+#: templates/print/print-delivery-note.php:102
 msgid "Customer Notes"
 msgstr ""
 

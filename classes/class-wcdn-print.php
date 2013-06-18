@@ -60,22 +60,22 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		public function generate_print_content_ajax() {		
 			// Let the backend only access the page
 			if( !is_admin() ) {
-				wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+				wp_die( __( 'You do not have sufficient permissions to access this page.', 'woocommerce-delivery-notes' ) );
 			}
 			
 			// Check the user privileges
 			if( !current_user_can( 'manage_woocommerce_orders' ) && !current_user_can( 'edit_shop_orders' ) ) {
-				wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+				wp_die( __( 'You do not have sufficient permissions to access this page.', 'woocommerce-delivery-notes' ) );
 			}
 			
 			// Check the nonce
 			if( empty( $_GET['action'] ) || !check_admin_referer( $_GET['action'] ) ) {
-				wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+				wp_die( __( 'You do not have sufficient permissions to access this page.', 'woocommerce-delivery-notes' ) );
 			}
 			
 			// Check if all parameters are set
 			if( empty( $_GET['template_type'] ) || empty( $_GET['order_id'] ) ) {
-				wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+				wp_die( __( 'You do not have sufficient permissions to access this page.', 'woocommerce-delivery-notes' ) );
 			}
 			
 			// Generate the output

@@ -1,12 +1,12 @@
-# Translation of WooCommerce Print Invoices & Delivery Notes in Danish
+# Translation of WooCommerce Print Invoices & Delivery Notes in Czech
 # This file is distributed under the same license as the WooCommerce Print Invoices & Delivery Notes package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2013-06-18 09:36+0100\n"
+"PO-Revision-Date: 2013-06-18 09:35+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Poedit 1.5.4\n"
 "Project-Id-Version: WooCommerce Print Invoices & Delivery Notes\n"
 "POT-Creation-Date: \n"
@@ -15,7 +15,7 @@ msgstr ""
 
 #: templates/print/print-delivery-note.php:52
 msgid "Email"
-msgstr "Email"
+msgstr "E-mail"
 
 #: templates/print/print-delivery-note.php:56
 msgid "Phone"
@@ -41,15 +41,15 @@ msgstr ""
 
 #: templates/print/print-delivery-note.php:44
 msgid "Order Number"
-msgstr ""
+msgstr "Číslo objednávky"
 
 #: templates/print/print-delivery-note.php:48
 msgid "Payment Method"
-msgstr ""
+msgstr "Metoda platby"
 
 #: classes/class-wcdn-settings.php:144
 msgid "Get Community Support"
-msgstr "Få Community Support"
+msgstr "Získat podporu"
 
 #: classes/class-wcdn-settings.php:212
 msgid ""
@@ -59,10 +59,10 @@ msgid ""
 "pixels and a height of 288 pixels will have a printed size of about 2 inches "
 "to 1 inch."
 msgstr ""
-"Når billedet udskrives, vil dens pixeltæthed automatisk være otte gange "
-"højere end den oprindelige. Dette betyder, at 1 cm papir er ca 113 pixels på "
-"skærmen. Eksempel: et billede med en bredde på 600 pixel og en højde på 400 "
-"pixels har en trykt størrelse på omkring 5,3 * 3,5 cm."
+"Při tisku obrázku, bude hustota pixelů automaticky osmkrát větší než "
+"originál. To znamená, že 1 vytisknutý palec odpovídá přibližně 288 pixelů na "
+"obrazovce. Příklad: obrázek s šířkou 576 pixelů a výškou 288 pixelů bude mít "
+"tiskovou velikost asi 2 palce na 1 palec."
 
 #: templates/print/print-delivery-note.php:65
 msgid "Product"
@@ -70,7 +70,7 @@ msgstr "Produkt"
 
 #: templates/print/print-delivery-note.php:67
 msgid "Totals"
-msgstr "I alt"
+msgstr "Celkem"
 
 #: woocommerce-delivery-notes.php:391 woocommerce-delivery-notes.php:405
 msgid "N/A"
@@ -78,39 +78,39 @@ msgstr "N/A"
 
 #: classes/class-wcdn-settings.php:202
 msgid "Company/Shop Logo"
-msgstr "Firma/Shop Logo"
+msgstr "Logo Firmy/Obchodu"
 
 #: classes/class-wcdn-settings.php:207
 msgid "Remove Logo"
-msgstr "Fjern Logo"
+msgstr "Odstranit Logo"
 
 #: classes/class-wcdn-settings.php:208
 msgid "Set Logo"
-msgstr "Indsæt Logo"
+msgstr "Nastavit Logo"
 
 #: classes/class-wcdn-settings.php:210
 msgid "A company/shop logo representing your business."
-msgstr "Et firma/Shop Logo præsenterer din forretning"
+msgstr "Logo obchodu/firmy reprezentuje vaše podnikání."
 
 #: classes/class-wcdn-settings.php:223
 msgid "Your company/shop name for the Delivery Note."
-msgstr "Dit firma/shop navn for Følgesedlen."
+msgstr "Název vaší spoločnosti/obchodu pro dodací list"
 
 #: classes/class-wcdn-settings.php:314
 msgid "Sequential order number"
-msgstr "Sekventiel ordrenummer"
+msgstr "Pořadové číslo objednávky"
 
 #: classes/class-wcdn-settings.php:318
 msgid "Sequential numbering is enabled."
-msgstr "Sekventiel ordrenummer er aktiveret"
+msgstr "Sekvenční číslování je povolené."
 
 #: classes/class-wcdn-settings.php:320
 msgid ""
 "Install and activate the free <a href=\"%s\">WooCommerce Sequential Order "
 "Numbers</a> Plugin."
 msgstr ""
-"Installer og aktiver den gratis <a href=\"%s\">WooCommerce Sekventil "
-"ordrenummer</ a>Plugin."
+"Nainstalovat a aktivovat zadarmo modul <a href=\"%s\"> WooCommerce "
+"Sequential Order Numbers </a> Plugin"
 
 #: woocommerce-delivery-notes.php:0
 msgid "https://github.com/piffpaffpuff/woocommerce-delivery-notes"
@@ -118,40 +118,40 @@ msgstr "https://github.com/piffpaffpuff/woocommerce-delivery-notes"
 
 #: woocommerce-delivery-notes.php:203
 msgid "Delivery Note"
-msgstr "Følgeseddel"
+msgstr "Dodací list"
 
 #: templates/print/print-delivery-note.php:66
 msgid "Quantity"
-msgstr "Antal"
+msgstr "Množství"
 
 #: classes/class-wcdn-print.php:63 classes/class-wcdn-print.php:68
 #: classes/class-wcdn-print.php:73 classes/class-wcdn-print.php:78
 msgid "You do not have sufficient permissions to access this page."
-msgstr "Du har ikke tilladelse til at se denne side."
+msgstr "Nemáte patřičná oprávnění k zobrazení této stránky."
 
 #: woocommerce-delivery-notes.php:134
 msgid "Go to the settings page"
-msgstr "Gå til indstillinger"
+msgstr "Jít na stránku nastavení"
 
 #: woocommerce-delivery-notes.php:134
 msgid "Settings"
-msgstr "Indstillinger"
+msgstr "Nastavení"
 
 #: woocommerce-delivery-notes.php:124
 msgid "FAQ"
-msgstr "OSS"
+msgstr "Nápověda"
 
 #: woocommerce-delivery-notes.php:125
 msgid "Support"
-msgstr "Support"
+msgstr "Podpora"
 
 #: classes/class-wcdn-settings.php:257
 msgid "Returns Policy, Conditions, etc.:"
-msgstr "Returpolitik, Salgsbetingelser mv:"
+msgstr "Reklamace, podmínky, atd:"
 
 #: templates/print/print-delivery-note.php:40
 msgid "Order Date"
-msgstr "Ordre Dato"
+msgstr ""
 
 #: templates/print/print-delivery-note.php:75
 msgid "SKU:"
@@ -159,95 +159,97 @@ msgstr "SKU:"
 
 #: templates/print/print-delivery-note.php:76
 msgid "Weight:"
-msgstr "Vægt:"
+msgstr "Váha"
 
 #: classes/class-wcdn-settings.php:134
 msgid "Plugin: WooCommerce Print Invoices & Delivery Notes"
-msgstr "Plugin: WooCommerce udskriv Fakturaer og Følgesedler"
+msgstr "Plugin: WooCommerce Print Invoices & Delivery Notes"
 
 #: classes/class-wcdn-settings.php:211 classes/class-wcdn-settings.php:224
 #: classes/class-wcdn-settings.php:237 classes/class-wcdn-settings.php:250
 #: classes/class-wcdn-settings.php:263 classes/class-wcdn-settings.php:276
 msgid "Note:"
-msgstr "Note:"
+msgstr "Poznámka:"
 
 #: classes/class-wcdn-settings.php:236
 msgid ""
 "The postal address of the company/shop, which gets printed right of the "
 "company/shop name, above the order listings."
 msgstr ""
-"Postadressen bliver trykt til højre for Firma/Shop navn, ovenover "
-"ordrelisten."
+"Poštovní adresa spoločnosti / obchodu, který sa má vytisknout přímo při "
+"názvu spoločnosti / obchodu, nad seznam objednávek"
 
 #: classes/class-wcdn-settings.php:249
 msgid ""
 "Add some personal notes, or season greetings or whatever (e.g. Thank You for "
 "Your Order!, Merry Christmas!, etc.)."
 msgstr ""
-"Tilføj nogle personlige beskeder, eller lignende (f.eks Tak for din "
-"bestilling!, Glædelig Jul!, Osv.)."
+"Přidejte osobní poznámky, nebo sezónní pozdravy a nebo cokoliv jiného (např. "
+"Děkujeme vám za Vaši objednávku!, Veselé Vánoce!, atd)."
 
 #: classes/class-wcdn-settings.php:275
 msgid ""
 "Add some further footer imprint, copyright notes etc. to get the printed "
 "sheets a bit more branded to your needs."
-msgstr "Tilføj nogle yderligere Footer imprints, ophavsret bemærkninger osv. "
+msgstr ""
+"Přidejte další informace do patičky jako copyright a pod., aby vytisknuté "
+"dokumenty více odpovídali Vašim potřebám."
 
 #: classes/class-wcdn-settings.php:132 classes/class-wcdn-settings.php:135
 msgid "About the Plugin"
-msgstr "Om plugin'en"
+msgstr "O pluginu"
 
 #: classes/class-wcdn-settings.php:142
 msgid "For more information:"
-msgstr "For mere information:"
+msgstr "Pro více informací:"
 
 #: classes/class-wcdn-settings.php:143
 msgid "Frequently Asked Questions"
-msgstr "Ofte Stillede Spørgsmål"
+msgstr "Frequently Asked Questions"
 
 #: classes/class-wcdn-settings.php:145
 msgid "Project on WordPress.org"
-msgstr "Projekt på WordPress.org"
+msgstr "Projekt na Wordpress.org"
 
 #: classes/class-wcdn-settings.php:146
 msgid "Project on GitHub"
-msgstr "Projekt på GitHub"
+msgstr "Projekt na GitHub"
 
 #: classes/class-wcdn-settings.php:154 woocommerce-delivery-notes.php:302
 msgid "Print"
-msgstr "Udskriv"
+msgstr "Tisk"
 
 #: classes/class-wcdn-settings.php:194
 msgid "Invoices and Delivery Notes"
-msgstr "Fakturaer og Følgesedler"
+msgstr "Faktury a dodací listy"
 
 #: classes/class-wcdn-settings.php:218
 msgid "Company/Shop Name"
-msgstr "Firme/Shop Navn"
+msgstr "Název společnosti/obchodu"
 
 #: classes/class-wcdn-settings.php:225
 msgid ""
 "Leave blank to use the default Website/ Blog title defined in WordPress "
 "settings."
 msgstr ""
-"Efterlad tom for at bruge standard-hjemmeside / blog titel defineret under "
-"WordPress-indstillinger."
+"Nechejte prázdné, pokud chcete použít předvolené nastavení web stránky / "
+"blogu, které byli definované v nastavení WordPress."
 
 #: classes/class-wcdn-settings.php:231
 msgid "Company/Shop Address"
-msgstr "Firma/Shop Adresse"
+msgstr "Adresa firmy/obchodu"
 
 #: classes/class-wcdn-settings.php:238
 msgid "Leave blank to not print an address."
-msgstr "Efterlad tomt felt for ikke at udskrive en adresse."
+msgstr "Pokud nechcete vytisknout adresu, nechajte prázdné"
 
 #: classes/class-wcdn-settings.php:244
 msgid "Personal Notes"
-msgstr "Personlige Besked:"
+msgstr "Osobní poznámky"
 
 #: classes/class-wcdn-settings.php:251
 msgid "Leave blank to not print any personal notes."
-msgstr "Efterlad tomt felt for ikke at udskrive nogen besked."
+msgstr "Pokud nechcete vytisknout žádné podmínky, nechejte prázdné."
 
 #: classes/class-wcdn-settings.php:262
 msgid ""
@@ -256,41 +258,41 @@ msgid ""
 "some countries (e.g. in the European Union) this is required so please add "
 "any required info in accordance with the statutory regulations."
 msgstr ""
-"Her kan du tilføje vilkår mv. For eksempel tilføje en returpolitik i "
-"tilfælde af at kunden gerne vil sende varer tilbage. I nogle lande (f.eks i "
-"Den Europæiske Union) dette er påkrævet, så kan du tilføje alle nødvendige "
-"oplysninger i overensstemmelse med de lovmæssige bestemmelser."
+"Zde můžete přidat nějaké další podmínky atd. Například podmínky reklamace v "
+"případe, že by chtěl zákazník poslat zboží zpět. V některých zemích (např. v "
+"Evropské unii), je toto požadované, proto vyplňte dané informace v souladu s "
+"platnými právními předpisy."
 
 #: classes/class-wcdn-settings.php:264
 msgid "Leave blank to not print any policies or conditions."
-msgstr "Efterlad tomt felt for ikke at udskrive noget."
+msgstr "Pokud nechcete vytisknout žádné podmínky, nechejte prázdné."
 
 #: classes/class-wcdn-settings.php:270
 msgid "Footer Imprint"
-msgstr "Footer Imprint"
+msgstr "Patička"
 
 #: classes/class-wcdn-settings.php:277
 msgid "Leave blank to not print a footer."
-msgstr "Efterlad tomt felt for ikke at udskrive footer."
+msgstr "Pokud nechcete vytisknout patičku, nechejte prázdné."
 
 #: classes/class-wcdn-settings.php:309
 msgid "Order Numbering Options"
-msgstr "Ordrer Nummererings-muligheder"
+msgstr "Možnosti číslování objednávek"
 
 #: classes/class-wcdn-writepanel.php:92
 msgid "Order Print"
-msgstr "Udskriv Ordrer"
+msgstr "Vytisknout objednávku"
 
 #: classes/class-wcdn-writepanel.php:76 classes/class-wcdn-writepanel.php:77
 #: classes/class-wcdn-writepanel.php:102
 msgid "Print Invoice"
-msgstr "Udskriv Faktura"
+msgstr "Vytisknout Fakturu"
 
 #: classes/class-wcdn-writepanel.php:78 classes/class-wcdn-writepanel.php:80
 #: classes/class-wcdn-writepanel.php:81 classes/class-wcdn-writepanel.php:82
 #: classes/class-wcdn-writepanel.php:103
 msgid "Print Delivery Note"
-msgstr "Udskriv Følgeseddel"
+msgstr "Vytisknout Dodací list"
 
 #: woocommerce-delivery-notes.php:201
 msgid "Invoice"
@@ -298,24 +300,24 @@ msgstr "Faktura"
 
 #: templates/print/print-delivery-note.php:23
 msgid "Recipient"
-msgstr "Modtager"
+msgstr "Příjemce"
 
 #: templates/print/print-delivery-note.php:102
 msgid "Customer Notes"
-msgstr "Kundebemærkninger"
+msgstr "Poznámky zákazníka"
 
 #: woocommerce-delivery-notes.php:0
 msgid "WooCommerce Print Invoices & Delivery Notes"
-msgstr "WooCommerce Udskriver Faktura og Følgeseddel"
+msgstr "WooCommerce Print Invoices & Delivery Notes"
 
 #: woocommerce-delivery-notes.php:0
 msgid ""
 "Print order invoices & delivery notes for WooCommerce shop plugin. You can "
 "add company/shop info as well as personal notes & policies to print pages."
 msgstr ""
-"Udskriv ordrer, fakturaer og følgesedler for WooCommerce butik plugin. Du "
-"kan tilføje firma/shop info samt personlige noter og politikker til de "
-"udskrivne sider."
+"Print order invoices & delivery notes for WooCommerce shop plugin. Můžete "
+"přidat informace o společnosti/obchodu, tak jako osobní poznámky a zásady "
+"pro tisk stránek."
 
 #: woocommerce-delivery-notes.php:0
 msgid "Steve Clark, Triggvy Gunderson, David Decker"
@@ -331,14 +333,12 @@ msgid ""
 "required to advice the customer with proper refund policies so this little "
 "plugin might help you a bit with that too."
 msgstr ""
-"Denne plugin giver dig mulighed for at tilføje en Faktura eller "
-"Leveringsbetingelse til udskrift af dine ordre i WooCommerce shop plugin. Du "
-"kan tilføje dit firma's post-adresse og andre personlige meddelelser, "
-"politik om refundering og andet, fodnoter og andet. Dette kan hjælpe dig i "
-"den daglige administration af din shop. \n"
-"I nogle lande (f.eks i Den Europæiske Union) er det også nødvendigt at "
-"rådgive kunden med rette tilbagebetaling politikker, så det kan denne lille "
-"plugin også hjælpe dig med."
+"Tento plugin vám umožní vytisknout faktury nebo jednoduché dodací listy "
+"vašich objednávek v rámci modulu WooCommerce. Můžete přidat svojí ​​firemní "
+"poštovní adresu, osobní poznámky, reklamace, a nebo jiné podmínky, patičku, "
+"poznámky atd. Urychlí to správu objednávek. V některých zemích (např. v "
+"Evropské unii) je také nutné obeznámit zákazníka s informacemi ohledně "
+"reklamace a vrácení zboží. Tento modul Vám může při tom velmi nápomocný."
 
 #: classes/class-wcdn-settings.php:137
 msgid ""
@@ -347,7 +347,7 @@ msgid ""
 "Click one of the buttons and you get the invoice or delivery note printing "
 "page. Yes, it is that easy :-)."
 msgstr ""
-"Se under <a href=\"%1$s\"> WooCommerce> Ordrer </ a>, og derfra gå til den "
-"enkelte ordre udsigt. På højre side vil du se Udskriv Ordrer meta boks. Klik "
-"på en af knapperne, og du får en faktura eller følgeseddel udskrivning side. "
-"Ja, det er faktisk så let :-)."
+"Otevřete <a href=\"%1$s\"> WooCommerce> Objednávky </a> a na stránce najdete "
+"zobrazení jednotlivé objednávky. Na pravé straně uvidíte složku \"Vytisknout "
+"Objednávky\". Klikněte na jedno z tlačítek a dostanete se na podstránku "
+"vytisknutí faktur a dodacích listů. Ano, je to tak jednoduché :-)."
