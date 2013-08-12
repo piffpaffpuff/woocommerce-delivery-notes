@@ -39,7 +39,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		/**
 		 * Load the admin hooks
 		 */
-		public function load_hooks() {	
+		public function load_hooks() {
 			add_action('wp_ajax_generate_print_content', array($this, 'generate_print_content_ajax'));
 		}
 
@@ -58,24 +58,24 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		 * Load and generate the template output with ajax
 		 */
 		public function generate_print_content_ajax() {		
-			// Let the backend only access the page
-			if( !is_admin() ) {
-				wp_die( __( 'You do not have sufficient permissions to access this page.', 'woocommerce-delivery-notes' ) );
-			}
-			
-			// Check the user privileges
-			if( !current_user_can( 'manage_woocommerce_orders' ) && !current_user_can( 'edit_shop_orders' ) ) {
-				wp_die( __( 'You do not have sufficient permissions to access this page.', 'woocommerce-delivery-notes' ) );
-			}
 			
 			// Check the nonce
-			if( empty( $_GET['action'] ) || !check_admin_referer( $_GET['action'] ) ) {
+			if( empty( $_GET['action'] ) || ! is_user_logged_in() || !check_admin_referer( $_GET['action'] ) ) {
 				wp_die( __( 'You do not have sufficient permissions to access this page.', 'woocommerce-delivery-notes' ) );
 			}
 			
 			// Check if all parameters are set
 			if( empty( $_GET['template_type'] ) || empty( $_GET['order_id'] ) ) {
 				wp_die( __( 'You do not have sufficient permissions to access this page.', 'woocommerce-delivery-notes' ) );
+			}
+			
+			// Check the user privileges
+			if( !current_user_can( 'manage_woocommerce_orders' ) && !current_user_can( 'edit_shop_orders' ) ) {
+				$user_id = get_current_user_id();
+				$order = new WC_Order( (int)$_GET['order_id'] );
+				if ($order->user_id != $user_id) {
+					wp_die( __( 'You do not have sufficient permissions to access this page.', 'woocommerce-delivery-notes' ) );
+				}
 			}
 			
 			// Generate the output
