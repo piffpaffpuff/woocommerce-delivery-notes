@@ -154,7 +154,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 					$data['line_subtotal_tax'] = $item['line_subtotal_tax'];
 					$data['formatted_line_subtotal'] = $this->order->get_formatted_line_subtotal( $item );
 					$data['price'] = $data['formatted_line_subtotal'];
-					
+
 					// Set item meta and replace it when it is empty
 					$meta = new WC_Order_Item_Meta( $item['item_meta'] );	
 					$data['meta'] = $meta->display( false, true );
@@ -178,13 +178,15 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 						// Set item weight
 						$data['weight'] = $product->get_weight();
 						
-						
 						// Set item dimensions
 						$data['dimensions'] = $product->get_dimensions();
 					
+						// Set flag for virtual products
+						$data['virtual'] = $product->is_virtual();
+
 						// Pass complete product object
 						$data['product'] = $product;
-					
+										
 					}
 
 					$data_list[] = apply_filters( 'wcdn_order_item_data', $data );
