@@ -41,6 +41,12 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		 */
 		public function load_hooks() {	
 			add_action('wp_ajax_generate_print_content', array($this, 'generate_print_content_ajax'));
+			
+			if ( is_admin() ) {
+	            // Bulk edit
+	            add_action( 'admin_footer', array( $this, 'bulk_admin_footer' ), 10 );
+	            add_action( 'load-edit.php', array( $this, 'bulk_action' ) );
+			}
 		}
 
 		/**
@@ -203,6 +209,61 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			} 
 			return;
 		}
+		
+		/**
+		 * Add the bulk edit functions to the list
+		 */
+		function bulk_admin_footer() {
+            global $post_type;
+            
+            if ( $post_type == 'shop_order' ) {
+                ?>
+                <script type="text/javascript">
+                    jQuery(document).ready(function() {
+                        jQuery('<option>').val('print_invoices').text('<?php _e( 'Print Invoices' ); ?>').appendTo("select[name='action']");
+                        jQuery('<option>').val('print_invoices').text('<?php _e( 'Print Invoices' ); ?>').appendTo("select[name='action2']");
+                    });
+                </script>
+                <?php
+            }
+        }
+        
+        /**
+		 * The action to run when the "Print Invoices" bulk action is applied
+		 */
+        function bulk_action() {
+            $wp_list_table = _get_list_table( 'WP_Posts_List_Table' );
+            $action = $wp_list_table->current_action();
+            
+            switch ( $action ) {
+                case 'print_invoices':
+                    $report_action = 'printed_invoices';
+                    $changed = 0;
+                
+                    $post_ids = array_map( 'absint', (array)$_REQUEST['post'] );
+                    
+                    foreach ( $post_ids as $post_id ) {
+                        
+                        // Print invoice for each order
+                        $this->template_type = 'invoice';
+                        $this->order = new WC_Order();
+						$this->order_id = $post_id;
+						$this->order->get_order( $this->order_id );
+						$this->get_template( apply_filters( 'wcdn_template_file_name', 'print-' . $this->template_type . '.php', $template_type, $order_id, $this ) );
+						do_action( 'wcdn_generate_print_content' );
+                        
+                        $changed++;
+                    }
+            
+                    //$sendback = add_query_arg( array( 'post_type' => 'shop_order', $report_action => true, 'changed' => $changed, 'ids' => join( ',', $post_ids ) ), '' );
+                    //wp_redirect( $sendback );
+                    
+                    exit();
+                break;
+                default:
+                    return;
+            }
+        }
 	}
 
 }
