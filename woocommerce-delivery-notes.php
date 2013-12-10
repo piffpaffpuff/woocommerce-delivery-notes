@@ -6,15 +6,15 @@
  * Plugin Name: WooCommerce Print Invoices & Delivery Notes
  * Plugin URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * Description: Print order invoices & delivery notes for WooCommerce shop plugin. You can add company/shop info as well as personal notes & policies to print pages.
- * Version: 2.0.2
- * Author: Steve Clark, Triggvy Gunderson, David Decker
+ * Version: 2.0.3
+ * Author: Steve Clark, Triggvy Gunderson, David Decker, David Anderson
  * Author URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * License: GPLv3 or later
  * License URI: http://www.opensource.org/licenses/gpl-license.php
  * Text Domain: woocommerce-delivery-notes
  * Domain Path: /languages/
  *
- * Copyright 2011-2012 Steve Clark, Trigvvy Gunderson, David Decker - DECKERWEB
+ * Copyright 2011-2013 Steve Clark, Trigvvy Gunderson, David Decker - DECKERWEB, David Anderson - http://updraftplus.com
  *		
  *     This file is part of WooCommerce Print Invoices & Delivery Notes,
  *     a plugin for WordPress.
@@ -99,6 +99,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 				$this->settings->load();
 				$this->print = new WooCommerce_Delivery_Notes_Print();
 				$this->print->load();
+				add_shortcode('woocommerce_invoice_print', array($this, 'shortcode_woocommerce_invoice_print'));
 			}
 		}
 		
@@ -148,6 +149,38 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 			} else {
 				return false;
 			}
+		}
+
+		/**
+		* Front-end shortcode
+		*/
+		public function shortcode_woocommerce_invoice_print($atts) {
+
+			$order_id = ( isset( $_GET['order'] ) ) ? $_GET['order'] : 0;
+			if (empty($order_id)) return '';
+
+			$order = new WC_Order( $order_id );
+
+			if ( ! is_user_logged_in() ) return '';
+
+			$user_id = get_current_user_id();
+
+			if ( $order->user_id != $user_id ) {
+				return '';
+			}
+
+			$nonce_url = wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_print_content&template_type=invoice&order_id=' . $order->id ), 'generate_print_content' );
+			$print_invoice = esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' );
+			$plugin_url = WooCommerce_Delivery_Notes::$plugin_url;
+
+			$ret = <<<ENDHERE
+			<a href="$nonce_url" class="button tips print-preview-button" target="_blank" alt="$print_invoice" data-tip="$print_invoice">
+				<span>$print_invoice</span>
+				<img src="${plugin_url}images/print-invoice.png" alt="$print_invoice" width="14">
+			</a>
+ENDHERE;
+
+			return $ret;
 		}
 	}
 }

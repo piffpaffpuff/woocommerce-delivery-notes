@@ -96,6 +96,9 @@ For custom and update-secure language files please upload them to `/wp-content/l
 
 == Changelog ==
 
+= 2.0.3 =
+* NEW: Shortcode (woocommerce_delivery_notes_print) to provide invoice links on the frontend
+
 = 2.0.2 =
 * FIX: The print data is now generated with the order metadata. This solves a problem where the items weren't displayed when the product was deleted. (thanks MDesigner0)
 * UPDATE: Added some missing translations to the pot.
