@@ -192,6 +192,27 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		public function create_settings_page() {
 			?>
 			<h3><?php _e( 'Invoices and Delivery Notes', 'woocommerce-delivery-notes' ); ?></h3>
+			<?php 
+			// show template preview links when an order is available	
+			$args = array(
+				'post_type' => 'shop_order',
+				'posts_per_page' => 1
+			);
+			$query = new WP_Query( $args );
+			if($query->have_posts()) : ?>
+			<p>
+				<?php
+				$results = $query->get_posts();
+				$test_id = $results[0]->ID;
+				$invoice_url = wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_print_content&template_type=invoice&order_id=' . $test_id ), 'generate_print_content' );
+				$note_url = wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_print_content&template_type=delivery-note&order_id=' . $test_id ), 'generate_print_content' );
+				?>
+					<span class="description">
+						<?php printf( __( 'You can <a href="%1$s" target="%3$s" class="%4$s">preview the invoice template</a> or <a href="%2$s" target="%3$s" class="%4$s">the delivery note template</a>.', 'woocommerce-delivery-notes' ), $invoice_url, $note_url, '_blank', 'print-preview-button' ); ?>
+						<?php _e( 'For more advanced control copy <code>woocommerce-delivery-notes/templates/print/style.css</code> to <code>your-theme-name/woocommerce/print/style.css</code>.', 'woocommerce-delivery-notes' ); ?>
+					</span>
+			</p>
+			<?php endif; ?>
 			<table class="form-table">
 				<tbody>
 					<tr class="hide-if-no-js">
@@ -276,32 +297,6 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong> 
 								<?php _e('Leave blank to not print a footer.', 'woocommerce-delivery-notes' ); ?>
 							</span>
-						</td>
-					</tr>
-					<tr>
-						<th>
-						</th>
-						<td>
-							<?php 
-							// show template preview links when an order is available	
-							$args = array(
-								'post_type' => 'shop_order',
-								'posts_per_page' => 1
-							);
-							$query = new WP_Query( $args );
-						
-							if($query->have_posts()) : ?>
-								<?php
-								$results = $query->get_posts();
-								$test_id = $results[0]->ID;
-								$invoice_url = wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_print_content&template_type=invoice&order_id=' . $test_id ), 'generate_print_content' );
-								$note_url = wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_print_content&template_type=delivery-note&order_id=' . $test_id ), 'generate_print_content' );
-								?>
-								<span class="description">
-									<?php printf( __( 'You can <a href="%1$s" target="%3$s" class="%4$s">preview the invoice template</a> or <a href="%2$s" target="%3$s" class="%4$s">the delivery note template</a>.', 'woocommerce-delivery-notes' ), $invoice_url, $note_url, '_blank', 'print-preview-button' ); ?>
-									<?php _e( 'For more advanced control copy <code>woocommerce-delivery-notes/templates/print/style.css</code> to <code>your-theme-name/woocommerce/print/style.css</code>.', 'woocommerce-delivery-notes' ); ?>
-								</span>
-							<?php endif; ?>
 						</td>
 					</tr>
 				</tbody>

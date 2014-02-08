@@ -24,7 +24,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			global $woocommerce;
 			$this->order = new WC_Order();
 			$this->template_directory_name = 'print';
-			$this->template_path = $woocommerce->template_url . $this->template_directory_name . '/';
+			$this->template_path = ( defined( 'WC_TEMPLATE_PATH' ) ? WC_TEMPLATE_PATH : $woocommerce->template_url ) . $this->template_directory_name . '/';
 			$this->template_default_path = WooCommerce_Delivery_Notes::$plugin_path . 'templates/' . $this->template_directory_name . '/';
 			$this->template_default_uri = WooCommerce_Delivery_Notes::$plugin_url . 'templates/' . $this->template_directory_name . '/';
 		}
