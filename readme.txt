@@ -3,7 +3,7 @@ Contributors: chabis, daveshine
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=wartamau%40gmail%2ecom&lc=US&item_name=piffpaffpuff&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
 Tags: delivery notes, delivery, shipping, print, order, invoice, invoices, woocommerce, woothemes, shop, shop manager, deckerweb
 Requires at least: 3.5 and WooCommerce 2.0
-Tested up to: 3.5.1 and WooCommerce 2.0.8
+Tested up to: 3.9 and WooCommerce 2.1
 Stable tag: trunk
 License: GPLv3 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
@@ -95,6 +95,10 @@ For custom and update-secure language files please upload them to `/wp-content/l
 5. Help tabs on the plugin's settings page with some info and important plugin links. [Click for larger image view](http://www.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-5.png)
 
 == Changelog ==
+
+= 2.1 =
+* UPDATE: WooCommerce 2.1 compability
+* FIX: Strip slashes from company name and other notes.
 
 = 2.0.2 =
 * FIX: The print data is now generated with the order metadata. This solves a problem where the items weren't displayed when the product was deleted. (thanks MDesigner0)
@@ -253,8 +257,6 @@ Just released into the wild.
 **Easy plugin translation platform with GlotPress tool:** [Translate the plugin here](http://translate.wpautobahn.com/projects/wordpress-plugins-deckerweb/woocommerce-delivery-notes)
 
 **Made your own translation?:** [Just send it in](http://genesisthemes.de/en/contact/)
-
-*Note:* All my plugins are internationalized/ translateable by default. This is very important for all users worldwide. So please contribute your language to the plugin to make it even more useful. For translating I recommend the awesome ["Codestyling Localization" plugin](http://wordpress.org/extend/plugins/codestyling-localization/) and for validating the ["Poedit Editor"](http://www.poedit.net/), which works fine on Windows, Mac and Linux.
 
 == Credits ==
 Thanks to WooThemes company and WooCommerce team for promoting this plugin on their official homepage as well as on the download page here on wordpress.org! ;-)

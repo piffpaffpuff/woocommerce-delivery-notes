@@ -343,7 +343,7 @@ if ( !function_exists( 'wcdn_company_name' ) ) {
 		global $wcdn;
 		$name = trim( $wcdn->settings->get_setting( 'custom_company_name' ) );
 		if( !empty( $name ) ) {
-			echo apply_filters( 'wcdn_company_name', wpautop( wptexturize( $name ) ) );
+			echo apply_filters( 'wcdn_company_name', stripslashes( wpautop( wptexturize( $name ) ) ) );
 		} else {
 			echo apply_filters( 'wcdn_company_name', get_bloginfo( 'name' ) );
 		}
@@ -356,7 +356,7 @@ if ( !function_exists( 'wcdn_company_name' ) ) {
 if ( !function_exists( 'wcdn_company_info' ) ) {
 	function wcdn_company_info() {
 		global $wcdn;
-		echo wpautop( wptexturize( $wcdn->settings->get_setting( 'company_address' ) ) );
+		echo stripslashes( wpautop( wptexturize( $wcdn->settings->get_setting( 'company_address' ) ) ) );
 	}
 }
 
@@ -512,7 +512,7 @@ if ( !function_exists( 'wcdn_get_order_totals' ) ) {
 if ( !function_exists( 'wcdn_get_shipping_notes' ) ) {
 	function wcdn_get_shipping_notes() {
 		global $wcdn;
-		return wpautop( wptexturize( $wcdn->print->get_order()->customer_note ) );
+		return stripslashes( wpautop( wptexturize( $wcdn->print->get_order()->customer_note ) ) );
 	}
 }
 
@@ -532,7 +532,7 @@ if ( !function_exists( 'wcdn_shipping_notes' ) ) {
 if ( !function_exists( 'wcdn_get_personal_notes' ) ) {
 	function wcdn_get_personal_notes() {
 		global $wcdn;
-		return wpautop( wptexturize( $wcdn->settings->get_setting( 'personal_notes' ) ) );
+		return stripslashes( wpautop( wptexturize( $wcdn->settings->get_setting( 'personal_notes' ) ) ) );
 	}
 }
 
@@ -552,7 +552,7 @@ if ( !function_exists( 'wcdn_personal_notes' ) ) {
 if ( !function_exists( 'wcdn_get_policies_conditions' ) ) {
 	function wcdn_get_policies_conditions() {
 		global $wcdn;
-		return wpautop( wptexturize( $wcdn->settings->get_setting( 'policies_conditions' ) ) );
+		return stripslashes( wpautop( wptexturize( $wcdn->settings->get_setting( 'policies_conditions' ) ) ) );
 	}
 }
 
@@ -572,7 +572,7 @@ if ( !function_exists( 'wcdn_policies_conditions' ) ) {
 if ( !function_exists( 'wcdn_get_footer_imprint' ) ) {
 	function wcdn_get_footer_imprint() {
 		global $wcdn;
-		return wpautop( wptexturize( $wcdn->settings->get_setting( 'footer_imprint' ) ) );
+		return stripslashes( wpautop( wptexturize( $wcdn->settings->get_setting( 'footer_imprint' ) ) ) );
 	}
 }
 

@@ -178,10 +178,12 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 						// Set item weight
 						$data['weight'] = $product->get_weight();
 						
-						
 						// Set item dimensions
 						$data['dimensions'] = $product->get_dimensions();
 					
+						// Set flag for virtual products
+						$data['virtual'] = $product->is_virtual();
+ 
 						// Pass complete product object
 						$data['product'] = $product;
 					
