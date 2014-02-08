@@ -3,33 +3,46 @@
 /**
  * Settings class
  */
-if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
+if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 
 	class WooCommerce_Delivery_Notes_Settings {
-	
+			
 		public $tab_name;
 		public $hidden_submit;
 		
 		/**
 		 * Constructor
 		 */
-		public function __construct() {			
+		public function __construct() {		
+			// Define default variables
 			$this->tab_name = 'woocommerce-delivery-notes';
 			$this->hidden_submit = WooCommerce_Delivery_Notes::$plugin_prefix . 'submit';
+			
+			// Load the hooks
+			register_activation_hook( WooCommerce_Delivery_Notes::$plugin_basefile_path, array( $this, 'activation_hooks' ) );
+			add_action( 'admin_init', array( $this, 'load_admin_hooks' ) );
 		}
 
 		/**
-		 * Load the class
+		 * Activation hooks
 		 */
-		public function load() {
-			add_action( 'admin_init', array( $this, 'load_hooks' ) );
+		public function activation_hooks() {
+			// Define default settings
+			$option = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint' );
+			if( !$option ) {
+				update_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint', 'print-order' );
+			}
+			$option = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_view_order_page' );
+			if( !$option ) {
+				update_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_view_order_page', 1 );
+			}
 		}
-
+		
 		/**
 		 * Load the admin hooks
 		 */
-		public function load_hooks() {	
-			add_filter( 'woocommerce_settings_tabs_array', array( $this, 'add_settings_tab' ) );
+		public function load_admin_hooks() {	
+			add_filter( 'woocommerce_settings_tabs_array', array( $this, 'add_settings_tab' ), 100 );
 			add_action( 'woocommerce_settings_tabs_' . $this->tab_name, array( $this, 'create_settings_page' ) );
 			add_action( 'woocommerce_update_options_' . $this->tab_name, array( $this, 'save_settings_page' ) );
 			add_action( 'current_screen', array( $this, 'load_screen_hooks' ) );
@@ -43,8 +56,8 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			$screen = get_current_screen();
 
 			if( $this->is_settings_page() ) {
+				add_action( 'admin_enqueue_scripts', array( $this, 'add_scripts' ) );
 				add_action( 'admin_print_styles', array( $this, 'add_styles' ) );
-				add_action( 'admin_print_scripts', array( $this, 'add_scripts' ) );
 				add_action( 'load-' . $screen->id, array( $this, 'add_help_tabs' ) );
 			}
 			
@@ -58,21 +71,17 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 */
 		public function add_styles() {
 			wp_enqueue_style( 'thickbox' );
-			wp_enqueue_style( 'woocommerce-delivery-notes', WooCommerce_Delivery_Notes::$plugin_url . 'css/style.css' );
+			wp_enqueue_style( 'woocommerce-delivery-notes-admin', WooCommerce_Delivery_Notes::$plugin_url . 'css/admin.css' );
 		}
 		
 		/**
 		 * Add the scripts
 		 */
-		public function add_scripts() {
-			?>
-			<script type="text/javascript">
-				var show_print_preview = 'yes';
-			</script>
-			<?php 			
+		public function add_scripts() {		
 			wp_enqueue_script( 'media-upload' );
 			wp_enqueue_script( 'thickbox' );
-			wp_enqueue_script( 'woocommerce-delivery-notes', WooCommerce_Delivery_Notes::$plugin_url . 'js/script.js', array( 'jquery', 'media-upload', 'thickbox' ) );
+			wp_enqueue_script( 'woocommerce-delivery-notes-print-link', WooCommerce_Delivery_Notes::$plugin_url . 'js/jquery.print-link.js', array( 'jquery' ) );
+			wp_enqueue_script( 'woocommerce-delivery-notes-admin', WooCommerce_Delivery_Notes::$plugin_url . 'js/admin.js', array( 'jquery', 'media-upload', 'thickbox', 'woocommerce-delivery-notes-print-link' ) );
 		}
 		
 		/**
@@ -150,7 +159,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		/**
 		 * Add a tab to the settings page
 		 */
-		public function add_settings_tab($tabs) {
+		public function add_settings_tab( $tabs ) {
 			$tabs[$this->tab_name] = __( 'Print', 'woocommerce-delivery-notes' );
 			
 			return $tabs;
@@ -185,13 +194,36 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			<img src="<?php echo $attachment_src[0]; ?>" width="<?php echo $attachment_src[1] / 4; ?>" height="<?php echo $attachment_src[2] / 4; ?>" alt="" />
 			<?php
 		}
-
+		
 		/**
 		 * Create the settings page content
 		 */
 		public function create_settings_page() {
 			?>
-			<h3><?php _e( 'Invoices and Delivery Notes', 'woocommerce-delivery-notes' ); ?></h3>
+			<h3><?php _e( 'Print Order Template', 'woocommerce-delivery-notes' ); ?></h3>
+			<p>
+				<?php 
+				// show template preview links when an order is available	
+				$args = array(
+					'post_type' => 'shop_order',
+					'posts_per_page' => 1
+				);
+				$query = new WP_Query( $args );
+			
+				if($query->have_posts()) : ?>
+					<?php
+					$results = $query->get_posts();
+					$test_id = $results[0]->ID;
+					$invoice_url = wcdn_get_print_permalink( $test_id, 'invoice' );
+					$note_url = wcdn_get_print_permalink( $test_id, 'delivery-note' );
+					?>
+					<input type="hidden" id="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>show_print_preview" />
+					<span class="description">
+						<?php printf( __( 'You can <a href="%1$s" target="%3$s" class="%4$s">preview the invoice template</a> or <a href="%2$s" target="%3$s" class="%4$s">the delivery note template</a>.', 'woocommerce-delivery-notes' ), $invoice_url, $note_url, '_blank', '' ); ?>
+						<?php _e( 'For more advanced control copy <code>woocommerce-delivery-notes/templates/print/style.css</code> to <code>your-theme-name/woocommerce/print/style.css</code>.', 'woocommerce-delivery-notes' ); ?>
+					</span>
+				<?php endif; ?>
+			</p>
 			<table class="form-table">
 				<tbody>
 					<tr class="hide-if-no-js">
@@ -278,35 +310,50 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							</span>
 						</td>
 					</tr>
+				</tbody>
+			</table>
+
+			<h3><?php _e( 'Options', 'woocommerce-delivery-notes' ); ?></h3>
+			<table class="form-table">
+				<tbody>	
 					<tr>
 						<th>
+							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>print_order_page_endpoint"><?php _e( 'Print Page Endpoint', 'woocommerce-delivery-notes' ); ?></label>
 						</th>
 						<td>
-							<?php 
-							// show template preview links when an order is available	
-							$args = array(
-								'post_type' => 'shop_order',
-								'posts_per_page' => 1
-							);
-							$query = new WP_Query( $args );
-						
-							if($query->have_posts()) : ?>
-								<?php
-								$results = $query->get_posts();
-								$test_id = $results[0]->ID;
-								$invoice_url = wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_print_content&template_type=invoice&order_id=' . $test_id ), 'generate_print_content' );
-								$note_url = wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_print_content&template_type=delivery-note&order_id=' . $test_id ), 'generate_print_content' );
-								?>
-								<span class="description">
-									<?php printf( __( 'You can <a href="%1$s" target="%3$s" class="%4$s">preview the invoice template</a> or <a href="%2$s" target="%3$s" class="%4$s">the delivery note template</a>.', 'woocommerce-delivery-notes' ), $invoice_url, $note_url, '_blank', 'print-preview-button' ); ?>
-									<?php _e( 'For more advanced control copy <code>woocommerce-delivery-notes/templates/print/style.css</code> to <code>your-theme-name/woocommerce/print/style.css</code>.', 'woocommerce-delivery-notes' ); ?>
-								</span>
-							<?php endif; ?>
+							<p>
+								<input type="text" name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>print_order_page_endpoint" value="<?php echo get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint' ); ?>" />
+							</p>
+							<span class="description">
+								<?php _e( 'Endpoint for the print order button.', 'woocommerce-delivery-notes' ); ?>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<?php _e( 'Frontend Print Buttons', 'woocommerce-delivery-notes' ); ?>
+						</th>
+						<td>
+							<fieldset>
+								<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>print_button_on_view_order_page">
+									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>print_button_on_view_order_page" type="hidden" value="" />
+									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>print_button_on_view_order_page" type="checkbox" value="1" <?php checked( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_view_order_page' ), 1 ); ?> />
+									<?php _e( 'Show a print button on the "View Order" page', 'woocommerce-delivery-notes' ); ?>
+								</label>
+							</fieldset>
+							<fieldset>
+								<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>print_button_on_my_account_page">
+									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>print_button_on_my_account_page" type="hidden" value="" />
+									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>print_button_on_my_account_page" type="checkbox" value="1" <?php checked( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_my_account_page' ), 1 ); ?> />
+									<?php _e( 'Show print buttons for every order on the "My Account" page', 'woocommerce-delivery-notes' ); ?>
+								</label>
+							</fieldset>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-			<h3><?php _e( 'Order Numbering Options', 'woocommerce-delivery-notes' ); ?></h3>
+			
+			<h3><?php _e( 'Order Numbering', 'woocommerce-delivery-notes' ); ?></h3>
 			<table class="form-table">
 				<tbody>	
 					<tr>
@@ -331,8 +378,8 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		/**
 		 * Get the content for an option
 		 */
-		public function get_setting( $name ) {
-			return get_option( WooCommerce_Delivery_Notes::$plugin_prefix . $name );
+		public function get_setting( $name, $default = null ) {
+			return get_option( WooCommerce_Delivery_Notes::$plugin_prefix . $name, $default );
 		}
 		
 		/**
@@ -340,8 +387,23 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 */
 		public function save_settings_page() {
 			if ( isset( $_POST[ $this->hidden_submit ] ) && $_POST[ $this->hidden_submit ] == 'submitted' ) {
+				
+				// Save settings
 				foreach ( $_POST as $key => $value ) {
 					if ( $key != $this->hidden_submit && strpos( $key, WooCommerce_Delivery_Notes::$plugin_prefix ) !== false ) {
+						// set a default values
+						if ( empty( $value ) ) {
+							if ( $key == WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint' ) {
+								$value = 'print-order';
+							}
+						}
+						
+						// sanitize values
+						if ( $key == WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint' ) {
+							$value = sanitize_title( $value );
+						}
+						
+						// update the value
 						if ( empty( $value ) ) {
 							delete_option( $key );
 						} else {
@@ -354,6 +416,9 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 						}
 					}
 				}
+				
+				// Flush permalink structs
+				flush_rewrite_rules();
 			}
 		}
 	

@@ -1,36 +1,23 @@
-<!DOCTYPE html>
-<html class="<?php echo wcdn_get_template_type(); ?>">
-<head>
-	<meta charset="utf-8">
-	<title><?php wcdn_template_title(); ?></title>
-	<?php wcdn_head(); ?>
-	<link rel="stylesheet" href="<?php wcdn_stylesheet_url( 'style.css' ); ?>" type="text/css" media="screen,print" />
-</head>
-<body>
-	<div id="container">
-		<?php wcdn_navigation(); ?>
-		<div id="content">
-			<div id="page">
-				<div id="letter-header">
+				<div class="letter-header">
 					<div class="heading"><?php if( wcdn_get_company_logo_id() ) : ?><?php wcdn_company_logo(); ?><?php else : ?><?php wcdn_template_title(); ?><?php endif; ?></div>
 					<div class="company-info">
 						<div class="company-name"><?php wcdn_company_name(); ?></div>
 						<div class="company-address"><?php wcdn_company_info(); ?></div>
 					</div>
-				</div><!-- #letter-header -->
+				</div><!-- .letter-header -->
 				
-				<div id="order-listing">
+				<div class="order-recipient">
 					<h3><?php _e( 'Recipient', 'woocommerce-delivery-notes' ); ?></h3>
 					<div class="shipping-info">
-						<?php if( wcdn_get_template_type() == 'invoice' ) : ?>
+						<?php if( wcdn_is_invoice() ) : ?>
 							<?php wcdn_billing_address(); ?>
 						<?php else : ?>
 							<?php wcdn_shipping_address(); ?>
 						<?php endif ?>
 					</div><!-- .shipping-info -->
-				</div><!-- #order-listing -->
+				</div><!-- .order-recipient -->
 				
-				<ul id="order-info">
+				<ul class="order-info">
 					<?php if( wcdn_get_company_logo_id() ) : ?>
 					<li>
 						<h3 class="order-number-label"><?php wcdn_template_title(); ?></h3>
@@ -58,7 +45,7 @@
 					</li>
 				</ul><!-- #order-info -->
 					
-				<div id="order-items">
+				<div class="order-items">
 					<table>
 						<thead>
 							<tr>
@@ -81,9 +68,9 @@
 							</tr><?php endforeach; endif; ?>
 						</tbody>
 					</table>
-				</div><!-- #order-items -->
+				</div><!-- .order-items -->
 				
-				<div id="order-summary">
+				<div class="order-summary">
 					<table>
 						<tfoot>
 							<?php foreach( wcdn_get_order_totals() as $total ) : ?>
@@ -94,26 +81,19 @@
 							<?php endforeach; ?>
 						</tfoot>
 					</table>
-				</div><!-- #order-summery -->
+				</div><!-- .order-summery -->
 	
-				<div id="order-notes">
+				<div class="order-notes">
 					<div class="notes-shipping">
-						<?php if ( wcdn_get_shipping_notes() ) : ?>
+						<?php if ( wcdn_has_shipping_notes() ) : ?>
 							<h3><?php _e( 'Customer Notes', 'woocommerce-delivery-notes' ); ?></h3>
 							<?php wcdn_shipping_notes(); ?>
 						<?php endif; ?>
 					</div>
 					<div class="notes-personal"><?php wcdn_personal_notes(); ?></div>
-				</div><!-- #order-notes -->
+				</div><!-- .order-notes -->
 					
-				<?php if ( wcdn_get_policies_conditions() || wcdn_get_footer_imprint() ) : ?>
-					<div id="letter-footer">
-						<div class="policies"><?php wcdn_policies_conditions(); ?></div>
-						<div class="imprint"><?php wcdn_footer_imprint(); ?></div>
-					</div><!-- #letter-footer -->
-				<?php endif; ?>
-			</div><!-- #page -->
-		</div><!-- #content -->
-	</div><!-- #container -->
-</body>
-</html>
+				<div class="letter-footer">
+					<div class="policies"><?php wcdn_policies_conditions(); ?></div>
+					<div class="imprint"><?php wcdn_footer_imprint(); ?></div>					
+				</div><!-- .letter-footer -->

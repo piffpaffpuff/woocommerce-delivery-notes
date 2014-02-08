@@ -89,7 +89,6 @@ th {
 	padding-left: 10%;
 	padding-right: 10%;
 	text-align: left;
-/* 	page-break-after: always;	 */
 }
 
 #letter-header,
@@ -253,5 +252,9 @@ th {
 @media print {
 	body {
 		font-size: 8pt;
+	}
+	
+	#page {
+	 	page-break-before: always;
 	}
 }

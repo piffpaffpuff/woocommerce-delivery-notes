@@ -14,83 +14,226 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 
 		private $order;
 		
+		public $api_endpoints;
+		public $query_vars;
+		public $template_types;
 		public $template_type;
 		public $order_id;
 
 		/**
 		 * Constructor
 		 */
-		public function __construct() {					
-			global $woocommerce;
-			$this->order = new WC_Order();
-			$this->template_directory_name = 'print';
-			$this->template_path = $woocommerce->template_url . $this->template_directory_name . '/';
-			$this->template_default_path = WooCommerce_Delivery_Notes::$plugin_path . 'templates/' . $this->template_directory_name . '/';
-			$this->template_default_uri = WooCommerce_Delivery_Notes::$plugin_url . 'templates/' . $this->template_directory_name . '/';
+		public function __construct() {	
+			// Set the default variables
+			$this->template_types = array(
+				'invoice',
+				'delivery-note',
+				'order'
+			);
+			
+			$this->api_endpoints = array( 
+				'print-order' => get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint', 'print-order' )
+			);
+						
+			$this->query_vars = array(
+				'print-order-type',
+				'print-order-email'
+			);
+			
+			// Load the hooks
+			add_action( 'init', array( $this, 'load_hooks' ) );
+			add_filter( 'query_vars', array( $this, 'add_query_vars' ) );
+			add_action( 'parse_request', array( $this, 'parse_request' ) );
+			add_action( 'template_redirect', array( $this, 'template_redirect' ) );
+			
+			/*
+
+			if ( is_admin() ) {
+ 	            // Bulk edit
+ 	            add_action( 'admin_footer', array( $this, 'bulk_admin_footer' ), 10 );
+ 	            add_action( 'load-edit.php', array( $this, 'bulk_action' ) );
+ 			}
+*/
 		}
 		
 		/**
-		 * Load the class
+		 * Load the init hooks
 		 */
-		public function load() {
-			add_action( 'admin_init', array( $this, 'load_hooks' ) );
+		public function load_hooks() {	
+			// Define default variables
+			$this->order = new WC_Order();
+			$this->template_directory_name = 'print';
+			$this->template_path = WC_TEMPLATE_PATH . $this->template_directory_name . '/';
+			$this->template_default_path = WooCommerce_Delivery_Notes::$plugin_path . 'templates/' . $this->template_directory_name . '/';
+			$this->template_default_uri = WooCommerce_Delivery_Notes::$plugin_url . 'templates/' . $this->template_directory_name . '/';
+			
+			// Add the endpoints
+			$this->add_endpoints();
+		}
+		
+		/**
+		 * Add endpoints for query vars
+		 */
+		public function add_endpoints() {
+			foreach( $this->api_endpoints as $var ) {
+				add_rewrite_endpoint( $var, EP_PAGES );
+			}
 		}
 
 		/**
-		 * Load the admin hooks
+		 * Add the query vars when no permalink structures aren't supported.
 		 */
-		public function load_hooks() {	
-			add_action('wp_ajax_generate_print_content', array($this, 'generate_print_content_ajax'));
+		public function add_query_vars( $vars ) {
+			foreach( $this->query_vars as $var ) {
+				$vars[] = $var;
+			}
+		    return $vars;
 		}
-
+		
+		/**
+		 * Parse the query variables
+		 */
+		public function parse_request( $wp ) {
+			// Map endpoint keys to their query var keys, or get them if there is no permalink structure.
+			foreach( $this->api_endpoints as $key => $var ) {
+				if( isset( $_GET[$var] ) ) {
+					$wp->query_vars[$key] = $_GET[$var];
+				} elseif ( isset( $wp->query_vars[$var] ) ) {
+					$wp->query_vars[$key] = $wp->query_vars[$var];
+				}
+			}
+		}
+		
+		/**
+		 * Template handling
+		 */
+		public function template_redirect() {
+			global $wp;
+				
+			// Check the page url and display the template when on my-account page
+			if( !empty( $wp->query_vars['print-order'] ) && is_account_page() ) {
+				$this->generate_print_content_from_query();
+			}
+		}
+		
 		/**
 		 * Generate the template output
 		 */
-		public function generate_print_content( $template_type, $order_id ) {
+		public function generate_print_content( $order_id, $template_type = 'order' ) {
+			// create an array of ids
+			$order_ids = $order_id;
+			if( !is_array( $order_id ) ) {
+				$order_ids = array( $order_id );
+			}
+			
+			// load the html
+			$this->template_type = $template_type;
+			$this->order_id = $order_id;
+			//$this->order->get_order( $this->order_id );
+			$this->get_template( apply_filters( 'wcdn_template_file_name', 'print-order.php', $template_type, $this ) );
+			
+			/*
+				// default template type
+			if( !in_array( $template_type, $this->template_types ) ) {
+				$template_type = 'order';
+			}
+			
+			// load the html
 			$this->template_type = $template_type;
 			$this->order_id = $order_id;
 			$this->order->get_order( $this->order_id );
 			$this->get_template( apply_filters( 'wcdn_template_file_name', 'print-' . $this->template_type . '.php', $template_type, $order_id, $this ) );
+			
+*/
 			do_action( 'wcdn_generate_print_content' );
-		}
-		
-		/**
-		 * Load and generate the template output with ajax
-		 */
-		public function generate_print_content_ajax() {		
-			// Let the backend only access the page
-			if( !is_admin() ) {
-				wp_die( __( 'You do not have sufficient permissions to access this page.', 'woocommerce-delivery-notes' ) );
-			}
-			
-			// Check the user privileges
-			if( !current_user_can( 'manage_woocommerce_orders' ) && !current_user_can( 'edit_shop_orders' ) ) {
-				wp_die( __( 'You do not have sufficient permissions to access this page.', 'woocommerce-delivery-notes' ) );
-			}
-			
-			// Check the nonce
-			if( empty( $_GET['action'] ) || !check_admin_referer( $_GET['action'] ) ) {
-				wp_die( __( 'You do not have sufficient permissions to access this page.', 'woocommerce-delivery-notes' ) );
-			}
-			
-			// Check if all parameters are set
-			if( empty( $_GET['template_type'] ) || empty( $_GET['order_id'] ) ) {
-				wp_die( __( 'You do not have sufficient permissions to access this page.', 'woocommerce-delivery-notes' ) );
-			}
-			
-			// Generate the output
-			$this->generate_print_content( $_GET['template_type'], $_GET['order_id'] );
 			
 			exit;
 		}
 		
 		/**
-		 * Get the template url for a file. locate by file existience
+		 * Generate the template output based on the query
+		 */
+		public function generate_print_content_from_query() {
+			global $post, $wp;
+			
+			// Default id
+			$order_id = $wp->query_vars['print-order'];
+
+			// Default type 			
+			if( empty( $wp->query_vars['print-order-type'] ) || !in_array( $wp->query_vars['print-order-type'], $this->template_types ) ) {
+				$template_type = 'order';
+			} else {
+				$template_type = $wp->query_vars['print-order-type'];
+			}
+			
+			// Default email 			
+			if( empty( $wp->query_vars['print-order-email'] ) ) {
+				$order_email = null;
+			} else {
+				$order_email = strtolower( $wp->query_vars['print-order-email'] );
+			}
+			
+			// Order exists
+			$order = new WC_Order( $order_id );	
+			if( empty( $order->id ) ) {
+				wp_redirect( get_permalink( wc_get_page_id( 'myaccount' ) ) );
+				exit;
+			}
+							
+			// Logged in users			
+			if( is_user_logged_in() && ( !current_user_can( 'edit_shop_orders' ) && !current_user_can( 'view_order', $order_id ) ) ) {
+				wp_redirect( get_permalink( wc_get_page_id( 'myaccount' ) ) );
+				exit;
+			} 
+
+			// Not logged in users require an email 
+			if( !is_user_logged_in() && ( empty( $order_email ) || strtolower( $order->billing_email ) != $order_email ) ) {
+				wp_redirect( get_permalink( wc_get_page_id( 'myaccount' ) ) );
+				exit;
+			}
+			
+			// Generate the output
+			$this->generate_print_content( $wp->query_vars['print-order'], $template_type );
+			exit;
+		}		
+						
+		/**
+		 * Get print page url
+		 */
+		public function get_print_page_url( $order_id, $template_type = 'order', $order_email = null ) {
+			// Default args
+			$args = array();
+			
+			if( in_array( $template_type, $this->template_types ) && $template_type != 'order' ) {
+				$args = wp_parse_args( array( 'print-order-type' => $template_type ), $args );
+			}
+			
+			if( !empty( $order_email ) ) {
+				$args = wp_parse_args( array( 'print-order-email' => $order_email ), $args );
+			}
+			
+			// Generate the url	
+			$permalink = get_permalink( wc_get_page_id( 'myaccount' ) );
+			$endpoint = $this->api_endpoints['print-order'];
+
+			if( get_option( 'permalink_structure' ) ) {
+				$url = trailingslashit( trailingslashit( $permalink ) . $endpoint . '/' . $order_id );
+			} else {
+				$url = add_query_arg( $endpoint, $order_id, $permalink );
+			}
+				
+			$url = add_query_arg( $args, $url );
+			
+			return $url;
+		}
+		
+		/**
+		 * Get the template url for a file. locate by file existence
 		 * and then return the corresponding url.
 		 */
-		public function get_template_url( $name ) {
+		public function get_template_url( $name = 'order' ) {
 			global $woocommerce;
-			
+				
 			$uri = $this->template_default_uri . $name;
 			$child_theme_path = get_stylesheet_directory() . '/' . $this->template_path;
 			$child_theme_uri = get_stylesheet_directory_uri() . '/' . $this->template_path;
@@ -102,7 +245,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			} elseif( file_exists( $theme_path . $name ) ) {
 				$uri = $theme_uri . $name;
 			}
-			
+
 			return $uri;
 		}
 		
@@ -110,7 +253,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		 * Load the template file content
 		 */
 		public function get_template( $name ) {
-			woocommerce_get_template( $name, null, $this->template_path, $this->template_default_path );
+			wc_get_template( $name, null, $this->template_path, $this->template_default_path );
 		}
 							
 		/**
@@ -167,7 +310,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 					
 					$product = $this->order->get_product_from_item( $item );
 					
-					// Checking fo existance, thanks to MDesigner0 
+					// Checking for existance, thanks to MDesigner0 
 					if(!empty($product)) {	
 						// Set the single price
 						$data['single_price'] = $product->get_price();
@@ -178,13 +321,14 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 						// Set item weight
 						$data['weight'] = $product->get_weight();
 						
-						
 						// Set item dimensions
 						$data['dimensions'] = $product->get_dimensions();
+						
+						// Set flag for virtual products
+						$data['virtual'] = $product->is_virtual();
 					
 						// Pass complete product object
 						$data['product'] = $product;
-					
 					}
 
 					$data_list[] = apply_filters( 'wcdn_order_item_data', $data );
@@ -203,6 +347,78 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			} 
 			return;
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		/**
+		 * Add the bulk edit functions to the list
+		 */
+	/*
+	function bulk_admin_footer() {
+            global $post_type;
+            
+            if ( $post_type == 'shop_order' ) {
+                ?>
+                <script type="text/javascript">
+                    jQuery(document).ready(function() {
+                        jQuery('<option>').val('print_invoices').text('<?php _e( 'Print Invoices' ); ?>').appendTo("select[name='action']");
+                        jQuery('<option>').val('print_invoices').text('<?php _e( 'Print Invoices' ); ?>').appendTo("select[name='action2']");
+                    });
+                </script>
+                <?php
+            }
+        }
+        
+*/
+        /**
+		 * The action to run when the "Print Invoices" bulk action is applied
+		 */
+   /*
+     function bulk_action() {
+            $wp_list_table = _get_list_table( 'WP_Posts_List_Table' );
+            $action = $wp_list_table->current_action();
+            
+            switch ( $action ) {
+                case 'print_invoices':
+                    $report_action = 'printed_invoices';
+                    $changed = 0;
+                
+                    $post_ids = array_map( 'absint', (array)$_REQUEST['post'] );
+                    
+                    foreach ( $post_ids as $post_id ) {
+                        
+                        // Print invoice for each order
+                        $this->template_type = 'invoice';
+                        $this->order = new WC_Order();
+						$this->order_id = $post_id;
+						$this->order->get_order( $this->order_id );
+						$this->get_template( apply_filters( 'wcdn_template_file_name', 'print-' . $this->template_type . '.php', $template_type, $order_id, $this ) );
+						do_action( 'wcdn_generate_print_content' );
+                        
+                        $changed++;
+                    }
+            
+                    //$sendback = add_query_arg( array( 'post_type' => 'shop_order', $report_action => true, 'changed' => $changed, 'ids' => join( ',', $post_ids ) ), '' );
+                    //wp_redirect( $sendback );
+                    
+                    exit();
+                break;
+                default:
+                    return;
+            }
+        }
+*/
+	
+		
+		
+		
+		
+		
 	}
 
 }

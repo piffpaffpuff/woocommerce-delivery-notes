@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WooCommerce Print Invoices & Delivery Notes package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2013-06-18 09:37+0100\n"
+"PO-Revision-Date: 2013-04-28 14:33+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,7 +10,7 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "Project-Id-Version: WooCommerce Print Invoices & Delivery Notes\n"
 "POT-Creation-Date: \n"
-"Last-Translator: David Decker <deckerweb.mobil@googlemail.com>\n"
+"Last-Translator: Adriano Calvitto <adriano.calvitto@gmail.com>\n"
 "Language-Team: \n"
 
 #: classes/class-wcdn-settings.php:301

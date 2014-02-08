@@ -2,8 +2,8 @@
 Contributors: chabis, daveshine
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=wartamau%40gmail%2ecom&lc=US&item_name=piffpaffpuff&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
 Tags: delivery notes, delivery, shipping, print, order, invoice, invoices, woocommerce, woothemes, shop, shop manager, deckerweb
-Requires at least: 3.5 and WooCommerce 2.0
-Tested up to: 3.5.1 and WooCommerce 2.0.8
+Requires at least: 3.8 and WooCommerce 2.1
+Tested up to: 3.8 and WooCommerce 2.1
 Stable tag: trunk
 License: GPLv3 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
@@ -83,6 +83,9 @@ The page will be printed as you see it in your browser when you enabled the prev
 
 Beyond the styling of the template be aware of any special features of the used browser. They may not print websites properly or add a pagination or website url. Use a "Print Preview" feature of your browser which all current versions of Firefox, Chrome, Safari and Opera support.
 
+= Can data from other plugins be integrated and be printed? =
+Unfortunately not, because it would take to much time to always stay compatible with those plugins. There may be an exception if there is popular demand for a certain plugin that is freely available as an open source version.
+
 = How can I translate the plugin with my own wording? =
 For custom and update-secure language files please upload them to `/wp-content/languages/woocommerce-delivery-notes/` (just create this folder) - This enables you to use fully custom translations that won't be overridden on plugin updates. Also, complete custom English wording is possible with that, just use a language file like `woocommerce-delivery-notes-en_US.mo/.po` to achieve that (for creating one see the tools on "Other Notes"). And finally contact one of the developers if you would like to add your translation to the standard distribution. 
 
@@ -95,6 +98,8 @@ For custom and update-secure language files please upload them to `/wp-content/l
 5. Help tabs on the plugin's settings page with some info and important plugin links. [Click for larger image view](http://www.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-5.png)
 
 == Changelog ==
+
+= 3.0 =
 
 = 2.0.2 =
 * FIX: The print data is now generated with the order metadata. This solves a problem where the items weren't displayed when the product was deleted. (thanks MDesigner0)
@@ -203,6 +208,9 @@ For custom and update-secure language files please upload them to `/wp-content/l
 
 == Upgrade Notice ==
 
+= 3.0 =
+The plugin requires at least WooCommerce 2.1.
+
 = 1.5 =
 Update your custom style.css. Remove any width and height CSS properties that were assigned to the img tag.
 
@@ -237,17 +245,12 @@ Just released into the wild.
 * French (fr_FR): Français - user-submitted by Olivier
 * Danish (da_DK): Dansk - user-submitted by [boldt](http://boldt.325.dk/)
 * Polish (pl_PL): Polski - user-submitted
-* Russian (ru_RU): Русский - user-submitted
+* Russian (ru_RU): русский - user-submitted
 * Finnish (fi): Suomi - user-submitted
 * Italian (it_IT): Italiano - user-submitted
 * Portuguse, Brazilian (pt_BR): Português - user-submitted
 * Slovakian (sk_SK): Slovenčina - user-submitted
 * Turkish (tr_TR): Türk - user-submitted
-* Czech (cs_CZ): Čeština - user-submitted
-* Estonian (et): Eesti - user-submitted
-* Hungarian (hu_HU): Magyar - user-submitted
-* Lithuanian (lt_LT): Lietuviškai - user-submitted
-* Romanian (ro_RO): Română - user-submitted
 * For custom and update-secure language files please upload them to `/wp-content/languages/woocommerce-delivery-notes/` (just create this folder) - This enables you to use fully custom translations that won't be overridden on plugin updates. Also, complete custom English wording is possible with that as well, just use a language file like `woocommerce-delivery-notes-en_US.mo/.po` to achieve that.
 
 **Easy plugin translation platform with GlotPress tool:** [Translate the plugin here](http://translate.wpautobahn.com/projects/wordpress-plugins-deckerweb/woocommerce-delivery-notes)
