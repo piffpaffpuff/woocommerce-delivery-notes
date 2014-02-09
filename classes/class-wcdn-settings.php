@@ -227,11 +227,13 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							<span id="company-logo-placeholder"><?php if( !empty( $attachment_id ) ) : ?><?php $this->create_thumbnail( $attachment_id ); ?><?php endif; ?></span>
 							<a href="#" id="company-logo-remove-button" <?php if( empty( $attachment_id ) ) : ?>style="display: none;"<?php endif; ?>><?php _e( 'Remove Logo', 'woocommerce-delivery-notes' ); ?></a>
 							<a href="#" <?php if( !empty( $attachment_id ) ) : ?>style="display: none;"<?php endif; ?> id="company-logo-add-button"><?php _e( 'Set Logo', 'woocommerce-delivery-notes' ); ?></a>
-							<span class="description">
-								<?php _e( 'A company/shop logo representing your business.', 'woocommerce-delivery-notes' ); ?>
-								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
-								<?php _e( 'When the image is printed, its pixel density will automatically be eight times higher than the original. This means, 1 printed inch will correspond to about 288 pixels on the screen. Example: an image with a width of 576 pixels and a height of 288 pixels will have a printed size of about 2 inches to 1 inch.', 'woocommerce-delivery-notes' ); ?>
-							</span>
+							<p>
+								<span class="description">
+									<?php _e( 'A company/shop logo representing your business.', 'woocommerce-delivery-notes' ); ?>
+									<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
+									<?php _e( 'When the image is printed, its pixel density will automatically be eight times higher than the original. This means, 1 printed inch will correspond to about 288 pixels on the screen. Example: an image with a width of 576 pixels and a height of 288 pixels will have a printed size of about 2 inches to 1 inch.', 'woocommerce-delivery-notes' ); ?>
+								</span>
+							</p>
 						</td>
 					</tr>
 					<tr>

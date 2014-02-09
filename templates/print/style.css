@@ -187,6 +187,10 @@ th {
 #order-items dd {
 	margin-left: 0.2em;
 }
+#order-items dt p, 
+#order-items dd p {
+	display: inline;
+}
 
 /* Order Summary - #order-summary */
 #order-summary {

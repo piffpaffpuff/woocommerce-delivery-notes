@@ -88,11 +88,10 @@ For custom and update-secure language files please upload them to `/wp-content/l
 
 == Screenshots ==
 
-1. Plugin's settings page where you can set up to five fields for the delivery note. [Click for larger image view](http://www.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-1.png)
-2. Single Order Edit page with the meta box and the print buttons.
-3. Invoice printing page with default template - and the five custom sections. [Click for larger image view](http://www.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-3.png)
-4. Delivery Note printing page with default template - and the five custom sections. [Click for larger image view](http://www.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-4.png)
-5. Help tabs on the plugin's settings page with some info and important plugin links. [Click for larger image view](http://www.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot-5.png)
+1. Plugin's settings page where you can set up the information. [Click for larger image](http://www.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot1.png)
+2. Box with print options on the single order edit screen.
+3. Default print template for invoices, that can be edited through CSS. [Click for larger image](http://www.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot3.png)
+4. Default print template for delivery notes, that can be edited through CSS. [Click for larger image](http://www.wordpress.org/extend/plugins/woocommerce-delivery-notes/screenshot4.png)
 
 == Changelog ==
 
