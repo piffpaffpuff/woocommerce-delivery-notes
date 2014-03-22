@@ -1,20 +1,19 @@
 <?php
 /**
- * Print order invoices & delivery notes for WooCommerce shop plugin.
- * You can add company/shop info as well as personal notes & policies to print pages.
+ * Print order invoices & delivery notes for the WooCommerce shop plugin.
  *
  * Plugin Name: WooCommerce Print Invoices & Delivery Notes
  * Plugin URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
- * Description: Print order invoices & delivery notes for WooCommerce shop plugin. You can add company/shop info as well as personal notes & policies to print pages.
+ * Description: Print order invoices & delivery notes for the WooCommerce shop plugin. 
  * Version: 3.0
- * Author: Steve Clark, Triggvy Gunderson, David Decker
+ * Author: Triggvy Gunderson
  * Author URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * License: GPLv3 or later
  * License URI: http://www.opensource.org/licenses/gpl-license.php
  * Text Domain: woocommerce-delivery-notes
  * Domain Path: /languages/
  *
- * Copyright 2011-2014 Steve Clark, Trigvvy Gunderson, David Decker - DECKERWEB
+ * Copyright 2014 Trigvvy Gunderson
  *		
  *     This file is part of WooCommerce Print Invoices & Delivery Notes,
  *     a plugin for WordPress.
@@ -39,7 +38,7 @@
  */
 if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 
-	class WooCommerce_Delivery_Notes {
+	final class WooCommerce_Delivery_Notes {
 	
 		public static $plugin_prefix;
 		public static $plugin_url;
@@ -64,32 +63,42 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 			self::$plugin_path = trailingslashit( dirname( self::$plugin_basefile_path ) );
 		
 			// Include the classes	
-			$this->includes();	
+			$this->include_classes();	
 			
 			// WooCommerce activation required
 			if ( $this->is_woocommerce_activated() ) {	
 				// Create the instances
-				$this->writepanel = new WooCommerce_Delivery_Notes_Writepanel();
-				$this->settings = new WooCommerce_Delivery_Notes_Settings();
 				$this->print = new WooCommerce_Delivery_Notes_Print();
+				$this->settings = new WooCommerce_Delivery_Notes_Settings();
+				$this->writepanel = new WooCommerce_Delivery_Notes_Writepanel();
 				$this->theme = new WooCommerce_Delivery_Notes_Theme();
-				
+
 				// Load the hooks
 				add_action( 'plugins_loaded', array($this, 'load_localisation') );
 				add_action( 'admin_init', array( $this, 'load_admin_hooks' ) );
+				add_action( 'init', array( $this, 'include_template_functions' ) );
 			}
 		}
 		
 		/**
 		 * Include the main plugin classes and functions
 		 */
-		public function includes() {
-			include_once( 'classes/class-wcdn-writepanel.php' );
-			include_once( 'classes/class-wcdn-settings.php' );
-			include_once( 'classes/class-wcdn-print.php' );
-			include_once( 'classes/class-wcdn-theme.php' );
+		public function include_classes() {
+			include_once( 'includes/class-wcdn-print.php' );
+			include_once( 'includes/class-wcdn-settings.php' );
+			include_once( 'includes/class-wcdn-writepanel.php' );
+			include_once( 'includes/class-wcdn-theme.php' );
 		}
 
+		/**
+		 * Function used to init Template Functions.
+		 * This makes them pluggable by plugins and themes.
+		 */
+		public function include_template_functions() {
+			include_once( 'includes/wcdn-template-functions.php' );
+			include_once( 'includes/wcdn-template-hooks.php' );
+		}
+	
 		/**
 		 * Load the localisation 
 		 */
@@ -102,23 +111,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 * Load the admin hooks
 		 */
 		public function load_admin_hooks() {
-			add_filter( 'plugin_row_meta', array( $this, 'add_support_links' ), 10, 2 );			
 			add_filter( 'plugin_action_links_' . self::$plugin_basefile, array( $this, 'add_settings_link') );
-		}	
-						
-		/**
-		 * Add various support links to plugin page
-		 */
-		public function add_support_links( $links, $file ) {
-			if ( !current_user_can( 'install_plugins' ) ) {
-				return $links;
-			}
-		
-			if ( $file == WooCommerce_Delivery_Notes::$plugin_basefile ) {
-				$links[] = '<a href="http://wordpress.org/extend/plugins/woocommerce-delivery-notes/faq/" target="_blank" title="' . __( 'FAQ', 'woocommerce-delivery-notes' ) . '">' . __( 'FAQ', 'woocommerce-delivery-notes' ) . '</a>';
-				$links[] = '<a href="http://wordpress.org/support/plugin/woocommerce-delivery-notes" target="_blank" title="' . __( 'Support', 'woocommerce-delivery-notes' ) . '">' . __( 'Support', 'woocommerce-delivery-notes' ) . '</a>';
-			}
-			return $links;
 		}
 		
 		/**
@@ -153,489 +146,5 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
  * Instance of the plugin
  */
 $wcdn = new WooCommerce_Delivery_Notes();
-
-/**
- * Public functions
- */
-
-/**
- * Return print page permalink
- */
-if ( !function_exists( 'wcdn_get_print_permalink' ) ) {
-	function wcdn_get_print_permalink( $order_id, $template_type = 'order', $order_email = null ) {
-		global $wcdn;
-		return $wcdn->print->get_print_page_url( $order_id, $template_type, $order_email );
-	}
-}
-
-/**
- * Return when invoice
- */
-if ( !function_exists( 'wcdn_is_invoice' ) ) {
-	function wcdn_is_invoice() {
-		global $wcdn;
-		if( $wcdn->print->template_type == 'invoice' ) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-}
-
-/**
- * Return when delivery note
- */
-if ( !function_exists( 'wcdn_is_delivery_note' ) ) {
-	function wcdn_is_delivery_note() {
-		global $wcdn;
-		if( $wcdn->print->template_type == 'delivery-note' ) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-}
-
-/**
- * Return when order
- */
-if ( !function_exists( 'wcdn_is_order' ) ) {
-	function wcdn_is_order() {
-		global $wcdn;
-		if( $wcdn->print->template_type == 'order' ) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-}
-
-/**
- * Return Type of the print template
- */
-if ( !function_exists( 'wcdn_get_template_type' ) ) {
-	function wcdn_get_template_type() {
-		global $wcdn;
-		return $wcdn->print->template_type;
-	}
-}
-
-/**
- * Show the template part
- */
-if ( !function_exists( 'wcdn_get_template' ) ) {
-	function wcdn_get_template( $name ) {
-		global $wcdn;
-		$wcdn->print->get_template( $name );
-	}
-}
-
-/**
- * Show template  url
- */
-if ( !function_exists( 'wcdn_stylesheet_url' ) ) {
-	function wcdn_stylesheet_url( $name ) {
-		global $wcdn;
-		echo apply_filters( 'wcdn_stylesheet_url', $wcdn->print->get_template_url( $name ) );
-	}
-}
-
-/**
- * Show the template title depending on type
- */
-if ( !function_exists( 'wcdn_template_title' ) ) {
-	function wcdn_template_title() {
-		if( wcdn_get_template_type() == 'invoice' ) {
-			echo apply_filters( 'wcdn_template_title', __( 'Invoice', 'woocommerce-delivery-notes' ) );
-		} elseif( wcdn_get_template_type() == 'delivery-note' ) {
-			echo apply_filters( 'wcdn_template_title', __( 'Delivery Note', 'woocommerce-delivery-notes' ) );
-		} else {
-			echo apply_filters( 'wcdn_template_title', __( 'Order', 'woocommerce-delivery-notes' ) );
-		} 
-	}
-}
-
-/**
- * Create header
- */
-if ( !function_exists( 'wcdn_head' ) ) {
-	function wcdn_head() {
-		?>
-		<style>
-			#navigation {
-				font-family: sans-serif;
-				background-color: #f1f1f1;
-				z-index: 200;
-				border-bottom: 1px solid #dfdfdf;
-				left: 0;
-				right: 0;
-				top: 0;
-				position: fixed;
-				padding: 6px;
-			}
-
-			#navigation .button {
-				transition-property: border, background, color;
-				display: inline-block;
-				text-decoration: none;
-				font-size: 13px;
-				line-height: 26px;
-				height: 28px;
-				margin: 0;
-				padding: 0 10px 1px;
-				cursor: pointer;
-				border-width: 1px;
-				border-style: solid;
-				-webkit-border-radius: 3px;
-				-webkit-appearance: none;
-				border-radius: 3px;
-				white-space: nowrap;
-				-webkit-box-sizing: border-box;
-				-moz-box-sizing: border-box;
-				box-sizing: border-box;
-				
-				color: #555;
-				border-color: #cccccc;
-				background: #f7f7f7;
-
-				-webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 0 rgba(0,0,0,.08);
-				box-shadow: inset 0 1px 0 #fff, 0 1px 0 rgba(0,0,0,.08);
-				vertical-align: top;
-			}
-			
-			#navigation .button:hover,
-			#navigation .button:focus {
-				background: #fafafa;
-				border-color: #999;
-				color: #222;
-			}
-			
-			#navigation .button:active {
-				background: #eee;
-				border-color: #999;
-				color: #333;
-				-webkit-box-shadow: inset 0 2px 5px -3px rgba( 0, 0, 0, 0.5 );
-				box-shadow: inset 0 2px 5px -3px rgba( 0, 0, 0, 0.5 );
-			}
-			
-			@media print {	
-				#navigation {
-					display: none;
-				}
-			}
-		</style>
-		<?php
-	}
-}
-
-/**
- * Create meta navigation
- */
-if ( !function_exists( 'wcdn_navigation' ) ) {
-	function wcdn_navigation() {
-		?>
-		<div id="navigation">
-			<a href="#" class="button" onclick="window.print();return false;"><?php _e( 'Print', 'woocommerce-delivery-notes' ); ?></a>
-		</div>
-		<?php
-	}
-}
-
-/**
- * Return logo id
- */
-if ( !function_exists( 'wcdn_get_company_logo_id' ) ) {
-	function wcdn_get_company_logo_id() {
-		global $wcdn;
-		return apply_filters( 'wcdn_company_logo_id', $wcdn->settings->get_setting( 'company_logo_image_id' ) );
-	}
-}
-
-/**
- * Show logo html
- */
-if ( !function_exists( 'wcdn_company_logo' ) ) {
-	function wcdn_company_logo() {
-		global $wcdn;
-		$attachment_id = wcdn_get_company_logo_id();
-		$company = $wcdn->settings->get_setting( 'custom_company_name' );
-		if( $attachment_id ) {
-			$attachment_src = wp_get_attachment_image_src( $attachment_id, 'full', false );
-			
-			// resize the image to a 1/4 of the original size
-			// to have a printing point density of about 288ppi.
-			?>
-			<img src="<?php echo $attachment_src[0]; ?>" width="<?php echo $attachment_src[1] / 4; ?>" height="<?php echo $attachment_src[2] / 4; ?>" alt="<?php echo esc_attr( $company ); ?>" />
-			<?php
-		}
-	}
-}
-
-/**
- * Return default title name of Delivery Note 
- */
-if ( !function_exists( 'wcdn_company_name' ) ) {
-	function wcdn_company_name() {
-		global $wcdn;
-		$name = trim( $wcdn->settings->get_setting( 'custom_company_name' ) );
-		if( !empty( $name ) ) {
-			echo apply_filters( 'wcdn_company_name', wpautop( wptexturize( $name ) ) );
-		} else {
-			echo apply_filters( 'wcdn_company_name', get_bloginfo( 'name' ) );
-		}
-	}
-}
-
-/**
- * Return shop/company info if provided
- */
-if ( !function_exists( 'wcdn_company_info' ) ) {
-	function wcdn_company_info() {
-		global $wcdn;
-		echo wpautop( wptexturize( $wcdn->settings->get_setting( 'company_address' ) ) );
-	}
-}
-
-/**
- * Show billing phone
- */
-if ( !function_exists( 'wcdn_billing_phone' ) ) {
-	function wcdn_billing_phone() {
-		global $wcdn;
-		echo $wcdn->print->get_order()->billing_phone;
-	}
-}
-
-/**
- * Show billing email
- */
-if ( !function_exists( 'wcdn_billing_email' ) ) {
-	function wcdn_billing_email() {
-		global $wcdn;
-		echo $wcdn->print->get_order()->billing_email;
-	}
-}
-
-/**
- * Show billing address
- */
-if ( !function_exists( 'wcdn_billing_address' ) ) {
-	function wcdn_billing_address() {
-		global $wcdn;
-		$address = $wcdn->print->get_order()->get_formatted_billing_address();
-		if( !$address ) {
-			$address = __('N/A', 'woocommerce-delivery-notes');
-		}
-		echo apply_filters( 'wcdn_billing_address', $address );
-	}
-}
-
-/**
- * Show shipping address
- */
-if ( !function_exists( 'wcdn_shipping_address' ) ) {
-	function wcdn_shipping_address() {
-		global $wcdn;
-		$address = $wcdn->print->get_order()->get_formatted_shipping_address();
-		if( !$address ) {
-			$address = __('N/A', 'woocommerce-delivery-notes');
-		}
-		echo apply_filters( 'wcdn_shipping_address', $address );
-	}
-}
-
-/**
- * Show the current date
- */
-if ( !function_exists( 'wcdn_date' ) ) {
-	function wcdn_date() {
-		echo apply_filters( 'wcdn_date', date_i18n( get_option( 'date_format' ) ) );
-	}
-}
-
-/**
- * Show payment method  
- */
-if ( !function_exists( 'wcdn_payment_method' ) ) {
-	function wcdn_payment_method() {
-		global $wcdn;
-		echo apply_filters( 'wcdn_payment_method', __( $wcdn->print->get_order()->payment_method_title, 'woocommerce' ) );
-	}
-}
-
-/**
- * Get order
- */
-/*
-if ( !function_exists( 'wcdn_get_order' ) ) {
-	function wcdn_get_order( $order_id = null ) {
-		global $wcdn;
-		return $wcdn->print->get_order( $order_id );
-	}
-}
-*/
-
-/**
- * Get order custom field
- */
-if ( !function_exists( 'wcdn_get_order_custom_field' ) ) {
-	function wcdn_get_order_custom_field( $field ) {
-		global $wcdn;
-		return $wcdn->print->get_order_field( $field );
-	}
-}
-
-/**
- * Show order number
- */
-if ( !function_exists( 'wcdn_order_number' ) ) {
-	function wcdn_order_number() {
-		global $wcdn;
-
-		// Trim the hash to have a clean number but still 
-		// support any filters that were applied before.
-		$order_number = ltrim($wcdn->print->get_order()->get_order_number(), '#');
-		echo $order_number;
-	}
-}
-
-/**
- * Show the order date
- */
-if ( !function_exists( 'wcdn_order_date' ) ) {
-	function wcdn_order_date() {
-		global $wcdn;
-		$order = $wcdn->print->get_order();
-		echo apply_filters( 'wcdn_order_date', date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) ) );
-	}
-}
-
-/**
- * Return the order items
- */
-if ( !function_exists( 'wcdn_get_order_items' ) ) {
-	function wcdn_get_order_items() {
-		global $wcdn;
-		return apply_filters( 'wcdn_order_items', $wcdn->print->get_order_items() );
-	}
-}
-
-/**
- * Return the order totals listing
- */
-if ( !function_exists( 'wcdn_get_order_totals' ) ) {
-	function wcdn_get_order_totals() {
-		global $wcdn;		
-		
-		// get totals and remove the semicolon
-		$totals = apply_filters( 'wcdn_raw_order_totals', $wcdn->print->get_order()->get_order_item_totals() );
-		
-		// remove the colon for every label
-		foreach ( $totals as $key => $total ) {
-			$label = $total['label'];
-			$colon = strrpos( $label, ':' );
-			if( $colon !== false ) {
-				$label = substr_replace( $label, '', $colon, 1 );
-			}		
-			$totals[$key]['label'] = $label;
-		}
-
-		return apply_filters( 'wcdn_order_totals', $totals );
-	}
-}
-
-/**
- * Return shipping notes
- */
-if ( !function_exists( 'wcdn_get_shipping_notes' ) ) {
-	function wcdn_get_shipping_notes() {
-		global $wcdn;
-		return wpautop( wptexturize( $wcdn->print->get_order()->customer_note ) );
-	}
-}
-
-/**
- * Show shipping notes
- */
-if ( !function_exists( 'wcdn_shipping_notes' ) ) {
-	function wcdn_shipping_notes() {
-		global $wcdn;
-		echo wcdn_get_shipping_notes();
-	}
-}
-
-/**
- * Return has shipping notes
- */
-if ( !function_exists( 'wcdn_has_shipping_notes' ) ) {
-	function wcdn_has_shipping_notes() {
-		global $wcdn;
-		if( wcdn_get_shipping_notes() ) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-}
-
-/**
- * Return personal notes, season greetings etc.
- */
-if ( !function_exists( 'wcdn_get_personal_notes' ) ) {
-	function wcdn_get_personal_notes() {
-		global $wcdn;
-		return wpautop( wptexturize( $wcdn->settings->get_setting( 'personal_notes' ) ) );
-	}
-}
-
-/**
- * Show personal notes, season greetings etc.
- */
-if ( !function_exists( 'wcdn_personal_notes' ) ) {
-	function wcdn_personal_notes() {
-		global $wcdn;
-		echo wcdn_get_personal_notes();
-	}
-}
-
-/**
- * Return policy for returns
- */
-if ( !function_exists( 'wcdn_get_policies_conditions' ) ) {
-	function wcdn_get_policies_conditions() {
-		global $wcdn;
-		return wpautop( wptexturize( $wcdn->settings->get_setting( 'policies_conditions' ) ) );
-	}
-}
-
-/**
- * Show policy for returns
- */
-if ( !function_exists( 'wcdn_policies_conditions' ) ) {
-	function wcdn_policies_conditions() {
-		global $wcdn;
-		echo wcdn_get_policies_conditions();
-	}
-}
-
-/**
- * Return shop/company footer imprint, copyright etc.
- */
-if ( !function_exists( 'wcdn_get_footer_imprint' ) ) {
-	function wcdn_get_footer_imprint() {
-		global $wcdn;
-		return wpautop( wptexturize( $wcdn->settings->get_setting( 'footer_imprint' ) ) );
-	}
-}
-
-/**
- * Show shop/company footer imprint, copyright etc.
- */
-if ( !function_exists( 'wcdn_footer_imprint' ) ) {
-	function wcdn_footer_imprint() {
-		global $wcdn;
-		echo wcdn_get_footer_imprint();
-	}
-}
 
 ?>

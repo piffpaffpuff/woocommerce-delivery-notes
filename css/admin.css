@@ -13,28 +13,21 @@
 
 /* Edit order */
 
-#woocommerce-delivery-notes-box .inside {
-	text-align: left;
-	position: relative;
-}
-
-#woocommerce-delivery-notes-box .inside ul {
+#woocommerce-delivery-notes-box .button {
 	overflow: hidden;
-	margin: 0px;
+	max-width: 100%;
+	text-overflow: ellipsis;
+	margin-top: 0.65em;
+	margin-bottom: 0.35em;
 }
 
-#woocommerce-delivery-notes-box .inside ul li {
-	float: left;
-	margin: 3px;
-}
-
-#woocommerce-delivery-notes-box .inside span.loading {
+#woocommerce-delivery-notes-box span.loading {
 	position: absolute;
 	right: 7px;
 	top: 0px;
 }
 
-#woocommerce-delivery-notes-box .inside span.loading,
+#woocommerce-delivery-notes-box span.loading,
 .type-shop_order .column-order_actions span.loading {
 	display: none;
 	vertical-align: middle;
@@ -91,15 +84,18 @@
 /* Settings */
 
 #company-logo-placeholder {
-	display: block;
-}
-
-#company-logo-placeholder.loading {
-	background-image: url("../../../../wp-admin/images/spinner.gif");
-	background-repeat: no-repeat; 
-	height: 20px;
 }
 
 #company-logo-placeholder img {
 	cursor: pointer;
+	max-width: 200px;
+	height: auto;
+}
+
+#company-logo-loader.spinner {
+	float: none;
+}
+
+#company-logo-loader.loading {
+	display: inline-block;
 }

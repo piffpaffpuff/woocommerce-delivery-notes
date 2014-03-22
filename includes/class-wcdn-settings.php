@@ -57,12 +57,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 
 			if( $this->is_settings_page() ) {
 				add_action( 'admin_enqueue_scripts', array( $this, 'add_scripts' ) );
-				add_action( 'admin_print_styles', array( $this, 'add_styles' ) );
-				add_action( 'load-' . $screen->id, array( $this, 'add_help_tabs' ) );
-			}
-			
-			if( $this->is_media_uploader_page() ) {
-				add_filter( 'media_upload_tabs', array( $this, 'remove_media_tabs' ) );
+				add_action( 'admin_enqueue_scripts', array( $this, 'add_styles' ) );
 			}
 		}
 
@@ -70,7 +65,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 * Add the styles
 		 */
 		public function add_styles() {
-			wp_enqueue_style( 'thickbox' );
 			wp_enqueue_style( 'woocommerce-delivery-notes-admin', WooCommerce_Delivery_Notes::$plugin_url . 'css/admin.css' );
 		}
 		
@@ -78,10 +72,9 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 * Add the scripts
 		 */
 		public function add_scripts() {		
-			wp_enqueue_script( 'media-upload' );
-			wp_enqueue_script( 'thickbox' );
+			wp_enqueue_media();
 			wp_enqueue_script( 'woocommerce-delivery-notes-print-link', WooCommerce_Delivery_Notes::$plugin_url . 'js/jquery.print-link.js', array( 'jquery' ) );
-			wp_enqueue_script( 'woocommerce-delivery-notes-admin', WooCommerce_Delivery_Notes::$plugin_url . 'js/admin.js', array( 'jquery', 'media-upload', 'thickbox', 'woocommerce-delivery-notes-print-link' ) );
+			wp_enqueue_script( 'woocommerce-delivery-notes-admin', WooCommerce_Delivery_Notes::$plugin_url . 'js/admin.js', array( 'jquery', 'custom-header', 'woocommerce-delivery-notes-print-link' ) );
 		}
 		
 		/**
@@ -89,17 +82,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 */
 		public function is_settings_page() {
 			if( isset( $_GET['page'] ) && isset( $_GET['tab'] ) && $_GET['tab'] == $this->tab_name ) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-		
-		/**
-		 * Check if we are on media uploader page
-		 */
-		public function is_media_uploader_page() {
-			if( isset( $_GET['post_id'] ) && isset( $_GET['company_logo_image'] ) && $_GET['post_id'] == '0' && $_GET['company_logo_image'] == 'true'  ) {
 				return true;
 			} else {
 				return false;
@@ -116,46 +98,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 				return false;
 			}
 		}
-		
-		/**
-		 * Remove the media uploader tabs
-		 */
-		public function remove_media_tabs( $tabs ) {
-			unset( $tabs['type_url'] );
-		    return $tabs;
-		}
-		
-		/**
-		 * Add the help tabs
-		 */
-		public function add_help_tabs() {
-			// Check current admin screen
-			$screen = get_current_screen();
-
-			// Remove all existing tabs
-			$screen->remove_help_tabs();
 			
-			// Create arrays with help tab titles
-			$screen->add_help_tab(array(
-				'id' => 'woocommerce-delivery-notes-usage',
-				'title' => __( 'About the Plugin', 'woocommerce-delivery-notes' ),
-				'content' => 
-					'<h3>' . __( 'Plugin: WooCommerce Print Invoices & Delivery Notes', 'woocommerce-delivery-notes' ) . '</h3>' .
-					'<h4>' . __( 'About the Plugin', 'woocommerce-delivery-notes' ) . '</h4>' .
-					'<p>' . __( 'This plugin enables you to add a Invoice or simple Delivery Note page for printing for your orders in WooCommerce shop plugin. You can add your company postal address, further add personal notes, refund or other policies and a footer note/branding. This helps speed up your daily shop and order management. In some countries (e.g. in the European Union) it is also required to advice the customer with proper refund policies so this little plugin might help you a bit with that too.', 'woocommerce-delivery-notes' ) . '</p>' .
-					'<p>' . sprintf( __( 'Just look under <a href="%1$s">WooCommerce > Orders</a> and there go to a single order view. On the right side you will see the Order Print meta box. Click one of the buttons and you get the invoice or delivery note printing page. Yes, it is that easy :-).', 'woocommerce-delivery-notes' ), admin_url( 'edit.php?post_type=shop_order' ) ) . '</p>'
-			) );
-
-			// Create help sidebar
-			$screen->set_help_sidebar(
-				'<p><strong>' . __( 'For more information:', 'woocommerce-delivery-notes' ) . '</strong></p>'.
-				'<p><a href="http://wordpress.org/extend/plugins/woocommerce-delivery-notes/faq/" target="_blank">' . __( 'Frequently Asked Questions', 'woocommerce-delivery-notes' ) . '</a></p>' .
-				'<p><a href="http://wordpress.org/support/plugin/woocommerce-delivery-notes" target="_blank">' . __( 'Get Community Support', 'woocommerce-delivery-notes' ) . '</a></p>' .
-				'<p><a href="http://wordpress.org/extend/plugins/woocommerce-delivery-notes/" target="_blank">' . __( 'Project on WordPress.org', 'woocommerce-delivery-notes' ) . '</a></p>' .
-				'<p><a href="https://github.com/deckerweb/woocommerce-delivery-notes" target="_blank">' . __( 'Project on GitHub', 'woocommerce-delivery-notes' ) . '</a></p>' 
-			);
-		}
-		
 		/**
 		 * Add a tab to the settings page
 		 */
@@ -186,12 +129,10 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 * Create the thumbnail
 		 */
 		public function create_thumbnail( $attachment_id ) {
-			$attachment_src = wp_get_attachment_image_src( $attachment_id, 'full', false );
+			$attachment_src = wp_get_attachment_image_src( $attachment_id, 'medium', false );
 			
-			// resize the image to a 1/4 of the original size
-			// to have a printing point density of about 288ppi.
 			?>
-			<img src="<?php echo $attachment_src[0]; ?>" width="<?php echo $attachment_src[1] / 4; ?>" height="<?php echo $attachment_src[2] / 4; ?>" alt="" />
+			<img src="<?php echo $attachment_src[0]; ?>" alt="" />
 			<?php
 		}
 		
@@ -219,38 +160,19 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 					?>
 					<input type="hidden" id="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>show_print_preview" />
 					<span class="description">
-						<?php printf( __( 'You can <a href="%1$s" target="%3$s" class="%4$s">preview the invoice template</a> or <a href="%2$s" target="%3$s" class="%4$s">the delivery note template</a>.', 'woocommerce-delivery-notes' ), $invoice_url, $note_url, '_blank', '' ); ?>
-						<?php _e( 'For more advanced control copy <code>woocommerce-delivery-notes/templates/print/style.css</code> to <code>your-theme-name/woocommerce/print/style.css</code>.', 'woocommerce-delivery-notes' ); ?>
+						<?php printf( __( 'You can preview the <a href="%1$s" target="%3$s" class="%4$s">invoice template</a> or <a href="%2$s" target="%3$s" class="%4$s">delivery note template</a>.', 'woocommerce-delivery-notes' ), $invoice_url, $note_url, '_blank', '' ); ?>
+						<?php _e( 'To customize the template read the FAQ in the plugins read-me.', 'woocommerce-delivery-notes' ); ?>
 					</span>
 				<?php endif; ?>
 			</p>
 			<table class="form-table">
 				<tbody>
-					<tr class="hide-if-no-js">
-						<?php
-						$attachment_id = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'company_logo_image_id' );
-						?>
-						<th>
-							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>company_logo_image_id"><?php _e( 'Company/Shop Logo', 'woocommerce-delivery-notes' ); ?></label>
-						</th>
-						<td>
-							<input id="company-logo-image-id" type="hidden" name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>company_logo_image_id" rows="2" class="regular-text" value="<?php echo $attachment_id ?>" />
-							<span id="company-logo-placeholder"><?php if( !empty( $attachment_id ) ) : ?><?php $this->create_thumbnail( $attachment_id ); ?><?php endif; ?></span>
-							<a href="#" id="company-logo-remove-button" <?php if( empty( $attachment_id ) ) : ?>style="display: none;"<?php endif; ?>><?php _e( 'Remove Logo', 'woocommerce-delivery-notes' ); ?></a>
-							<a href="#" <?php if( !empty( $attachment_id ) ) : ?>style="display: none;"<?php endif; ?> id="company-logo-add-button"><?php _e( 'Set Logo', 'woocommerce-delivery-notes' ); ?></a>
-							<span class="description">
-								<?php _e( 'A company/shop logo representing your business.', 'woocommerce-delivery-notes' ); ?>
-								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
-								<?php _e( 'When the image is printed, its pixel density will automatically be eight times higher than the original. This means, 1 printed inch will correspond to about 288 pixels on the screen. Example: an image with a width of 576 pixels and a height of 288 pixels will have a printed size of about 2 inches to 1 inch.', 'woocommerce-delivery-notes' ); ?>
-							</span>
-						</td>
-					</tr>
 					<tr>
 						<th>
-							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>custom_company_name"><?php _e( 'Company/Shop Name', 'woocommerce-delivery-notes' ); ?></label>
+							<label><?php _e( 'Company/Shop Name', 'woocommerce-delivery-notes' ); ?></label>
 						</th>
 						<td>
-							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>custom_company_name" rows="2" class="large-text"><?php echo wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'custom_company_name' ) ); ?></textarea>
+							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>custom_company_name" rows="2" class="large-text"><?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'custom_company_name' ) ) ); ?></textarea>
 							<span class="description">
 								<?php _e( 'Your company/shop name for the Delivery Note.', 'woocommerce-delivery-notes' ); ?>
 								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
@@ -263,7 +185,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>company_address"><?php _e( 'Company/Shop Address', 'woocommerce-delivery-notes' ); ?></label>
 						</th>
 						<td>
-							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>company_address" rows="5" class="large-text"><?php echo wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'company_address' ) ); ?></textarea>
+							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>company_address" rows="5" class="large-text"><?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'company_address' ) ) ); ?></textarea>
 							<span class="description">
 								<?php _e( 'The postal address of the company/shop, which gets printed right of the company/shop name, above the order listings.', 'woocommerce-delivery-notes' ); ?>
 								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
@@ -271,12 +193,34 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							</span>
 						</td>
 					</tr>
-					<tr>
+					<tr class="hide-if-no-js">
+						<?php
+						$attachment_id = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'company_logo_image_id' );
+						?>
 						<th>
-							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>personal_notes"><?php _e( 'Personal Notes', 'woocommerce-delivery-notes' ); ?></label>
+							<label><?php _e( 'Company/Shop Logo', 'woocommerce-delivery-notes' ); ?></label>
 						</th>
 						<td>
-							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>personal_notes" rows="5" class="large-text"><?php echo wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'personal_notes' ) ); ?></textarea>
+							<input id="company-logo-image-id" type="hidden" name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>company_logo_image_id" class="regular-text" value="<?php echo $attachment_id ?>" />
+							<div id="company-logo-placeholder"><?php if( !empty( $attachment_id ) ) : ?><?php $this->create_thumbnail( $attachment_id ); ?><?php endif; ?></div>
+							<div id="company-logo-buttons">
+								<a href="#" id="company-logo-remove-button" class="button" <?php if( empty( $attachment_id ) ) : ?>style="display: none;"<?php endif; ?>><?php _e( 'Remove Logo', 'woocommerce-delivery-notes' ); ?></a>
+								<a href="#" id="company-logo-add-button" class="button" <?php if( !empty( $attachment_id ) ) : ?>style="display: none;"<?php endif; ?> data-uploader-title="<?php _e( 'Set Logo', 'woocommerce-delivery-notes' ); ?>" data-uploader-button-title="<?php _e( 'Set Logo', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Set Logo', 'woocommerce-delivery-notes' ); ?></a>
+								<span id="company-logo-loader" class="spinner"></span>
+							</div>
+							<span class="description">
+								<?php _e( 'A company/shop logo representing your business.', 'woocommerce-delivery-notes' ); ?>
+								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
+								<?php _e( 'When the image is printed, its pixel density will automatically be eight times higher than the original. This means, 1 printed inch will correspond to about 288 pixels on the screen. Example: an image with a width of 576 pixels and a height of 288 pixels will have a printed size of about 2 inches to 1 inch.', 'woocommerce-delivery-notes' ); ?>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label><?php _e( 'Personal Notes', 'woocommerce-delivery-notes' ); ?></label>
+						</th>
+						<td>
+							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>personal_notes" rows="5" class="large-text"><?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'personal_notes' ) ) ); ?></textarea>
 							<span class="description">
 								<?php _e( 'Add some personal notes, or season greetings or whatever (e.g. Thank You for Your Order!, Merry Christmas!, etc.).', 'woocommerce-delivery-notes' ); ?>
 								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
@@ -286,10 +230,10 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 					</tr>
 					<tr>
 						<th>
-							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>policies_conditions"><?php _e( 'Returns Policy, Conditions, etc.:', 'woocommerce-delivery-notes' ); ?></label>
+							<label><?php _e( 'Returns Policy, Conditions, etc.:', 'woocommerce-delivery-notes' ); ?></label>
 						</th>
 						<td>
-							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>policies_conditions" rows="5" class="large-text"><?php echo wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'policies_conditions' ) ); ?></textarea>
+							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>policies_conditions" rows="5" class="large-text"><?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'policies_conditions' ) ) ); ?></textarea>
 							<span class="description">
 								<?php _e( 'Here you can add some more policies, conditions etc. For example add a returns policy in case the client would like to send back some goods. In some countries (e.g. in the European Union) this is required so please add any required info in accordance with the statutory regulations.', 'woocommerce-delivery-notes' ); ?>
 								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong> 
@@ -302,7 +246,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>footer_imprint"><?php _e( 'Footer Imprint', 'woocommerce-delivery-notes' ); ?></label>
 						</th>
 						<td>
-							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>footer_imprint" rows="5" class="large-text"><?php echo wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'footer_imprint' ) ); ?></textarea>
+							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>footer_imprint" rows="5" class="large-text"><?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'footer_imprint' ) ) ); ?></textarea>
 							<span class="description">
 								<?php _e( 'Add some further footer imprint, copyright notes etc. to get the printed sheets a bit more branded to your needs.', 'woocommerce-delivery-notes' ); ?>
 								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong> 
@@ -318,7 +262,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 				<tbody>	
 					<tr>
 						<th>
-							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>print_order_page_endpoint"><?php _e( 'Print Page Endpoint', 'woocommerce-delivery-notes' ); ?></label>
+							<label><?php _e( 'Print Page Endpoint', 'woocommerce-delivery-notes' ); ?></label>
 						</th>
 						<td>
 							<p>
@@ -335,17 +279,17 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 						</th>
 						<td>
 							<fieldset>
-								<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>print_button_on_view_order_page">
+								<label>
 									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>print_button_on_view_order_page" type="hidden" value="" />
 									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>print_button_on_view_order_page" type="checkbox" value="1" <?php checked( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_view_order_page' ), 1 ); ?> />
-									<?php _e( 'Show a print button on the "View Order" page', 'woocommerce-delivery-notes' ); ?>
+									<?php _e( 'Show print button on the "View Order" page', 'woocommerce-delivery-notes' ); ?>
 								</label>
 							</fieldset>
 							<fieldset>
-								<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>print_button_on_my_account_page">
+								<label>
 									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>print_button_on_my_account_page" type="hidden" value="" />
 									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>print_button_on_my_account_page" type="checkbox" value="1" <?php checked( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_my_account_page' ), 1 ); ?> />
-									<?php _e( 'Show print buttons for every order on the "My Account" page', 'woocommerce-delivery-notes' ); ?>
+									<?php _e( 'Show print buttons on the "My Account" page', 'woocommerce-delivery-notes' ); ?>
 								</label>
 							</fieldset>
 						</td>
@@ -373,13 +317,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			
 			<input type="hidden" name="<?php echo $this->hidden_submit; ?>" value="submitted">
 			<?php
-		}
-		
-		/**
-		 * Get the content for an option
-		 */
-		public function get_setting( $name, $default = null ) {
-			return get_option( WooCommerce_Delivery_Notes::$plugin_prefix . $name, $default );
 		}
 		
 		/**

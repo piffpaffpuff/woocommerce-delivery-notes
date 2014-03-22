@@ -4,67 +4,93 @@ jQuery(document).ready(function($) {
 	 * Print button
 	 */	 
 	
-	// button on list and edit screen
+	// Button on list and edit screen
 	$('.print-preview-button').printLink();
-	$('.print-preview-button').on('printLinkClick', function() {
+	$('.print-preview-button').on('printLinkClick', function(event) {
 		$('#woocommerce-delivery-notes-box .loading').show();
 		$(this).parent().find('.loading').show();
 	});
-	$('.print-preview-button').on('printLinkLoad', function() {
+	$('.print-preview-button').on('printLinkLoad', function(event) {
 		$('#woocommerce-delivery-notes-box .loading').hide();
-		$(this).parent().find('.loading').hide();
+		$('.column-order_actions .loading').hide();
 	});
-	
+
 	/*
 	 * Settings
 	 */	 
 	 
-	// button to open the media uploader
+	// Media managment
+	var file_frame;
+ 
+	// Button to open the media uploader
 	$('#company-logo-add-button, #company-logo-placeholder').on('click', function(event) {
-		tb_show('', 'media-upload.php?post_id=0&company_logo_image=true&type=image&TB_iframe=true');
 		event.preventDefault();
+		
+		// If the media frame already exists, reopen it.
+		if(file_frame) {
+			file_frame.open();
+			return;
+		}
+		
+		// Create the media frame.
+		file_frame = wp.media.frames.file_frame = wp.media({
+			title: jQuery( this ).data( 'uploader-title' ),
+			button: {
+				text: jQuery( this ).data( 'uploader-button-title' ),
+			},
+			multiple: false 
+		});
+		
+		// Open the modal
+		file_frame.open();
+		
+		// When an image is selected, run a callback.
+		file_frame.on( 'select', function(event) {
+			// We set multiple to false so only get one image from the uploader
+			var attachment = file_frame.state().get('selection').first().toJSON();
+			
+			// Do something with attachment.id and/or attachment.url here
+			addImage(attachment.id);
+		});
 	});
 	
-	// button to remove the media 
+	// Button to remove the media 
 	$('#company-logo-remove-button').on('click', function(event) {
-		removeImage();
 		event.preventDefault();
+		removeImage();
 	});
 	
-	// called when the "Insert into post" button is clicked
-	window.send_to_editor = function(html) {
+	// add media 
+	function addImage(id) {
 		removeImage();
-		tb_remove();
-		
-		// find the attachment id
-		var tag = $('<div></div>');
-		tag.append(html);
-		var imgClass = $('img', tag).attr('class');		
-		var imgID = parseInt(imgClass.replace(/\D/g, ''), 10);
-		
+		$('#company-logo-loader').addClass('loading');
+
 		// load the image		
 		var data = {
-			attachment_id: imgID,
+			attachment_id: id,
 			action: 'load_thumbnail'
 		}
 		
 		$.post(ajaxurl, data, function(response) {
 			$('#company-logo-image-id').val(data.attachment_id);		
-			$('#company-logo-placeholder').removeClass('loading').html(response);
+			$('#company-logo-placeholder').html(response);
+			$('#company-logo-loader').removeClass('loading');
 			$('#company-logo-add-button').hide();
 			$('#company-logo-remove-button').show();
 		}).error(function() {
 			removeImage();
 		});
-	}
 
+	}
+	
 	// remove media 
 	function removeImage() {
 		$('#company-logo-image-id').val('');		
-		$('#company-logo-placeholder').removeClass('loading').empty();
+		$('#company-logo-placeholder').empty();
+		$('#company-logo-loader').removeClass('loading');
 		$('#company-logo-add-button').show();
 		$('#company-logo-remove-button').hide();
 	}
-
+	
 });
 
