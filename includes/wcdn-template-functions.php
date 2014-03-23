@@ -163,7 +163,7 @@ function wcdn_company_name() {
 	global $wcdn;
 	$name = trim( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'custom_company_name' ) );
 	if( !empty( $name ) ) {
-		echo apply_filters( 'wcdn_company_name', stripslashes( wpautop( wptexturize( $name ) ) ) );
+		echo apply_filters( 'wcdn_company_name', stripslashes( wptexturize( $name ) ) );
 	} else {
 		echo apply_filters( 'wcdn_company_name', get_bloginfo( 'name' ) );
 	}

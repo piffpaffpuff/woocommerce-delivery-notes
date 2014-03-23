@@ -172,7 +172,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							<label><?php _e( 'Company/Shop Name', 'woocommerce-delivery-notes' ); ?></label>
 						</th>
 						<td>
-							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>custom_company_name" rows="2" class="large-text"><?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'custom_company_name' ) ) ); ?></textarea>
+							<input type="text" name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>custom_company_name" class="large-text" value="<?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'custom_company_name' ) ) ); ?>" />
 							<span class="description">
 								<?php _e( 'Your company/shop name for the Delivery Note.', 'woocommerce-delivery-notes' ); ?>
 								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
@@ -217,7 +217,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 					</tr>
 					<tr>
 						<th>
-							<label><?php _e( 'Personal Notes', 'woocommerce-delivery-notes' ); ?></label>
+							<label><?php _e( 'Thank You', 'woocommerce-delivery-notes' ); ?></label>
 						</th>
 						<td>
 							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>personal_notes" rows="5" class="large-text"><?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'personal_notes' ) ) ); ?></textarea>
@@ -230,7 +230,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 					</tr>
 					<tr>
 						<th>
-							<label><?php _e( 'Returns Policy, Conditions, etc.:', 'woocommerce-delivery-notes' ); ?></label>
+							<label><?php _e( 'Returns Policy, Conditions, etc', 'woocommerce-delivery-notes' ); ?></label>
 						</th>
 						<td>
 							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>policies_conditions" rows="5" class="large-text"><?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'policies_conditions' ) ) ); ?></textarea>
@@ -243,7 +243,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 					</tr>
 					<tr>
 						<th>
-							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>footer_imprint"><?php _e( 'Footer Imprint', 'woocommerce-delivery-notes' ); ?></label>
+							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>footer_imprint"><?php _e( 'Footer', 'woocommerce-delivery-notes' ); ?></label>
 						</th>
 						<td>
 							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>footer_imprint" rows="5" class="large-text"><?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'footer_imprint' ) ) ); ?></textarea>

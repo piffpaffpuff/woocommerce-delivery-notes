@@ -108,6 +108,11 @@ th {
 	page-break-after: always;
 }
 
+h1,
+h2 {
+	font-size: 1.572em;
+}
+
 .order-branding,
 .order-addresses,
 .order-info,
@@ -126,10 +131,6 @@ th {
 /* Order Branding */
 .order-branding .logo {
 	margin-bottom: 1em;
-}
-.order-branding .company-name {
-	margin-bottom: 1.25em;
-	font-weight: bold;
 }
 
 /* Order Addresses */

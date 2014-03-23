@@ -15,7 +15,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 					</div>
 					
 					<div class="company-info">
-						<div class="company-name"><?php wcdn_company_name(); ?></div>
+						<h1 class="company-name"><?php wcdn_company_name(); ?></h1>
 						<div class="company-address"><?php wcdn_company_info(); ?></div>
 					</div>
 					
@@ -56,7 +56,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 
 
 				<div class="order-info">
-					<h3><?php wcdn_document_title(); ?></h3>
+					<h2><?php wcdn_document_title(); ?></h2>
 
 					<ul class="customer-details">
 						<li class="number-info">
