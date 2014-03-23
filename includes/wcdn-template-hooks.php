@@ -11,11 +11,9 @@ add_action( 'wcdn_head', 'wcdn_template_stylesheet' );
  */
 add_action( 'wcdn_before_page', 'wcdn_navigation' );
 
-/**
- * Orders loop
+/** 
+ * Content
  */
-add_action( 'wcdn_loop_content', 'wcdn_get_template_addresses' );
-add_action( 'wcdn_loop_content', 'wcdn_get_template_items' );
-add_action( 'wcdn_loop_content', 'wcdn_get_template_notes' );
+add_filter( 'woocommerce_get_order_item_totals', 'wcdn_remove_semicolon_from_totals', 10, 2 );
 
 ?>

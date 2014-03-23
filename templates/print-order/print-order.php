@@ -28,11 +28,8 @@ if ( !defined( 'ABSPATH' ) ) exit;
 					
 				<article class="content">
 					
-					<?php
-						// wcdn_before_loop_content hook
-						do_action( 'wcdn_loop_content', $order );
-					?>
-					
+					<?php wcdn_get_template_content( 'print-content.php', array( 'order' => $order ) ); ?>
+
 				</article><!-- .content -->
 				
 			<?php endforeach; ?>

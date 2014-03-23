@@ -178,27 +178,6 @@ function wcdn_company_info() {
 }
 
 /**
- * Get template addresses
- */
-function wcdn_get_template_addresses( $order ) {
-	wcdn_get_template_content( 'print-addresses.php', array( 'order' => $order ) );
-}
-
-/**
- * Get template items
- */
-function wcdn_get_template_items( $order ) {
-	wcdn_get_template_content( 'print-items.php', array( 'order' => $order ) );
-}
-
-/**
- * Get template notes
- */
-function wcdn_get_template_notes( $order ) {
-	wcdn_get_template_content( 'print-notes.php', array( 'order' => $order ) );
-}
-
-/**
  * Get orders as array. Every order is a normal WC_Order instance.
  */
 function wcdn_get_orders() {
@@ -227,6 +206,49 @@ function wcdn_order_date( $order ) {
 function wcdn_payment_method( $order ) {
 	global $wcdn;
 	echo apply_filters( 'wcdn_payment_method', __( $order->payment_method_title, 'woocommerce' ) );
+}
+
+/**
+ * Remove the semicolon from the output  
+ */
+function wcdn_remove_semicolon_from_totals( $total_rows, $order ) {	
+	foreach( $total_rows as $key => $row ) {
+		$label = $row['label'];
+		$colon = strrpos( $label, ':' );
+		if( $colon !== false ) {
+			$label = substr_replace( $label, '', $colon, 1 );
+		}		
+		$total_rows[$key]['label'] = $label;
+	}
+	return $total_rows;
+}
+
+/**
+ * Return customer notes
+ */
+function wcdn_get_customer_notes( $order ) {
+	global $wcdn;
+	return wpautop( wptexturize( $order->customer_note ) );
+}
+
+/**
+ * Show customer notes
+ */
+function wcdn_customer_notes( $order ) {
+	global $wcdn;
+	echo wcdn_get_customer_notes( $order );
+}
+
+/**
+ * Return has customer notes
+ */
+function wcdn_has_customer_notes( $order ) {
+	global $wcdn;
+	if( wcdn_get_customer_notes( $order ) ) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 /**

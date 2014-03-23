@@ -34,7 +34,6 @@ body {
 	background: #fff;
 	color: #000;
 	font-family: "HelveticaNeue", Helvetica, Arial, sans-serif;
-	font-size: 0.875em;
 	line-height: 125%;
 }
 
@@ -43,218 +42,220 @@ h2,
 h3,
 h4 {
 	font-weight: bold;
+	margin-bottom: 1.25em;
+}
+
+ul {
+	margin-bottom: 1.25em;
 }
 
 li,
-ul {
-	margin-bottom: 1.25em;
+dt,
+dd  {
+	padding: 0.375em 0;
+}
+
+dt {
+	font-weight: bold;
 }
 
 p + p {
 	margin-top: 1.25em;
 }
 
+address {
+	font-style: normal;
+}
+
 /* Basic Table Styling */
 table {
 	page-break-inside: auto;
+	width: 100%;
 }
 
 tr {
-	border-top: 1px #ccc solid;
-	border-bottom: 1px #ccc solid;
 	page-break-inside: avoid;
 	page-break-after: auto;	
 }
 
 td,
 th {
-	border-left: 1px #ccc solid;
-	border-right: 1px #ccc solid;
-	padding: 0.375em;
+	border-bottom: 0.12em solid black;
+	padding: 0.375em 0;
 	vertical-align: middle;
 }
 
 th {
-	color: #000;
+	color: black;
 	font-weight: bold;
 	text-align: left;
+	padding-bottom: 1.25em;
 }
 
-/* Special Margin & Overflow Stylings */
+/* Page Margins & Basic Stylings */
 #page {
 	margin-left: auto;
 	margin-right: auto;
-	padding-top: 5%;
-	padding-bottom: 5%;
-	padding-left: 10%;
-	padding-right: 10%;
 	text-align: left;
+	font-size: 0.875em;
 }
 
-#letter-header,
-#order-items,
-#order-summary,
-#order-notes {
+.content {
+	padding-left: 10%;
+	padding-right: 10%;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	page-break-after: always;
+}
+
+.order-branding,
+.order-addresses,
+.order-info,
+.order-items,
+.order-notes,
+.order-thanks,
+.order-colophon {
 	margin-bottom: 3em;
 }
 
-#order-info,
-#order-summary {
-	margin-bottom: 6em;
-}
-
-#page,
-#letter-header,
-#order-listing,
-#order-summary,
-#order-notes,
-#letter-footer {
-	overflow: hidden;
-}
-
-#order-items,
-#order-summary,
-#order-notes {
+.order-items {
 	page-break-before: auto;
 	page-break-after: auto;
 }
 
-/* Delivery Notes Head */
-#letter-header .heading {
-	float: left;
-	width: 50%;
+/* Order Branding */
+.order-branding .logo {
+	margin-bottom: 1em;
+}
+.order-branding .company-name {
+	margin-bottom: 1.25em;
 	font-weight: bold;
-	font-size: 2em;
+}
+
+/* Order Addresses */
+.order-addresses {
+	margin-bottom: 6em;
+}
+
+.order-addresses .shipping-address {
+	float: left;
+}
+
+.order-addresses .billing-address {
+	margin-left: 50%;
+}
+
+/* Switch the addresses for delivery notes */
+.delivery-note .order-addresses .shipping-address {
+	float: right;
+	width: 50%;
+}
+
+.delivery-note .order-addresses .billing-address {
+	margin-left: 0;
+}
+
+/* Order Info */
+.order-info {
+	clear: both;
+}
+
+.order-info ul {
+	border-top: 0.24em solid black;
+}
+
+.order-info li {
+	border-bottom: 0.12em solid black;
+}
+
+.order-info li strong {
+	font-weight: normal;
+	width: 25%;
+	display: inline-block;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	margin-bottom: 0;
+}
+
+/* Order Items */
+.order-items {
+	margin-bottom: 1em;
+}
+
+.order-items th,
+.order-items td {
+	width: 50%;
+}
+
+.order-items dl {
+	display: inline;
+	padding-left: 0.25em;
 	line-height: 125%;
 }
 
-#letter-header .company-name {
-	font-weight: bold;
-}
-
-#letter-header .company-info {
-	float: right;
-	width: 50%;
-	margin-top: 0.45em;
-}
-
-/* Order Listing - #order-listing */
-#order-listing {
-	float: right;
-	width: 50%;
-}
-
-/* Order Info - #order-info */
-#order-info {
-	float: left;
-	width: 50%;
-}
-
-/* Order Items - #order-items */
-#order-items {
-	clear: both;
-}
-
-#order-items table {
-	width: 100%;
-}
-
-#order-items .description {
-	width: 50%;
-}
-
-#order-items .price {
-	width: 25%;
-}
-
-#order-items dl {
+.order-items p {
 	display: inline;
-	margin-bottom: 0;
-	color: #666;
 }
 
-#order-items dt,
-#order-items dd {
+.order-items small,
+.order-items dt,
+.order-items dd {
+	font-size: 0.785em;
+	font-weight: normal;
+	line-height: 150%;
 	display: inline;
+	padding: 0;
+	margin: 0;
+}
+
+.order-items dt {
+	padding-right: 0.2em;
+}
+
+.order-items tfoot .total-name,
+.order-items tfoot tr:last-child .total-price {
+	font-weight: bold;
+}
+
+.order-items tfoot tr:last-child td {
+	border-bottom-width: 0.24em;
+}
+
+/* Order Notes */
+.order-notes {
+	font-size: 0.785em;
+	line-height: 150%;
+	margin-bottom: 6em;
+}
+
+.order-notes h4 {
 	margin-bottom: 0;
-	font-size: 0.75em;
-}
-#order-items dt {
-	margin-left: 0.75em;
 }
 
-#order-items dd {
-	margin-left: 0.2em;
+/* Order Thanks */
+.order-thanks {
+	margin-left: 50%;
 }
 
-/* Order Summary - #order-summary */
-#order-summary {
-	float: right;
-	width: 50%;
+/* Order Colophon */
+.order-colophon {
+	font-size: 0.785em;
+	line-height: 150%;
+	margin-bottom: 0;
 }
 
-#order-summary table {
-	width: 100%;
-	page-break-inside: avoid;
-}
-
-#order-summary .price {
-	width: 50%;
-}
-
-#order-summary tr:last-child {
-	border-top: 2px solid #000;
-	border-bottom: 2px solid #000;
-	font-weight: bold;
-}
-
-#order-summary small,
-#order-summary .includes_tax {
-	font-size: 0.75em;
-	color: #666;
-}
-
-/* Order Notes - #order-notes */
-#order-notes {
-	clear: both;
-}
-#order-notes .notes-shipping {
-	float: left;
-	width: 50%;
-}
-#order-notes .notes-personal {
-	float: right;
-	width: 50%;
-	font-weight: bold;
-}
-
-/* Footer Imprint */
-#letter-footer {
-	border-top: 1px solid #ccc;
-	padding-top: 1em;
-	color: #666;
-	font-size: 0.75em;
-}
-
-#letter-footer p + p {
-	margin-top: 1em;
-}
-
-#letter-footer .policies,
-#letter-footer .imprint {
-	margin-bottom: 1em;
+.order-colophon .colophon-policies {
+	margin-bottom: 1.25em;
 }
 
 
 /* CSS Media Queries for Print
 ------------------------------------------*/
 
+
 @media print {
 	body {
 		font-size: 8pt;
-	}
-	
-	#page {
-	 	page-break-before: always;
 	}
 }
