@@ -3,7 +3,7 @@
  * Print order content. Copy this file to your themes
  * directory /woocommerce/print to customize it.
  *
- * @package WooCommerce Delivery Notes/Templates
+ * @package WooCommerce Print Invoice & Delivery Note/Templates
  */
 
 if ( !defined( 'ABSPATH' ) ) exit;
@@ -15,7 +15,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 					</div>
 					
 					<div class="company-info">
-						<h1 class="company-name"><?php wcdn_company_name(); ?></h1>
+						<?php if( !wcdn_get_company_logo_id() ) : ?><h1 class="company-name"><?php wcdn_company_name(); ?></h1><?php endif; ?>
 						<div class="company-address"><?php wcdn_company_info(); ?></div>
 					</div>
 					

@@ -6,14 +6,26 @@ jQuery(document).ready(function($) {
 	
 	// Button on list and edit screen
 	$('.print-preview-button').printLink();
-	$('.print-preview-button').on('printLinkClick', function(event) {
+	$('.print-preview-button').on('printLinkInit', function(event) {
 		$('#woocommerce-delivery-notes-box .loading').show();
 		$(this).parent().find('.loading').show();
 	});
-	$('.print-preview-button').on('printLinkLoad', function(event) {
+	$('.print-preview-button').on('printLinkComplete', function(event) {
 		$('#woocommerce-delivery-notes-box .loading').hide();
 		$('.column-order_actions .loading').hide();
 	});
+
+	/*
+	 * Bulk actions
+	 */	
+	/*
+var bulkLink = $('#woocommerce-delivery-notes-bulk-print-preview-link');
+	if( bulkLink.length > 0 ) {
+		var url = bulkLink.attr('href');
+		console.log(url);
+		window.open(url, 'name');
+	}
+*/
 
 	/*
 	 * Settings

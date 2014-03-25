@@ -25,17 +25,17 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 			
 			add_action( 'add_meta_boxes_shop_order', array( $this, 'add_box' ) );
 
-			//add_action( 'admin_footer-edit.php', array( $this, 'add_bulk_actions' ) );
 			//add_action( 'wp_ajax_get_print_permalink', array( $this, 'get_print_permalink_ajax' ) );
-            //add_action( 'load-edit.php', array( $this, 'load_bulk_actions' ) );
-			//add_action( 'admin_notices', array( $this, 'confirm_bulk_actions' ) );
+			add_action( 'admin_footer-edit.php', array( $this, 'add_bulk_actions' ) );
+            add_action( 'load-edit.php', array( $this, 'load_bulk_actions' ) );
+			add_action( 'admin_notices', array( $this, 'confirm_bulk_actions' ) );
 		}
 
 		/**
 		 * Add the styles
 		 */
 		public function add_styles() {
-			if( $this->is_order_edit_page() ) {
+			if( $this->is_order_edit_page() || $this->is_order_post_page() ) {
 				wp_enqueue_style( 'woocommerce-delivery-notes-admin', WooCommerce_Delivery_Notes::$plugin_url . 'css/admin.css' );
 			}
 		}
@@ -44,18 +44,30 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 		 * Add the scripts
 		 */
 		public function add_scripts() {
-			if( $this->is_order_edit_page() ) {
+			if( $this->is_order_edit_page() || $this->is_order_post_page() ) {
 				wp_enqueue_script( 'woocommerce-delivery-notes-print-link', WooCommerce_Delivery_Notes::$plugin_url . 'js/jquery.print-link.js', array( 'jquery' ) );
 				wp_enqueue_script( 'woocommerce-delivery-notes-admin', WooCommerce_Delivery_Notes::$plugin_url . 'js/admin.js', array( 'jquery', 'woocommerce-delivery-notes-print-link' ) );
 			}
 		}	
 			
 		/**
-		 * Is order page
+		 * Is order edit page
 		 */
 		public function is_order_edit_page() {
-			global $typenow;
-			if( $typenow == 'shop_order' ) {
+			global $typenow, $pagenow;
+			if( $typenow == 'shop_order' && $pagenow == 'edit.php' ) {
+				return true;	
+			} else {
+				return false;
+			}
+		}	
+		
+		/**
+		 * Is order edit page
+		 */
+		public function is_order_post_page() {
+			global $typenow, $pagenow;
+			if( $typenow == 'shop_order' && ( $pagenow == 'post.php' || $pagenow == 'post-new.php' ) ) {
 				return true;	
 			} else {
 				return false;
@@ -88,59 +100,15 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 		public function add_bulk_actions() {
 			if( $this->is_order_edit_page() ) : ?>
 				<script type="text/javascript">
-					jQuery(document).ready(function($) {
+					jQuery(document).ready(function($) {		
+						$('<option>').val('wcdn_print_invoice').attr('title', 'invoice').text('<?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>').appendTo('select[name="action"]');
+						$('<option>').val('wcdn_print_invoice').attr('title', 'invoice').text('<?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>').appendTo('select[name="action2"]');
 						
-						$('#doaction, #doaction2').on('click', function(event) {
-							var inputs = $('#the-list .check-column input:checked');
-							var select = $(this).parent().find('select');
-							var action = select.val();
-							if(inputs.length > 0) {
-								if(action == 'wcdn_print_order_invoice' || action == 'wcdn_print_order_delivery_note') {
-									// type
-									var templateType = select.find(":selected").attr('title');
-									
-									// ids
-									var orderIDs = [];
-									inputs.each(function(index, element) {
-										orderIDs.push($(element).val());
-									});
-									
-									//generate the permalink	
-									var data = {
-										order_ids: orderIDs,
-										template_type: templateType,
-										action: 'get_print_permalink'
-									}
-																			window.open('http://localhost:8888/wordpress/my-account/print-order/166/?print-order-type=invoice');
-
-									// handle the data
-									$.post(ajaxurl, data, function(response) {
-										console.log(response);
-									});
-									
-									event.preventDefault();
-								}
-							}
-						});	
-										
-						$('<option>').val('wcdn_print_order_invoice').attr('title', 'invoice').text('<?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>').appendTo("select[name='action']");
-						$('<option>').val('wcdn_print_order_invoice').attr('title', 'invoice').text('<?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>').appendTo("select[name='action2']");
-						
-						$('<option>').val('wcdn_print_order_delivery_note').attr('title', 'delivery-note').text('<?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>').appendTo("select[name='action']");
-						$('<option>').val('wcdn_print_order_delivery_note').attr('title', 'delivery-note').text('<?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>').appendTo("select[name='action2']");
+						$('<option>').val('wcdn_print_delivery_note').attr('title', 'delivery-note').text('<?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>').appendTo('select[name="action"]');
+						$('<option>').val('wcdn_print_delivery_note').attr('title', 'delivery-note').text('<?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>').appendTo('select[name="action2"]');
 					});
 				</script>
 			<?php endif;
-		}
-		
-		/**
-		 * Load thumbnail with ajax
-		 */
-		public function get_print_permalink_ajax() {
-			if( isset( $_POST['order_ids'] ) ) {
-				echo wcdn_get_print_permalink( $_POST['order_ids'] , $_POST['template_type'] );
-			}
-			exit;
 		}
 		
 		/**
@@ -159,11 +127,11 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 				
 				// only for specified actions
 				switch ( $action ) {
-					case 'wcdn_print_order_invoice':
+					case 'wcdn_print_invoice':
 						$template_type = 'invoice';
 						$report_action = 'printed_invoice';
 						break;
-					case 'wcdn_print_order_delivery_note':
+					case 'wcdn_print_delivery_note':
 						$template_type = 'delivery-note';
 						$report_action = 'printed_delivery_note';
 						break;
@@ -171,23 +139,12 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 						return;
 				}
 				
-				
 				// do the action
 				$post_ids = array_map( 'absint', (array) $_REQUEST['post'] );
-				$changed = count( $post_ids );
-				$permalink = wcdn_get_print_permalink( $post_ids , $template_type );
+				$total = count( $post_ids );
+				$url = wcdn_get_print_permalink( $post_ids , $template_type );
+				$sendback = add_query_arg( array( 'post_type' => 'shop_order', $report_action => true, 'total' => $total, 'print_url' => urlencode( $url ) ), '' );
 				
-				/*// sendback to the same screen
-				$args = array(
-					'post_type' => 'shop_order', 
-					$report_action => true, 
-					'changed' => $changed
-				);
-				//wp_redirect( add_query_arg( $args ) );
-				$sendback = add_query_arg( array( 'post_type' => 'shop_order', $report_action => true, 'changed' => $changed, 'ids' => implode( ',', $post_ids ) ), '' );
-				wp_redirect( $permalink );
-*/
-				$sendback = add_query_arg( array( 'post_type' => 'shop_order', $report_action => true, 'changed' => $changed, 'ids' => join( ',', $post_ids ) ), '' );
 				wp_redirect( $sendback );
 				exit;
 			}
@@ -197,18 +154,17 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 		 * Show confirmation message that orders are printed
 		 */
 		public function confirm_bulk_actions() {
-			/*
-global $post_type, $pagenow;
-	
-			if ( isset( $_REQUEST['marked_completed'] ) || isset( $_REQUEST['marked_processing'] ) || isset( $_REQUEST['marked_on-hold'] ) ) {
-				$number = isset( $_REQUEST['changed'] ) ? absint( $_REQUEST['changed'] ) : 0;
-	
-				if ( 'edit.php' == $pagenow && 'shop_order' == $post_type ) {
-					$message = sprintf( _n( 'Order status changed.', '%s order statuses changed.', $number, 'woocommerce' ), number_format_i18n( $number ) );
-					echo '<div class="updated"><p>' . $message . '</p></div>';
+			if( $this->is_order_edit_page() ) {
+				if ( isset( $_REQUEST['printed_delivery_note'] ) || isset( $_REQUEST['printed_invoice'] ) ) {
+					$total = isset( $_REQUEST['total'] ) ? absint( $_REQUEST['total'] ) : 0;
+					$message = sprintf( _n( 'Created print view.', 'Created print view for %s orders.', $total, 'woocommerce-delivery-notes' ), number_format_i18n( $total ) );
+					?>
+					<div id="woocommerce-delivery-notes-bulk-print-preview-message" class="updated">
+						<p><?php echo $message; ?> <a href="<?php echo urldecode( $_REQUEST['print_url'] ); ?>" target="_blank" class="print-preview-button" id="woocommerce-delivery-notes-bulk-print-preview-link"><?php _e( 'Show print view', 'woocommerce-delivery-notes' ) ?></a> <span class="spinner" style="display:inline;"></span></p>
+					</div>
+					<?php
 				}
 			}
-*/
 		}
 
 		/**

@@ -1,8 +1,10 @@
 (function($) {
 		
-	$.fn.printLink = function() {
-
+	$.fn.printLink = function(options) {
 		var iframe = null;
+        var settings = $.extend({
+            url: null
+        }, options);
         
         // Apply to all elements
         return this.each(function() {
@@ -10,17 +12,22 @@
 			// Click handler on the link
 			$(this).on('click', function(event) {
 
-				// Get the url from the anchor
+				// Target element
 				var element = $(this);
-				var url = element.attr('href');
 
+				// Get the url from the anchor or overwrite it
+				var url = element.attr('href');
+				if(settings.url) {
+					url = settings.url;
+				}
+				
 				// Open the url directly when an iframe printing is not supported.
 				if(navigator.userAgent.match(/opera/i) || navigator.userAgent.match(/trident/i) || (navigator.userAgent.match(/msie/i) && window.addEventListener)) {				
 					return;
 				}
-
+				
 				// Trigger load
-				element.trigger('printLinkClick');
+				element.trigger('printLinkInit');
 				
 				// Print the url with a hidden iframe
 				if(!$('#printLinkIframe')[0]) {
@@ -30,7 +37,7 @@
 		
 					// Start the printing when the url is loaded
 					$('#printLinkIframe').on('load',function() {  
-						element.trigger('printLinkLoad');
+						element.trigger('printLinkComplete');
 						frames['printLinkIframe'].focus();
 						frames['printLinkIframe'].print();
 					});

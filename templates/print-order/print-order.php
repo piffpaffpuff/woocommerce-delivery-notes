@@ -4,7 +4,7 @@
  * probably it is easier to edit one of the content by
  * copying it to your theme /woocommerce/print
  *
- * @package WooCommerce Delivery Notes/Templates
+ * @package WooCommerce Print Invoice & Delivery Note/Templates
  */
 
 if ( !defined( 'ABSPATH' ) ) exit;

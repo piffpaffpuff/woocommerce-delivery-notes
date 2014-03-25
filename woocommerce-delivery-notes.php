@@ -1,10 +1,10 @@
 <?php
 /**
- * Print order invoices & delivery notes for the WooCommerce shop plugin.
+ * Print Invoices & Delivery Notes for WooCommerce Orders.
  *
- * Plugin Name: WooCommerce Print Invoices & Delivery Notes
+ * Plugin Name: WooCommerce Print Invoice & Delivery Note
  * Plugin URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
- * Description: Print order invoices & delivery notes for the WooCommerce shop plugin. 
+ * Description: Print Invoices & Delivery Notes for WooCommerce Orders. 
  * Version: 3.0
  * Author: Triggvy Gunderson
  * Author URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
@@ -18,13 +18,13 @@
  *     This file is part of WooCommerce Print Invoices & Delivery Notes,
  *     a plugin for WordPress.
  *
- *     WooCommerce Print Invoices & Delivery Notes is free software:
+ *     WooCommerce Print Invoice & Delivery Note is free software:
  *     You can redistribute it and/or modify it under the terms of the
  *     GNU General Public License as published by the Free Software
  *     Foundation, either version 2 of the License, or (at your option)
  *     any later version.
  *
- *     WooCommerce Print Invoices & Delivery Notes is distributed in the hope that
+ *     WooCommerce Print Invoice & Delivery Note is distributed in the hope that
  *     it will be useful, but WITHOUT ANY WARRANTY; without even the
  *     implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *     PURPOSE. See the GNU General Public License for more details.

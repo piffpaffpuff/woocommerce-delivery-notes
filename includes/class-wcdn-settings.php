@@ -167,32 +167,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			</p>
 			<table class="form-table">
 				<tbody>
-					<tr>
-						<th>
-							<label><?php _e( 'Company/Shop Name', 'woocommerce-delivery-notes' ); ?></label>
-						</th>
-						<td>
-							<input type="text" name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>custom_company_name" class="large-text" value="<?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'custom_company_name' ) ) ); ?>" />
-							<span class="description">
-								<?php _e( 'Your company/shop name for the Delivery Note.', 'woocommerce-delivery-notes' ); ?>
-								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
-								<?php _e( 'Leave blank to use the default Website/ Blog title defined in WordPress settings.', 'woocommerce-delivery-notes' ); ?>
-							</span>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>company_address"><?php _e( 'Company/Shop Address', 'woocommerce-delivery-notes' ); ?></label>
-						</th>
-						<td>
-							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>company_address" rows="5" class="large-text"><?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'company_address' ) ) ); ?></textarea>
-							<span class="description">
-								<?php _e( 'The postal address of the company/shop, which gets printed right of the company/shop name, above the order listings.', 'woocommerce-delivery-notes' ); ?>
-								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
-								<?php _e('Leave blank to not print an address.', 'woocommerce-delivery-notes' ); ?>
-							</span>
-						</td>
-					</tr>
 					<tr class="hide-if-no-js">
 						<?php
 						$attachment_id = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'company_logo_image_id' );
@@ -212,6 +186,32 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 								<?php _e( 'A company/shop logo representing your business.', 'woocommerce-delivery-notes' ); ?>
 								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
 								<?php _e( 'When the image is printed, its pixel density will automatically be eight times higher than the original. This means, 1 printed inch will correspond to about 288 pixels on the screen. Example: an image with a width of 576 pixels and a height of 288 pixels will have a printed size of about 2 inches to 1 inch.', 'woocommerce-delivery-notes' ); ?>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label><?php _e( 'Company/Shop Name', 'woocommerce-delivery-notes' ); ?></label>
+						</th>
+						<td>
+							<input type="text" name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>custom_company_name" class="large-text" value="<?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'custom_company_name' ) ) ); ?>" />
+							<span class="description">
+								<?php _e( 'Your company/shop name for the Delivery Note.', 'woocommerce-delivery-notes' ); ?>
+								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
+								<?php _e( 'Leave blank to use the default Website/Blog title defined in WordPress settings. The name will be ignored when a Logo is set.', 'woocommerce-delivery-notes' ); ?>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>company_address"><?php _e( 'Company/Shop Address', 'woocommerce-delivery-notes' ); ?></label>
+						</th>
+						<td>
+							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>company_address" rows="5" class="large-text"><?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'company_address' ) ) ); ?></textarea>
+							<span class="description">
+								<?php _e( 'The postal address of the company/shop or even e-mail or telephone, which gets printed right after the company/shop name.', 'woocommerce-delivery-notes' ); ?>
+								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
+								<?php _e('Leave blank to not print an address.', 'woocommerce-delivery-notes' ); ?>
 							</span>
 						</td>
 					</tr>
@@ -248,7 +248,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 						<td>
 							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>footer_imprint" rows="5" class="large-text"><?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'footer_imprint' ) ) ); ?></textarea>
 							<span class="description">
-								<?php _e( 'Add some further footer imprint, copyright notes etc. to get the printed sheets a bit more branded to your needs.', 'woocommerce-delivery-notes' ); ?>
+								<?php _e( 'Add some further footer imprint, e-mail, telephone, copyright notes etc. to get the printed sheets a bit more branded.', 'woocommerce-delivery-notes' ); ?>
 								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong> 
 								<?php _e('Leave blank to not print a footer.', 'woocommerce-delivery-notes' ); ?>
 							</span>
@@ -269,13 +269,13 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 								<input type="text" name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>print_order_page_endpoint" value="<?php echo get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint' ); ?>" />
 							</p>
 							<span class="description">
-								<?php _e( 'Endpoint for the print order button.', 'woocommerce-delivery-notes' ); ?>
+								<?php _e( 'The endpoint is appended to the accounts page URL to print the order. It should be unique.', 'woocommerce-delivery-notes' ); ?>
 							</span>
 						</td>
 					</tr>
 					<tr>
 						<th>
-							<?php _e( 'Frontend Print Buttons', 'woocommerce-delivery-notes' ); ?>
+							<?php _e( 'Theme Print Buttons', 'woocommerce-delivery-notes' ); ?>
 						</th>
 						<td>
 							<fieldset>

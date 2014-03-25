@@ -2,7 +2,7 @@
 /**
  * Print order footer
  *
- * @package WooCommerce Delivery Notes/Templates
+ * @package WooCommerce Print Invoice & Delivery Note/Templates
  */
 
 if ( !defined( 'ABSPATH' ) ) exit;
