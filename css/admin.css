@@ -21,14 +21,14 @@
 	margin-bottom: 0.35em;
 }
 
-#woocommerce-delivery-notes-box span.loading {
+#woocommerce-delivery-notes-box span.print-preview-loading {
 	position: absolute;
-	right: 7px;
-	top: 0px;
+	right: 2.5em;
+	top: -2.8em;
 }
 
-#woocommerce-delivery-notes-box span.loading,
-.type-shop_order .column-order_actions span.loading {
+#woocommerce-delivery-notes-box span.print-preview-loading,
+.type-shop_order .column-order_actions span.print-preview-loading {
 	display: none;
 	vertical-align: middle;
 }
@@ -72,7 +72,7 @@
 	content: "\e800";
 }
 
-.type-shop_order .column-order_actions span.loading {
+.type-shop_order .column-order_actions span.print-preview-loading {
 	float: left;
 	margin-top: 3px;
 }
@@ -96,6 +96,6 @@
 	float: none;
 }
 
-#company-logo-loader.loading {
+#company-logo-loader.print-preview-loading {
 	display: inline-block;
 }

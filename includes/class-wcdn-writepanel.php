@@ -85,7 +85,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 			<a href="<?php echo wcdn_get_print_permalink( $order->id, 'delivery-note' ); ?>" class="button tips print-preview-button delivery-note" target="_blank" alt="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>" data-tip="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>">
 				<?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>
 			</a>
-			<span class="loading spinner"></span>
+			<span class="print-preview-loading spinner"></span>
 			<?php
 		}
 		
@@ -159,8 +159,8 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 					$total = isset( $_REQUEST['total'] ) ? absint( $_REQUEST['total'] ) : 0;
 					$message = sprintf( _n( 'Created print view.', 'Created print view for %s orders.', $total, 'woocommerce-delivery-notes' ), number_format_i18n( $total ) );
 					?>
-					<div id="woocommerce-delivery-notes-bulk-print-preview-message" class="updated">
-						<p><?php echo $message; ?> <a href="<?php echo urldecode( $_REQUEST['print_url'] ); ?>" target="_blank" class="print-preview-button" id="woocommerce-delivery-notes-bulk-print-preview-link"><?php _e( 'Show print view', 'woocommerce-delivery-notes' ) ?></a> <span class="spinner" style="display:inline;"></span></p>
+					<div id="woocommerce-delivery-notes-bulk-print-message" class="updated">
+						<p><?php echo $message; ?> <a href="<?php echo urldecode( $_REQUEST['print_url'] ); ?>" target="_blank" class="print-preview-button" id="woocommerce-delivery-notes-bulk-print-link"><?php _e( 'Show print view', 'woocommerce-delivery-notes' ) ?></a> <span class="print-preview-loading spinner"></span></p>
 					</div>
 					<?php
 				}
@@ -182,7 +182,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 			?>
 			<a href="<?php echo wcdn_get_print_permalink( $post_id, 'invoice' ); ?>" class="button print-preview-button" target="_blank" alt="<?php esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?></a>
 			<a href="<?php echo wcdn_get_print_permalink( $post_id, 'delivery-note' ); ?>" class="button print-preview-button" target="_blank" alt="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?></a>
-			<span class="loading spinner"></span>
+			<span class="print-preview-loading spinner"></span>
 			<?php
 		}
 		
