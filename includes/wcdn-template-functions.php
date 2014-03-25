@@ -50,15 +50,15 @@ function wcdn_navigation_style() {
 			border-bottom: 1px solid #dfdfdf;
 			left: 0;
 			right: 0;
-			top: 0;
+			bottom: 0;
 			position: fixed;
-			padding: 6px;
+			padding: 6px 10px;
+			text-align: right;
 		}
 
 		#navigation .button {
 			transition-property: border, background, color;
 			display: inline-block;
-			text-decoration: none;
 			font-size: 13px;
 			line-height: 26px;
 			height: 28px;
@@ -75,28 +75,29 @@ function wcdn_navigation_style() {
 			-moz-box-sizing: border-box;
 			box-sizing: border-box;
 			
-			color: #555;
-			border-color: #cccccc;
-			background: #f7f7f7;
-
-			-webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 0 rgba(0,0,0,.08);
-			box-shadow: inset 0 1px 0 #fff, 0 1px 0 rgba(0,0,0,.08);
-			vertical-align: top;
+			background: #2ea2cc;
+			border-color: #0074a2;
+		 	-webkit-box-shadow: inset 0 1px 0 rgba(120,200,230,0.5), 0 1px 0 rgba(0,0,0,.15);
+		 	box-shadow: inset 0 1px 0 rgba(120,200,230,0.5), 0 1px 0 rgba(0,0,0,.15);
+		 	color: #fff;
+			text-decoration: none;
 		}
 		
 		#navigation .button:hover,
 		#navigation .button:focus {
-			background: #fafafa;
-			border-color: #999;
-			color: #222;
+			background: #1e8cbe;
+			border-color: #0074a2;
+		 	-webkit-box-shadow: inset 0 1px 0 rgba(120,200,230,0.6);
+		 	box-shadow: inset 0 1px 0 rgba(120,200,230,0.6);
+			color: #fff;
 		}
 		
 		#navigation .button:active {
-			background: #eee;
-			border-color: #999;
-			color: #333;
-			-webkit-box-shadow: inset 0 2px 5px -3px rgba( 0, 0, 0, 0.5 );
-			box-shadow: inset 0 2px 5px -3px rgba( 0, 0, 0, 0.5 );
+			background: #1b7aa6;
+			border-color: #005684;
+			color: rgba(255,255,255,0.95);
+			-webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
+			box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
 		}
 		
 		@media print {	

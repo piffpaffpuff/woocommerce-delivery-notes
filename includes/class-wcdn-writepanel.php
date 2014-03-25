@@ -36,6 +36,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 		 */
 		public function add_styles() {
 			if( $this->is_order_edit_page() || $this->is_order_post_page() ) {
+				wp_enqueue_style('thickbox');
 				wp_enqueue_style( 'woocommerce-delivery-notes-admin', WooCommerce_Delivery_Notes::$plugin_url . 'css/admin.css' );
 			}
 		}
@@ -45,8 +46,9 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 		 */
 		public function add_scripts() {
 			if( $this->is_order_edit_page() || $this->is_order_post_page() ) {
+				wp_enqueue_script( 'thickbox' ); 
 				wp_enqueue_script( 'woocommerce-delivery-notes-print-link', WooCommerce_Delivery_Notes::$plugin_url . 'js/jquery.print-link.js', array( 'jquery' ) );
-				wp_enqueue_script( 'woocommerce-delivery-notes-admin', WooCommerce_Delivery_Notes::$plugin_url . 'js/admin.js', array( 'jquery', 'woocommerce-delivery-notes-print-link' ) );
+				wp_enqueue_script( 'woocommerce-delivery-notes-admin', WooCommerce_Delivery_Notes::$plugin_url . 'js/admin.js', array( 'jquery', 'woocommerce-delivery-notes-print-link', 'thickbox' ) );
 			}
 		}	
 			
@@ -160,7 +162,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 					$message = sprintf( _n( 'Created print view.', 'Created print view for %s orders.', $total, 'woocommerce-delivery-notes' ), number_format_i18n( $total ) );
 					?>
 					<div id="woocommerce-delivery-notes-bulk-print-message" class="updated">
-						<p><?php echo $message; ?> <a href="<?php echo urldecode( $_REQUEST['print_url'] ); ?>" target="_blank" class="print-preview-button" id="woocommerce-delivery-notes-bulk-print-link"><?php _e( 'Show print view', 'woocommerce-delivery-notes' ) ?></a> <span class="print-preview-loading spinner"></span></p>
+						<p><?php echo $message; ?> <a href="<?php echo urldecode( $_REQUEST['print_url'] ); ?>" target="_blank" class="print-preview-button" id="woocommerce-delivery-notes-bulk-print-button"><?php _e( 'Show print view', 'woocommerce-delivery-notes' ) ?></a> <span class="print-preview-loading spinner"></span></p>
 					</div>
 					<?php
 				}

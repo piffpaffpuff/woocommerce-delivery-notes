@@ -12,38 +12,40 @@ jQuery(document).ready(function($) {
 	$('.print-preview-button').on('printLinkComplete', function(event) {
 		$('.print-preview-loading').hide();
 	});
+	$('.print-preview-button').on('printLinkError', function(event) {
+		$('.print-preview-loading').hide();
+		tb_show('', $(this).attr('href') + '&amp;TB_iframe=true&amp;width=800&amp;height=500');
+	});
 
 	/*
-	 * Bulk actions
+	 * Bulk actions print button in the confirm message
 	 */	
-	/*
-var bulkLink = $('#woocommerce-delivery-notes-bulk-print-link');
-	if( bulkLink.length > 0 ) {
-		var url = bulkLink.attr('href');
-		console.log(url);
-		window.open(url, 'name');
-	}
-*/
+	$(window).on('load', function(event) {
+		var bulkButton = $('#woocommerce-delivery-notes-bulk-print-button');
+		if( bulkButton.length > 0 ) {
+			bulkButton.trigger('click');
+		}
+	});
 
 	/*
 	 * Settings
 	 */	 
 	 
 	// Media managment
-	var file_frame;
+	var media_modal;
  
 	// Button to open the media uploader
 	$('#company-logo-add-button, #company-logo-placeholder').on('click', function(event) {
 		event.preventDefault();
 		
-		// If the media frame already exists, reopen it.
-		if(file_frame) {
-			file_frame.open();
+		// If the modal already exists, reopen it.
+		if(media_modal) {
+			media_modal.open();
 			return;
 		}
 		
-		// Create the media frame.
-		file_frame = wp.media.frames.file_frame = wp.media({
+		// Create the modal.
+		media_modal = wp.media.frames.media_modal = wp.media({
 			title: jQuery( this ).data( 'uploader-title' ),
 			button: {
 				text: jQuery( this ).data( 'uploader-button-title' ),
@@ -51,13 +53,13 @@ var bulkLink = $('#woocommerce-delivery-notes-bulk-print-link');
 			multiple: false 
 		});
 		
-		// Open the modal
-		file_frame.open();
+		// Open the modal.
+		media_modal.open();
 		
 		// When an image is selected, run a callback.
-		file_frame.on( 'select', function(event) {
+		media_modal.on( 'select', function(event) {
 			// We set multiple to false so only get one image from the uploader
-			var attachment = file_frame.state().get('selection').first().toJSON();
+			var attachment = media_modal.state().get('selection').first().toJSON();
 			
 			// Do something with attachment.id and/or attachment.url here
 			addImage(attachment.id);

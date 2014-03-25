@@ -11,7 +11,8 @@
 			
 			// Click handler on the link
 			$(this).on('click', function(event) {
-
+				event.preventDefault();
+	
 				// Target element
 				var element = $(this);
 
@@ -23,7 +24,8 @@
 				
 				// Open the url directly when an iframe printing is not supported.
 				if(navigator.userAgent.match(/opera/i) || navigator.userAgent.match(/trident/i) || (navigator.userAgent.match(/msie/i) && window.addEventListener)) {				
-					return;
+					element.trigger('printLinkError');
+					return false;
 				}
 				
 				// Trigger load
@@ -45,8 +47,6 @@
 					// Change the iframe src in case the iframe already exists
 					$('#printLinkIframe').attr('src', url);
 				}
-				
-				event.preventDefault();
 			});
 			
 		});

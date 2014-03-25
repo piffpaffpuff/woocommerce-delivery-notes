@@ -1,7 +1,7 @@
 === WooCommerce Print Invoice & Delivery Note ===
 Tags: delivery notes, packing list, invoice, delivery, shipping, print, order, woocommerce, woothemes, shop
 Requires at least: 3.8 and WooCommerce 2.1
-Tested up to: WordPress 3.9 Beta and WooCommerce 2.1.5
+Tested up to: WordPress 3.9 Beta and WooCommerce 2.1.6
 License: GPLv3 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
 
@@ -28,13 +28,17 @@ The plugin adds a new side panel on the order page to allow shop administrators 
 
 == Frequently Asked Questions ==
 
-custom fields
-product image
-no prices 
-addresses
-Contribute on github
+custom fields filter
+product image filter
+no prices filter
+template new page made with css breaks
+template hooks
+create custom css
+remove url and page titel from printes sheet
+differences addresses delivery note invoice
 
-== Screenshots ==
+
+Contribute on github
 
 == Changelog ==
 
