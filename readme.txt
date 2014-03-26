@@ -29,7 +29,7 @@ The plugin adds a new side panel on the order page to allow shop administrators 
 == Frequently Asked Questions ==
 
 How do I quickly change the font for the invoice and delivery note?
-You can style them with CSS. Use the `wcdn_head` hook and the write your own CSS. It's best to place the code in the `functions.php` file of your theme. And then get ready to learn some CSS. 
+You can style them with CSS. Use the `wcdn_head` hook and then write your own CSS. It's best to place the code in the `functions.php` file of your theme. 
 
 An example that changes the font and makes the addresses very large:
 
@@ -52,10 +52,10 @@ function my_serif_font_and_large_address() {
 add_action( 'wcdn_head', 'my_serif_font_and_large_address', 100 );
 `
 
-How do I fully customize the CSS of the invoice and delivery note?
-Copy the file `style.css` from `woocommerce-delivery-notes/templates/print-order` to `yourtheme/woocommerce/print-order`. Now start customizing the copied CSS file. 
+How do I fully customize the look of the invoice and delivery note?
+You can use the technique from the question above. Or you can use the the `wcdn_head` hook to enqueue your own stylesheet. For full control copy the file `style.css` from `woocommerce-delivery-notes/templates/print-order` to `yourtheme/woocommerce/print-order` and start editing it. 
 
-Note: Create the `woocommerce` and `print-order` folders if they do not exists. Second note: Never edit plugin files directly.
+Note: Create the `woocommerce` and `print-order` folders if they do not exists. Second note: Never directly edit plugin files.
 
 
 
@@ -65,18 +65,16 @@ hook I want to add some content, li a
 
 
 I want to move the logo to the bottom, how can I do that? 
-Well, first try it with CSS and some hooks, maybe the questions above can help you. If this isn't enough, you are free to edit the HTML and CSS of the template. Consider this solution only, if you really know HTML, CSS and PHP! Most probably you want to edit the `print-content.php` and `style.css`. Copy the files from `woocommerce-delivery-notes/templates/print-order` to `yourtheme/woocommerce/print-order`. Now start editing the files. 
+Well, first try it with CSS and some hooks, maybe the questions above can help you. If this isn't enough, you are free to edit the HTML and CSS of the template. Consider this solution only, if you really know some HTML, CSS and PHP! Most probably you want to edit the `print-content.php` and `style.css`. Copy the files from `woocommerce-delivery-notes/templates/print-order` to `yourtheme/woocommerce/print-order` and start editing them. 
 
-Note: Create the `woocommerce` and `print-order` folders if they do not exists. Second note: Never edit plugin files directly.
+Note: Create the `woocommerce` and `print-order` folders if they do not exists. Second note: Never directly edit plugin files.
 
 Why can't I print this or that?
-The plugin uses the exact same content as WooCommerce. If something isn't visible on the theyourdomain.com/my-account/view-order page, then it also won't be in the print view. In case you have some special needs, you have to first think how you could enhance WooCommerce to do what you want. YOu can the later integrate your data into the print template.
+The plugin uses the exact same content as WooCommerce. If something isn't visible on the theyourdomain.com/my-account/view-order page, then it also won't be in the delivery note and invoice. In case you have some special needs, you have to first think how you enhance WooCommerce to solve your problem. Afterwards you  can integrate your solution into the invoice and delivery note template.
 
 How can I remove the Website URL and page number from the invoice or delivery note?
 You can find an option in the print view of every browser to disable them. This is Browser specific option that can't be controlled by the plugin. Please read your browser help for more infromation.
 
-What template functions can I use?
-You can use the functions from WordPress, WooCommerce and every installed plugin or activated theme. You can find all plugin specific functions in the `wcdn-template-functions.php` file. In addition the `$order`variable in the template is just a normal `WC_Order` instance. 
 
 How can I add a custom field to the order?
 First of all
@@ -91,7 +89,10 @@ remove url and page titel from printes sheet
 differences addresses delivery note invoice
 
 
-Contribute on github
+
+
+What template functions can I use?
+You can use the functions from WordPress, WooCommerce and every installed plugin or activated theme. You can find all plugin specific functions in the `wcdn-template-functions.php` file. In addition the `$order`variable in the template is just a normal `WC_Order` instance. 
 
 == Changelog ==
 
