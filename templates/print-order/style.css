@@ -34,7 +34,8 @@ body {
 	background: #fff;
 	color: #000;
 	font-family: "HelveticaNeue", Helvetica, Arial, sans-serif;
-	line-height: 125%;
+	font-size: 100%;
+	line-height: 1.25em;
 }
 
 h1,
@@ -138,21 +139,21 @@ h2 {
 	margin-bottom: 6em;
 }
 
-.order-addresses .shipping-address {
+.shipping-address {
 	float: left;
 }
 
-.order-addresses .billing-address {
+.billing-address {
 	margin-left: 50%;
 }
 
 /* Switch the addresses for delivery notes */
-.delivery-note .order-addresses .shipping-address {
+.delivery-note .shipping-address {
 	float: right;
 	width: 50%;
 }
 
-.delivery-note .order-addresses .billing-address {
+.delivery-note .billing-address {
 	margin-left: 0;
 }
 
@@ -192,7 +193,6 @@ h2 {
 .order-items dl {
 	display: inline;
 	padding-left: 0.25em;
-	line-height: 125%;
 }
 
 .order-items p {
@@ -246,7 +246,7 @@ h2 {
 	margin-bottom: 0;
 }
 
-.order-colophon .colophon-policies {
+.colophon-policies {
 	margin-bottom: 1.25em;
 }
 

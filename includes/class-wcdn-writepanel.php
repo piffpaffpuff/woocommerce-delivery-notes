@@ -25,7 +25,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 			
 			add_action( 'add_meta_boxes_shop_order', array( $this, 'add_box' ) );
 
-			//add_action( 'wp_ajax_get_print_permalink', array( $this, 'get_print_permalink_ajax' ) );
 			add_action( 'admin_footer-edit.php', array( $this, 'add_bulk_actions' ) );
             add_action( 'load-edit.php', array( $this, 'load_bulk_actions' ) );
 			add_action( 'admin_notices', array( $this, 'confirm_bulk_actions' ) );
@@ -159,10 +158,16 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 			if( $this->is_order_edit_page() ) {
 				if ( isset( $_REQUEST['printed_delivery_note'] ) || isset( $_REQUEST['printed_invoice'] ) ) {
 					$total = isset( $_REQUEST['total'] ) ? absint( $_REQUEST['total'] ) : 0;
-					$message = sprintf( _n( 'Created print view.', 'Created print view for %s orders.', $total, 'woocommerce-delivery-notes' ), number_format_i18n( $total ) );
+					
+					// Confirmation message
+					if( $_REQUEST['printed_invoice'] ) {
+						$message = sprintf( _n( 'Invoice created.', '%s invoices created.', $total, 'woocommerce-delivery-notes' ), number_format_i18n( $total ) );
+					} elseif( $_REQUEST['printed_invoice'] ) {
+						$message = sprintf( _n( 'Delivery note created.', '%s delivery notes created.', $total, 'woocommerce-delivery-notes' ), number_format_i18n( $total ) );
+					}
 					?>
 					<div id="woocommerce-delivery-notes-bulk-print-message" class="updated">
-						<p><?php echo $message; ?> <a href="<?php echo urldecode( $_REQUEST['print_url'] ); ?>" target="_blank" class="print-preview-button" id="woocommerce-delivery-notes-bulk-print-button"><?php _e( 'Show print view', 'woocommerce-delivery-notes' ) ?></a> <span class="print-preview-loading spinner"></span></p>
+						<p><?php echo $message; ?> <a href="<?php echo urldecode( $_REQUEST['print_url'] ); ?>" target="_blank" class="print-preview-button" id="woocommerce-delivery-notes-bulk-print-button"><?php _e( 'Print now', 'woocommerce-delivery-notes' ) ?></a> <span class="print-preview-loading spinner"></span></p>
 					</div>
 					<?php
 				}
