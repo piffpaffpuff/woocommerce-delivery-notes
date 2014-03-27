@@ -23,9 +23,9 @@ The plugin adds a new side panel on the order page to allow shop administrators 
 
 == Frequently Asked Questions ==
 
-= How can I remove the Website URL and page number from the invoice or delivery note? =
+= How to prevent that the Website URL and page numbers are printed? =
 
-You can find an option in the print view of every browser to disable them. This is a browser specific option that can't be controlled by the plugin. Please read your browser help for more infromation.
+You can find an option in the print view of every browser to disable those. This is a browser specific option that can't be controlled by the plugin. Please read your browser help for more infromation.
 
 = Why are my bulk printed orders not splitted to seperate pages? =
 
