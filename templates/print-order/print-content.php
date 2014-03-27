@@ -58,35 +58,14 @@ if ( !defined( 'ABSPATH' ) ) exit;
 				<div class="order-info">
 					<h2><?php wcdn_document_title(); ?></h2>
 
-					<ul class="customer-details">
-						<li class="number-info">
-							<strong><?php _e( 'Order Number', 'woocommerce-delivery-notes' ); ?></strong>
-							<span><?php echo $order->get_order_number(); ?></span>
-						</li>
-						<li class="date-info">
-							<strong><?php _e( 'Order Date', 'woocommerce-delivery-notes' ); ?></strong>
-							<span><?php wcdn_order_date( $order ); ?></span>
-						</li>
-						<li class="payment-info">
-							<strong><?php _e( 'Payment Method', 'woocommerce-delivery-notes' ); ?></strong>
-							<span><?php wcdn_payment_method( $order ); ?></span>
-						</li>
-										
-						<?php if( $order->billing_email ) : ?>
-							<li class="email-info">
-								<strong><?php _e( 'Email', 'woocommerce-delivery-notes' ); ?></strong>
-								<span><?php echo $order->billing_email; ?></span>
+					<ul class="info-list">
+						<?php $fields = apply_filters( 'wcdn_order_info_fields', wcdn_get_order_info( $order ) ); ?>
+						<?php foreach( $fields as $field ) : ?>
+							<li>
+								<strong><?php echo apply_filters( 'wcdn_order_info_name', $field['name'], $field ); ?></strong>
+								<span><?php echo apply_filters( 'wcdn_order_info_content', $field['content'], $field ); ?></span>
 							</li>
-						<?php endif; ?>
-						
-						<?php if( $order->billing_phone ) : ?>
-							<li class="telephone-info">
-								<strong><?php _e( 'Telephone', 'woocommerce-delivery-notes' ); ?></strong>
-								<span><?php echo $order->billing_phone; ?></span>
-							</li>
-						<?php endif; ?>
-						
-						<?php do_action( 'wcdn_customer_details_list', $order ); ?>
+						<?php endforeach; ?>
 					</ul>
 					
 					<?php do_action( 'wcdn_after_info', $order ); ?>
@@ -107,8 +86,8 @@ if ( !defined( 'ABSPATH' ) ) exit;
 								<?php foreach( $order->get_items() as $item ) : ?>
 									
 									<?php
-										$_product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
-										$item_meta = new WC_Order_Item_Meta( $item['item_meta'], $_product );
+										$product = apply_filters( 'wcdn_order_item_product', $order->get_product_from_item( $item ), $item );
+										$item_meta = new WC_Order_Item_Meta( $item['item_meta'], $product );
 									?>
 									
 									<tr>
@@ -123,7 +102,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 													
 													foreach ( $fields as $field ) : ?>
 														
-														<dt><?php echo $field['title']; ?></dt>
+														<dt><?php echo $field['name']; ?></dt>
 														<dd><?php echo $field['content']; ?></dd>
 														
 													<?php endforeach; ?>
@@ -132,7 +111,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 											<?php $item_meta->display(); ?>
 											
 											<dl class="files">
-												<?php if( $_product && $_product->exists() && $_product->is_downloadable() && $order->is_download_permitted() ) : ?>
+												<?php if( $product && $product->exists() && $product->is_downloadable() && $order->is_download_permitted() ) : ?>
 													
 													<dt><?php _e( 'Download:', 'woocommerce-delivery-notes' ); ?></dt>
 													<dd><?php echo count( $order->get_item_downloads( $item ) ) ?> <?php _e( 'Files', 'woocommerce-delivery-notes' ); ?></dd>

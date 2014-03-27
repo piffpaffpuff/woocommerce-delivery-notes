@@ -160,9 +160,9 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 					$total = isset( $_REQUEST['total'] ) ? absint( $_REQUEST['total'] ) : 0;
 					
 					// Confirmation message
-					if( $_REQUEST['printed_invoice'] ) {
+					if( isset( $_REQUEST['printed_invoice'] ) ) {
 						$message = sprintf( _n( 'Invoice created.', '%s invoices created.', $total, 'woocommerce-delivery-notes' ), number_format_i18n( $total ) );
-					} elseif( $_REQUEST['printed_invoice'] ) {
+					} elseif( isset( $_REQUEST['printed_delivery_note'] ) ) {
 						$message = sprintf( _n( 'Delivery note created.', '%s delivery notes created.', $total, 'woocommerce-delivery-notes' ), number_format_i18n( $total ) );
 					}
 					?>
