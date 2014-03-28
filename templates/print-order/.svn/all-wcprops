@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/587787/woocommerce-delivery-notes/trunk/templates/print
+END
+print-delivery-note.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/727106/woocommerce-delivery-notes/trunk/templates/print/print-delivery-note.php
+END
+style.css
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/682965/woocommerce-delivery-notes/trunk/templates/print/style.css
+END
+print-invoice.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/587787/woocommerce-delivery-notes/trunk/templates/print/print-invoice.php
+END

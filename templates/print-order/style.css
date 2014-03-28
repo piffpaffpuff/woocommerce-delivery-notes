@@ -1,0 +1,267 @@
+/* Simple CSS Reset and Print options
+------------------------------------------*/
+
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, table, ol, ul, dl, li, dt, dd {
+	border: 0 none;
+	font: inherit;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+
+body {
+	line-height: 1;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* Template Page Layout
+------------------------------------------*/
+
+
+/* Main Body */
+body {
+	background: #fff;
+	color: #000;
+	font-family: "HelveticaNeue", Helvetica, Arial, sans-serif;
+	font-size: 100%;
+	line-height: 1.25em;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-weight: bold;
+	margin-bottom: 1.25em;
+}
+
+ul {
+	margin-bottom: 1.25em;
+}
+
+li,
+dt,
+dd  {
+	padding: 0.375em 0;
+}
+
+dt {
+	font-weight: bold;
+}
+
+p + p {
+	margin-top: 1.25em;
+}
+
+address {
+	font-style: normal;
+}
+
+/* Basic Table Styling */
+table {
+	page-break-inside: auto;
+	width: 100%;
+}
+
+tr {
+	page-break-inside: avoid;
+	page-break-after: auto;	
+	border-bottom: 0.12em solid black;
+}
+
+td,
+th {
+	padding: 0.375em 0;
+	vertical-align: middle;
+}
+
+td img,
+th img {
+	vertical-align: middle;
+}
+
+th {
+	color: black;
+	font-weight: bold;
+	text-align: left;
+	padding-bottom: 1.25em;
+}
+
+/* Page Margins & Basic Stylings */
+#page {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+	font-size: 0.875em;
+}
+
+.content {
+	padding-left: 10%;
+	padding-right: 10%;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	page-break-after: always;
+}
+
+h1,
+h2 {
+	font-size: 1.572em;
+}
+
+.order-branding,
+.order-addresses,
+.order-info,
+.order-items,
+.order-notes,
+.order-thanks,
+.order-colophon {
+	margin-bottom: 3em;
+}
+
+.order-items {
+	page-break-before: auto;
+	page-break-after: auto;
+}
+
+/* Order Branding */
+.order-branding .logo {
+	margin-bottom: 1em;
+}
+
+/* Order Addresses */
+.order-addresses {
+	margin-bottom: 6em;
+}
+
+.shipping-address {
+	float: left;
+}
+
+.billing-address {
+	margin-left: 50%;
+}
+
+/* Switch the addresses for delivery notes */
+.delivery-note .shipping-address {
+	float: right;
+	width: 50%;
+}
+
+.delivery-note .billing-address {
+	margin-left: 0;
+}
+
+/* Order Info */
+.order-info {
+	clear: both;
+}
+
+.order-info ul {
+	border-top: 0.24em solid black;
+}
+
+.order-info li {
+	border-bottom: 0.12em solid black;
+}
+
+.order-info li strong {
+	font-weight: normal;
+	width: 25%;
+	display: inline-block;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	margin-bottom: 0;
+}
+
+/* Order Items */
+.order-items {
+	margin-bottom: 1em;
+}
+
+.order-items th,
+.order-items td {
+	width: 50%;
+}
+
+.order-items dl {
+	display: inline;
+	padding-left: 0.25em;
+}
+
+.order-items p {
+	display: inline;
+}
+
+.order-items small,
+.order-items dt,
+.order-items dd {
+	font-size: 0.785em;
+	font-weight: normal;
+	line-height: 150%;
+	display: inline;
+	padding: 0;
+	margin: 0;
+}
+
+.order-items dt {
+	padding-right: 0.2em;
+}
+
+.order-items tfoot .total-name,
+.order-items tfoot tr:last-child .total-price {
+	font-weight: bold;
+}
+
+.order-items tfoot tr:last-child {
+	border-bottom-width: 0.24em;
+}
+
+/* Order Notes */
+.order-notes {
+	font-size: 0.785em;
+	line-height: 150%;
+	margin-bottom: 6em;
+}
+
+.order-notes h4 {
+	margin-bottom: 0;
+}
+
+/* Order Thanks */
+.order-thanks {
+	margin-left: 50%;
+}
+
+/* Order Colophon */
+.order-colophon {
+	font-size: 0.785em;
+	line-height: 150%;
+	margin-bottom: 0;
+}
+
+.colophon-policies {
+	margin-bottom: 1.25em;
+}
+
+
+/* CSS Media Queries for Print
+------------------------------------------*/
+
+
+@media print {
+	body {
+		font-size: 8pt;
+	}
+}

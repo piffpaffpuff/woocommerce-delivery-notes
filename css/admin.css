@@ -1,0 +1,101 @@
+/* Icons */
+
+@font-face {
+	font-family: 'icons';
+	src: url('../fonts/icons.eot?99179621');
+	src: url('../fonts/icons.eot?99179621#iefix') format('embedded-opentype'),
+	   url('../fonts/icons.woff?99179621') format('woff'),
+	   url('../fonts/icons.ttf?99179621') format('truetype'),
+	   url('../fonts/icons.svg?99179621#icons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Edit order */
+
+#woocommerce-delivery-notes-box .button {
+	overflow: hidden;
+	max-width: 100%;
+	text-overflow: ellipsis;
+	margin-top: 0.65em;
+	margin-bottom: 0.35em;
+}
+
+#woocommerce-delivery-notes-box span.print-preview-loading {
+	position: absolute;
+	right: 2.5em;
+	top: -2.8em;
+}
+
+#woocommerce-delivery-notes-box span.print-preview-loading,
+.type-shop_order .column-order_actions span.print-preview-loading {
+	display: none;
+	vertical-align: middle;
+}
+
+/* All orders */
+.type-shop_order .column-order_actions .print-preview-button {
+	display: block;
+	text-indent: -9999px;
+	position: relative;
+	height: 1em;
+	width: 1em;
+	padding: 0 !important;
+	height: 2em !important;
+	width: 2em;
+}
+
+.type-shop_order .column-order_actions .print-preview-button:before {
+	font-family: "icons";
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	-webkit-font-smoothing: antialiased;
+	margin: 0;
+	text-indent: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	content: "";
+	line-height: 1.85;
+} 
+
+.type-shop_order .column-order_actions .print-preview-button.invoice:before {
+	content: "\e801";
+}
+
+.type-shop_order .column-order_actions .print-preview-button.delivery-note:before {
+	content: "\e800";
+}
+
+.type-shop_order .column-order_actions span.print-preview-loading {
+	float: left;
+	margin-top: 3px;
+}
+
+.type-shop_order .column-order_actions .print-preview-button span {
+	display:  none;
+}
+
+/* Settings */
+
+#company-logo-placeholder {
+}
+
+#company-logo-placeholder img {
+	cursor: pointer;
+	max-width: 200px;
+	height: auto;
+}
+
+#company-logo-loader.spinner {
+	float: none;
+}
+
+#company-logo-loader.print-preview-loading {
+	display: inline-block;
+}
