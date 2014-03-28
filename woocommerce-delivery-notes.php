@@ -13,7 +13,7 @@
  * Text Domain: woocommerce-delivery-notes
  * Domain Path: /languages/
  *
- * Copyright 2014 Trigvvy Gunderson
+ * Copyright 2014 Trigvvy Gunderson, David Decker
  *		
  *     This file is part of WooCommerce Print Invoices & Delivery Notes,
  *     a plugin for WordPress.
