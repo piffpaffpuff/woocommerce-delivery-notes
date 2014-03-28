@@ -52,7 +52,7 @@ function wcdn_navigation_style() {
 			right: 0;
 			bottom: 0;
 			position: fixed;
-			padding: 6px 10px;
+			padding: 6px 8px;
 			text-align: right;
 		}
 

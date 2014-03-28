@@ -77,12 +77,17 @@ table {
 tr {
 	page-break-inside: avoid;
 	page-break-after: auto;	
+	border-bottom: 0.12em solid black;
 }
 
 td,
 th {
-	border-bottom: 0.12em solid black;
 	padding: 0.375em 0;
+	vertical-align: middle;
+}
+
+td img,
+th img {
 	vertical-align: middle;
 }
 
@@ -219,7 +224,7 @@ h2 {
 	font-weight: bold;
 }
 
-.order-items tfoot tr:last-child td {
+.order-items tfoot tr:last-child {
 	border-bottom-width: 0.24em;
 }
 

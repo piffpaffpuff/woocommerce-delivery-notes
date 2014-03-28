@@ -32,10 +32,12 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			if( !$option ) {
 				update_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint', 'print-order' );
 			}
+			/*
 			$option = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_view_order_page' );
 			if( !$option ) {
 				update_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_view_order_page', 1 );
 			}
+			*/
 		}
 		
 		/**
@@ -141,7 +143,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 */
 		public function create_settings_page() {
 			?>
-			<h3><?php _e( 'Print Order Template', 'woocommerce-delivery-notes' ); ?></h3>
+			<h3><?php _e( 'Print Order', 'woocommerce-delivery-notes' ); ?></h3>
 			<p>
 				<?php 
 				// show template preview links when an order is available	
@@ -161,7 +163,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 					<input type="hidden" id="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>show_print_preview" />
 					<span class="description">
 						<?php printf( __( 'You can preview the <a href="%1$s" target="%3$s" class="%4$s">invoice template</a> or <a href="%2$s" target="%3$s" class="%4$s">delivery note template</a>.', 'woocommerce-delivery-notes' ), $invoice_url, $note_url, '_blank', '' ); ?>
-						<?php _e( 'To customize the template read the FAQ in the plugins read-me.', 'woocommerce-delivery-notes' ); ?>
+						<?php _e( 'With the FAQ in the readme file you can learn how to customize the template.', 'woocommerce-delivery-notes' ); ?>
 					</span>
 				<?php endif; ?>
 			</p>
@@ -248,7 +250,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 						<td>
 							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>footer_imprint" rows="5" class="large-text"><?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'footer_imprint' ) ) ); ?></textarea>
 							<span class="description">
-								<?php _e( 'Add some further footer imprint, e-mail, telephone, copyright notes etc. to get the printed sheets a bit more branded.', 'woocommerce-delivery-notes' ); ?>
+								<?php _e( 'Add some further footer imprint, e-mail, telephone, copyright notes etc. This makes the printed sheets a bit more branded.', 'woocommerce-delivery-notes' ); ?>
 								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong> 
 								<?php _e('Leave blank to not print a footer.', 'woocommerce-delivery-notes' ); ?>
 							</span>

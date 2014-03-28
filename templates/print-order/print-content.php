@@ -27,27 +27,23 @@ if ( !defined( 'ABSPATH' ) ) exit;
 
 					<?php if( get_option( 'woocommerce_ship_to_billing_address_only' ) === 'no' && get_option( 'woocommerce_calc_shipping' ) !== 'no' ) : ?>
 					
-					<div class="shipping-address">
-						<h3><?php _e( 'Shipping Address', 'woocommerce-delivery-notes' ); ?></h3>
-						<address>
-	
-							<?php if( !$order->get_formatted_shipping_address() ) _e( 'N/A', 'woocommerce' ); else echo apply_filters( 'wcdn_address_invoice', $order->get_formatted_shipping_address(), $order ); ?>
-						
-						</address>
-					</div>
+						<div class="shipping-address">
+							<h3><?php _e( 'Shipping Address', 'woocommerce-delivery-notes' ); ?></h3>
+							<address>
+		
+								<?php if( !$order->get_formatted_shipping_address() ) _e( 'N/A', 'woocommerce' ); else echo apply_filters( 'wcdn_address_invoice', $order->get_formatted_shipping_address(), $order ); ?>
+							
+							</address>
+						</div>
 					
 					<?php endif; ?>
 					
 					<div class="billing-address">
 						<h3><?php _e( 'Billing Address', 'woocommerce-delivery-notes' ); ?></h3>
 						<address>
+							
 							<?php if( !$order->get_formatted_billing_address() ) _e( 'N/A', 'woocommerce' ); else echo apply_filters( 'wcdn_address_invoice', $order->get_formatted_billing_address(), $order ); ?>
 							
-							<?php if( wcdn_get_template_type() == 'invoice' ) : ?>
-					
-							<?php else : ?>
-						
-							<?php endif ?>
 						</address>
 					</div>
 					
@@ -76,8 +72,8 @@ if ( !defined( 'ABSPATH' ) ) exit;
 					<table>
 						<thead>
 							<tr>
-								<th class="product-heading"><?php _e('Product', 'woocommerce-delivery-notes'); ?></th>
-								<th class="total-heading"><?php _e('Total', 'woocommerce-delivery-notes'); ?></th>
+								<th class="product-heading"><span><?php _e('Product', 'woocommerce-delivery-notes'); ?></span></th>
+								<th class="total-heading"><span><?php _e('Total', 'woocommerce-delivery-notes'); ?></span></th>
 							</tr>
 						</thead>
 						
@@ -92,6 +88,8 @@ if ( !defined( 'ABSPATH' ) ) exit;
 									
 									<tr>
 										<td class="product-name">
+											<?php do_action( 'wcdn_order_item_before', $product, $order ); ?>
+
 											<span class="name"><?php echo apply_filters( 'wcdn_order_item_name', $item['name'], $item ); ?></span>
 											<dl class="quantity">
 												<dt><?php _e( 'Quantity:', 'woocommerce-delivery-notes' ); ?></dt>
@@ -114,13 +112,13 @@ if ( !defined( 'ABSPATH' ) ) exit;
 												<?php if( $product && $product->exists() && $product->is_downloadable() && $order->is_download_permitted() ) : ?>
 													
 													<dt><?php _e( 'Download:', 'woocommerce-delivery-notes' ); ?></dt>
-													<dd><?php echo count( $order->get_item_downloads( $item ) ) ?> <?php _e( 'Files', 'woocommerce-delivery-notes' ); ?></dd>
+													<dd><?php printf( __( '%s Files', 'woocommerce-delivery-notes' ), count( $order->get_item_downloads( $item ) ) ); ?></dd>
 														
 												<?php endif; ?>
 											</dl>
 										</td>
 										<td class="product-price">
-											<?php echo $order->get_formatted_line_subtotal( $item ); ?>
+											<span><?php echo $order->get_formatted_line_subtotal( $item ); ?></span>
 										</td>
 									</tr>
 								<?php endforeach; ?>
@@ -139,8 +137,6 @@ if ( !defined( 'ABSPATH' ) ) exit;
 								<?php endforeach; ?>
 							<?php endif; ?>
 						</tfoot>
-						
-						<?php do_action( 'wcdn_order_items_table', $order ); ?>
 					</table>
 										
 					<?php do_action( 'wcdn_after_items', $order ); ?>
@@ -152,7 +148,6 @@ if ( !defined( 'ABSPATH' ) ) exit;
 						<h4><?php _e( 'Customer Note', 'woocommerce-delivery-notes' ); ?></h4>
 						<?php wcdn_customer_notes( $order ); ?>
 					<?php endif; ?>
-					
 					
 					<?php do_action( 'wcdn_after_notes', $order ); ?>
 				</div><!-- .order-notes -->
