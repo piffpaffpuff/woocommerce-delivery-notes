@@ -34,7 +34,6 @@ The plugin adds a new side panel on the order page to allow shop administrators 
 == Frequently Asked Questions ==
 
 
-
 = How to prevent that the Website URL and page numbers are printed? =
 
 You can find an option in the print view of every browser to disable those. This is a browser specific option that can't be controlled by the plugin. Please read your browser help for more infromation.
@@ -200,7 +199,10 @@ For custom and update-secure language files please upload them to `/wp-content/l
 == Changelog ==
 
 = 3.0 =
-- WooCommerce 2.1 compability
+- Complete code rebuild
+- WooCommerce 2.1 as minimum requirement
 - Print buttons in the theme
 - Bulk print actions
 - New template structure
+- Template hooks to edit the tamplate without copying it
+- Updated FAQ with code examples
