@@ -75,7 +75,7 @@ function my_serif_font_and_large_address() {
 		</style>
 	<?php
 }
-add_action( 'wcdn_head', 'my_serif_font_and_large_address' );
+add_action( 'wcdn_head', 'my_serif_font_and_large_address', 50 );
 `
 
 
@@ -94,7 +94,7 @@ function my_price_free_delivery_note() {
 		</style>
 	<?php
 }
-add_action( 'wcdn_head', 'my_price_free_delivery_note' );
+add_action( 'wcdn_head', 'my_price_free_delivery_note', 50 );
 `
 
 
