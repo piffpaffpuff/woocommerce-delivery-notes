@@ -219,13 +219,21 @@ h2 {
 	padding-right: 0.2em;
 }
 
-.order-items tfoot .total-name,
-.order-items tfoot tr:last-child .total-price {
+.order-items tfoot .total-name {
 	font-weight: bold;
 }
 
 .order-items tfoot tr:last-child {
 	border-bottom-width: 0.24em;
+}
+
+.order-items tfoot tr:last-child .total-price {
+	font-size: 0.785em;
+}
+
+.order-items tfoot tr:last-child .total-price .amount:first-child {
+	font-size: 1.273em;
+	font-weight: bold;
 }
 
 /* Order Notes */

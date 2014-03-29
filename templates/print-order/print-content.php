@@ -58,8 +58,8 @@ if ( !defined( 'ABSPATH' ) ) exit;
 						<?php $fields = apply_filters( 'wcdn_order_info_fields', wcdn_get_order_info( $order ) ); ?>
 						<?php foreach( $fields as $field ) : ?>
 							<li>
-								<strong><?php echo apply_filters( 'wcdn_order_info_name', $field['name'], $field ); ?></strong>
-								<span><?php echo apply_filters( 'wcdn_order_info_content', $field['content'], $field ); ?></span>
+								<strong><?php echo apply_filters( 'wcdn_order_info_name', $field['label'], $field ); ?></strong>
+								<span><?php echo apply_filters( 'wcdn_order_info_content', $field['value'], $field ); ?></span>
 							</li>
 						<?php endforeach; ?>
 					</ul>
@@ -100,8 +100,8 @@ if ( !defined( 'ABSPATH' ) ) exit;
 													
 													foreach ( $fields as $field ) : ?>
 														
-														<dt><?php echo $field['name']; ?></dt>
-														<dd><?php echo $field['content']; ?></dd>
+														<dt><?php echo $field['label']; ?></dt>
+														<dd><?php echo $field['value']; ?></dd>
 														
 													<?php endforeach; ?>
 											</dl>

@@ -199,30 +199,30 @@ function wcdn_get_order( $order_id ) {
 function wcdn_get_order_info( $order ) {
 	$fields = array( 
 		'order_number' => array( 
-			'name' => __( 'Order Number', 'woocommerce-delivery-notes' ),
-			'content' => $order->get_order_number() 
+			'label' => __( 'Order Number', 'woocommerce-delivery-notes' ),
+			'value' => $order->get_order_number() 
 		),
 		'order_date' => array( 
-			'name' => __( 'Order Date', 'woocommerce-delivery-notes' ),
-			'content' => date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) )
+			'label' => __( 'Order Date', 'woocommerce-delivery-notes' ),
+			'value' => date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) )
 		),
 		'payment_method' => array( 
-			'name' => __( 'Payment Method', 'woocommerce-delivery-notes' ),
-			'content' => __( $order->payment_method_title, 'woocommerce' )
+			'label' => __( 'Payment Method', 'woocommerce-delivery-notes' ),
+			'value' => __( $order->payment_method_title, 'woocommerce' )
 		)
 	);
 	
 	if( $order->billing_email ) {
 		$fields['billing_email'] = array(
-			'name' => __( 'Email', 'woocommerce-delivery-notes' ),
-			'content' => $order->billing_email
+			'label' => __( 'Email', 'woocommerce-delivery-notes' ),
+			'value' => $order->billing_email
 		);
 	}
 	
 	if( $order->billing_phone ) {
 		$fields['billing_phone'] = array(
-			'name' => __( 'Telephone', 'woocommerce-delivery-notes' ),
-			'content' => $order->billing_phone
+			'label' => __( 'Telephone', 'woocommerce-delivery-notes' ),
+			'value' => $order->billing_phone
 		);
 	}
 	

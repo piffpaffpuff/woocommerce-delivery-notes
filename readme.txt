@@ -117,7 +117,7 @@ add_filter( 'wcdn_order_info_fields', 'my_removed_payment_method' );
 
 = How can I add some more fields to the order info section? =
 
-Use the `wcdn_order_info_fields` filter hook. It returns all the fields as array. Also read the WooCommerce documentation to learn how you get custom checkout and order fields. Otherwise you won't be able to replace the 'content' with the real values.
+Use the `wcdn_order_info_fields` filter hook. It returns all the fields as array. Also read the WooCommerce documentation to learn how you get custom checkout and order fields. Otherwise you won't be able to replace the 'value' with the real values.
 
 An example that adds a 'VAT' and 'Customer Number' field to the end of the list:
 
@@ -125,12 +125,12 @@ An example that adds a 'VAT' and 'Customer Number' field to the end of the list:
 function my_custom_order_fields( $fields ) {
 	$new_fields = array( 
 		'vat' => array( 
-			'name' => 'VAT',
-			'content' => '123456' 
+			'label' => 'VAT',
+			'value' => '123456' 
 		),
 		'customer_number' => array( 
-			'name' => 'Customer Number',
-			'content' => 'EC-1234'
+			'label' => 'Customer Number',
+			'value' => 'EC-1234'
 		)
 	);	
 	return array_merge( $fields, $new_fields );
