@@ -186,9 +186,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		 * Get the template url for a file. locate by file existence
 		 * and then return the corresponding url.
 		 */
-		public function get_template_url( $name ) {
-			global $woocommerce;
-			
+		public function get_template_url( $name ) {			
 			$child_theme_path = get_stylesheet_directory() . '/' . $this->template_path_theme;
 			$child_theme_uri = get_stylesheet_directory_uri() . '/' . $this->template_path_theme;
 			$theme_path = get_template_directory() . '/' . $this->template_path_theme;
