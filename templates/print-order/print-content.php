@@ -10,7 +10,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 ?>
 
 				<div class="order-branding">
-					<div class="logo">
+					<div class="company-logo">
 						<?php if( wcdn_get_company_logo_id() ) : ?><?php wcdn_company_logo(); ?><?php endif; ?>
 					</div>
 					

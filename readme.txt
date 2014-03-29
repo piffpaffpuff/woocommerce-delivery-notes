@@ -1,6 +1,6 @@
 === WooCommerce Print Invoice & Delivery Note ===
 
-Contributors: Triggvy Gunderson, David Decker
+Contributors: Trigvvy Gunderson, David Decker
 Tags: delivery note, packing slip, invoice, delivery, shipping, print, order, woocommerce, woothemes, shop
 Requires at least: 3.8 and WooCommerce 2.1
 Tested up to: WordPress 3.9 Beta and WooCommerce 2.1.6
