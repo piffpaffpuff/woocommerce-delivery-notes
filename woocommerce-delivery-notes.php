@@ -65,6 +65,12 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 			// Include the classes	
 			$this->include_classes();	
 			
+			// Wait for WooCommerce to load
+			add_action( 'plugins_loaded', array($this, 'load_localisation') );
+			add_action( 'woocommerce_loaded', array($this, 'woocommerce_loaded') );
+		}
+		
+		public function woocommerce_loaded() {
 			// WooCommerce activation required
 			if ( $this->is_woocommerce_activated() ) {	
 				// Create the instances
@@ -73,8 +79,8 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 				$this->writepanel = new WooCommerce_Delivery_Notes_Writepanel();
 				$this->theme = new WooCommerce_Delivery_Notes_Theme();
 
-				// Load the hooks
-				add_action( 'plugins_loaded', array($this, 'load_localisation') );
+				// Load the hooks for the template after the objetcs.
+				// Like this the template has full access to all objects.
 				add_action( 'admin_init', array( $this, 'load_admin_hooks' ) );
 				add_action( 'init', array( $this, 'include_template_functions' ) );
 			}
@@ -103,8 +109,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 * Load the localisation 
 		 */
 		public function load_localisation() {	
-			load_plugin_textdomain( 'woocommerce-delivery-notes', false, dirname( self::$plugin_basefile ) . '/../../languages/woocommerce-delivery-notes/' );
-			load_plugin_textdomain( 'woocommerce-delivery-notes', false, dirname( self::$plugin_basefile ) . '/languages' );
+			load_plugin_textdomain( 'woocommerce-delivery-notes', false, dirname( self::$plugin_basefile ) . '/languages/' );
 		}
 		
 		/**
@@ -130,7 +135,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 			$blog_plugins = get_option( 'active_plugins', array() );
 			$site_plugins = get_site_option( 'active_sitewide_plugins', array() );
 
-			if( in_array( 'woocommerce/woocommerce.php', $blog_plugins ) || isset( $site_plugins['woocommerce/woocommerce.php'] ) ) {
+			if( ( in_array( 'woocommerce/woocommerce.php', $blog_plugins ) || isset( $site_plugins['woocommerce/woocommerce.php'] ) ) && version_compare( WC_VERSION, '2.1', '>=' )) {
 				return true;
 			} else {
 				return false;

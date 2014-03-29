@@ -1,5 +1,6 @@
 === WooCommerce Print Invoice & Delivery Note ===
 
+Contributors: Triggvy Gunderson, David Decker
 Tags: delivery note, packing slip, invoice, delivery, shipping, print, order, woocommerce, woothemes, shop
 Requires at least: 3.8 and WooCommerce 2.1
 Tested up to: WordPress 3.9 Beta and WooCommerce 2.1.6
@@ -190,19 +191,28 @@ The plugin uses the exact same content as WooCommerce. If something isn't visibl
 
 
 
-= How can I translate the plugin with my own wording? =
+= How can I translate the plugin? =
 
-For custom and update-secure language files please upload them to `/wp-content/languages/woocommerce-delivery-notes/` (just create this folder) - This enables you to use fully custom translations that won't be overridden on plugin updates. Also, complete custom English wording is possible with that, just use a language file like `woocommerce-delivery-notes-en_US.mo/.po` to achieve that (for creating one see the tools on "Other Notes"). And finally get in contact if you would like to add your translation to the standard distribution. 
+Upload your language file to `/wp-content/languages/plugins/` (create this folder if it doesn't exist). WordPress will then load the language. Make sure you use the same locale as in your configuration and the correct plugin locale ie. `woocommerce-delivery-notes-it_IT.mo/.po`. Also, complete custom English wording is possible with that, just use a language file like `woocommerce-delivery-notes-en_US.mo/.po`. And finally get in contact if you would like to add your translation to the standard distribution. 
+
+
+
+
+== Upgrade Notice ==
+
+= 3.0 =
+* Requires at least WooCommerce 2.1
+
 
 
 
 == Changelog ==
 
 = 3.0 =
-- Complete code rebuild
-- WooCommerce 2.1 as minimum requirement
-- Print buttons in the theme
-- Bulk print actions
-- New template structure
-- Template hooks to edit the tamplate without copying it
-- Updated FAQ with code examples
+* WooCommerce 2.1 compability
+* Print buttons in the theme
+* Bulk print actions
+* New template structure
+* Template hooks to better customize the tamplate
+* Updated FAQ with code examples
+* Complete code rebuild
