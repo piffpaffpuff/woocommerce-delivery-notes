@@ -32,12 +32,9 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			if( !$option ) {
 				update_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint', 'print-order' );
 			}
-			/*
-			$option = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_view_order_page' );
-			if( !$option ) {
-				update_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_view_order_page', 1 );
-			}
-			*/
+
+			// Flush permalink structs for the endpoint
+			flush_rewrite_rules();
 		}
 		
 		/**

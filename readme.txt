@@ -1,6 +1,6 @@
 === WooCommerce Print Invoice & Delivery Note ===
 
-Contributors: Trigvvy Gunderson, David Decker
+Contributors: Triggvy Gunderson, David Decker
 Tags: delivery note, packing slip, invoice, delivery, shipping, print, order, woocommerce, woothemes, shop
 Requires at least: 3.8 and WooCommerce 2.1
 Tested up to: WordPress 3.9 Beta and WooCommerce 2.1.6
@@ -50,6 +50,12 @@ Your browser is to old to create the page breaks correctly. Try to update it to 
 = Eventhough the shipping and billing addresses are the same, both are still shown, why is that so? =
 
 It depends on your WooCommerce settings. Addresses are displayed the same way as on the Account page. Only one addrress is printed in case you disabled altenative shipping adresses or the whole shipping. In all other cases both addresses are shown.
+
+
+
+= It prints the 404 page instead of the order, how to correct that? =
+
+This is most probably, due to the permalink settings. Go either to the Permalink or the Plugin Settings and save them again.
 
 
 
