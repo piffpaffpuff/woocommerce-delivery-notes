@@ -220,11 +220,13 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			$posts = get_posts( $args );
 			
 			// All orders should exist
-			if( count( $posts ) !== count( $this->order_ids ) ) {
+			/*
+if( count( $posts ) !== count( $this->order_ids ) ) {
 				$this->orders = null;
 				return false;
 			}
 			
+*/
 			// Check permissons of the user to determine 
 			// if the orders should be populated.
 			foreach( $posts as $post ) {
