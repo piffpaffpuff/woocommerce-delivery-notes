@@ -214,6 +214,9 @@ Upload your language file to `/wp-content/languages/plugins/` (create this folde
 
 == Changelog ==
 
+= 3.0.1 =
+* Default settings at first activation
+
 = 3.0 =
 * WooCommerce 2.1 compability
 * Print buttons in the theme

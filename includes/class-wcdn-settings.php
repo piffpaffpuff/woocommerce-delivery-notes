@@ -19,22 +19,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			$this->hidden_submit = WooCommerce_Delivery_Notes::$plugin_prefix . 'submit';
 			
 			// Load the hooks
-			register_activation_hook( WooCommerce_Delivery_Notes::$plugin_basefile_path, array( $this, 'activation_hooks' ) );
 			add_action( 'admin_init', array( $this, 'load_admin_hooks' ) );
-		}
-
-		/**
-		 * Activation hooks
-		 */
-		public function activation_hooks() {
-			// Define default settings
-			$option = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint' );
-			if( !$option ) {
-				update_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint', 'print-order' );
-			}
-
-			// Flush permalink structs for the endpoint
-			flush_rewrite_rules();
 		}
 		
 		/**
@@ -46,6 +31,13 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			add_action( 'woocommerce_update_options_' . $this->tab_name, array( $this, 'save_settings_page' ) );
 			add_action( 'current_screen', array( $this, 'load_screen_hooks' ) );
 			add_action( 'wp_ajax_load_thumbnail', array( $this, 'load_thumbnail_ajax' ) );
+			
+			// Flush the rules when the transient is set.
+			// This is important to make the endpoint work.
+			if( $this->is_settings_page() && get_transient( WooCommerce_Delivery_Notes::$plugin_prefix . 'flush_rewrite_rules' ) == true ) {
+				delete_transient( WooCommerce_Delivery_Notes::$plugin_prefix . 'flush_rewrite_rules' );
+				flush_rewrite_rules();
+			}
 		}
 		
 		/**
@@ -353,8 +345,8 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 					}
 				}
 				
-				// Flush permalink structs
-				flush_rewrite_rules();
+				// Flush permalink structs with 
+				set_transient( WooCommerce_Delivery_Notes::$plugin_prefix . 'flush_rewrite_rules', true );
 			}
 		}
 	
