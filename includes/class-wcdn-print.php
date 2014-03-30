@@ -212,6 +212,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			
 			// Get the orders
 			$args = array(
+				'posts_per_page' => -1,
 				'post_type' => 'shop_order',
 				'post_status' => 'publish',
 				'post__in' => $this->order_ids,
