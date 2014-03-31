@@ -2,7 +2,7 @@
 
 ## Overview
 
-A WordPress plugin to print invoices and delivery notes for the WooCommerce 2.1.  
+A WordPress plugin to print invoices and delivery notes for WooCommerce 2.1.  
 
 ### Installation
 
