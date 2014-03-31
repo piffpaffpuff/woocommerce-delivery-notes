@@ -1,6 +1,6 @@
 <?php
 /**
- * Print Invoices & Delivery Notes for WooCommerce Orders.
+ * Print invoices & delivery notes for WooCommerce orders.
  *
  * Plugin Name: WooCommerce Print Invoice & Delivery Note
  * Plugin URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
@@ -8,6 +8,8 @@
  * Version: 3.0.1
  * Author: Triggvy Gunderson
  * Author URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
+ * GitHub Plugin URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
+ * GitHub Branch: master
  * License: GPLv3 or later
  * License URI: http://www.opensource.org/licenses/gpl-license.php
  * Text Domain: woocommerce-delivery-notes

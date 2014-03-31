@@ -93,7 +93,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 		/**
 		 * Add bulk actions with javascript to the dropdown.
 		 * This is not so pretty but WordPress does not yet
-		 * offer any better solution. The JS code is in here 
+		 * offer any better solution. The JS code is inline 
 		 * because we can't determine the page without 
 		 * checking the post_type.
 		 * https://core.trac.wordpress.org/ticket/16031
@@ -102,11 +102,11 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 			if( $this->is_order_edit_page() ) : ?>
 				<script type="text/javascript">
 					jQuery(document).ready(function($) {		
-						$('<option>').val('wcdn_print_invoice').attr('title', 'invoice').text('<?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>').appendTo('select[name="action"]');
-						$('<option>').val('wcdn_print_invoice').attr('title', 'invoice').text('<?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>').appendTo('select[name="action2"]');
+						$('<option>').val('wcdn_print_invoice').attr('title', 'invoice').text('<?php echo esc_js( __( 'Print Invoice', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action"]');
+						$('<option>').val('wcdn_print_invoice').attr('title', 'invoice').text('<?php echo esc_js( __( 'Print Invoice', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action2"]');
 						
-						$('<option>').val('wcdn_print_delivery_note').attr('title', 'delivery-note').text('<?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>').appendTo('select[name="action"]');
-						$('<option>').val('wcdn_print_delivery_note').attr('title', 'delivery-note').text('<?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>').appendTo('select[name="action2"]');
+						$('<option>').val('wcdn_print_delivery_note').attr('title', 'delivery-note').text('<?php echo esc_js( __( 'Print Delivery Note', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action"]');
+						$('<option>').val('wcdn_print_delivery_note').attr('title', 'delivery-note').text('<?php echo esc_js( __( 'Print Delivery Note', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action2"]');
 					});
 				</script>
 			<?php endif;

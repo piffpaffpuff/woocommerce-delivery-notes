@@ -55,7 +55,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 					<h2><?php wcdn_document_title(); ?></h2>
 
 					<ul class="info-list">
-						<?php $fields = apply_filters( 'wcdn_order_info_fields', wcdn_get_order_info( $order ) ); ?>
+						<?php $fields = apply_filters( 'wcdn_order_info_fields', wcdn_get_order_info( $order ), $order ); ?>
 						<?php foreach( $fields as $field ) : ?>
 							<li>
 								<strong><?php echo apply_filters( 'wcdn_order_info_name', $field['label'], $field ); ?></strong>
