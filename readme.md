@@ -16,25 +16,25 @@ A WordPress plugin to print invoices and delivery notes for WooCommerce 2.1.
 
 #### How to prevent that the Website URL and page numbers are printed?
 
-You can find an option in the print view of every browser to disable those. This is a browser specific option that can't be controlled by the plugin. Please read your browser help for more infromation.
+You can find an option in the print window of your browser to hide those. This is a browser specific option that can't be controlled by the plugin. Please read the browser help for more information.
 
 #### Why are my bulk printed orders not splitted to seperate pages?
 
 Your browser is to old to create the page breaks correctly. Try to update it to the latest version or use another browser.
 
-#### Eventhough the shipping and billing addresses are the same, both are still shown, why is that so?
+#### Eventhough the shipping and billing address is the same, both are still shown, why?
 
-It depends on your WooCommerce settings. Addresses are displayed the same way as on the Account page. Only one addrress is printed in case you disabled altenative shipping adresses or the whole shipping. In all other cases both addresses are shown.
+It depends on your WooCommerce settings. Addresses are displayed the same way as on the WooCommerce account page. Only one addrress is printed in case you disabled altenative shipping adresses or the whole shipping. In all other cases both addresses are shown.
 
 #### It prints the 404 page instead of the order, how to correct that?
+P
+This is most probably due to the permalink settings. Go either to the WordPress Permalink or the WooCommerce Print Settings and save them again.
 
-This is most probably, due to the permalink settings. Go either to the Permalink or the Plugin Settings and save them again.
+#### How do I quickly change the font of the invoice and delivery note?
 
-#### How do I quickly change the font for the invoice and delivery note?
+You can change th font with CSS. Use the `wcdn_head` hook and then write your own CSS code. It's best to place the code in the `functions.php` file of your theme. 
 
-You can style them with CSS. Use the `wcdn_head` hook and then write your own CSS. It's best to place the code in the `functions.php` file of your theme. 
-
-An example that changes the font and makes the addresses very large:
+An example that changes the font and makes the addresses very large. Paste the code in the `functions.php` file of your theme:
 
 ```
 function my_serif_font_and_large_address() {
@@ -59,6 +59,8 @@ add_action( 'wcdn_head', 'my_serif_font_and_large_address', 50 );
 
 Sure, the easiest way is to hide them with some CSS that is hooked in with `wcdn_head`.
 
+An example that hides the whole price column. Paste the code in the `functions.php` file of your theme:
+
 ```
 function my_price_free_delivery_note() {
 	?>
@@ -77,7 +79,7 @@ add_action( 'wcdn_head', 'my_price_free_delivery_note', 50 );
 
 Yes, use the `wcdn_order_info_fields` filter hook. It returns all the fields as array. Unset or rearange the values as you like.
 
-An example that removes the 'Payment Method' field:
+An example that removes the 'Payment Method' field. Paste the code in the `functions.php` file of your theme:
 
 ```
 function my_removed_payment_method( $fields ) {
@@ -91,7 +93,7 @@ add_filter( 'wcdn_order_info_fields', 'my_removed_payment_method' );
 
 Use the `wcdn_order_info_fields` filter hook. It returns all the fields as array. Read the WooCommerce documentation to learn how you get custom checkout and order fields. Tip: To get custom meta field values you will most probably need the `get_post_meta( $order->id, 'your_meta_field_name', true);` function and of course the `your_meta_field_name`. 
 
-An example that adds a 'VAT' and 'Customer Number' field to the end of the list:
+An example that adds a 'VAT' and 'Customer Number' field to the end of the list. Paste the code in the `functions.php` file of your theme:
 
 ```
 function my_custom_order_fields( $fields, $order ) {
@@ -120,7 +122,7 @@ add_filter( 'wcdn_order_info_fields', 'my_custom_order_fields', 10, 2 );
 
 Yes, use the `wcdn_order_item_before` action hook. It allows you to add html content before the itam name.
 
-An example that adds a 50px large product image:
+An example that adds a 50px large product image. Paste the code in the `functions.php` file of your theme:
 
 ```
 function my_product_image( $product ) {	
@@ -135,7 +137,7 @@ add_action( 'wcdn_order_item_before', 'my_product_image' );
 
 You can use the techniques from the questions above. Or you consider the `wcdn_head` hook to enqueue your own stylesheet. Or for full control, copy the file `style.css` from `woocommerce-delivery-notes/templates/print-order` to `yourtheme/woocommerce/print-order` and start editing it. 
 
-Note: Create the `woocommerce` and `print-order` folders if they do not exists. This way your changes won't be overridden on plugin updates.
+Note: Create the `woocommerce` and `print-order` folders if they do not exist. This way your changes won't be overridden on plugin updates.
 
 #### I would like to move the logo to the bottom, put the products between the shipping and billing address and rotate it by 90 degrees, how can I do that?
 
@@ -157,4 +159,6 @@ The plugin uses the exact same content as WooCommerce. If something isn't visibl
 
 #### How can I translate the plugin?
 
-Upload your language file to `/wp-content/languages/plugins/` (create this folder if it doesn't exist). WordPress will then load the language. Make sure you use the same locale as in your configuration and the correct plugin locale ie. `woocommerce-delivery-notes-it_IT.mo/.po`. Also, complete custom English wording is possible with that, just use a language file like `woocommerce-delivery-notes-en_US.mo/.po`. And finally get in contact if you would like to add your translation to the standard distribution.
+Upload your language file to `/wp-content/languages/plugins/` (create this folder if it doesn't exist). WordPress will then load the language. Make sure you use the same locale as in your configuration and the correct plugin locale ie. `woocommerce-delivery-notes-it_IT.mo/.po`. Also, complete custom English wording is possible with that, just use a language file like `woocommerce-delivery-notes-en_US.mo/.po`. 
+
+Get in contact if you would like to add your translation to the standard distribution.

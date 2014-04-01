@@ -8,7 +8,7 @@ Stable tag: trunk
 License: GPLv3 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
 
-A WordPress plugin to print invoices and delivery notes for WooCommerce 2.1.  
+A WordPress plugin to print invoices and delivery notes for WooCommerce.  
 
 == Description ==
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * Print order content. Copy this file to your themes
- * directory /woocommerce/print to customize it.
+ * directory /woocommerce/print-order to customize it.
  *
  * @package WooCommerce Print Invoice & Delivery Note/Templates
  */
