@@ -35,19 +35,19 @@ When your language is missing you can contribute a translation to the [GlotPress
 3. Choose `WooCommerce` then `Settings` and the tab `Print` to adjust the settings to your need.
 4. Print the order with the side panel on the actual order page.
 
-== FAQ ==
+== Frequently Asked Questions ==
 
 === How to prevent that the Website URL and page numbers are printed? ===
 
 You can find an option in the print window of your browser to hide those. This is a browser specific option that can't be controlled by the plugin. Please read the browser help for more information.
 
-=== Why are my bulk printed orders not splitted to seperate pages? ===
+=== Why are my bulk printed orders not splited to separate pages? ===
 
 Your browser is to old to create the page breaks correctly. Try to update it to the latest version or use another browser.
 
-=== Eventhough the shipping and billing address is the same, both are still shown, why? ===
+=== Even though the shipping and billing address is the same, both are still shown, why? ===
 
-It depends on your WooCommerce settings. Addresses are displayed the same way as on the WooCommerce account page. Only one addrress is printed in case you disabled altenative shipping adresses or the whole shipping. In all other cases both addresses are shown.
+It depends on your WooCommerce settings. Addresses are displayed the same way as on the WooCommerce account page. Only one address is printed in case you disabled alternative shipping addresses or the whole shipping. In all other cases both addresses are shown.
 
 === It prints the 404 page instead of the order, how to correct that? ===
 
@@ -55,7 +55,7 @@ This is most probably due to the permalink settings. Go either to the WordPress 
 
 === How do I quickly change the font of the invoice and delivery note? ===
 
-You can change th font with CSS. Use the `wcdn_head` hook and then write your own CSS code. It's best to place the code in the `functions.php` file of your theme. 
+You can change the font with CSS. Use the `wcdn_head` hook and then write your own CSS code. It's best to place the code in the `functions.php` file of your theme. 
 
 An example that changes the font and makes the addresses very large. Paste the code in the `functions.php` file of your theme:
 
@@ -100,7 +100,7 @@ add_action( 'wcdn_head', 'my_price_free_delivery_note', 50 );
 
 === Is it possible to remove a field from the order info section? ===
 
-Yes, use the `wcdn_order_info_fields` filter hook. It returns all the fields as array. Unset or rearange the values as you like.
+Yes, use the `wcdn_order_info_fields` filter hook. It returns all the fields as array. Unset or rearrange the values as you like.
 
 An example that removes the 'Payment Method' field. Paste the code in the `functions.php` file of your theme:
 
@@ -143,7 +143,7 @@ add_filter( 'wcdn_order_info_fields', 'my_custom_order_fields', 10, 2 );
 
 ===  What about the product image, can I add it to the invoice and delivery note? ===
 
-Yes, use the `wcdn_order_item_before` action hook. It allows you to add html content before the itam name.
+Yes, use the `wcdn_order_item_before` action hook. It allows you to add html content before the item name.
 
 An example that adds a 50px large product image. Paste the code in the `functions.php` file of your theme:
 
@@ -182,11 +182,11 @@ No, this isn't possible. Look for another plugin that can do this.
 
 === I need some more content on the order, how can I add it? ===
 
-The plugin uses the exact same content as WooCommerce. If the content isn't availbale in WooCommerce, then it will neither be in the delivery note and invoice. In case you have some special needs, you first have to enhance WooCommerce to solve your issue. Afterwards you can integrate the solution into the invoice and delivery note template via hooks.
+The plugin uses the exact same content as WooCommerce. If the content isn't available in WooCommerce, then it will neither be in the delivery note and invoice. In case you have some special needs, you first have to enhance WooCommerce to solve your issue. Afterwards you can integrate the solution into the invoice and delivery note template via hooks.
 
 === How can I translate the plugin? ===
 
-Upload your language file to `/wp-content/languages/plugins/` (create this folder if it doesn't exist). WordPress will then load the language. Make sure you use the same locale as in your configuration and the correct plugin locale ie. `woocommerce-delivery-notes-it_IT.mo/.po`. 
+Upload your language file to `/wp-content/languages/plugins/` (create this folder if it doesn't exist). WordPress will then load the language. Make sure you use the same locale as in your configuration and the correct plugin locale i.e. `woocommerce-delivery-notes-it_IT.mo/.po`. 
 
 Please [contribute your translation](http://translate.wpautobahn.com/projects/wordpress-plugins-deckerweb/woocommerce-delivery-notes) to include it in the distribution.
 
@@ -204,9 +204,9 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 3.0
 *Attention:* This update works only with WooCommerce 2.1 (or later) and Wordpress 3.8 (or later). Install it only if your system meets the requirements.
 
-* WooCommerce 2.1 (or later) compability
+* WooCommerce 2.1 (or later) compatibility
 * Bulk print actions
-* Print buttons in the frontend
+* Print buttons in the front-end
 * Redesigned template look
 * New template structure and hooks to modify it
 
