@@ -144,21 +144,21 @@ h2 {
 	margin-bottom: 6em;
 }
 
-.shipping-address {
+.billing-address {
 	float: left;
 }
 
-.billing-address {
+.shipping-address {
 	margin-left: 50%;
 }
 
-/* Switch the addresses for delivery notes */
-.delivery-note .shipping-address {
+/* Switch the addresses for invoices */
+.invoice .billing-address {
 	float: right;
 	width: 50%;
 }
 
-.delivery-note .billing-address {
+.invoice .shipping-address {
 	margin-left: 0;
 }
 
@@ -219,8 +219,18 @@ h2 {
 	padding-right: 0.2em;
 }
 
-.order-items tfoot {
+.order-items tfoot,
+.order-items tfoot .amount:first-child {
 	font-weight: bold;
+}
+
+.order-items tfoot tr:last-child .total-price {
+	font-size: 0.785em;
+	font-weight: normal;
+}
+
+.order-items tfoot tr:last-child .total-price .amount:first-child {
+	font-size: 1.273em;
 }
 
 .order-items tfoot tr:last-child {
