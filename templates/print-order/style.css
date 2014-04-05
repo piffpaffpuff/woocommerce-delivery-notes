@@ -144,29 +144,31 @@ h2 {
 	margin-bottom: 6em;
 }
 
+.order-addresses:after {
+	content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
 .billing-address {
+	width: 50%;
 	float: left;
 }
 
 .shipping-address {
-	margin-left: 50%;
+	width: 50%;
+	float: left;
+
 }
 
 /* Switch the addresses for invoices */
 .invoice .billing-address {
 	float: right;
-	width: 50%;
-}
-
-.invoice .shipping-address {
-	margin-left: 0;
 }
 
 /* Order Info */
-.order-info {
-	clear: both;
-}
-
 .order-info ul {
 	border-top: 0.24em solid black;
 }
