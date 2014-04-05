@@ -61,7 +61,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 			self::$plugin_prefix = 'wcdn_';
 			self::$plugin_basefile_path = __FILE__;
 			self::$plugin_basefile = plugin_basename( self::$plugin_basefile_path );
-			self::$plugin_url = plugin_dir_url(self::$plugin_basefile );
+			self::$plugin_url = plugin_dir_url( self::$plugin_basefile );
 			self::$plugin_path = trailingslashit( dirname( self::$plugin_basefile_path ) );
 		
 			// Include the classes	
@@ -69,24 +69,8 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 			
 			// Set hooks and wait for WooCommerce to load
 			register_activation_hook( self::$plugin_basefile_path, array( $this, 'install' ) );
-			add_action( 'plugins_loaded', array($this, 'load_localisation') );
-			add_action( 'woocommerce_loaded', array($this, 'woocommerce_loaded') );
-		}
-		
-		public function woocommerce_loaded() {
-			// WooCommerce activation required
-			if ( $this->is_woocommerce_activated() ) {	
-				// Create the instances
-				$this->print = new WooCommerce_Delivery_Notes_Print();
-				$this->settings = new WooCommerce_Delivery_Notes_Settings();
-				$this->writepanel = new WooCommerce_Delivery_Notes_Writepanel();
-				$this->theme = new WooCommerce_Delivery_Notes_Theme();
-
-				// Load the hooks for the template after the objetcs.
-				// Like this the template has full access to all objects.
-				add_action( 'admin_init', array( $this, 'load_admin_hooks' ) );
-				add_action( 'init', array( $this, 'include_template_functions' ) );
-			}
+			add_action( 'plugins_loaded', array( $this, 'localise' ) );
+			add_action( 'woocommerce_loaded', array( $this, 'load' ) );
 		}
 		
 		/**
@@ -107,25 +91,45 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 			include_once( 'includes/wcdn-template-functions.php' );
 			include_once( 'includes/wcdn-template-hooks.php' );
 		}
-				
+		
 		/**
-		 * Install default settings
+		 * Install the defaults on activation
 		 */
 		public function install() {
 			// Define default settings
 			$option = get_option( self::$plugin_prefix . 'print_order_page_endpoint' );
 			if( !$option ) {
 				update_option( self::$plugin_prefix . 'print_order_page_endpoint', 'print-order' );
+				flush_rewrite_rules();
 			}
 		}
 		
 		/**
 		 * Load the localisation 
 		 */
-		public function load_localisation() {	
+		public function localise() {	
 			load_plugin_textdomain( 'woocommerce-delivery-notes', false, dirname( self::$plugin_basefile ) . '/languages/' );
 		}
 		
+		/**
+		 * Include the main plugin classes and functions
+		 */
+		public function load() {
+			// WooCommerce activation required
+			if ( $this->is_woocommerce_activated() ) {	
+				// Create the instances
+				$this->print = new WooCommerce_Delivery_Notes_Print();
+				$this->settings = new WooCommerce_Delivery_Notes_Settings();
+				$this->writepanel = new WooCommerce_Delivery_Notes_Writepanel();
+				$this->theme = new WooCommerce_Delivery_Notes_Theme();
+
+				// Load the hooks for the template after the objetcs.
+				// Like this the template has full access to all objects.
+				add_action( 'admin_init', array( $this, 'load_admin_hooks' ) );
+				add_action( 'init', array( $this, 'include_template_functions' ) );
+			}
+		}
+			
 		/**
 		 * Load the admin hooks
 		 */
@@ -148,8 +152,9 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		public function is_woocommerce_activated() {
 			$blog_plugins = get_option( 'active_plugins', array() );
 			$site_plugins = get_site_option( 'active_sitewide_plugins', array() );
-
-			if( ( in_array( 'woocommerce/woocommerce.php', $blog_plugins ) || isset( $site_plugins['woocommerce/woocommerce.php'] ) ) && version_compare( WC_VERSION, '2.1', '>=' )) {
+			$woocommerce_basename = plugin_basename( WC_PLUGIN_FILE );
+					
+			if( ( in_array( $woocommerce_basename, $blog_plugins ) || isset( $site_plugins[$woocommerce_basename] ) ) && version_compare( WC_VERSION, '2.1', '>=' )) {
 				return true;
 			} else {
 				return false;
