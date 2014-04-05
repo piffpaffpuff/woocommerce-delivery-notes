@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Print Invoice & Delivery Note\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
-"POT-Creation-Date: 2014-04-04 22:07+0100\n"
-"PO-Revision-Date: 2014-04-04 22:09+0100\n"
+"POT-Creation-Date: 2014-04-05 20:01+0100\n"
+"PO-Revision-Date: 2014-04-05 20:02+0100\n"
 "Last-Translator: David Decker <deckerweb.mobil@googlemail.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -143,8 +143,8 @@ msgid "Leave blank to not print an address."
 msgstr "Leer lassen, um keine Anschrift mit auszudrucken."
 
 #: ../includes/class-wcdn-settings.php:211
-msgid "Thank You"
-msgstr "Bedankung"
+msgid "Complimentary close"
+msgstr "Schlussformel"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:216
@@ -339,47 +339,47 @@ msgstr "E-Mail"
 msgid "Telephone"
 msgstr "Telefon"
 
-# @ woocommerce-delivery-notes
-#: ../templates/print-order/print-content.php:31
-msgid "Shipping Address"
-msgstr "Lieferadresse"
-
-# @ woocommerce-delivery-notes
-#: ../templates/print-order/print-content.php:34
-#: ../templates/print-order/print-content.php:45
-msgid "N/A"
-msgstr "k.A."
-
-#: ../templates/print-order/print-content.php:42
+#: ../templates/print-order/print-content.php:28
 msgid "Billing Address"
 msgstr "Rechnungsadresse"
 
 # @ woocommerce-delivery-notes
-#: ../templates/print-order/print-content.php:75
+#: ../templates/print-order/print-content.php:31
+#: ../templates/print-order/print-content.php:42
+msgid "N/A"
+msgstr "k.A."
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:39
+msgid "Shipping Address"
+msgstr "Lieferadresse"
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:74
 msgid "Product"
 msgstr "Produkt"
 
 # @ woocommerce-delivery-notes
-#: ../templates/print-order/print-content.php:76
+#: ../templates/print-order/print-content.php:75
 msgid "Total"
 msgstr "Gesamt"
 
 # @ woocommerce-delivery-notes
-#: ../templates/print-order/print-content.php:95
+#: ../templates/print-order/print-content.php:94
 msgid "Quantity:"
 msgstr "Menge:"
 
-#: ../templates/print-order/print-content.php:114
+#: ../templates/print-order/print-content.php:113
 msgid "Download:"
 msgstr "Download: "
 
-#: ../templates/print-order/print-content.php:115
+#: ../templates/print-order/print-content.php:114
 #, php-format
 msgid "%s Files"
 msgstr "%s Dateien"
 
 # @ woocommerce-delivery-notes
-#: ../templates/print-order/print-content.php:148
+#: ../templates/print-order/print-content.php:147
 msgid "Customer Note"
 msgstr "Kundennotizen"
 
@@ -392,3 +392,6 @@ msgstr "Zur Einstellungsseite des Plugins"
 #: ../woocommerce-delivery-notes.php:140
 msgid "Settings"
 msgstr "Einstellungen"
+
+#~ msgid "Thank You"
+#~ msgstr "Bedankung"

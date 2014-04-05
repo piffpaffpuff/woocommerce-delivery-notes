@@ -208,7 +208,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 					</tr>
 					<tr>
 						<th>
-							<label><?php _e( 'Thank You', 'woocommerce-delivery-notes' ); ?></label>
+							<label><?php _e( 'Complimentary close', 'woocommerce-delivery-notes' ); ?></label>
 						</th>
 						<td>
 							<textarea name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>personal_notes" rows="5" class="large-text"><?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'personal_notes' ) ) ); ?></textarea>
