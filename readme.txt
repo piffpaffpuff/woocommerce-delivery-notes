@@ -209,7 +209,7 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 * Bulk print actions
 * Print buttons in the front-end
 * Redesigned template look
-* New template structure and hooks to modify it
+* New template structure and action hooks
 
 3.0
 * Supports only WooCommerce 2.1 (or later)
