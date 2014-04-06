@@ -196,6 +196,10 @@ h2 {
 	width: 50%;
 }
 
+.order-items .quantity {
+	font-size: 0.785em;
+}
+
 .order-items dl {
 	display: inline;
 	padding-left: 0.25em;
@@ -217,7 +221,8 @@ h2 {
 }
 
 .order-items dt {
-	padding-right: 0.2em;
+	padding-left: 0.8em;
+	padding-right: 0.05em;
 }
 
 .order-items tfoot,

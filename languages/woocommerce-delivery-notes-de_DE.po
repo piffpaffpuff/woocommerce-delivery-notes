@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Print Invoice & Delivery Note\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
-"POT-Creation-Date: 2014-04-06 00:25+0100\n"
-"PO-Revision-Date: 2014-04-06 00:25+0100\n"
+"POT-Creation-Date: 2014-04-06 13:55+0100\n"
+"PO-Revision-Date: 2014-04-06 13:56+0100\n"
 "Last-Translator: David Decker <deckerweb.mobil@googlemail.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -365,34 +365,26 @@ msgstr "Produkt"
 msgid "Total"
 msgstr "Gesamt"
 
-# @ woocommerce-delivery-notes
-#: ../templates/print-order/print-content.php:94
-msgid "Quantity:"
-msgstr "Menge:"
-
-#: ../templates/print-order/print-content.php:113
+#: ../templates/print-order/print-content.php:100
 msgid "Download:"
 msgstr "Download: "
 
-#: ../templates/print-order/print-content.php:114
+#: ../templates/print-order/print-content.php:101
 #, php-format
 msgid "%s Files"
 msgstr "%s Dateien"
 
 # @ woocommerce-delivery-notes
-#: ../templates/print-order/print-content.php:147
+#: ../templates/print-order/print-content.php:144
 msgid "Customer Note"
 msgstr "Kundennotizen"
 
 # @ woocommerce-delivery-notes
-#: ../woocommerce-delivery-notes.php:151
+#: ../woocommerce-delivery-notes.php:142
 msgid "Go to the settings page"
 msgstr "Zur Einstellungsseite des Plugins"
 
 # @ woocommerce-delivery-notes
-#: ../woocommerce-delivery-notes.php:151
+#: ../woocommerce-delivery-notes.php:142
 msgid "Settings"
 msgstr "Einstellungen"
-
-#~ msgid "Thank You"
-#~ msgstr "Bedankung"

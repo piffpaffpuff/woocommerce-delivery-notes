@@ -90,30 +90,27 @@ if ( !defined( 'ABSPATH' ) ) exit;
 											<?php do_action( 'wcdn_order_item_before', $product, $order ); ?>
 
 											<span class="name"><?php echo apply_filters( 'wcdn_order_item_name', $item['name'], $item ); ?></span>
-											<dl class="quantity">
-												<dt><?php _e( 'Quantity:', 'woocommerce-delivery-notes' ); ?></dt>
-												<dd><?php echo apply_filters( 'wcdn_order_item_quantity', $item['qty'], $item ); ?></dd>
+											<span class="quantity"><?php echo apply_filters( 'wcdn_order_item_quantity', sprintf( '&times; %s', $item['qty'] ), $item ); ?></span>
 
-												<?php 
-													$fields = apply_filters( 'wcdn_order_item_fields', array(), $item, $order ); 
-													
-													foreach ( $fields as $field ) : ?>
-														
-														<dt><?php echo $field['label']; ?></dt>
-														<dd><?php echo $field['value']; ?></dd>
-														
-													<?php endforeach; ?>
-											</dl>
-											
 											<?php $item_meta->display(); ?>
 											
-											<dl class="files">
+											<dl class="extras">
 												<?php if( $product && $product->exists() && $product->is_downloadable() && $order->is_download_permitted() ) : ?>
 													
 													<dt><?php _e( 'Download:', 'woocommerce-delivery-notes' ); ?></dt>
 													<dd><?php printf( __( '%s Files', 'woocommerce-delivery-notes' ), count( $order->get_item_downloads( $item ) ) ); ?></dd>
 														
 												<?php endif; ?>
+												
+												<?php 
+													$fields = apply_filters( 'wcdn_order_item_fields', array(), $item, $order ); 
+													foreach ( $fields as $field ) : 
+												?>
+												
+													<dt><?php echo $field['label']; ?></dt>
+													<dd><?php echo $field['value']; ?></dd>
+														
+												<?php endforeach; ?>
 											</dl>
 										</td>
 										<td class="product-price">
