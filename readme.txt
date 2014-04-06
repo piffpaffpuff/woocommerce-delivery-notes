@@ -202,18 +202,21 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 
 == Changelog ==
 
-3.0
+3.0.3
 *Attention:* This update works only with WooCommerce 2.1 (or later) and Wordpress 3.8 (or later). Install it only if your system meets the requirements.
 
-* WooCommerce 2.1 (or later) compatibility
+* Supports only WooCommerce 2.1 (or later)
 * Bulk print actions
 * Print buttons in the front-end
 * Redesigned template look
 * New template structure and hooks to modify it
 
+3.0
+* Supports only WooCommerce 2.1 (or later)
+
 == Upgrade Notice ==
 
-3.0
+3.0.3
 * This update works only with WooCommerce 2.1 (or later) and Wordpress 3.8 (or later). Install it only if your system meets the requirements.
 * Prior print templates aren't compatible. Read the [FAQ](http://wordpress.org/plugins/woocommerce-delivery-notes/faq/) to customize the new template.
 * Translations aren't updated, except German.
