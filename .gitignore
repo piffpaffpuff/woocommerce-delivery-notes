@@ -7,12 +7,4 @@
 
 .svn/wc.db
 
-templates/print-order/.svn/all-wcprops
-
-templates/print-order/.svn/entries
-
-templates/print-order/.svn/all-wcprops
-
-templates/print-order/.svn/all-wcprops
-
-templates/print-order/.svn/entries
+.gitignore
