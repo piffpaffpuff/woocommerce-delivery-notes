@@ -8,8 +8,6 @@
  * Version: 3.0.3
  * Author: Triggvy Gunderson
  * Author URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
- * GitHub Plugin URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
- * GitHub Branch: master
  * License: GPLv3 or later
  * License URI: http://www.opensource.org/licenses/gpl-license.php
  * Text Domain: woocommerce-delivery-notes
