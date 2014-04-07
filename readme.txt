@@ -202,7 +202,11 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 
 == Changelog ==
 
-3.0.3
+= 3.0.4 =
+
+* Flush the rewrite rules at activation. (Note: This solves an issue where a 404 page was printed because the endpoint wasn't set. Try to resave the print settings if the issue persists after the update.)
+
+= 3.0.3 =
 
 **Attention: This update works only with WooCommerce 2.1 (or later) and Wordpress 3.8 (or later). Install it only if your system meets the requirements.**
 
@@ -214,7 +218,7 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 
 == Upgrade Notice ==
 
-3.0.3
+= 3.0.3 =
 
 * This update works only with WooCommerce 2.1 (or later) and Wordpress 3.8 (or later). Install it only if your system meets the requirements.
 * Prior print templates aren't compatible. Read the [FAQ](http://wordpress.org/plugins/woocommerce-delivery-notes/faq/) to customize the new template.
