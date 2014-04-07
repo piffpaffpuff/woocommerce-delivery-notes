@@ -196,13 +196,13 @@ h2 {
 	width: 50%;
 }
 
-.order-items .quantity {
-	font-size: 0.785em;
+.order-items tbody .quantity,
+.order-items tbody .name {
+	font-weight: bold;
 }
 
-.order-items dl {
-	display: inline;
-	padding-left: 0.25em;
+.order-items .product-price {
+	vertical-align: top;
 }
 
 .order-items p {
@@ -220,13 +220,18 @@ h2 {
 	margin: 0;
 }
 
-.order-items dt {
-	padding-left: 0.8em;
-	padding-right: 0.05em;
+.order-items dt,
+.order-items dd {
+	display: block;
+	float: left;
 }
 
-.order-items tfoot,
-.order-items tfoot .amount:first-child {
+.order-items dt {
+	clear: left;
+	padding-right: 0.2em;
+}
+
+.order-items tfoot tr:last-child {
 	font-weight: bold;
 }
 
@@ -237,6 +242,7 @@ h2 {
 
 .order-items tfoot tr:last-child .total-price .amount:first-child {
 	font-size: 1.273em;
+	font-weight: bold;
 }
 
 .order-items tfoot tr:last-child {

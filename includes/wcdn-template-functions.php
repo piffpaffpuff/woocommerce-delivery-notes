@@ -230,6 +230,22 @@ function wcdn_get_order_info( $order ) {
 }
 
 /**
+ * Additional fields for the product
+ */
+function wcdn_additional_product_fields( $fields, $product, $order ) {
+	$new_fields = array();
+	
+	// Stock keeping unit
+	if( $product->get_sku() ) {
+		$fields[] = array(
+			'label' => __( 'SKU:', 'woocommerce-delivery-notes' ),
+			'value' => $product->get_sku()
+		);
+	}		
+	return array_merge( $fields, $new_fields );
+}
+
+/**
  * Remove the semicolon from the output  
  */
 function wcdn_remove_semicolon_from_totals( $total_rows, $order ) {	

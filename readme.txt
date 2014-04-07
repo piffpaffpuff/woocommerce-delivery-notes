@@ -76,7 +76,7 @@ function my_serif_font_and_large_address() {
 		</style>
 	<?php
 }
-add_action( 'wcdn_head', 'my_serif_font_and_large_address', 50 );
+add_action( 'wcdn_head', 'my_serif_font_and_large_address', 20 );
 `
 
 = Can I hide the prices on the delivery note? =
@@ -96,7 +96,7 @@ function my_price_free_delivery_note() {
 		</style>
 	<?php
 }
-add_action( 'wcdn_head', 'my_price_free_delivery_note', 50 );
+add_action( 'wcdn_head', 'my_price_free_delivery_note', 20 );
 `
 
 = Is it possible to remove a field from the order info section? =
@@ -146,12 +146,12 @@ add_filter( 'wcdn_order_info_fields', 'my_custom_order_fields', 10, 2 );
 
 Yes, use the `wcdn_order_item_before` action hook. It allows you to add html content before the item name.
 
-An example that adds a 50px large product image. Paste the code in the `functions.php` file of your theme:
+An example that adds a 40px large product image. Paste the code in the `functions.php` file of your theme:
 
 `
 function my_product_image( $product ) {	
 	if( isset( $product->id ) && has_post_thumbnail( $product->id ) ) {
-		echo get_the_post_thumbnail( $product->id, array( 50, 50 ) );
+		echo get_the_post_thumbnail( $product->id, array( 40, 40 ) );
 	}
 }
 add_action( 'wcdn_order_item_before', 'my_product_image' );
@@ -201,6 +201,12 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 6. Customers can also print the order.
 
 == Changelog ==
+
+= 3.0.5 =
+
+* Added SKU to the template
+* Modified the alignment of product attributes in the template
+* Print buttons in the theme will print the invoice (can be changed with hook) 
 
 = 3.0.4 =
 

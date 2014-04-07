@@ -6,11 +6,13 @@
 if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 
 	class WooCommerce_Delivery_Notes_Theme {
-
+		
+		public $template_type;
+		
 		/**
 		 * Constructor
 		 */
-		public function __construct() {			
+		public function __construct() {						
 			// Load the hooks
 			add_action( 'wp_loaded', array( $this, 'load_hooks' ) );
 		}
@@ -20,6 +22,10 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 		 * the theme and plugins are ready.
 		 */
 		public function load_hooks() {	
+			// Define defaults
+			$this->template_type = apply_filters( 'wcdn_theme_print_button_template_type', 'invoice' );
+
+			// hooks
 			add_filter( 'woocommerce_my_account_my_orders_actions', array( $this, 'create_print_button_account_page' ), 10, 2 );
 			add_action( 'woocommerce_view_order', array( $this, 'create_print_button_order_page' ) );
 			add_action( 'woocommerce_thankyou', array( $this, 'create_print_button_order_page' ) );
@@ -42,7 +48,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 		public function create_print_button_account_page( $actions, $order ) {			
 			if( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_my_account_page' ) ) {
 				$actions['print'] = array(
-					'url'  => wcdn_get_print_permalink( $order->id ),
+					'url'  => wcdn_get_print_permalink( $order->id, $this->template_type ),
 					'name' => __( 'Print', 'woocommerce-delivery-notes' )
 				);
 			}		
@@ -54,11 +60,11 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 		 */
 		public function create_print_button_order_page( $order_id ) {			
 			if( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_view_order_page' ) ) {
-				$print_url = wcdn_get_print_permalink( $order_id );
+				$print_url = wcdn_get_print_permalink( $order_id, $this->template_type );
 				
 				// use a different url for the tracking page
 				if( $this->is_woocommerce_tracking_page() ) {
-					$print_url = wcdn_get_print_permalink( $order_id, null, $_REQUEST['order_email'] );
+					$print_url = wcdn_get_print_permalink( $order_id, $this->template_type, $_REQUEST['order_email'] );
 				}
 				?>
 				<p class="order-print">
