@@ -204,7 +204,7 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 
 = 3.0.4 =
 
-* Flush the rewrite rules at activation. (Note: This solves an issue where a 404 page was printed because the endpoint wasn't set. Try to resave the print settings if the issue persists after the update.)
+* Save the endpoint at activation to not print a 404 page. (Note: Try to resave the print settings if the issue persists after the update.)
 
 = 3.0.3 =
 
