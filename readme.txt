@@ -204,7 +204,7 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 
 = 3.0.5 =
 
-**Known issue: Printing won't work when your account section uses SSL and the rest of the page doesn't. The issue will be fixed in a future version.**
+**Known issue: Printing won't work when your account uses SSL and the rest of the page doesn't. The issue will be fixed in a future version.**
 
 * Added SKU to the template
 * Modified the alignment of product attributes in the template
