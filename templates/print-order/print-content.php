@@ -103,7 +103,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 												<?php endif; ?>
 												
 												<?php 
-													$fields = apply_filters( 'wcdn_order_item_fields', array(), $item, $order ); 
+													$fields = apply_filters( 'wcdn_order_item_fields', array(), $product, $order ); 
 													foreach ( $fields as $field ) : 
 												?>
 												

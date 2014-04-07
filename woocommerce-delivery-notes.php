@@ -98,7 +98,9 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 			$option = get_option( self::$plugin_prefix . 'print_order_page_endpoint' );
 			if( !$option ) {
 				update_option( self::$plugin_prefix . 'print_order_page_endpoint', 'print-order' );
-				flush_rewrite_rules();
+
+				// Flush the rewrite rules when a fresh install
+				set_transient( self::$plugin_prefix . 'flush_rewrite_rules', true );
 			}
 		}
 		

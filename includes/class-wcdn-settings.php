@@ -31,13 +31,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			add_action( 'woocommerce_update_options_' . $this->tab_name, array( $this, 'save_settings_page' ) );
 			add_action( 'current_screen', array( $this, 'load_screen_hooks' ) );
 			add_action( 'wp_ajax_load_thumbnail', array( $this, 'load_thumbnail_ajax' ) );
-			
-			// Flush the rules when the transient is set.
-			// This is important to make the endpoint work.
-			if( $this->is_settings_page() && get_transient( WooCommerce_Delivery_Notes::$plugin_prefix . 'flush_rewrite_rules' ) == true ) {
-				delete_transient( WooCommerce_Delivery_Notes::$plugin_prefix . 'flush_rewrite_rules' );
-				flush_rewrite_rules();
-			}
 		}
 		
 		/**

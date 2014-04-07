@@ -70,6 +70,13 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			foreach( $this->api_endpoints as $var ) {
 				add_rewrite_endpoint( $var, EP_PAGES );
 			}
+
+			// Flush the rules when the transient is set.
+			// This is important to make the endpoint work.
+			if( get_transient( WooCommerce_Delivery_Notes::$plugin_prefix . 'flush_rewrite_rules' ) == true ) {
+				delete_transient( WooCommerce_Delivery_Notes::$plugin_prefix . 'flush_rewrite_rules' );
+				flush_rewrite_rules();
+			}
 		}
 
 		/**
