@@ -239,7 +239,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 				$order = new WC_Order( $post->ID );
 				
 				// Logged in users			
-				if( is_user_logged_in() && ( !current_user_can( 'edit_shop_orders' ) && !current_user_can( 'view_order', $order->ID ) ) ) {
+				if( is_user_logged_in() && ( !current_user_can( 'edit_shop_orders' ) && !current_user_can( 'view_order', $order->id ) ) ) {
 					$this->orders = null;
 					return false;
 				} 
