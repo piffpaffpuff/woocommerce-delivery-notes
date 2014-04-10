@@ -17,9 +17,9 @@ function wcdn_get_template_type() {
 }
 
 /**
- * Return print page permalink
+ * Return print page link
  */
-function wcdn_get_print_permalink( $order_ids, $template_type = 'order', $order_email = null ) {
+function wcdn_get_print_link( $order_ids, $template_type = 'order', $order_email = null ) {
 	global $wcdn;
 	return $wcdn->print->get_print_page_url( $order_ids, $template_type, $order_email );
 }
@@ -232,11 +232,11 @@ function wcdn_get_order_info( $order ) {
 /**
  * Additional fields for the product
  */
-function wcdn_additional_product_fields( $fields, $product, $order ) {
+function wcdn_additional_product_fields( $fields = null, $product = null, $order ) {
 	$new_fields = array();
 	
 	// Stock keeping unit
-	if( $product->get_sku() ) {
+	if( $product && $product->exists() && $product->get_sku() ) {
 		$fields[] = array(
 			'label' => __( 'SKU:', 'woocommerce-delivery-notes' ),
 			'value' => $product->get_sku()

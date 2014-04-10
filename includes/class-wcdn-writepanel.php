@@ -80,10 +80,10 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 		 */
 		public function add_listing_actions( $order ) {
 			?>			
-			<a href="<?php echo wcdn_get_print_permalink( $order->id, 'invoice' ); ?>" class="button tips print-preview-button invoice" target="_blank" alt="<?php esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>" data-tip="<?php esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>">
+			<a href="<?php echo wcdn_get_print_link( $order->id, 'invoice' ); ?>" class="button tips print-preview-button invoice" target="_blank" alt="<?php esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>" data-tip="<?php esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>">
 				<?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>
 			</a>
-			<a href="<?php echo wcdn_get_print_permalink( $order->id, 'delivery-note' ); ?>" class="button tips print-preview-button delivery-note" target="_blank" alt="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>" data-tip="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>">
+			<a href="<?php echo wcdn_get_print_link( $order->id, 'delivery-note' ); ?>" class="button tips print-preview-button delivery-note" target="_blank" alt="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>" data-tip="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>">
 				<?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>
 			</a>
 			<span class="print-preview-loading spinner"></span>
@@ -143,7 +143,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 				// do the action
 				$post_ids = array_map( 'absint', (array) $_REQUEST['post'] );
 				$total = count( $post_ids );
-				$url = wcdn_get_print_permalink( $post_ids , $template_type );
+				$url = wcdn_get_print_link( $post_ids , $template_type );
 				$sendback = add_query_arg( array( 'post_type' => 'shop_order', $report_action => true, 'total' => $total, 'print_url' => urlencode( $url ) ), '' );
 				
 				wp_redirect( $sendback );
@@ -187,8 +187,8 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 		public function create_box_content() {
 			global $post_id;
 			?>
-			<a href="<?php echo wcdn_get_print_permalink( $post_id, 'invoice' ); ?>" class="button print-preview-button" target="_blank" alt="<?php esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?></a>
-			<a href="<?php echo wcdn_get_print_permalink( $post_id, 'delivery-note' ); ?>" class="button print-preview-button" target="_blank" alt="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?></a>
+			<a href="<?php echo wcdn_get_print_link( $post_id, 'invoice' ); ?>" class="button print-preview-button" target="_blank" alt="<?php esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?></a>
+			<a href="<?php echo wcdn_get_print_link( $post_id, 'delivery-note' ); ?>" class="button print-preview-button" target="_blank" alt="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?></a>
 			<span class="print-preview-loading spinner"></span>
 			<?php
 		}

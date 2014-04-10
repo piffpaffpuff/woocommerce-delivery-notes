@@ -139,8 +139,8 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 					<?php
 					$results = $query->get_posts();
 					$test_id = $results[0]->ID;
-					$invoice_url = wcdn_get_print_permalink( $test_id, 'invoice' );
-					$note_url = wcdn_get_print_permalink( $test_id, 'delivery-note' );
+					$invoice_url = wcdn_get_print_link( $test_id, 'invoice' );
+					$note_url = wcdn_get_print_link( $test_id, 'delivery-note' );
 					?>
 					<input type="hidden" id="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>show_print_preview" />
 					<span class="description">

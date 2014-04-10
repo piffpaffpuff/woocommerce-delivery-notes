@@ -46,7 +46,8 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			add_action( 'init', array( $this, 'load_hooks' ) );
 			add_filter( 'query_vars', array( $this, 'add_query_vars' ) );
 			add_action( 'parse_request', array( $this, 'parse_request' ) );
-			add_action( 'template_redirect', array( $this, 'template_redirect' ) );
+			add_action( 'template_redirect', array( $this, 'template_redirect_theme' ) );
+			add_action( 'wp_ajax_print_order', array( $this, 'template_redirect_admin' ) );
 		}
 		
 		/**
@@ -64,7 +65,9 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		}
 		
 		/**
-		 * Add endpoints for query vars
+		 * Add endpoints for query vars.
+		 * the endpoint is used in the front-end to
+		 * generate the print template and link.
 		 */
 		public function add_endpoints() {
 			foreach( $this->api_endpoints as $var ) {
@@ -104,39 +107,56 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		}
 		
 		/**
-		 * Template handling
+		 * Template handling in the front-end
 		 */
-		public function template_redirect() {
+		public function template_redirect_theme() {
 			global $wp;
 			// Check the page url and display the template when on my-account page
 			if( !empty( $wp->query_vars['print-order'] ) && is_account_page() ) {
-				$this->generate_template();
+				$type = !empty( $wp->query_vars['print-order-type'] ) ? $wp->query_vars['print-order-type'] : null;
+				$email = !empty( $wp->query_vars['print-order-email'] ) ? $wp->query_vars['print-order-email'] : null;
+				$this->generate_template( $wp->query_vars['print-order'], $type, $email );
+				exit;
 			}
+		}
+		
+		/**
+		 * Template handling in the back-end
+		 */
+		public function template_redirect_admin() {	
+			// Let the backend only access the page
+			if( is_admin() && !empty( $_REQUEST['print-order'] ) && !empty( $_REQUEST['action'] ) ) {
+				$type = !empty( $_REQUEST['print-order-type'] ) ? $_REQUEST['print-order-type'] : null;
+				$email = !empty( $_REQUEST['print-order-email'] ) ? $_REQUEST['print-order-email'] : null;
+				$this->generate_template( $_GET['print-order'], $type, $email );
+				exit;
+			}
+			exit;
 		}
 		
 		/**
 		 * Generate the template 
 		 */
-		public function generate_template( $template_type = 'order' ) {
+		public function generate_template( $order_ids, $template_type = 'order', $order_email = null ) {
 			global $post, $wp;
 			
 			// Explode the ids when needed
-			if( !is_array( $wp->query_vars['print-order'] ) ) {
-				$this->order_ids = array_filter( explode('-', $wp->query_vars['print-order'] ) );
+			if( !is_array( $order_ids ) ) {
+				$this->order_ids = array_filter( explode('-', $order_ids ) );
 			}
 			
 			// Default type 			
-			if( empty( $wp->query_vars['print-order-type'] ) || !in_array( $wp->query_vars['print-order-type'], $this->template_types ) ) {
+			if( empty( $template_type ) || !in_array( $template_type, $this->template_types ) ) {
 				$this->template_type = 'order';
 			} else {
-				$this->template_type = $wp->query_vars['print-order-type'];
+				$this->template_type = $template_type;
 			}
 			
 			// Default email 
-			if( empty( $wp->query_vars['print-order-email'] ) ) {
+			if( empty( $order_email ) ) {
 				$this->order_email = null;
 			} else {
-				$this->order_email = strtolower( $wp->query_vars['print-order-email'] );
+				$this->order_email = strtolower( $order_email );
 			}
 			
 			// Create the orders and check permissions
@@ -144,8 +164,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			
 			// Only continue if the orders are populated
 			if( !$populated ) {
-				wp_redirect( get_permalink( wc_get_page_id( 'myaccount' ) ) );
-				exit;
+				die();
 			} 
 						
 			// Load the print template html
@@ -174,16 +193,34 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			}
 			
 			// Generate the url	
-			$permalink = get_permalink( wc_get_page_id( 'myaccount' ) );
-			$endpoint = $this->api_endpoints['print-order'];
 			$order_ids_slug = implode( '-', $order_ids );
 			
-			if( get_option( 'permalink_structure' ) ) {
-				$url = trailingslashit( trailingslashit( $permalink ) . $endpoint . '/' . $order_ids_slug );
-			} else {
-				$url = add_query_arg( $endpoint, $order_ids_slug, $permalink );
-			}
+			// Create another url depending on where the user prints. This
+			// prevents some issues with ssl when the my-account page is 
+			// secured with ssl but the admin isn't.
+			// wp_nonce_url( admin_url( 'admin-ajax.php?action=print_order_admin&template_type=invoice&order_id=' . $post_id ), 'generate_print_content' );
+			if( is_admin() ) {
+				// For the admin
+				$args = wp_parse_args( array( 'action' => 'print_order' ), $args );
+				$base_url = admin_url( 'admin-ajax.php' );
+				$endpoint = 'print-order';
 				
+				// Add the order ids and create the url
+				$url = add_query_arg( $endpoint, $order_ids_slug, $base_url );
+			} else {
+				// For the theme
+				$base_url = get_permalink( wc_get_page_id( 'myaccount' ) );
+				$endpoint = $this->api_endpoints['print-order'];
+				
+				// Add the order ids and create the url
+				if( get_option( 'permalink_structure' ) ) {
+					$url = trailingslashit( trailingslashit( $base_url ) . $endpoint . '/' . $order_ids_slug );
+				} else {
+					$url = add_query_arg( $endpoint, $order_ids_slug, $base_url );
+				}
+			}
+			
+			// Add all other args	
 			$url = add_query_arg( $args, $url );
 			
 			return $url;

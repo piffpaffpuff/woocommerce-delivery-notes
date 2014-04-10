@@ -48,7 +48,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 		public function create_print_button_account_page( $actions, $order ) {			
 			if( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_my_account_page' ) ) {
 				$actions['print'] = array(
-					'url'  => wcdn_get_print_permalink( $order->id, $this->template_type ),
+					'url'  => wcdn_get_print_link( $order->id, $this->template_type ),
 					'name' => __( 'Print', 'woocommerce-delivery-notes' )
 				);
 			}		
@@ -60,11 +60,11 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 		 */
 		public function create_print_button_order_page( $order_id ) {			
 			if( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_view_order_page' ) ) {
-				$print_url = wcdn_get_print_permalink( $order_id, $this->template_type );
+				$print_url = wcdn_get_print_link( $order_id, $this->template_type );
 				
 				// use a different url for the tracking page
 				if( $this->is_woocommerce_tracking_page() ) {
-					$print_url = wcdn_get_print_permalink( $order_id, $this->template_type, $_REQUEST['order_email'] );
+					$print_url = wcdn_get_print_link( $order_id, $this->template_type, $_REQUEST['order_email'] );
 				}
 				?>
 				<p class="order-print">

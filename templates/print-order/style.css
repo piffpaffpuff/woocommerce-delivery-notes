@@ -77,7 +77,7 @@ table {
 tr {
 	page-break-inside: avoid;
 	page-break-after: auto;	
-	border-bottom: 0.12em solid black;
+	border-bottom: 0.12em solid #bbb;
 }
 
 td,
@@ -173,7 +173,7 @@ h2 {
 }
 
 .order-info li {
-	border-bottom: 0.12em solid black;
+	border-bottom: 0.12em solid #bbb;
 }
 
 .order-info li strong {
@@ -246,7 +246,7 @@ h2 {
 }
 
 .order-items tfoot tr:last-child {
-	border-bottom-width: 0.24em;
+	border-bottom: 0.24em solid black;
 }
 
 /* Order Notes */
