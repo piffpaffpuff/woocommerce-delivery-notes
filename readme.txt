@@ -233,6 +233,10 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 
 == Upgrade Notice ==
 
+= 3.0.6 =
+
+Thanks everybody to help fixing the SSL issue. Please report to the support forums if you still have SSL problems after the update.
+
 = 3.0.3 =
 
 * This update works only with WooCommerce 2.1 (or later) and Wordpress 3.8 (or later). Install it only if your system meets the requirements.
