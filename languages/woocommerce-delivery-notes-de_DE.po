@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Print Invoice & Delivery Note\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
-"POT-Creation-Date: 2014-04-10 20:39+0100\n"
-"PO-Revision-Date: 2014-04-10 20:39+0100\n"
+"POT-Creation-Date: 2014-04-10 21:22+0100\n"
+"PO-Revision-Date: 2014-04-10 21:22+0100\n"
 "Last-Translator: David Decker <deckerweb.mobil@googlemail.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -363,8 +363,12 @@ msgstr "Lieferadresse"
 msgid "Product"
 msgstr "Produkt"
 
-# @ woocommerce-delivery-notes
 #: ../templates/print-order/print-content.php:75
+msgid "Quantity"
+msgstr "Menge"
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:76
 msgid "Total"
 msgstr "Summe"
 
@@ -378,7 +382,7 @@ msgid "%s Files"
 msgstr "%s Dateien"
 
 # @ woocommerce-delivery-notes
-#: ../templates/print-order/print-content.php:144
+#: ../templates/print-order/print-content.php:148
 msgid "Customer Note"
 msgstr "Kundennotizen"
 

@@ -71,8 +71,9 @@ if ( !defined( 'ABSPATH' ) ) exit;
 					<table>
 						<thead>
 							<tr>
-								<th class="product-heading"><span><?php _e('Product', 'woocommerce-delivery-notes'); ?></span></th>
-								<th class="total-heading"><span><?php _e('Total', 'woocommerce-delivery-notes'); ?></span></th>
+								<th class="head-name"><span><?php _e('Product', 'woocommerce-delivery-notes'); ?></span></th>
+								<th class="head-quantity"><span><?php _e('Quantity', 'woocommerce-delivery-notes'); ?></span></th>
+								<th class="head-price"><span><?php _e('Total', 'woocommerce-delivery-notes'); ?></span></th>
 							</tr>
 						</thead>
 						
@@ -90,7 +91,6 @@ if ( !defined( 'ABSPATH' ) ) exit;
 											<?php do_action( 'wcdn_order_item_before', $product, $order ); ?>
 
 											<span class="name"><?php echo apply_filters( 'wcdn_order_item_name', $item['name'], $item ); ?></span>
-											<span class="quantity"><?php echo apply_filters( 'wcdn_order_item_quantity', sprintf( '&times; %s', $item['qty'] ), $item ); ?></span>
 
 											<?php $item_meta->display(); ?>
 											
@@ -113,6 +113,9 @@ if ( !defined( 'ABSPATH' ) ) exit;
 												<?php endforeach; ?>
 											</dl>
 										</td>
+										<td class="product-quantity">
+											<span><?php echo apply_filters( 'wcdn_order_item_quantity', $item['qty'], $item ); ?></span>
+										</td>
 										<td class="product-price">
 											<span><?php echo $order->get_formatted_line_subtotal( $item ); ?></span>
 										</td>
@@ -127,6 +130,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 										
 										<tr>
 											<td class="total-name"><?php echo $total['label']; ?></td>
+											<td class="total-quantity"></td>
 											<td class="total-price"><?php echo $total['value']; ?></td>
 										</tr>
 								

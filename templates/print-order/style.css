@@ -83,12 +83,12 @@ tr {
 td,
 th {
 	padding: 0.375em 0;
-	vertical-align: middle;
+	vertical-align: top;
 }
 
 td img,
 th img {
-	vertical-align: middle;
+	vertical-align: top;
 }
 
 th {
@@ -177,8 +177,7 @@ h2 {
 }
 
 .order-info li strong {
-	font-weight: normal;
-	width: 25%;
+	min-width: 18%;
 	display: inline-block;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -191,18 +190,23 @@ h2 {
 	margin-bottom: 1em;
 }
 
-.order-items th,
-.order-items td {
+.order-items th.head-name,
+.order-items th.product-name,
+.order-items th.total-name {
 	width: 50%;
 }
 
-.order-items tbody .quantity,
-.order-items tbody .name {
-	font-weight: bold;
+.order-items th.head-quantity,
+.order-items th.product-quantity,
+.order-items th.total-quantity,
+.order-items th.head-price,
+.order-items th.product-price,
+.order-items th.total-price {
+	width: 25%;
 }
 
-.order-items .product-price {
-	vertical-align: top;
+.order-items tbody .name {
+	font-weight: bold;
 }
 
 .order-items p {
@@ -215,7 +219,6 @@ h2 {
 	font-size: 0.785em;
 	font-weight: normal;
 	line-height: 150%;
-	display: inline;
 	padding: 0;
 	margin: 0;
 }

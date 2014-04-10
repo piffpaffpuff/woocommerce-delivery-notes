@@ -204,6 +204,12 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 
 == Changelog ==
 
+= 3.1 =
+
+**Note: Template changes were made, this may break your styling.**
+
+* By popular demand the 'Quantity' column is back in the template.
+
 = 3.0.6 =
 
 * Fixed the known issue where the print button stopped working becuse of SSL
