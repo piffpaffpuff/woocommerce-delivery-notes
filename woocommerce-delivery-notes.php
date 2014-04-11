@@ -181,7 +181,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 				return '';
 			}
 
-			$nonce_url = wcdn_get_print_link( $order->id, 'invoice' );
+			$nonce_url = wcdn_get_print_link( $order->id, 'invoice', $order->billing_email);
 			$print_invoice = esc_attr( 'Print Invoice', 'woocommerce-delivery-notes' );
 			$plugin_url = WooCommerce_Delivery_Notes::$plugin_url;
 
