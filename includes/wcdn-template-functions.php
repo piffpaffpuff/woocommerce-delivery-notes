@@ -190,6 +190,7 @@ function wcdn_get_orders() {
  * Get an order
  */
 function wcdn_get_order( $order_id ) {
+	global $wcdn;
 	return $wcdn->print->get_order( $order_id );
 }
 
@@ -197,19 +198,29 @@ function wcdn_get_order( $order_id ) {
  * Get the order info fields
  */
 function wcdn_get_order_info( $order ) {
-	$fields = array( 
-		'order_number' => array( 
-			'label' => __( 'Order Number', 'woocommerce-delivery-notes' ),
-			'value' => $order->get_order_number() 
-		),
-		'order_date' => array( 
-			'label' => __( 'Order Date', 'woocommerce-delivery-notes' ),
-			'value' => date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) )
-		),
-		'payment_method' => array( 
-			'label' => __( 'Payment Method', 'woocommerce-delivery-notes' ),
-			'value' => __( $order->payment_method_title, 'woocommerce' )
-		)
+	global $wcdn;
+	$fields = array();
+	
+	if( wcdn_get_template_type() == 'invoice' && !empty( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'create_invoice_number' ) ) ) {
+		$fields['invoice_number'] = array( 
+			'label' => __( 'Invoice Number', 'woocommerce-delivery-notes' ),
+			'value' => wcdn_get_order_invoice_number( $order->id )
+		);
+	}
+	
+	$fields['order_number'] = array( 
+		'label' => __( 'Order Number', 'woocommerce-delivery-notes' ),
+		'value' => $order->get_order_number() 
+	);
+	
+	$fields['order_date'] = array( 
+		'label' => __( 'Order Date', 'woocommerce-delivery-notes' ),
+		'value' => date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) )
+	);
+	
+	$fields['payment_method'] = array( 
+		'label' => __( 'Payment Method', 'woocommerce-delivery-notes' ),
+		'value' => __( $order->payment_method_title, 'woocommerce' )
 	);
 	
 	if( $order->billing_email ) {
@@ -228,6 +239,15 @@ function wcdn_get_order_info( $order ) {
 	
 	return $fields;
 }
+
+/**
+ * Get the invoice number of an order
+ */
+function wcdn_get_order_invoice_number( $order_id ) {
+	global $wcdn;
+	return $wcdn->print->get_order_invoice_number( $order_id );
+}
+
 
 /**
  * Additional fields for the product

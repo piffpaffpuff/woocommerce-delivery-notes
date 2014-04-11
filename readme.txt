@@ -91,9 +91,13 @@ An example that hides the whole price column. Paste the code in the `functions.p
 function my_price_free_delivery_note() {
 	?>
 		<style>
-			.delivery-note .total-heading span, 
-			.delivery-note .product-price span {
+			.delivery-note .head-price span, 
+			.delivery-note .product-price span,
+			.delivery-note .order-items tfoot {
 				display: none;
+			}
+			.delivery-note .order-items tbody tr:last-child {
+				border-bottom: 0.24em solid black;
 			}
 		</style>
 	<?php
@@ -206,9 +210,10 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 
 = 3.1 =
 
-**Note: Template changes were made, this may break your styling.**
+**Note: Template changes had to be made. Please control your template after the update in case you applied some custom styling.**
 
 * By popular demand the 'Quantity' column is back in the template.
+* Basic invoice numbering.
 
 = 3.0.6 =
 

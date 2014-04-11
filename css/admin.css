@@ -13,6 +13,11 @@
 
 /* Edit order */
 
+#woocommerce-delivery-notes-box .inside {
+	margin: 0;
+	padding: 0;
+}
+
 #woocommerce-delivery-notes-box .button {
 	overflow: hidden;
 	max-width: 100%;
@@ -31,6 +36,16 @@
 .type-shop_order .column-order_actions span.print-preview-loading {
 	display: none;
 	vertical-align: middle;
+}
+
+#woocommerce-delivery-notes-box .print-actions {
+	padding: 10px 12px;
+}
+
+#woocommerce-delivery-notes-box .print-info {
+	margin-top: 0.5em;
+	border-top: 1px solid #DDD;
+	padding: 10px 12px;
 }
 
 /* All orders */

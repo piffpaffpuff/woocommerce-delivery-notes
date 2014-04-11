@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Print Invoice & Delivery Note\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
-"POT-Creation-Date: 2014-04-10 21:22+0100\n"
-"PO-Revision-Date: 2014-04-10 21:22+0100\n"
+"POT-Creation-Date: 2014-04-11 22:19+0100\n"
+"PO-Revision-Date: 2014-04-11 22:28+0100\n"
 "Last-Translator: David Decker <deckerweb.mobil@googlemail.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -85,6 +85,9 @@ msgstr "Ein Firmen-/ Shop-Logo, welches Ihr Geschäft repräsentiert."
 #: ../includes/class-wcdn-settings.php:210
 #: ../includes/class-wcdn-settings.php:223
 #: ../includes/class-wcdn-settings.php:236
+#: ../includes/class-wcdn-settings.php:312
+#: ../includes/class-wcdn-settings.php:328
+#: ../includes/class-wcdn-settings.php:344
 msgid "Note:"
 msgstr "Hinweis:"
 
@@ -204,8 +207,8 @@ msgstr ""
 "Leer lassen, um keine Impressumangaben in der Fußzeile mit auszudrucken."
 
 #: ../includes/class-wcdn-settings.php:244
-msgid "Options"
-msgstr "Optionen"
+msgid "Front-end Options"
+msgstr "Theme Optionen"
 
 #: ../includes/class-wcdn-settings.php:249
 msgid "Print Page Endpoint"
@@ -220,7 +223,7 @@ msgstr ""
 "sollte eindeutig sein."
 
 #: ../includes/class-wcdn-settings.php:262
-msgid "Theme Print Buttons"
+msgid "Print Buttons"
 msgstr "Drucken im Theme"
 
 #: ../includes/class-wcdn-settings.php:269
@@ -238,16 +241,73 @@ msgstr "Bestellnummer"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:289
-msgid "Sequential order number"
+#: ../includes/wcdn-template-functions.php:206
+msgid "Invoice Number"
+msgstr "Rechnungsnummer"
+
+#: ../includes/class-wcdn-settings.php:297
+msgid "Create invoice numbers"
+msgstr "Erzeuge Rechnungsnummern"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:304
+msgid "Invoice Number Start"
+msgstr "Rechnungsnummer Start"
+
+#: ../includes/class-wcdn-settings.php:311
+msgid "Start the numbering at the specified number."
+msgstr "Die Nummerierung beginnt bei der eingegebenen Zahl."
+
+#: ../includes/class-wcdn-settings.php:313
+msgid "Use only integers."
+msgstr "Nur Ganzzahlen verwenden."
+
+#: ../includes/class-wcdn-settings.php:314
+#: ../includes/class-wcdn-settings.php:330
+#: ../includes/class-wcdn-settings.php:346
+msgid "Already created invoice numbers are not affected by changes."
+msgstr "Bereits erzeugte Rechnungsnummern sind von Änderungen nicht betroffen."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:320
+msgid "Invoice Number Prefix"
+msgstr "Rechnungsnummer Präfix"
+
+#: ../includes/class-wcdn-settings.php:327
+msgid "This text will be prepended to the invoice number."
+msgstr "Dieser Text wird vor der Rechnungsnummer angefügt."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:329
+msgid "Leave blank to not add a prefix."
+msgstr "Leer lassen, um kein Präfix zu verwenden."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:336
+msgid "Invoice Number Suffix"
+msgstr "Rechnungsnummer Suffix"
+
+#: ../includes/class-wcdn-settings.php:343
+msgid "This text will be appended to the invoice number."
+msgstr "Dieser Text wird nach der Rechnungsnummer angefügt."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:345
+msgid "Leave blank to not add a suffix."
+msgstr "Leer lassen, um kein Suffix zu verwenden."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:352
+msgid "Sequential Order Number"
 msgstr "Fortlaufende Bestellnummer"
 
 # @ woocommerce-delivery-notes
-#: ../includes/class-wcdn-settings.php:293
+#: ../includes/class-wcdn-settings.php:356
 msgid "Sequential numbering is enabled."
 msgstr "Fortlaufende Nummerierung ist aktiviert."
 
 # @ woocommerce-delivery-notes
-#: ../includes/class-wcdn-settings.php:295
+#: ../includes/class-wcdn-settings.php:358
 #, php-format
 msgid ""
 "Install and activate the free <a href=\"%s\">WooCommerce Sequential Order "
@@ -261,7 +321,7 @@ msgstr ""
 #: ../includes/class-wcdn-writepanel.php:84
 #: ../includes/class-wcdn-writepanel.php:105
 #: ../includes/class-wcdn-writepanel.php:106
-#: ../includes/class-wcdn-writepanel.php:190
+#: ../includes/class-wcdn-writepanel.php:192
 msgid "Print Invoice"
 msgstr "Rechnung drucken"
 
@@ -270,7 +330,7 @@ msgstr "Rechnung drucken"
 #: ../includes/class-wcdn-writepanel.php:87
 #: ../includes/class-wcdn-writepanel.php:108
 #: ../includes/class-wcdn-writepanel.php:109
-#: ../includes/class-wcdn-writepanel.php:191
+#: ../includes/class-wcdn-writepanel.php:193
 msgid "Print Delivery Note"
 msgstr "Lieferschein drucken"
 
@@ -301,6 +361,11 @@ msgid "Order Printing"
 msgstr "Bestellung drucken"
 
 # @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-writepanel.php:197
+msgid "Invoice number: "
+msgstr "Rechnungsnummer:"
+
+# @ woocommerce-delivery-notes
 #: ../includes/wcdn-template-functions.php:32
 msgid "Invoice"
 msgstr "Rechnung"
@@ -316,30 +381,30 @@ msgid "Order"
 msgstr "Bestellung"
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:202
+#: ../includes/wcdn-template-functions.php:212
 msgid "Order Number"
 msgstr "Bestellnummer"
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:206
+#: ../includes/wcdn-template-functions.php:217
 msgid "Order Date"
 msgstr "Bestelldatum"
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:210
+#: ../includes/wcdn-template-functions.php:222
 msgid "Payment Method"
 msgstr "Zahlungsart"
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:217
+#: ../includes/wcdn-template-functions.php:228
 msgid "Email"
 msgstr "E-Mail"
 
-#: ../includes/wcdn-template-functions.php:224
+#: ../includes/wcdn-template-functions.php:235
 msgid "Telephone"
 msgstr "Telefon"
 
-#: ../includes/wcdn-template-functions.php:241
+#: ../includes/wcdn-template-functions.php:261
 msgid "SKU:"
 msgstr "Art.-Nr.:"
 

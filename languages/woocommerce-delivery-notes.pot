@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Print Invoice & Delivery Note\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
-"POT-Creation-Date: 2014-04-10 21:21+0100\n"
-"PO-Revision-Date: 2014-04-10 21:21+0100\n"
+"POT-Creation-Date: 2014-04-11 22:19+0100\n"
+"PO-Revision-Date: 2014-04-11 22:19+0100\n"
 "Last-Translator: David Decker <deckerweb.mobil@googlemail.com>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -81,6 +81,9 @@ msgstr ""
 #: ../includes/class-wcdn-settings.php:210
 #: ../includes/class-wcdn-settings.php:223
 #: ../includes/class-wcdn-settings.php:236
+#: ../includes/class-wcdn-settings.php:312
+#: ../includes/class-wcdn-settings.php:328
+#: ../includes/class-wcdn-settings.php:344
 msgid "Note:"
 msgstr ""
 
@@ -181,9 +184,8 @@ msgstr ""
 msgid "Leave blank to not print a footer."
 msgstr ""
 
-# @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:244
-msgid "Options"
+msgid "Front-end Options"
 msgstr ""
 
 # @ woocommerce-delivery-notes
@@ -198,9 +200,8 @@ msgid ""
 "should be unique."
 msgstr ""
 
-# @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:262
-msgid "Theme Print Buttons"
+msgid "Print Buttons"
 msgstr ""
 
 # @ woocommerce-delivery-notes
@@ -218,18 +219,68 @@ msgstr ""
 msgid "Order Numbering"
 msgstr ""
 
-# @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:289
-msgid "Sequential order number"
+#: ../includes/wcdn-template-functions.php:206
+msgid "Invoice Number"
+msgstr ""
+
+#: ../includes/class-wcdn-settings.php:297
+msgid "Create invoice numbers"
+msgstr ""
+
+#: ../includes/class-wcdn-settings.php:304
+msgid "Invoice Number Start"
+msgstr ""
+
+#: ../includes/class-wcdn-settings.php:311
+msgid "Start the numbering at the specified number."
+msgstr ""
+
+#: ../includes/class-wcdn-settings.php:313
+msgid "Use only integers."
+msgstr ""
+
+#: ../includes/class-wcdn-settings.php:314
+#: ../includes/class-wcdn-settings.php:330
+#: ../includes/class-wcdn-settings.php:346
+msgid "Already created invoice numbers are not affected by changes."
+msgstr ""
+
+#: ../includes/class-wcdn-settings.php:320
+msgid "Invoice Number Prefix"
+msgstr ""
+
+#: ../includes/class-wcdn-settings.php:327
+msgid "This text will be prepended to the invoice number."
+msgstr ""
+
+#: ../includes/class-wcdn-settings.php:329
+msgid "Leave blank to not add a prefix."
+msgstr ""
+
+#: ../includes/class-wcdn-settings.php:336
+msgid "Invoice Number Suffix"
+msgstr ""
+
+#: ../includes/class-wcdn-settings.php:343
+msgid "This text will be appended to the invoice number."
+msgstr ""
+
+#: ../includes/class-wcdn-settings.php:345
+msgid "Leave blank to not add a suffix."
+msgstr ""
+
+#: ../includes/class-wcdn-settings.php:352
+msgid "Sequential Order Number"
 msgstr ""
 
 # @ woocommerce-delivery-notes
-#: ../includes/class-wcdn-settings.php:293
+#: ../includes/class-wcdn-settings.php:356
 msgid "Sequential numbering is enabled."
 msgstr ""
 
 # @ woocommerce-delivery-notes
-#: ../includes/class-wcdn-settings.php:295
+#: ../includes/class-wcdn-settings.php:358
 #, php-format
 msgid ""
 "Install and activate the free <a href=\"%s\">WooCommerce Sequential Order "
@@ -241,7 +292,7 @@ msgstr ""
 #: ../includes/class-wcdn-writepanel.php:84
 #: ../includes/class-wcdn-writepanel.php:105
 #: ../includes/class-wcdn-writepanel.php:106
-#: ../includes/class-wcdn-writepanel.php:190
+#: ../includes/class-wcdn-writepanel.php:192
 msgid "Print Invoice"
 msgstr ""
 
@@ -250,7 +301,7 @@ msgstr ""
 #: ../includes/class-wcdn-writepanel.php:87
 #: ../includes/class-wcdn-writepanel.php:108
 #: ../includes/class-wcdn-writepanel.php:109
-#: ../includes/class-wcdn-writepanel.php:191
+#: ../includes/class-wcdn-writepanel.php:193
 msgid "Print Delivery Note"
 msgstr ""
 
@@ -280,6 +331,10 @@ msgstr ""
 msgid "Order Printing"
 msgstr ""
 
+#: ../includes/class-wcdn-writepanel.php:197
+msgid "Invoice number: "
+msgstr ""
+
 # @ woocommerce-delivery-notes
 #: ../includes/wcdn-template-functions.php:32
 msgid "Invoice"
@@ -296,31 +351,31 @@ msgid "Order"
 msgstr ""
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:202
+#: ../includes/wcdn-template-functions.php:212
 msgid "Order Number"
 msgstr ""
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:206
+#: ../includes/wcdn-template-functions.php:217
 msgid "Order Date"
 msgstr ""
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:210
+#: ../includes/wcdn-template-functions.php:222
 msgid "Payment Method"
 msgstr ""
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:217
+#: ../includes/wcdn-template-functions.php:228
 msgid "Email"
 msgstr ""
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:224
+#: ../includes/wcdn-template-functions.php:235
 msgid "Telephone"
 msgstr ""
 
-#: ../includes/wcdn-template-functions.php:241
+#: ../includes/wcdn-template-functions.php:261
 msgid "SKU:"
 msgstr ""
 

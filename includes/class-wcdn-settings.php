@@ -241,7 +241,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 				</tbody>
 			</table>
 
-			<h3><?php _e( 'Options', 'woocommerce-delivery-notes' ); ?></h3>
+			<h3><?php _e( 'Front-end Options', 'woocommerce-delivery-notes' ); ?></h3>
 			<table class="form-table">
 				<tbody>	
 					<tr>
@@ -259,7 +259,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 					</tr>
 					<tr>
 						<th>
-							<?php _e( 'Theme Print Buttons', 'woocommerce-delivery-notes' ); ?>
+							<?php _e( 'Print Buttons', 'woocommerce-delivery-notes' ); ?>
 						</th>
 						<td>
 							<fieldset>
@@ -283,10 +283,73 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			
 			<h3><?php _e( 'Order Numbering', 'woocommerce-delivery-notes' ); ?></h3>
 			<table class="form-table">
-				<tbody>	
+				<tbody>
 					<tr>
 						<th>
-							<label for="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>order_number_offset"><?php _e( 'Sequential order number', 'woocommerce-delivery-notes' ); ?></label>
+							<?php _e( 'Invoice Number', 'woocommerce-delivery-notes' ); ?>
+						</th>
+						<td>
+							<p>
+								<label>
+									<?php $create_invoice_number = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'create_invoice_number' ); ?>
+									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>create_invoice_number" type="hidden" value="" />
+									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>create_invoice_number" id="create-invoice-number" type="checkbox" value="1" <?php checked( $create_invoice_number, 1 ); ?> />
+									<?php _e( 'Create invoice numbers', 'woocommerce-delivery-notes' ); ?>
+								</label>
+							</p>
+						</td>
+					</tr>
+					<tr class="invoice-number-row" <?php if( empty( $create_invoice_number ) ) : ?> style="display: none;"<?php endif; ?>>
+						<th>
+							<label><?php _e( 'Invoice Number Start', 'woocommerce-delivery-notes' ); ?></label>
+						</th>
+						<td>
+							<p>
+								<input type="text" name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>invoice_number_start" value="<?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_start', 1 ) ) ); ?>" />
+							</p>
+							<span class="description">
+								<?php _e( 'Start the numbering at the specified number.', 'woocommerce-delivery-notes' ); ?>
+								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
+								<?php _e( 'Use only integers.', 'woocommerce-delivery-notes' ); ?>
+								<?php _e( 'Already created invoice numbers are not affected by changes.', 'woocommerce-delivery-notes' ); ?>
+							</span>
+						</td>
+					</tr>
+					<tr class="invoice-number-row" <?php if( empty( $create_invoice_number ) ) : ?> style="display: none;"<?php endif; ?>>
+						<th>
+							<label><?php _e( 'Invoice Number Prefix', 'woocommerce-delivery-notes' ); ?></label>
+						</th>
+						<td>
+							<p>
+								<input type="text" name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>invoice_number_prefix" value="<?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_prefix' ) ) ); ?>" />
+							</p>
+							<span class="description">
+								<?php _e( 'This text will be prepended to the invoice number.', 'woocommerce-delivery-notes' ); ?>
+								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
+								<?php _e( 'Leave blank to not add a prefix.', 'woocommerce-delivery-notes' ); ?>
+								<?php _e( 'Already created invoice numbers are not affected by changes.', 'woocommerce-delivery-notes' ); ?>
+							</span>
+						</td>
+					</tr>
+					<tr class="invoice-number-row" <?php if( empty( $create_invoice_number ) ) : ?> style="display: none;"<?php endif; ?>>
+						<th>
+							<label><?php _e( 'Invoice Number Suffix', 'woocommerce-delivery-notes' ); ?></label>
+						</th>
+						<td>
+							<p>
+								<input type="text" name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>invoice_number_suffix" value="<?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_suffix' ) ) ); ?>" />
+							</p>
+							<span class="description">
+								<?php _e( 'This text will be appended to the invoice number.', 'woocommerce-delivery-notes' ); ?>
+								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
+								<?php _e( 'Leave blank to not add a suffix.', 'woocommerce-delivery-notes' ); ?>
+								<?php _e( 'Already created invoice numbers are not affected by changes.', 'woocommerce-delivery-notes' ); ?>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label><?php _e( 'Sequential Order Number', 'woocommerce-delivery-notes' ); ?></label>
 						</th>
 						<td>
 							<?php if( $this->is_woocommerce_sequential_order_numbers_activated() ) : ?>
@@ -312,19 +375,35 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 				// Save settings
 				foreach ( $_POST as $key => $value ) {
 					if ( $key != $this->hidden_submit && strpos( $key, WooCommerce_Delivery_Notes::$plugin_prefix ) !== false ) {
-						// set a default values
+						// Set a default values
 						if ( empty( $value ) ) {
 							if ( $key == WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint' ) {
 								$value = 'print-order';
 							}
+							
+							if ( $key == WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_start' ) {
+								$value = 1;
+							}
 						}
 						
-						// sanitize values
+						// Sanitize values
 						if ( $key == WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint' ) {
 							$value = sanitize_title( $value );
 						}
 						
-						// update the value
+						if ( $key == WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_start' ) {
+							if ( !ctype_digit( $value ) ) {
+								$value = 1;
+							}
+							
+							// Check if the counter should be reset
+							if( get_option( $key ) != $value ) {
+								update_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_counter', 0 );
+							}
+							
+						}
+						
+						// Update the value
 						if ( empty( $value ) ) {
 							delete_option( $key );
 						} else {

@@ -104,5 +104,11 @@ jQuery(document).ready(function($) {
 		$('#company-logo-remove-button').hide();
 	}
 	
+	// Toggle invoice number fields
+	$('#create-invoice-number').on('change', function(event) {
+		$('.invoice-number-row').toggle();
+		event.preventDefault();
+	});
+	
 });
 

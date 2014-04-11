@@ -198,9 +198,8 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			// Create another url depending on where the user prints. This
 			// prevents some issues with ssl when the my-account page is 
 			// secured with ssl but the admin isn't.
-			// wp_nonce_url( admin_url( 'admin-ajax.php?action=print_order_admin&template_type=invoice&order_id=' . $post_id ), 'generate_print_content' );
 			if( is_admin() ) {
-				// For the admin
+				// For the admin we use the ajax.php for better security
 				$args = wp_parse_args( array( 'action' => 'print_order' ), $args );
 				$base_url = admin_url( 'admin-ajax.php' );
 				$endpoint = 'print-order';
@@ -301,6 +300,28 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 				return $this->orders[$order_id];
 			}
 			return;	
+		}	
+		
+		/**
+		 * Get the order invoice number
+		 */
+		public function get_order_invoice_number( $order_id ) {						
+			$invoice_start = intval( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_start', 1 ) );
+			$invoice_counter = intval( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_counter', 0 ) );
+			$invoice_prefix = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_prefix' );
+			$invoice_suffix = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_suffix' );
+	
+			// Add the invoice number to the order when it doesn't yet exist
+			$meta_key = '_' . WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number';
+			$meta_added = add_post_meta( $order_id, $meta_key, $invoice_prefix . ( $invoice_start + $invoice_counter ) . $invoice_suffix, true );
+			
+			// Update the total count
+			if( $meta_added ) {
+				update_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_counter', $invoice_counter + 1  );
+			}
+			
+			// Get the invoice number
+			return apply_filters( 'wcdn_order_invoice_number', get_post_meta( $order_id, $meta_key, true ) );
 		}	
 		
 	}
