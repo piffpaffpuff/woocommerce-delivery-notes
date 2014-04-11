@@ -127,6 +127,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 				// Like this the template has full access to all objects.
 				add_action( 'admin_init', array( $this, 'load_admin_hooks' ) );
 				add_action( 'init', array( $this, 'include_template_functions' ) );
+				add_shortcode('woocommerce_invoice_print', array($this, 'shortcode_woocommerce_invoice_print'));
 			}
 		}
 			
@@ -159,6 +160,38 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 			} else {
 				return false;
 			}
+		}
+		
+		/**
+		* Front-end shortcode
+		*/
+		public function shortcode_woocommerce_invoice_print($atts) {
+			
+			$order_id = $atts['id'];
+			
+			if (empty($order_id)) return '';
+
+			$order = new WC_Order( $order_id );
+
+			if ( ! is_user_logged_in() ) return '';
+
+			$user_id = get_current_user_id();
+
+			if ( $order->user_id != $user_id ) {
+				return '';
+			}
+
+			$nonce_url = wcdn_get_print_link( $order->id, 'invoice', $order->billing_email);
+			$print_invoice = esc_attr( 'Print Invoice', 'woocommerce-delivery-notes' );
+			$plugin_url = WooCommerce_Delivery_Notes::$plugin_url;
+
+			$ret = <<<ENDHERE
+			<a href="$nonce_url" class="button tips print-preview-button invoice" target="_blank" alt="$print_invoice" data-tip="$print_invoice">
+				<span>$print_invoice</span>
+			</a>
+ENDHERE;
+
+			return $ret;
 		}
 		
 	}
