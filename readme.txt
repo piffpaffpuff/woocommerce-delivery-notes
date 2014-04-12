@@ -85,7 +85,7 @@ add_action( 'wcdn_head', 'my_serif_font_and_large_address', 20 );
 
 Sure, the easiest way is to hide them with some CSS that is hooked in with `wcdn_head`.
 
-An example that hides the whole price column. Paste the code in the `functions.php` file of your theme:
+An example that hides the whole price column and the totals. Paste the code in the `functions.php` file of your theme:
 
 `
 function my_price_free_delivery_note() {
@@ -161,6 +161,20 @@ function my_product_image( $product ) {
 	}
 }
 add_action( 'wcdn_order_item_before', 'my_product_image' );
+`
+
+= How can I differentiate between invoice and delivery note through CSS? =
+
+The `body` tag contains a class that specifies the template type. The class can be `invoice` or `delivery-note`. You can prefix your style rules to only target one template. For example you could rise the font size for the addresses on the right side:
+
+`
+.invoice .billing-address {
+	font-size: 2em;
+}
+
+.delivery-note .shipping-address {
+	font-size: 2em;
+}
 `
 
 = How do I customize the look of the invoice and delivery note? =

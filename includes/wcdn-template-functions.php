@@ -199,9 +199,11 @@ function wcdn_get_order( $order_id ) {
  */
 function wcdn_get_order_info( $order ) {
 	global $wcdn;
-	$fields = array();
 	
-	if( wcdn_get_template_type() == 'invoice' && !empty( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'create_invoice_number' ) ) ) {
+	$fields = array();
+	$create_invoice_number = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'create_invoice_number' );
+	
+	if( wcdn_get_template_type() == 'invoice' && !empty( $create_invoice_number ) ) {
 		$fields['invoice_number'] = array( 
 			'label' => __( 'Invoice Number', 'woocommerce-delivery-notes' ),
 			'value' => wcdn_get_order_invoice_number( $order->id )
