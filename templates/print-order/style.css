@@ -190,18 +190,18 @@ h2 {
 	margin-bottom: 1em;
 }
 
-.order-items th.head-name,
-.order-items th.product-name,
-.order-items th.total-name {
+.order-items .head-name,
+.order-items .product-name,
+.order-items .total-name {
 	width: 50%;
 }
 
-.order-items th.head-quantity,
-.order-items th.product-quantity,
-.order-items th.total-quantity,
-.order-items th.head-price,
-.order-items th.product-price,
-.order-items th.total-price {
+.order-items .head-quantity,
+.order-items .product-quantity,
+.order-items .total-quantity,
+.order-items .head-price,
+.order-items .product-price,
+.order-items .total-price {
 	width: 25%;
 }
 
