@@ -194,7 +194,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 			</div>
 			<?php if( $invoice_number ) : ?>
 			<div class="print-info">
-				<strong><?php _e( 'Invoice number: ', 'woocommerce-delivery-notes' ); ?></strong><?php echo $invoice_number; ?>
+				<strong><?php _e( 'Invoice number: ', 'woocommerce-delivery-notes' ); ?></strong> <?php echo $invoice_number; ?>
 			</div>
 			<span class="print-preview-loading spinner"></span>
 			<?php endif; ?>
