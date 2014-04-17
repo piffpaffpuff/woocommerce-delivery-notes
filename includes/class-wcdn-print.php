@@ -83,7 +83,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		}
 
 		/**
-		 * Add the query vars when no permalink structures aren't supported.
+		 * Add the query vars to the url
 		 */
 		public function add_query_vars( $vars ) {
 			foreach( $this->query_vars as $var ) {
@@ -96,7 +96,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		 * Parse the query variables
 		 */
 		public function parse_request( $wp ) {
-			// Map endpoint keys to their query var keys, or get them if there is no permalink structure.
+			// Map endpoint keys to their query var keys, when another endpoint name was set.
 			foreach( $this->api_endpoints as $key => $var ) {
 				if( isset( $_GET[$var] ) ) {
 					$wp->query_vars[$key] = $_GET[$var];

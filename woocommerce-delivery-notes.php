@@ -60,15 +60,12 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 			self::$plugin_basefile_path = __FILE__;
 			self::$plugin_basefile = plugin_basename( self::$plugin_basefile_path );
 			self::$plugin_url = plugin_dir_url( self::$plugin_basefile );
-			self::$plugin_path = trailingslashit( dirname( self::$plugin_basefile_path ) );
-		
-			// Include the classes	
-			$this->include_classes();	
+			self::$plugin_path = trailingslashit( dirname( self::$plugin_basefile_path ) );	
 			
 			// Set hooks and wait for WooCommerce to load
 			register_activation_hook( self::$plugin_basefile_path, array( $this, 'install' ) );
 			add_action( 'plugins_loaded', array( $this, 'localise' ) );
-			add_action( 'woocommerce_loaded', array( $this, 'load' ) );
+			add_action( 'woocommerce_init', array( $this, 'load' ) );
 		}
 		
 		/**
@@ -117,6 +114,9 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		public function load() {
 			// WooCommerce activation required
 			if ( $this->is_woocommerce_activated() ) {	
+				// Include the classes	
+				$this->include_classes();
+							
 				// Create the instances
 				$this->print = new WooCommerce_Delivery_Notes_Print();
 				$this->settings = new WooCommerce_Delivery_Notes_Settings();
