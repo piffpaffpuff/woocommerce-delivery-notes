@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Print Invoice & Delivery Note\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
-"POT-Creation-Date: 2014-04-11 22:19+0100\n"
-"PO-Revision-Date: 2014-04-11 22:19+0100\n"
+"POT-Creation-Date: 2014-04-17 20:02+0100\n"
+"PO-Revision-Date: 2014-04-17 20:03+0100\n"
 "Last-Translator: David Decker <deckerweb.mobil@googlemail.com>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -131,9 +131,8 @@ msgstr ""
 msgid "Leave blank to not print an address."
 msgstr ""
 
-# @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:204
-msgid "Complimentary close"
+msgid "Complimentary Close"
 msgstr ""
 
 # @ woocommerce-delivery-notes
@@ -220,7 +219,7 @@ msgid "Order Numbering"
 msgstr ""
 
 #: ../includes/class-wcdn-settings.php:289
-#: ../includes/wcdn-template-functions.php:206
+#: ../includes/wcdn-template-functions.php:208
 msgid "Invoice Number"
 msgstr ""
 
@@ -351,31 +350,31 @@ msgid "Order"
 msgstr ""
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:212
+#: ../includes/wcdn-template-functions.php:214
 msgid "Order Number"
 msgstr ""
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:217
+#: ../includes/wcdn-template-functions.php:219
 msgid "Order Date"
 msgstr ""
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:222
+#: ../includes/wcdn-template-functions.php:224
 msgid "Payment Method"
 msgstr ""
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:228
+#: ../includes/wcdn-template-functions.php:230
 msgid "Email"
 msgstr ""
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:235
+#: ../includes/wcdn-template-functions.php:237
 msgid "Telephone"
 msgstr ""
 
-#: ../includes/wcdn-template-functions.php:261
+#: ../includes/wcdn-template-functions.php:263
 msgid "SKU:"
 msgstr ""
 
