@@ -199,7 +199,6 @@ function wcdn_get_order( $order_id ) {
  */
 function wcdn_get_order_info( $order ) {
 	global $wcdn;
-	
 	$fields = array();
 	$create_invoice_number = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'create_invoice_number' );
 	

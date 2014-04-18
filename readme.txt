@@ -222,6 +222,12 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 
 == Changelog ==
 
+= 3.1.1 =
+
+* Fix the hidden loading indicator on order edit screen
+* Other small visual optimizations
+* Later plugin load hook for better compatibility
+
 = 3.1 =
 
 **Note: Template changes had to be made. Please control your template after the update in case you applied some custom styling.**
