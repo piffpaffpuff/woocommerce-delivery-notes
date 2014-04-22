@@ -1,0 +1,363 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: برگه رسید فروشگاه\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2014-04-22 14:17+0330\n"
+"Last-Translator: Khalil Delavaran <khalil.delavaran@gmail.com>\n"
+"Language-Team: www.qooqnos.com <khalil.delavaran@gmail.com>\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.3\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: classes/class-wcdn-settings.php:301
+msgid ""
+"You can <a href=\"%1$s\" target=\"%3$s\" class=\"%4$s\">preview the invoice "
+"template</a> or <a href=\"%2$s\" target=\"%3$s\" class=\"%4$s\">the delivery "
+"note template</a>."
+msgstr ""
+"<a href=\"%1$s\" target=\"%3$s\" class=\"%4$s\">پیش نمایش قالب فاکتور</a> یا "
+"<a href=\"%2$s\" target=\"%3$s\" class=\"%4$s\">پیش نمایش برگه رسید</a>."
+
+#: classes/class-wcdn-settings.php:302
+msgid ""
+"For more advanced control copy <code>woocommerce-delivery-notes/templates/"
+"print/style.css</code> to <code>your-theme-name/woocommerce/print/style.css</"
+"code>."
+msgstr ""
+"برای کنترل پیشرفته کپی کن <code>your-theme-name/woocommerce/print/style.css</"
+"code> به <code>woocommerce-delivery-notes/templates/print/style.css</code>"
+
+#: templates/print/print-delivery-note.php:38
+msgid "Billing Date"
+msgstr "تاریخ صورتحساب"
+
+#: templates/print/print-delivery-note.php:40
+msgid "Shipping Date"
+msgstr "تاریخ باربری"
+
+#: templates/print/print-delivery-note.php:45
+msgid "Order Number"
+msgstr "شماره سفارش"
+
+#: templates/print/print-delivery-note.php:49
+msgid "Payment Method"
+msgstr "روش پرداخت"
+
+#: woocommerce-delivery-notes.php:0
+msgid "2.0"
+msgstr ""
+
+#: classes/class-wcdn-settings.php:144
+msgid "Get Community Support"
+msgstr "درخواست پشتیبانی از فروم"
+
+#: classes/class-wcdn-settings.php:212
+msgid ""
+"When the image is printed, its pixel density will automatically be eight "
+"times higher than the original. This means, 1 printed inch will correspond "
+"to about 288 pixels on the screen. Example: an image with a width of 576 "
+"pixels and a height of 288 pixels will have a printed size of about 2 inches "
+"to 1 inch."
+msgstr ""
+"زمانی که تصویر چاپ می شود، تراکم پیکسل آن به طور خودکار هشت برابر بیشتر از "
+"اصل می شود. این به این معنی است که،چاپ 1 اینچ  به حدود 288 پیکسل بر روی صفحه "
+"نمایش مطابقت دارد. به عنوان مثال: یک تصویر با عرض 576 پیکسل و ارتفاع 288 "
+"پیکسل، اندازه چاپ در حدود 1 اینچ تا 2 اینچ می شود"
+
+#: templates/print/print-delivery-note.php:58
+msgid "Product"
+msgstr "کالا"
+
+#: templates/print/print-delivery-note.php:60
+msgid "Totals"
+msgstr "مجموع"
+
+#: templates/print/print-delivery-note.php:70
+msgid "Download:"
+msgstr "دانلود:"
+
+#: woocommerce-delivery-notes.php:291 woocommerce-delivery-notes.php:305
+msgid "N/A"
+msgstr "خالی"
+
+#: classes/class-wcdn-settings.php:202
+msgid "Company/Shop Logo"
+msgstr "لوگوی شرکت/فروشگاه"
+
+#: classes/class-wcdn-settings.php:207
+msgid "Remove Logo"
+msgstr "برداشتن لوگو"
+
+#: classes/class-wcdn-settings.php:208
+msgid "Set Logo"
+msgstr "گذاشتن لوگو"
+
+#: classes/class-wcdn-settings.php:210
+msgid "A company/shop logo representing your business."
+msgstr "لوگوی شرکت/فروشگاه به نمایندگی از کسب و کار شما"
+
+#: classes/class-wcdn-settings.php:223
+msgid "Your company/shop name for the Delivery Note."
+msgstr "نام شرکت/فروشگاه برای برگه رسید"
+
+#: classes/class-wcdn-settings.php:314
+msgid "Sequential order number"
+msgstr "شماره سفارش پیاپی"
+
+#: classes/class-wcdn-settings.php:318
+msgid "Sequential numbering is enabled."
+msgstr "شماره گذاری پیاپی پویا شده است"
+
+#: classes/class-wcdn-settings.php:320
+msgid ""
+"Install and activate the free <a href=\"%s\">WooCommerce Sequential Order "
+"Numbers</a> Plugin."
+msgstr ""
+"خواهشمند است افزونه <a href=\"%s\">WooCommerce Sequential Order Numbers</"
+"a>را برپاسازی کرده و به و رایگان پویا کنید"
+
+#: woocommerce-delivery-notes.php:0
+msgid "https://github.com/piffpaffpuff/woocommerce-delivery-notes"
+msgstr ""
+
+#: woocommerce-delivery-notes.php:203
+msgid "Delivery Note"
+msgstr "برگه رسید"
+
+#: templates/print/print-delivery-note.php:59
+msgid "Quantity"
+msgstr "کمیت"
+
+#: classes/class-wcdn-print.php:63 classes/class-wcdn-print.php:68
+#: classes/class-wcdn-print.php:73 classes/class-wcdn-print.php:78
+msgid "You do not have sufficient permissions to access this page."
+msgstr "شما مجوز کافی برای دسترسی به این صفحه را ندارید"
+
+#: woocommerce-delivery-notes.php:134
+msgid "Go to the settings page"
+msgstr "رفتن به برگه پیکربندی"
+
+#: woocommerce-delivery-notes.php:134
+msgid "Settings"
+msgstr "پیکربندی"
+
+#: woocommerce-delivery-notes.php:124
+msgid "FAQ"
+msgstr "پرسش و پاسخ"
+
+#: woocommerce-delivery-notes.php:125
+msgid "Support"
+msgstr "پشتیبانی"
+
+#: classes/class-wcdn-settings.php:257
+msgid "Returns Policy, Conditions, etc.:"
+msgstr "افزودن قوانین، شرایط، و موارد دیگر"
+
+#: templates/print/print-delivery-note.php:68
+msgid "SKU:"
+msgstr "بارکد:"
+
+#: templates/print/print-delivery-note.php:69
+msgid "Weight:"
+msgstr "وزن:"
+
+#: classes/class-wcdn-settings.php:134
+msgid "Plugin: WooCommerce Print Invoices & Delivery Notes"
+msgstr "پلاگین: چاپ فاکتور و برگه رسید در ووکامرس"
+
+#: classes/class-wcdn-settings.php:211 classes/class-wcdn-settings.php:224
+#: classes/class-wcdn-settings.php:237 classes/class-wcdn-settings.php:250
+#: classes/class-wcdn-settings.php:263 classes/class-wcdn-settings.php:276
+msgid "Note:"
+msgstr "نکته:"
+
+#: classes/class-wcdn-settings.php:236
+msgid ""
+"The postal address of the company/shop, which gets printed right of the "
+"company/shop name, above the order listings."
+msgstr "آدرس پستی از شرکت/فروشگاه، که در بالای لیست سفارشات، چاپ می شود"
+
+#: classes/class-wcdn-settings.php:249
+msgid ""
+"Add some personal notes, or season greetings or whatever (e.g. Thank You for "
+"Your Order!, Merry Christmas!, etc.)."
+msgstr ""
+"اضافه کردن بیشتر یادداشت های شخصی، همانند تشکر از خرید شما یا تبریک مناسبت "
+"ها و موارد دیگر"
+
+#: classes/class-wcdn-settings.php:275
+msgid ""
+"Add some further footer imprint, copyright notes etc. to get the printed "
+"sheets a bit more branded to your needs."
+msgstr ""
+"افزودن برخی از یادداشت ها در پاورقی، همانند مهر، یادداشت کپی رایت، دریافت "
+"برگه های چاپ شده و یا افزودن لوگوهای تجاری."
+
+#: classes/class-wcdn-settings.php:132 classes/class-wcdn-settings.php:135
+msgid "About the Plugin"
+msgstr "درباره افزونه"
+
+#: classes/class-wcdn-settings.php:142
+msgid "For more information:"
+msgstr "برای اطلاعات بیشتر:"
+
+#: classes/class-wcdn-settings.php:143
+msgid "Frequently Asked Questions"
+msgstr "پرسش های متداول"
+
+#: classes/class-wcdn-settings.php:145
+msgid "Project on WordPress.org"
+msgstr " WordPress.org پروژه در"
+
+#: classes/class-wcdn-settings.php:146
+msgid "Project on GitHub"
+msgstr "GitHub پروژه در"
+
+#: classes/class-wcdn-settings.php:154
+msgid "Print"
+msgstr "چاپ"
+
+#: classes/class-wcdn-settings.php:194
+msgid "Invoices and Delivery Notes"
+msgstr "فاکتور و برگه رسید"
+
+#: classes/class-wcdn-settings.php:218
+msgid "Company/Shop Name"
+msgstr "نام شرکت/فروشگاه"
+
+#: classes/class-wcdn-settings.php:225
+msgid ""
+"Leave blank to use the default Website/ Blog title defined in WordPress "
+"settings."
+msgstr ""
+"چنانچه نانوشته بماند، از عنوان تعریف شده وب سایت در تنظیمات وردپرس استفاده "
+"می شود"
+
+#: classes/class-wcdn-settings.php:231
+msgid "Company/Shop Address"
+msgstr "آدرس شرکت/فروشگاه"
+
+#: classes/class-wcdn-settings.php:238
+msgid "Leave blank to not print an address."
+msgstr "چنانچه نانوشته بماند، آدرس چاپ نمی شود"
+
+#: classes/class-wcdn-settings.php:244
+msgid "Personal Notes"
+msgstr "یادداشت شخصی"
+
+#: classes/class-wcdn-settings.php:251
+msgid "Leave blank to not print any personal notes."
+msgstr "چنانچه نانوشته بماند، یادداشت های شخصی چاپ نمی شوند"
+
+#: classes/class-wcdn-settings.php:262
+msgid ""
+"Here you can add some more policies, conditions etc. For example add a "
+"returns policy in case the client would like to send back some goods. In "
+"some countries (e.g. in the European Union) this is required so please add "
+"any required info in accordance with the statutory regulations."
+msgstr ""
+"در اینجا می توانید قوانین بیشتری را به اجرا بگذارید . همانند قانون برگشت از "
+"فروش، و یا هر قانون و مقررات دولتی و موارد دیگر"
+
+#: classes/class-wcdn-settings.php:264
+msgid "Leave blank to not print any policies or conditions."
+msgstr "چنانچه نانوشته بماند، هیچ کدام از قوانین و شرایط چاپ نمی شود"
+
+#: classes/class-wcdn-settings.php:270
+msgid "Footer Imprint"
+msgstr "مهر پاورقی"
+
+#: classes/class-wcdn-settings.php:277
+msgid "Leave blank to not print a footer."
+msgstr "چنانچه نانوشته بماند، پاورقی چاپ نمی شود"
+
+#: classes/class-wcdn-settings.php:309
+msgid "Order Numbering Options"
+msgstr "پیکربندی شماره گذاری سفارش"
+
+#: classes/class-wcdn-writepanel.php:92
+msgid "Order Print"
+msgstr "چاپ سفارش"
+
+#: classes/class-wcdn-writepanel.php:76 classes/class-wcdn-writepanel.php:77
+#: classes/class-wcdn-writepanel.php:102
+msgid "Print Invoice"
+msgstr "چاپ فاکتور"
+
+#: classes/class-wcdn-writepanel.php:78 classes/class-wcdn-writepanel.php:80
+#: classes/class-wcdn-writepanel.php:81 classes/class-wcdn-writepanel.php:82
+#: classes/class-wcdn-writepanel.php:103
+msgid "Print Delivery Note"
+msgstr "چاپ برگه رسید"
+
+#: woocommerce-delivery-notes.php:201
+msgid "Invoice"
+msgstr "فاکتور"
+
+#: templates/print/print-delivery-note.php:20
+msgid "Recipient"
+msgstr "گیرنده"
+
+#: templates/print/print-delivery-note.php:96
+msgid "Customer Notes"
+msgstr "یادداشتهای مشتری"
+
+#: woocommerce-delivery-notes.php:0
+msgid "WooCommerce Print Invoices & Delivery Notes"
+msgstr "چاپ فاکتور و برگه رسید در ووکامرس"
+
+#: woocommerce-delivery-notes.php:0
+msgid ""
+"Print order invoices & delivery notes for WooCommerce shop plugin. You can "
+"add company/shop info as well as personal notes & policies to print pages."
+msgstr ""
+"چاپ فاکتورها و برگه های رسید سفارش ها برای افزونه فروشگاهی ووکامرس. شما می "
+"توانید اطلاعات شرکت / فروشگاه و همچنین یادداشت های شخصی و سیاست ها به چاپ "
+"برگه ها بیافزایید."
+
+#: woocommerce-delivery-notes.php:0
+msgid "Steve Clark, Triggvy Gunderson, David Decker"
+msgstr ""
+"Steve Clark, Triggvy Gunderson, David Decker برگردان پارسی خلیل دلاوران"
+
+#: classes/class-wcdn-settings.php:136
+msgid ""
+"This plugin enables you to add a Invoice or simple Delivery Note page for "
+"printing for your orders in WooCommerce shop plugin. You can add your "
+"company postal address, further add personal notes, refund or other policies "
+"and a footer note/branding. This helps speed up your daily shop and order "
+"management. In some countries (e.g. in the European Union) it is also "
+"required to advice the customer with proper refund policies so this little "
+"plugin might help you a bit with that too."
+msgstr ""
+"این افزونه شما را قادر به افزودن یک فاکتور و یا برگه رسید  برای چاپ سفارشات "
+"در افزونه فروشگاهی ووکامرس می کند. شما قادر به افزودن آدرس پستی شرکت ، قبض "
+"های رسید، بازپرداخت و یا سیاست های دیگر و نام تجاری شرکت در بالا و پایین "
+"برگه می باشید. این افزونه به شما کمک می کند تا سریعتر کارهای روزانه و مدیریت "
+"سفارش فروشگاه را انجام دهید  . همچنین توصیه ها و قوانین بازپرداخت را به "
+"مشتریان اعلام کنید."
+
+#: classes/class-wcdn-settings.php:137
+msgid ""
+"Just look under <a href=\"%1$s\">WooCommerce > Orders</a> and there go to a "
+"single order view. On the right side you will see the Order Print meta box. "
+"Click one of the buttons and you get the invoice or delivery note printing "
+"page. Yes, it is that easy :-)."
+msgstr ""
+" درسمت راست چاپ سفارش را می بینید. و با کلیک بر یکی از دکمه های زیر می "
+"توانید فاکتور یا برگه رسید را چاپ کنید. مشخصات سفارش وجود دارد<a href=\"%1$s"
+"\">WooCommerce > Orders</a> در پایین"
+
+#~ msgid "Order Date"
+#~ msgstr "تاریخ سفارش"
+
+#~ msgid "Email"
+#~ msgstr "ایمیل"
+
+#~ msgid "Phone"
+#~ msgstr "تلفن"
