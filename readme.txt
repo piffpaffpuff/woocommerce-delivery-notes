@@ -17,13 +17,25 @@ You can print out invoices and delivery notes for the [WooCommerce](http://wordp
 
 The plugin adds a new side panel on the order page to allow shop administrators to print out the invoice or delivery note. Registered customers can also can also print their order with a button that is added to the order screen.
 
+= Features =
+
+* Print invoices and delivery notes via the side panel on the "Order Edit" page
+* Quickly print invoices and delivery notes on the "Orders" page
+* Bulk print invoices and delivery notes
+* Customers can print an invoice on the "My Account" and "Order Details" page
+* Add a company address, a logo and many other information to the invoice and delivery note
+* Intelligent invoice and delivery note template system with hooks and functions.php support  
+* Completely customize the invoice and delivery note template
+* Simple invoice numbering
+* Supports sequential order numbers
+
 = Support =
 
 Support can take place in the [public support forums](http://wordpress.org/support/plugin/woocommerce-delivery-notes), where the community can help each other out.
 
 = Contributing =
 
-If you have a patch, or stumbled upon an issue with the source code that isn't a [WooCommerce issue](https://github.com/woothemes/woocommerce/issues?labels=Bug&milestone=22&state=open), you can contribute this [back on GitHub](https://github.com/piffpaffpuff/woocommerce-delivery-notes).
+If you have a patch, or stumbled upon an issue with the source code that isn't a [WooCommerce issue](https://github.com/woothemes/woocommerce/issues?labels=Bug&milestone=22&state=open), you can contribute this back [on GitHub](https://github.com/piffpaffpuff/woocommerce-delivery-notes).
 
 = Translating =
 
