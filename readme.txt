@@ -39,7 +39,7 @@ If you have a patch, or stumbled upon an issue with the source code that isn't a
 
 = Translating =
 
-When your language is missing you can contribute a translation to the [GlotPress repository](http://translate.wpautobahn.com/projects/wordpress-plugins-deckerweb/woocommerce-delivery-notes).
+When your language is missing you can contribute a translation to the [GitHub repository](https://github.com/piffpaffpuff/woocommerce-delivery-notes) or [GlotPress repository](http://translate.wpautobahn.com/projects/wordpress-plugins-deckerweb/woocommerce-delivery-notes). 
 
 == Installation ==
 

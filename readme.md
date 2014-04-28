@@ -14,4 +14,8 @@ To correct the issue by your own, you can fork the repository and send a pull re
 
 ## Translating
 
-Contribute and update your translations with the [GlotPress repository](http://translate.wpautobahn.com/projects/wordpress-plugins-deckerweb/woocommerce-delivery-notes). Make sure you have [registred an account](http://translate.wpautobahn.com/home/). Translations will be included when a new plugin release is imminent.
+Contribute and update your translations with GitHub. Make sure you have a [GitHub](https://github.com/signup/free) account. Then [fork](https://github.com/piffpaffpuff/woocommerce-delivery-notes/fork) the code, add your translation and send a pull request.
+
+Alternatively use the [GlotPress repository](http://translate.wpautobahn.com/projects/wordpress-plugins-deckerweb/woocommerce-delivery-notes). Make sure you have [registred an account](http://translate.wpautobahn.com/home/). Translations will be included when a new plugin release is imminent.
+
+Read the [WordPress Codex](http://codex.wordpress.org/Translating_WordPress) to learn how to translate a plugin.
