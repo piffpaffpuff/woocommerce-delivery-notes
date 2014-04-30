@@ -244,8 +244,8 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 
 **Note: Template changes had to be made. Please control your template after the update in case you applied some custom styling.**
 
-* By popular demand the 'Quantity' column is back in the template.
-* Basic invoice numbering.
+* By popular demand the 'Quantity' column is back in the template
+* Basic invoice numbering
 
 = 3.0.6 =
 
