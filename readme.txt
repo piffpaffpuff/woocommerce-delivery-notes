@@ -234,6 +234,12 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 
 == Changelog ==
 
+= 3.2 =
+
+* Improved theme print button: Print the invoice only for completed orders and a receipt for all other order states. This can be changed via 'wcdn_theme_print_button_template_type' filter hook.
+* Fix the print button on the "Thank You" page for guest checkouts
+* Added CSS classes to the admin side panel
+
 = 3.1.1 =
 
 * Fix the hidden loading indicator on order edit screen

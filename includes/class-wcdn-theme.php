@@ -6,9 +6,7 @@
 if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 
 	class WooCommerce_Delivery_Notes_Theme {
-		
-		public $template_type;
-		
+				
 		/**
 		 * Constructor
 		 */
@@ -22,9 +20,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 		 * the theme and plugins are ready.
 		 */
 		public function load_hooks() {	
-			// Define defaults
-			$this->template_type = apply_filters( 'wcdn_theme_print_button_template_type', 'invoice' );
-
 			// hooks
 			add_filter( 'woocommerce_my_account_my_orders_actions', array( $this, 'create_print_button_account_page' ), 10, 2 );
 			add_action( 'woocommerce_view_order', array( $this, 'create_print_button_order_page' ) );
@@ -46,9 +41,10 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 		 * Create a print button for the 'My Account' page
 		 */
 		public function create_print_button_account_page( $actions, $order ) {			
-			if( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_my_account_page' ) ) {
+			if( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_my_account_page' ) ) {				
+				// Add the print button
 				$actions['print'] = array(
-					'url'  => wcdn_get_print_link( $order->id, $this->template_type ),
+					'url'  => wcdn_get_print_link( $order->id, $this->get_template_type( $order ) ),
 					'name' => __( 'Print', 'woocommerce-delivery-notes' )
 				);
 			}		
@@ -58,20 +54,48 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 		/**
 		 * Create a print button for the 'View Order' page
 		 */
-		public function create_print_button_order_page( $order_id ) {			
-			if( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_view_order_page' ) ) {
-				$print_url = wcdn_get_print_link( $order_id, $this->template_type );
+		public function create_print_button_order_page( $order_id ) {
+			$order = new WC_Order( $order_id );
+			
+			// Output the button only when the option is enabled
+			if( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_view_order_page' ) ) {				
+				// Default button for all pages and logged in users					
+				$print_url = wcdn_get_print_link( $order_id, $this->get_template_type( $order ) );
 				
-				// use a different url for the tracking page
+				// Pass the email to the url for the tracking 
+				// and thank you page. This allows to view the
+				// print page without logging in.
 				if( $this->is_woocommerce_tracking_page() ) {
-					$print_url = wcdn_get_print_link( $order_id, $this->template_type, $_REQUEST['order_email'] );
+					$print_url = wcdn_get_print_link( $order_id, $this->get_template_type( $order ), $_REQUEST['order_email'] );
 				}
+				
+				// Thank you page
+				if( is_order_received_page() && !is_user_logged_in() ) {
+					// Don't output the butten when there is no email
+					if( !$order->billing_email ) {
+						return;
+					}
+					$print_url = wcdn_get_print_link( $order_id, $this->get_template_type( $order ), $order->billing_email );
+				}
+				
 				?>
 				<p class="order-print">
 					<a href="<?php echo $print_url; ?>" class="button print"><?php _e( 'Print', 'woocommerce-delivery-notes' ); ?></a>
 				</p>
 				<?php
 			}
+		}
+		
+		/**
+		 * Get the print button template type depnding on order status
+		 */
+		public function get_template_type( $order ) {
+			if( $order->status == 'completed' ) {
+				$type = apply_filters( 'wcdn_theme_print_button_template_type_complete_status', 'invoice' );
+			} else {
+				$type = apply_filters( 'wcdn_theme_print_button_template_type', 'order' );
+			}			
+			return $type;
 		}
 				
 		/**
