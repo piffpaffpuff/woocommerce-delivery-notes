@@ -28,7 +28,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 						<h3><?php _e( 'Billing Address', 'woocommerce-delivery-notes' ); ?></h3>
 						<address>
 							
-							<?php if( !$order->get_formatted_billing_address() ) _e( 'N/A', 'woocommerce' ); else echo apply_filters( 'wcdn_address_invoice', $order->get_formatted_billing_address(), $order ); ?>
+							<?php if( !$order->get_formatted_billing_address() ) _e( 'N/A', 'woocommerce-delivery-notes' ); else echo apply_filters( 'wcdn_address_billing', $order->get_formatted_billing_address(), $order ); ?>
 							
 						</address>
 					</div>
@@ -39,7 +39,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 							<h3><?php _e( 'Shipping Address', 'woocommerce-delivery-notes' ); ?></h3>
 							<address>
 		
-								<?php if( !$order->get_formatted_shipping_address() ) _e( 'N/A', 'woocommerce' ); else echo apply_filters( 'wcdn_address_invoice', $order->get_formatted_shipping_address(), $order ); ?>
+								<?php if( !$order->get_formatted_shipping_address() ) _e( 'N/A', 'woocommerce-delivery-notes' ); else echo apply_filters( 'wcdn_address_shipping', $order->get_formatted_shipping_address(), $order ); ?>
 							
 							</address>
 						</div>

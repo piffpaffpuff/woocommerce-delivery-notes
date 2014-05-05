@@ -175,7 +175,7 @@ function wcdn_company_name() {
  */
 function wcdn_company_info() {
 	global $wcdn;
-	echo wpautop( wptexturize( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'company_address' ) ) );
+	echo stripslashes( wpautop( wptexturize( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'company_address' ) ) ) );
 }
 
 /**
@@ -286,7 +286,7 @@ function wcdn_remove_semicolon_from_totals( $total_rows, $order ) {
  */
 function wcdn_get_customer_notes( $order ) {
 	global $wcdn;
-	return wpautop( wptexturize( $order->customer_note ) );
+	return stripslashes( wpautop( wptexturize( $order->customer_note ) ) );
 }
 
 /**
@@ -314,7 +314,7 @@ function wcdn_has_customer_notes( $order ) {
  */
 function wcdn_get_personal_notes() {
 	global $wcdn;
-	return wpautop( wptexturize( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'personal_notes' ) ) );
+	return stripslashes( wpautop( wptexturize( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'personal_notes' ) ) ) );
 }
 
 /**
@@ -330,7 +330,7 @@ function wcdn_personal_notes() {
  */
 function wcdn_get_policies_conditions() {
 	global $wcdn;
-	return wpautop( wptexturize( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'policies_conditions' ) ) );
+	return stripslashes( wpautop( wptexturize( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'policies_conditions' ) ) ) );
 }
 
 /**
@@ -346,7 +346,7 @@ function wcdn_policies_conditions() {
  */
 function wcdn_get_imprint() {
 	global $wcdn;
-	return wpautop( wptexturize( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'footer_imprint' )) );
+	return stripslashes( wpautop( wptexturize( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'footer_imprint' ) ) ) );
 }
 
 /**
