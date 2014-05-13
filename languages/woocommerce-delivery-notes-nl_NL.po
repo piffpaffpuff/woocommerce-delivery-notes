@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Print Invoices & Delivery Notes\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
 "POT-Creation-Date: 2014-04-11 22:19+0100\n"
-"PO-Revision-Date: 2014-05-13 13:53+0100\n"
+"PO-Revision-Date: 2014-05-13 14:03+0100\n"
 "Last-Translator: Bas Middelham <bas@middelham.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -163,7 +163,7 @@ msgstr ""
 
 #: ../includes/class-wcdn-settings.php:237
 msgid "Leave blank to not print a footer."
-msgstr "Laat leeg om geen footer te printen. "
+msgstr "Laat leeg om geen footer te printen."
 
 #: ../includes/class-wcdn-settings.php:244
 msgid "Front-end Options"
@@ -183,7 +183,7 @@ msgstr ""
 
 #: ../includes/class-wcdn-settings.php:262
 msgid "Print Buttons"
-msgstr "Printknoppen "
+msgstr "Printknoppen"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:269
