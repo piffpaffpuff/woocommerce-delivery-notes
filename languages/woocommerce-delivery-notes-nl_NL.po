@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Print Invoices & Delivery Notes\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
 "POT-Creation-Date: 2014-04-11 22:19+0100\n"
-"PO-Revision-Date: 2014-05-13 13:19+0100\n"
+"PO-Revision-Date: 2014-05-13 13:53+0100\n"
 "Last-Translator: Bas Middelham <bas@middelham.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -33,21 +33,21 @@ msgid ""
 "template</a> or <a href=\"%2$s\" target=\"%3$s\" class=\"%4$s\">delivery "
 "note template</a>."
 msgstr ""
-"Bekijk een voorbeeld van de <a href=\"%1$s\" target=\"%3$s\" class=\"%4$s"
-"\">factuur template</a> of de <a href=\"%2$s\" target=\"%3$s\" class=\"%4$s"
-"\">pakbon template</a>."
+"Bekijk een voorbeeld van het <a href=\"%1$s\" target=\"%3$s\" class=\"%4$s"
+"\">factuur sjabloon</a> of het <a href=\"%2$s\" target=\"%3$s\" class=\"%4$s"
+"\">pakbon sjabloon</a>."
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:148
 msgid ""
 "With the FAQ in the readme file you can learn how to customize the template."
 msgstr ""
-"Lees de FAQ in het readme bestand om te leren hoe je een template kan "
+"Lees de FAQ in het readme bestand om te leren hoe je een sjabloon kan "
 "aanpassen."
 
 #: ../includes/class-wcdn-settings.php:159
 msgid "Company/Shop Logo"
-msgstr "Bedrijfs Logo"
+msgstr "Winkel- of bedrijfslogo"
 
 #: ../includes/class-wcdn-settings.php:165
 msgid "Remove Logo"
@@ -59,7 +59,7 @@ msgstr "Plaats Logo"
 
 #: ../includes/class-wcdn-settings.php:170
 msgid "A company/shop logo representing your business."
-msgstr "Een logo voor je winkel of bedrijf"
+msgstr "Een logo voor je winkel of bedrijf. "
 
 #: ../includes/class-wcdn-settings.php:171
 #: ../includes/class-wcdn-settings.php:184
@@ -109,25 +109,29 @@ msgid ""
 "The postal address of the company/shop or even e-mail or telephone, which "
 "gets printed right after the company/shop name."
 msgstr ""
+"Het postadres, e-mail of telefoonnummer van de winkel of het bedrijf. Deze "
+"wordt onder het logo of bedrijfsnaam geprint. "
 
 #: ../includes/class-wcdn-settings.php:198
 msgid "Leave blank to not print an address."
-msgstr ""
+msgstr "Laat leeg om geen adres te printen."
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:204
 msgid "Complimentary close"
-msgstr ""
+msgstr "Afsluiting"
 
 #: ../includes/class-wcdn-settings.php:209
 msgid ""
 "Add some personal notes, or season greetings or whatever (e.g. Thank You for "
 "Your Order!, Merry Christmas!, etc.)."
 msgstr ""
+"Voeg persoonlijke opmerkingen of andere info toe (bv. Bedankt voor uw "
+"bestelling!, Fijne Kerstdagen!, etc.)."
 
 #: ../includes/class-wcdn-settings.php:211
 msgid "Leave blank to not print any personal notes."
-msgstr ""
+msgstr "Laat leeg om geen opmerkingen te printen. "
 
 #: ../includes/class-wcdn-settings.php:217
 msgid "Returns Policy, Conditions, etc"
@@ -148,7 +152,7 @@ msgstr ""
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:230
 msgid "Footer"
-msgstr ""
+msgstr "Footer"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:235
@@ -159,11 +163,11 @@ msgstr ""
 
 #: ../includes/class-wcdn-settings.php:237
 msgid "Leave blank to not print a footer."
-msgstr ""
+msgstr "Laat leeg om geen footer te printen. "
 
 #: ../includes/class-wcdn-settings.php:244
 msgid "Front-end Options"
-msgstr ""
+msgstr "Front-end Opties"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:249
@@ -179,26 +183,26 @@ msgstr ""
 
 #: ../includes/class-wcdn-settings.php:262
 msgid "Print Buttons"
-msgstr "Print Knoppen "
+msgstr "Printknoppen "
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:269
 msgid "Show print button on the \"View Order\" page"
-msgstr "Toon print knoppen op de \"View Order\" pagina"
+msgstr "Toon printknop op de \"View Order\" pagina"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:276
 msgid "Show print buttons on the \"My Account\" page"
-msgstr "Toon print knoppen op de \"My Account\" pagina"
+msgstr "Toon printknop op de \"My Account\" pagina"
 
 #: ../includes/class-wcdn-settings.php:284
 msgid "Order Numbering"
-msgstr "Bestel Nummering"
+msgstr "Bestelnummers"
 
 #: ../includes/class-wcdn-settings.php:289
 #: ../includes/wcdn-template-functions.php:206
 msgid "Invoice Number"
-msgstr "Bestelnummer"
+msgstr "Factuurnummer"
 
 #: ../includes/class-wcdn-settings.php:297
 msgid "Create invoice numbers"
@@ -206,7 +210,7 @@ msgstr "Maak factuurnummers"
 
 #: ../includes/class-wcdn-settings.php:304
 msgid "Invoice Number Start"
-msgstr "Factuurnummer Start."
+msgstr "Factuurnummer Start"
 
 #: ../includes/class-wcdn-settings.php:311
 msgid "Start the numbering at the specified number."
@@ -248,11 +252,11 @@ msgstr "Laat leeg om geen achtervoegsel te gebruiken."
 
 #: ../includes/class-wcdn-settings.php:352
 msgid "Sequential Order Number"
-msgstr "Sequential Order Number"
+msgstr "Sequential Order Numbers"
 
 #: ../includes/class-wcdn-settings.php:356
 msgid "Sequential numbering is enabled."
-msgstr "Sequential numbering is ingeschakeld."
+msgstr "'Sequential Order Numbers' is ingeschakeld."
 
 #: ../includes/class-wcdn-settings.php:358
 #, php-format
@@ -346,7 +350,7 @@ msgstr "Art.Nr."
 # @ woocommerce-delivery-notes
 #: ../templates/print-order/print-content.php:28
 msgid "Billing Address"
-msgstr "Factuur Adres"
+msgstr "Factuuradres"
 
 #: ../templates/print-order/print-content.php:31
 #: ../templates/print-order/print-content.php:42
@@ -356,7 +360,7 @@ msgstr "N.v.t."
 # @ woocommerce-delivery-notes
 #: ../templates/print-order/print-content.php:39
 msgid "Shipping Address"
-msgstr "Verzend Adres"
+msgstr "Verzendadres"
 
 #: ../templates/print-order/print-content.php:74
 msgid "Product"
