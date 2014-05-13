@@ -29,6 +29,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			$this->template_types = array(
 				'invoice',
 				'delivery-note',
+				'receipt',
 				'order'
 			);
 			
@@ -314,7 +315,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			// Add the invoice number to the order when it doesn't yet exist
 			$meta_key = '_' . WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number';
 			$meta_added = add_post_meta( $order_id, $meta_key, $invoice_prefix . ( $invoice_start + $invoice_counter ) . $invoice_suffix, true );
-			
+						
 			// Update the total count
 			if( $meta_added ) {
 				update_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_counter', $invoice_counter + 1  );
@@ -323,6 +324,20 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			// Get the invoice number
 			return apply_filters( 'wcdn_order_invoice_number', get_post_meta( $order_id, $meta_key, true ) );
 		}	
+		
+		/**
+		 * Get the order invoice date
+		 */
+		public function get_order_invoice_date( $order_id ) {	
+			// Add the invoice date to the order when it doesn't yet exist
+			$meta_key = '_' . WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_date';
+			$meta_added = add_post_meta( $order_id, $meta_key, time(), true );
+	
+			// Get the invoice date
+			$meta_date = get_post_meta( $order_id, $meta_key, true );
+			$formatted_date = date_i18n( get_option('date_format'), $meta_date );
+			return apply_filters( 'wcdn_order_invoice_date', $formatted_date, $meta_date );
+		}
 		
 	}
 

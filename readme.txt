@@ -234,8 +234,11 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 
 == Changelog ==
 
-= 3.2.1 =
+= 3.3 =
 
+* New option 
+* New admin button to print receipt
+* Fix invoice number display issue 
 * Strip slashes from options fields in the template
 
 = 3.2 =

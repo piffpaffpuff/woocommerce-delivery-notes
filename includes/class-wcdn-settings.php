@@ -382,7 +382,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							}
 							
 							if ( $key == WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_start' ) {
-								$value = 1;
+								$value = 0;
 							}
 						}
 						
@@ -393,14 +393,13 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 						
 						if ( $key == WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_start' ) {
 							if ( !ctype_digit( $value ) ) {
-								$value = 1;
+								$value = 0;
 							}
 							
 							// Check if the counter should be reset
-							if( get_option( $key ) != $value ) {
+							if( get_option( $key ) != $value || empty( $value ) ) {
 								update_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_counter', 0 );
 							}
-							
 						}
 						
 						// Update the value

@@ -32,6 +32,8 @@ function wcdn_document_title() {
 		echo apply_filters( 'wcdn_document_title', __( 'Invoice', 'woocommerce-delivery-notes' ) );
 	} elseif( wcdn_get_template_type() == 'delivery-note' ) {
 		echo apply_filters( 'wcdn_document_title', __( 'Delivery Note', 'woocommerce-delivery-notes' ) );
+	} elseif( wcdn_get_template_type() == 'receipt' ) {
+		echo apply_filters( 'wcdn_document_title', __( 'Receipt', 'woocommerce-delivery-notes' ) );
 	} else {
 		echo apply_filters( 'wcdn_document_title', __( 'Order', 'woocommerce-delivery-notes' ) );
 	} 
@@ -249,6 +251,13 @@ function wcdn_get_order_invoice_number( $order_id ) {
 	return $wcdn->print->get_order_invoice_number( $order_id );
 }
 
+/**
+ * Get the invoice date of an order
+ */
+function wcdn_get_order_invoice_date( $order_id ) {
+	global $wcdn;
+	return $wcdn->print->get_order_invoice_date( $order_id );
+}
 
 /**
  * Additional fields for the product

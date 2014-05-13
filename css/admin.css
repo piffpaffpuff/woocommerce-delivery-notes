@@ -44,8 +44,10 @@
 
 #woocommerce-delivery-notes-box .print-info {
 	margin-top: 0.3em;
-	border-top: 1px solid #eee;
+	border-top: 1px solid #ddd;
 	padding: 10px 12px;
+	margin-bottom: 0;
+	background-color: #f5f5f5;
 }
 
 /* All orders */
