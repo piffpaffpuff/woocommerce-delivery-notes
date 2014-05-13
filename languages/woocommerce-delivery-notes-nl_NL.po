@@ -318,26 +318,26 @@ msgstr "Print Bestelling"
 
 #: ../includes/wcdn-template-functions.php:212
 msgid "Order Number"
-msgstr ""
+msgstr "Bestellingsummer"
 
 #: ../includes/wcdn-template-functions.php:217
 #, fuzzy
 msgid "Order Date"
-msgstr "Print Bestelling"
+msgstr "Besteldatum"
 
 #: ../includes/wcdn-template-functions.php:222
 msgid "Payment Method"
-msgstr ""
+msgstr "Betaalmethode
 
 # @ woocommerce-delivery-notes
 #: ../includes/wcdn-template-functions.php:228
 msgid "Email"
-msgstr ""
+msgstr "E-mail
 
 # @ woocommerce-delivery-notes
 #: ../includes/wcdn-template-functions.php:235
 msgid "Telephone"
-msgstr ""
+msgstr "Telefoon
 
 #: ../includes/wcdn-template-functions.php:261
 msgid "SKU:"
@@ -346,21 +346,21 @@ msgstr "Art.Nr."
 # @ woocommerce-delivery-notes
 #: ../templates/print-order/print-content.php:28
 msgid "Billing Address"
-msgstr ""
+msgstr "Factuur Adres"
 
 #: ../templates/print-order/print-content.php:31
 #: ../templates/print-order/print-content.php:42
 msgid "N/A"
-msgstr ""
+msgstr "N.v.t."
 
 # @ woocommerce-delivery-notes
 #: ../templates/print-order/print-content.php:39
 msgid "Shipping Address"
-msgstr ""
+msgstr "Verzend Adres"
 
 #: ../templates/print-order/print-content.php:74
 msgid "Product"
-msgstr ""
+msgstr "Product"
 
 #: ../templates/print-order/print-content.php:75
 msgid "Quantity"
@@ -373,18 +373,18 @@ msgstr "Totaal"
 
 #: ../templates/print-order/print-content.php:100
 msgid "Download:"
-msgstr ""
+msgstr "Download:"
 
 # @ woocommerce-delivery-notes
 #: ../templates/print-order/print-content.php:101
 #, php-format
 msgid "%s Files"
-msgstr ""
+msgstr "%s Bestanden"
 
 # @ woocommerce-delivery-notes
 #: ../templates/print-order/print-content.php:148
 msgid "Customer Note"
-msgstr ""
+msgstr "Klant bericht"
 
 #: ../woocommerce-delivery-notes.php:144
 msgid "Go to the settings page"
