@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Print Invoices & Delivery Notes\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
 "POT-Creation-Date: 2014-04-11 22:19+0100\n"
-"PO-Revision-Date: 2014-05-13 14:03+0100\n"
+"PO-Revision-Date: 2014-05-14 10:39+0100\n"
 "Last-Translator: Bas Middelham <bas@middelham.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -81,6 +81,10 @@ msgid ""
 "pixels and a height of 288 pixels will have a printed size of about 2 inches "
 "to 1 inch."
 msgstr ""
+"Als de afbeelding wordt geprint is de resolutie anders is dan het origineel. "
+"1 cm komt overeen met 142 pixels. Voorbeeld: aan afbeelding met een breedte "
+"van 994 pixels en een hoogte van 568  pixels wordt afgedrukt met 7cm breedte "
+"en 4 cm hoogte."
 
 #: ../includes/class-wcdn-settings.php:178
 msgid "Company/Shop Name"
@@ -131,7 +135,7 @@ msgstr ""
 
 #: ../includes/class-wcdn-settings.php:211
 msgid "Leave blank to not print any personal notes."
-msgstr "Laat leeg om geen opmerkingen te printen. "
+msgstr "Laat leeg om geen opmerkingen te printen."
 
 #: ../includes/class-wcdn-settings.php:217
 msgid "Returns Policy, Conditions, etc"
@@ -144,10 +148,13 @@ msgid ""
 "some countries (e.g. in the European Union) this is required so please add "
 "any required info in accordance with the statutory regulations."
 msgstr ""
+"Voeg hier meer richtlijnen en voorwaarden toe. Bijvoorbeeld iets over de "
+"retourregels voor het geval de klant iets wil terugsturen. In sommige landen "
+"(zoals de EU) is dit verplicht."
 
 #: ../includes/class-wcdn-settings.php:224
 msgid "Leave blank to not print any policies or conditions."
-msgstr ""
+msgstr "Laat leeg om geen algemene voorwaarden te printen."
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:230
@@ -159,7 +166,7 @@ msgstr "Footer"
 msgid ""
 "Add some further footer imprint, e-mail, telephone, copyright notes etc. "
 "This makes the printed sheets a bit more branded."
-msgstr ""
+msgstr "Voeg wat meer footer info toe zoals e-mail, telefoon, copyright, etc. "
 
 #: ../includes/class-wcdn-settings.php:237
 msgid "Leave blank to not print a footer."
@@ -172,7 +179,7 @@ msgstr "Front-end Opties"
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:249
 msgid "Print Page Endpoint"
-msgstr ""
+msgstr "Printpagina Eindpunt"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:256
@@ -180,6 +187,8 @@ msgid ""
 "The endpoint is appended to the accounts page URL to print the order. It "
 "should be unique."
 msgstr ""
+"Het eindpunt wordt toegevoegd aan de URL van de accounts pagina om het te "
+"printen. Deze moet uniek zijn."
 
 #: ../includes/class-wcdn-settings.php:262
 msgid "Print Buttons"
