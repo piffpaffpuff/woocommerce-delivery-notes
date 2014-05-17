@@ -5,15 +5,15 @@ msgstr ""
 "Project-Id-Version: WooCommerce Print Invoices & Delivery Notes\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
 "POT-Creation-Date: 2014-04-11 22:19+0100\n"
-"PO-Revision-Date: 2014-04-16 20:27+0100\n"
-"Last-Translator: David Decker <deckerweb.mobil@googlemail.com>\n"
+"PO-Revision-Date: 2014-05-14 10:39+0100\n"
+"Last-Translator: Bas Middelham <bas@middelham.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.5\n"
 
 #: ../includes/class-wcdn-settings.php:90 ../includes/class-wcdn-theme.php:52
 #: ../includes/class-wcdn-theme.php:71
@@ -22,9 +22,8 @@ msgid "Print"
 msgstr "Print"
 
 #: ../includes/class-wcdn-settings.php:128
-#, fuzzy
 msgid "Print Order"
-msgstr "Print"
+msgstr "Print bestelling"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:147
@@ -34,28 +33,33 @@ msgid ""
 "template</a> or <a href=\"%2$s\" target=\"%3$s\" class=\"%4$s\">delivery "
 "note template</a>."
 msgstr ""
+"Bekijk een voorbeeld van het <a href=\"%1$s\" target=\"%3$s\" class=\"%4$s"
+"\">factuur sjabloon</a> of het <a href=\"%2$s\" target=\"%3$s\" class=\"%4$s"
+"\">pakbon sjabloon</a>."
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:148
 msgid ""
 "With the FAQ in the readme file you can learn how to customize the template."
 msgstr ""
+"Lees de FAQ in het readme bestand om te leren hoe je een sjabloon kan "
+"aanpassen."
 
 #: ../includes/class-wcdn-settings.php:159
 msgid "Company/Shop Logo"
-msgstr ""
+msgstr "Winkel- of bedrijfslogo"
 
 #: ../includes/class-wcdn-settings.php:165
 msgid "Remove Logo"
-msgstr ""
+msgstr "Verwijder Logo"
 
 #: ../includes/class-wcdn-settings.php:166
 msgid "Set Logo"
-msgstr ""
+msgstr "Plaats Logo"
 
 #: ../includes/class-wcdn-settings.php:170
 msgid "A company/shop logo representing your business."
-msgstr ""
+msgstr "Een logo voor je winkel of bedrijf. "
 
 #: ../includes/class-wcdn-settings.php:171
 #: ../includes/class-wcdn-settings.php:184
@@ -77,14 +81,18 @@ msgid ""
 "pixels and a height of 288 pixels will have a printed size of about 2 inches "
 "to 1 inch."
 msgstr ""
+"Als de afbeelding wordt geprint is de resolutie anders is dan het origineel. "
+"1 cm komt overeen met 142 pixels. Voorbeeld: aan afbeelding met een breedte "
+"van 994 pixels en een hoogte van 568  pixels wordt afgedrukt met 7cm breedte "
+"en 4 cm hoogte."
 
 #: ../includes/class-wcdn-settings.php:178
 msgid "Company/Shop Name"
-msgstr ""
+msgstr "Winkel- of bedrijfsnaam"
 
 #: ../includes/class-wcdn-settings.php:183
 msgid "Your company/shop name for the Delivery Note."
-msgstr ""
+msgstr "Jouw winkel- of bedrijfsnaam voor op de pakbon"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:185
@@ -92,10 +100,12 @@ msgid ""
 "Leave blank to use the default Website/Blog title defined in WordPress "
 "settings. The name will be ignored when a Logo is set."
 msgstr ""
+"Laat leeg om de naam te gebruiken die in de WordPress settings staat. De "
+"naam zal worden genegeerd als er een logo wordt gebruikt."
 
 #: ../includes/class-wcdn-settings.php:191
 msgid "Company/Shop Address"
-msgstr ""
+msgstr "Winkel- of bedrijfsadres"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:196
@@ -103,30 +113,33 @@ msgid ""
 "The postal address of the company/shop or even e-mail or telephone, which "
 "gets printed right after the company/shop name."
 msgstr ""
+"Het postadres, e-mail of telefoonnummer van de winkel of het bedrijf. Deze "
+"wordt onder het logo of bedrijfsnaam geprint. "
 
 #: ../includes/class-wcdn-settings.php:198
 msgid "Leave blank to not print an address."
-msgstr ""
+msgstr "Laat leeg om geen adres te printen."
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:204
 msgid "Complimentary close"
-msgstr ""
+msgstr "Afsluiting"
 
 #: ../includes/class-wcdn-settings.php:209
 msgid ""
 "Add some personal notes, or season greetings or whatever (e.g. Thank You for "
 "Your Order!, Merry Christmas!, etc.)."
 msgstr ""
+"Voeg persoonlijke opmerkingen of andere info toe (bv. Bedankt voor uw "
+"bestelling!, Fijne Kerstdagen!, etc.)."
 
 #: ../includes/class-wcdn-settings.php:211
 msgid "Leave blank to not print any personal notes."
-msgstr ""
+msgstr "Laat leeg om geen opmerkingen te printen."
 
 #: ../includes/class-wcdn-settings.php:217
-#, fuzzy
 msgid "Returns Policy, Conditions, etc"
-msgstr "Algemene Voorwaarden:"
+msgstr "Algemene Voorwaarden"
 
 #: ../includes/class-wcdn-settings.php:222
 msgid ""
@@ -135,35 +148,38 @@ msgid ""
 "some countries (e.g. in the European Union) this is required so please add "
 "any required info in accordance with the statutory regulations."
 msgstr ""
+"Voeg hier meer richtlijnen en voorwaarden toe. Bijvoorbeeld iets over de "
+"retourregels voor het geval de klant iets wil terugsturen. In sommige landen "
+"(zoals de EU) is dit verplicht."
 
 #: ../includes/class-wcdn-settings.php:224
 msgid "Leave blank to not print any policies or conditions."
-msgstr ""
+msgstr "Laat leeg om geen algemene voorwaarden te printen."
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:230
 msgid "Footer"
-msgstr ""
+msgstr "Footer"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:235
 msgid ""
 "Add some further footer imprint, e-mail, telephone, copyright notes etc. "
 "This makes the printed sheets a bit more branded."
-msgstr ""
+msgstr "Voeg wat meer footer info toe zoals e-mail, telefoon, copyright, etc. "
 
 #: ../includes/class-wcdn-settings.php:237
 msgid "Leave blank to not print a footer."
-msgstr ""
+msgstr "Laat leeg om geen footer te printen."
 
 #: ../includes/class-wcdn-settings.php:244
 msgid "Front-end Options"
-msgstr ""
+msgstr "Front-end Opties"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:249
 msgid "Print Page Endpoint"
-msgstr ""
+msgstr "Printpagina Eindpunt"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:256
@@ -171,85 +187,85 @@ msgid ""
 "The endpoint is appended to the accounts page URL to print the order. It "
 "should be unique."
 msgstr ""
+"Het eindpunt wordt toegevoegd aan de URL van de accounts pagina om het te "
+"printen. Deze moet uniek zijn."
 
 #: ../includes/class-wcdn-settings.php:262
 msgid "Print Buttons"
-msgstr ""
+msgstr "Printknoppen"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:269
 msgid "Show print button on the \"View Order\" page"
-msgstr ""
+msgstr "Toon printknop op de \"View Order\" pagina"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:276
 msgid "Show print buttons on the \"My Account\" page"
-msgstr ""
+msgstr "Toon printknop op de \"My Account\" pagina"
 
 #: ../includes/class-wcdn-settings.php:284
-#, fuzzy
 msgid "Order Numbering"
-msgstr "Print Bestelling"
+msgstr "Bestelnummers"
 
 #: ../includes/class-wcdn-settings.php:289
 #: ../includes/wcdn-template-functions.php:206
-#, fuzzy
 msgid "Invoice Number"
-msgstr "Factuur"
+msgstr "Factuurnummer"
 
 #: ../includes/class-wcdn-settings.php:297
 msgid "Create invoice numbers"
-msgstr ""
+msgstr "Maak factuurnummers"
 
 #: ../includes/class-wcdn-settings.php:304
 msgid "Invoice Number Start"
-msgstr ""
+msgstr "Factuurnummer Start"
 
 #: ../includes/class-wcdn-settings.php:311
 msgid "Start the numbering at the specified number."
-msgstr ""
+msgstr "Begin de nummering bij een specifiek getal."
 
 #: ../includes/class-wcdn-settings.php:313
 msgid "Use only integers."
-msgstr ""
+msgstr "Gebruik alleen gehele getallen."
 
 #: ../includes/class-wcdn-settings.php:314
 #: ../includes/class-wcdn-settings.php:330
 #: ../includes/class-wcdn-settings.php:346
 msgid "Already created invoice numbers are not affected by changes."
-msgstr ""
+msgstr "Reeds gemaakte factuurnummers worden niet aangepast."
 
 #: ../includes/class-wcdn-settings.php:320
 msgid "Invoice Number Prefix"
-msgstr ""
+msgstr "Factuurnummer voorvoegsel"
 
 #: ../includes/class-wcdn-settings.php:327
 msgid "This text will be prepended to the invoice number."
-msgstr ""
+msgstr "Deze tekst wordt achteraan het factuurnummer aangehecht."
 
 #: ../includes/class-wcdn-settings.php:329
 msgid "Leave blank to not add a prefix."
-msgstr ""
+msgstr "Laat leeg om geen voorvoegsel te gebruiken."
 
 #: ../includes/class-wcdn-settings.php:336
 msgid "Invoice Number Suffix"
-msgstr ""
+msgstr "Factuurnummer achtervoegsel"
 
 #: ../includes/class-wcdn-settings.php:343
 msgid "This text will be appended to the invoice number."
-msgstr ""
+msgstr "Deze tekst wordt vooraan het factuurnummer aangehecht."
 
 #: ../includes/class-wcdn-settings.php:345
 msgid "Leave blank to not add a suffix."
-msgstr ""
+msgstr "Laat leeg om geen achtervoegsel te gebruiken."
 
 #: ../includes/class-wcdn-settings.php:352
 msgid "Sequential Order Number"
-msgstr ""
+msgstr "Sequential Order Numbers"
 
 #: ../includes/class-wcdn-settings.php:356
 msgid "Sequential numbering is enabled."
-msgstr ""
+msgstr "'Sequential Order Numbers' is ingeschakeld."
 
 #: ../includes/class-wcdn-settings.php:358
 #, php-format
@@ -257,6 +273,8 @@ msgid ""
 "Install and activate the free <a href=\"%s\">WooCommerce Sequential Order "
 "Numbers</a> Plugin."
 msgstr ""
+"Installeer en activeer de gratis <a href=\"%s\">WooCommerce Sequential Order "
+"Numbers</a> Plugin."
 
 #: ../includes/class-wcdn-writepanel.php:83
 #: ../includes/class-wcdn-writepanel.php:84
@@ -275,33 +293,30 @@ msgid "Print Delivery Note"
 msgstr "Print Bestelbon"
 
 #: ../includes/class-wcdn-writepanel.php:164
-#, fuzzy, php-format
+#, php-format
 msgid "Invoice created."
 msgid_plural "%s invoices created."
-msgstr[0] "Factuur"
-msgstr[1] "Factuur"
+msgstr[0] "Factuur is gemaakt"
+msgstr[1] "%s facturen gemaakt"
 
 #: ../includes/class-wcdn-writepanel.php:166
-#, fuzzy, php-format
+#, php-format
 msgid "Delivery note created."
 msgid_plural "%s delivery notes created."
-msgstr[0] "Pakbon"
-msgstr[1] "Pakbon"
+msgstr[0] "Pakbon is gemaakt"
+msgstr[1] "%s pakbonnen zijn gemaakt"
 
 #: ../includes/class-wcdn-writepanel.php:170
-#, fuzzy
 msgid "Print now"
-msgstr "Print Factuur"
+msgstr "Print nu"
 
 #: ../includes/class-wcdn-writepanel.php:181
-#, fuzzy
 msgid "Order Printing"
-msgstr "Print Bestelling"
+msgstr "Print Bestelling "
 
 #: ../includes/class-wcdn-writepanel.php:197
-#, fuzzy
 msgid "Invoice number: "
-msgstr "Factuur"
+msgstr "Factuurnummer:"
 
 #: ../includes/wcdn-template-functions.php:32
 msgid "Invoice"
@@ -312,32 +327,30 @@ msgid "Delivery Note"
 msgstr "Pakbon"
 
 #: ../includes/wcdn-template-functions.php:36
-#, fuzzy
 msgid "Order"
-msgstr "Print Bestelling"
+msgstr "Bestelling"
 
 #: ../includes/wcdn-template-functions.php:212
 msgid "Order Number"
-msgstr ""
+msgstr "Bestellingsummer"
 
 #: ../includes/wcdn-template-functions.php:217
-#, fuzzy
 msgid "Order Date"
-msgstr "Print Bestelling"
+msgstr "Besteldatum"
 
 #: ../includes/wcdn-template-functions.php:222
 msgid "Payment Method"
-msgstr ""
+msgstr "Betaalmethode"
 
 # @ woocommerce-delivery-notes
 #: ../includes/wcdn-template-functions.php:228
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 # @ woocommerce-delivery-notes
 #: ../includes/wcdn-template-functions.php:235
 msgid "Telephone"
-msgstr ""
+msgstr "Telefoon"
 
 #: ../includes/wcdn-template-functions.php:261
 msgid "SKU:"
@@ -346,45 +359,44 @@ msgstr "Art.Nr."
 # @ woocommerce-delivery-notes
 #: ../templates/print-order/print-content.php:28
 msgid "Billing Address"
-msgstr ""
+msgstr "Factuuradres"
 
 #: ../templates/print-order/print-content.php:31
 #: ../templates/print-order/print-content.php:42
 msgid "N/A"
-msgstr ""
+msgstr "N.v.t."
 
 # @ woocommerce-delivery-notes
 #: ../templates/print-order/print-content.php:39
 msgid "Shipping Address"
-msgstr ""
+msgstr "Verzendadres"
 
 #: ../templates/print-order/print-content.php:74
 msgid "Product"
-msgstr ""
+msgstr "Product"
 
 #: ../templates/print-order/print-content.php:75
 msgid "Quantity"
 msgstr "Hoeveelheid"
 
 #: ../templates/print-order/print-content.php:76
-#, fuzzy
 msgid "Total"
 msgstr "Totaal"
 
 #: ../templates/print-order/print-content.php:100
 msgid "Download:"
-msgstr ""
+msgstr "Download:"
 
 # @ woocommerce-delivery-notes
 #: ../templates/print-order/print-content.php:101
 #, php-format
 msgid "%s Files"
-msgstr ""
+msgstr "%s Bestanden"
 
 # @ woocommerce-delivery-notes
 #: ../templates/print-order/print-content.php:148
 msgid "Customer Note"
-msgstr ""
+msgstr "Klant notitie"
 
 #: ../woocommerce-delivery-notes.php:144
 msgid "Go to the settings page"
