@@ -86,9 +86,9 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 			<a href="<?php echo wcdn_get_print_link( $order->id, 'delivery-note' ); ?>" class="button tips print-preview-button delivery-note" target="_blank" alt="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>" data-tip="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>">
 				<?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>
 			</a>
-			<a href="<?php echo wcdn_get_print_link( $order->id, 'receipt' ); ?>" class="button tips print-preview-button receipt" target="_blank" alt="<?php esc_attr_e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?>" data-tip="<?php esc_attr_e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?>">
+			<!-- <a href="<?php echo wcdn_get_print_link( $order->id, 'receipt' ); ?>" class="button tips print-preview-button receipt" target="_blank" alt="<?php esc_attr_e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?>" data-tip="<?php esc_attr_e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?>">
 				<?php _e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?>
-			</a>
+			</a> -->
 			<span class="print-preview-loading spinner"></span>
 			<?php
 		}
@@ -110,9 +110,11 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 						
 						$('<option>').val('wcdn_print_delivery_note').attr('title', 'delivery-note').text('<?php echo esc_js( __( 'Print Delivery Note', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action"]');
 						$('<option>').val('wcdn_print_delivery_note').attr('title', 'delivery-note').text('<?php echo esc_js( __( 'Print Delivery Note', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action2"]');
-					
+						
+						/*
 						$('<option>').val('wcdn_print_receipt').attr('title', 'receipt').text('<?php echo esc_js( __( 'Print Receipt', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action"]');
 						$('<option>').val('wcdn_print_receipt').attr('title', 'receipt').text('<?php echo esc_js( __( 'Print Receipt', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action2"]');
+						*/
 					});
 				</script>
 			<?php endif;
@@ -202,7 +204,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 			<div class="print-actions">
 				<a href="<?php echo wcdn_get_print_link( $post_id, 'invoice' ); ?>" class="button print-preview-button invoice" target="_blank" alt="<?php esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?></a>
 				<a href="<?php echo wcdn_get_print_link( $post_id, 'delivery-note' ); ?>" class="button print-preview-button delivery-note" target="_blank" alt="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?></a>
-				<a href="<?php echo wcdn_get_print_link( $post_id, 'receipt' ); ?>" class="button print-preview-button receipt" target="_blank" alt="<?php esc_attr_e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?></a>
+				<!-- <a href="<?php echo wcdn_get_print_link( $post_id, 'receipt' ); ?>" class="button print-preview-button receipt" target="_blank" alt="<?php esc_attr_e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?></a> -->
 				<span class="print-preview-loading spinner"></span>
 			</div>
 			<?php 
