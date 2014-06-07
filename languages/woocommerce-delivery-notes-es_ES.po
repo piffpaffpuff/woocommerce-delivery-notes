@@ -23,19 +23,19 @@ msgstr ""
 
 #: templates/print/print-delivery-note.php:38
 msgid "Billing Date"
-msgstr ""
+msgstr "Fecha de Facturación"
 
 #: templates/print/print-delivery-note.php:40
 msgid "Shipping Date"
-msgstr ""
+msgstr "Fecha de Envío"
 
 #: templates/print/print-delivery-note.php:45
 msgid "Order Number"
-msgstr ""
+msgstr "Numero de Orden"
 
 #: templates/print/print-delivery-note.php:49
 msgid "Payment Method"
-msgstr ""
+msgstr "Forma de Pago"
 
 #: woocommerce-delivery-notes.php:0
 msgid "2.0"
@@ -43,7 +43,7 @@ msgstr "2.0"
 
 #: classes/class-wcdn-settings.php:144
 msgid "Get Community Support"
-msgstr ""
+msgstr "Obten Soporte de la comunidad"
 
 #: classes/class-wcdn-settings.php:212
 msgid "When the image is printed, its pixel density will automatically be eight times higher than the original. This means, 1 printed inch will correspond to about 288 pixels on the screen. Example: an image with a width of 576 pixels and a height of 288 pixels will have a printed size of about 2 inches to 1 inch."
@@ -51,20 +51,20 @@ msgstr ""
 
 #: templates/print/print-delivery-note.php:58
 msgid "Product"
-msgstr ""
+msgstr "Producto"
 
 #: templates/print/print-delivery-note.php:60
 msgid "Totals"
-msgstr ""
+msgstr "Total"
 
 #: templates/print/print-delivery-note.php:70
 msgid "Download:"
-msgstr ""
+msgstr "Descarga"
 
 #: woocommerce-delivery-notes.php:291
 #: woocommerce-delivery-notes.php:305
 msgid "N/A"
-msgstr ""
+msgstr "No Disponible"
 
 #: classes/class-wcdn-settings.php:202
 msgid "Company/Shop Logo"
