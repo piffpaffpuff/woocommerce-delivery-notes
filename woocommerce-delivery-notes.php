@@ -104,7 +104,14 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		/**
 		 * Load the localisation 
 		 */
-		public function localise() {	
+		public function localise() {
+      // Get the current locale.
+      $locale = apply_filters( 'plugin_locale', get_locale(), 'woocommerce-delivery-notes' );
+
+      // First load the custom translations overrides.
+      load_textdomain( 'woocommerce-delivery-notes', WP_LANG_DIR . "/woocommerce-delivery-notes/woocommerce-delivery-notes-$locale.mo" );
+
+      // Load the original translations.
 			load_plugin_textdomain( 'woocommerce-delivery-notes', false, dirname( self::$plugin_basefile ) . '/languages/' );
 		}
 		
