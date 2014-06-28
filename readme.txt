@@ -234,6 +234,12 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 
 == Changelog ==
 
+
+= 3.2.2 =
+
+* Some language upadates. Old outdated languages were removed. Please [contribute your language](https://github.com/piffpaffpuff/woocommerce-delivery-notes#translating)!
+* Fix a print issue with not completed orders.
+
 = 3.2.1 =
 
 * New template function for the invoice date 

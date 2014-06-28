@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Print Invoices & Delivery Notes\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
-"POT-Creation-Date: 2014-04-17 20:02+0100\n"
-"PO-Revision-Date: 2014-05-17 09:24+0100\n"
+"POT-Creation-Date: 2014-06-28 17:13+0100\n"
+"PO-Revision-Date: 2014-06-28 17:17+0100\n"
 "Last-Translator: Bas Middelham <bas@middelham.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -13,11 +13,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.5\n"
 
-#: ../includes/class-wcdn-settings.php:90 ../includes/class-wcdn-theme.php:52
-#: ../includes/class-wcdn-theme.php:71
-#: ../includes/wcdn-template-functions.php:118
+#: ../includes/class-wcdn-settings.php:90 ../includes/class-wcdn-theme.php:48
+#: ../includes/class-wcdn-theme.php:83
+#: ../includes/wcdn-template-functions.php:120
 msgid "Print"
 msgstr "Print"
 
@@ -210,7 +210,7 @@ msgid "Order Numbering"
 msgstr "Bestelnummers"
 
 #: ../includes/class-wcdn-settings.php:289
-#: ../includes/wcdn-template-functions.php:208
+#: ../includes/wcdn-template-functions.php:209
 msgid "Invoice Number"
 msgstr "Factuurnummer"
 
@@ -279,45 +279,66 @@ msgstr ""
 
 #: ../includes/class-wcdn-writepanel.php:83
 #: ../includes/class-wcdn-writepanel.php:84
-#: ../includes/class-wcdn-writepanel.php:105
-#: ../includes/class-wcdn-writepanel.php:106
-#: ../includes/class-wcdn-writepanel.php:192
+#: ../includes/class-wcdn-writepanel.php:108
+#: ../includes/class-wcdn-writepanel.php:109
+#: ../includes/class-wcdn-writepanel.php:205
 msgid "Print Invoice"
 msgstr "Print Factuur"
 
 #: ../includes/class-wcdn-writepanel.php:86
 #: ../includes/class-wcdn-writepanel.php:87
-#: ../includes/class-wcdn-writepanel.php:108
-#: ../includes/class-wcdn-writepanel.php:109
-#: ../includes/class-wcdn-writepanel.php:193
+#: ../includes/class-wcdn-writepanel.php:111
+#: ../includes/class-wcdn-writepanel.php:112
+#: ../includes/class-wcdn-writepanel.php:206
 msgid "Print Delivery Note"
 msgstr "Print Bestelbon"
 
-#: ../includes/class-wcdn-writepanel.php:164
+#: ../includes/class-wcdn-writepanel.php:89
+#: ../includes/class-wcdn-writepanel.php:90
+#: ../includes/class-wcdn-writepanel.php:115
+#: ../includes/class-wcdn-writepanel.php:116
+#: ../includes/class-wcdn-writepanel.php:207
+#, fuzzy
+msgid "Print Receipt"
+msgstr "Print Factuur"
+
+#: ../includes/class-wcdn-writepanel.php:176
 #, php-format
 msgid "Invoice created."
 msgid_plural "%s invoices created."
 msgstr[0] "Factuur is gemaakt"
 msgstr[1] "%s facturen gemaakt"
 
-#: ../includes/class-wcdn-writepanel.php:166
+#: ../includes/class-wcdn-writepanel.php:178
 #, php-format
 msgid "Delivery note created."
 msgid_plural "%s delivery notes created."
 msgstr[0] "Pakbon is gemaakt"
 msgstr[1] "%s pakbonnen zijn gemaakt"
 
-#: ../includes/class-wcdn-writepanel.php:170
+#: ../includes/class-wcdn-writepanel.php:180
+#, fuzzy, php-format
+msgid "Receipt created."
+msgid_plural "%s receipts created."
+msgstr[0] "Factuur is gemaakt"
+msgstr[1] "%s facturen gemaakt"
+
+#: ../includes/class-wcdn-writepanel.php:184
 msgid "Print now"
 msgstr "Print nu"
 
-#: ../includes/class-wcdn-writepanel.php:181
+#: ../includes/class-wcdn-writepanel.php:195
 msgid "Order Printing"
 msgstr "Print Bestelling "
 
-#: ../includes/class-wcdn-writepanel.php:197
+#: ../includes/class-wcdn-writepanel.php:218
 msgid "Invoice number: "
 msgstr "Factuurnummer:"
+
+#: ../includes/class-wcdn-writepanel.php:219
+#, fuzzy
+msgid "Invoice date: "
+msgstr "Factuur is gemaakt"
 
 #: ../includes/wcdn-template-functions.php:32
 msgid "Invoice"
@@ -328,32 +349,36 @@ msgid "Delivery Note"
 msgstr "Pakbon"
 
 #: ../includes/wcdn-template-functions.php:36
+msgid "Receipt"
+msgstr ""
+
+#: ../includes/wcdn-template-functions.php:38
 msgid "Order"
 msgstr "Bestelling"
 
-#: ../includes/wcdn-template-functions.php:214
+#: ../includes/wcdn-template-functions.php:215
 msgid "Order Number"
 msgstr "Bestellingsummer"
 
-#: ../includes/wcdn-template-functions.php:219
+#: ../includes/wcdn-template-functions.php:220
 msgid "Order Date"
 msgstr "Besteldatum"
 
-#: ../includes/wcdn-template-functions.php:224
+#: ../includes/wcdn-template-functions.php:225
 msgid "Payment Method"
 msgstr "Betaalmethode"
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:230
+#: ../includes/wcdn-template-functions.php:231
 msgid "Email"
 msgstr "E-mail"
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:237
+#: ../includes/wcdn-template-functions.php:238
 msgid "Telephone"
 msgstr "Telefoon"
 
-#: ../includes/wcdn-template-functions.php:263
+#: ../includes/wcdn-template-functions.php:271
 msgid "SKU:"
 msgstr "Art.Nr."
 

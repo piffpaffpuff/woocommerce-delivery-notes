@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Print Invoice & Delivery Note\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
-"POT-Creation-Date: 2014-04-17 20:03+0100\n"
-"PO-Revision-Date: 2014-04-17 20:03+0100\n"
+"POT-Creation-Date: 2014-06-28 17:17+0100\n"
+"PO-Revision-Date: 2014-06-28 17:18+0100\n"
 "Last-Translator: David Decker <deckerweb.mobil@googlemail.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
@@ -28,9 +28,9 @@ msgstr ""
 "X-Poedit-SearchPath-0: ..\n"
 
 # @ woocommerce-delivery-notes
-#: ../includes/class-wcdn-settings.php:90 ../includes/class-wcdn-theme.php:52
-#: ../includes/class-wcdn-theme.php:71
-#: ../includes/wcdn-template-functions.php:118
+#: ../includes/class-wcdn-settings.php:90 ../includes/class-wcdn-theme.php:48
+#: ../includes/class-wcdn-theme.php:83
+#: ../includes/wcdn-template-functions.php:120
 msgid "Print"
 msgstr "Drucken"
 
@@ -146,7 +146,6 @@ msgid "Leave blank to not print an address."
 msgstr "Leer lassen, um keine Anschrift mit auszudrucken."
 
 #: ../includes/class-wcdn-settings.php:204
-#, fuzzy
 msgid "Complimentary Close"
 msgstr "Schlussformel"
 
@@ -242,7 +241,7 @@ msgstr "Bestellnummer"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:289
-#: ../includes/wcdn-template-functions.php:208
+#: ../includes/wcdn-template-functions.php:209
 msgid "Invoice Number"
 msgstr "Rechnungsnummer"
 
@@ -320,23 +319,32 @@ msgstr ""
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-writepanel.php:83
 #: ../includes/class-wcdn-writepanel.php:84
-#: ../includes/class-wcdn-writepanel.php:105
-#: ../includes/class-wcdn-writepanel.php:106
-#: ../includes/class-wcdn-writepanel.php:192
+#: ../includes/class-wcdn-writepanel.php:108
+#: ../includes/class-wcdn-writepanel.php:109
+#: ../includes/class-wcdn-writepanel.php:205
 msgid "Print Invoice"
 msgstr "Rechnung drucken"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-writepanel.php:86
 #: ../includes/class-wcdn-writepanel.php:87
-#: ../includes/class-wcdn-writepanel.php:108
-#: ../includes/class-wcdn-writepanel.php:109
-#: ../includes/class-wcdn-writepanel.php:193
+#: ../includes/class-wcdn-writepanel.php:111
+#: ../includes/class-wcdn-writepanel.php:112
+#: ../includes/class-wcdn-writepanel.php:206
 msgid "Print Delivery Note"
 msgstr "Lieferschein drucken"
 
 # @ woocommerce-delivery-notes
-#: ../includes/class-wcdn-writepanel.php:164
+#: ../includes/class-wcdn-writepanel.php:89
+#: ../includes/class-wcdn-writepanel.php:90
+#: ../includes/class-wcdn-writepanel.php:115
+#: ../includes/class-wcdn-writepanel.php:116
+#: ../includes/class-wcdn-writepanel.php:207
+msgid "Print Receipt"
+msgstr "Quittung drucken"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-writepanel.php:176
 #, php-format
 msgid "Invoice created."
 msgid_plural "%s invoices created."
@@ -344,7 +352,7 @@ msgstr[0] "Rechnung erstellt."
 msgstr[1] "%s Rechnungen erstellt."
 
 # @ woocommerce-delivery-notes
-#: ../includes/class-wcdn-writepanel.php:166
+#: ../includes/class-wcdn-writepanel.php:178
 #, php-format
 msgid "Delivery note created."
 msgid_plural "%s delivery notes created."
@@ -352,19 +360,32 @@ msgstr[0] "Lieferschein erstellt."
 msgstr[1] "%s Lieferscheine erstellt."
 
 # @ woocommerce-delivery-notes
-#: ../includes/class-wcdn-writepanel.php:170
+#: ../includes/class-wcdn-writepanel.php:180
+#, php-format
+msgid "Receipt created."
+msgid_plural "%s receipts created."
+msgstr[0] "Quittung erstellt."
+msgstr[1] "%s Quittungen erstellt."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-writepanel.php:184
 msgid "Print now"
 msgstr "Jetzt drucken"
 
 # @ woocommerce-delivery-notes
-#: ../includes/class-wcdn-writepanel.php:181
+#: ../includes/class-wcdn-writepanel.php:195
 msgid "Order Printing"
 msgstr "Bestellung drucken"
 
 # @ woocommerce-delivery-notes
-#: ../includes/class-wcdn-writepanel.php:197
+#: ../includes/class-wcdn-writepanel.php:218
 msgid "Invoice number: "
 msgstr "Rechnungsnummer:"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-writepanel.php:219
+msgid "Invoice date: "
+msgstr "Rechnungsdatum."
 
 # @ woocommerce-delivery-notes
 #: ../includes/wcdn-template-functions.php:32
@@ -376,36 +397,40 @@ msgstr "Rechnung"
 msgid "Delivery Note"
 msgstr "Lieferschein"
 
-# @ woocommerce-delivery-notes
 #: ../includes/wcdn-template-functions.php:36
+msgid "Receipt"
+msgstr "Quittung"
+
+# @ woocommerce-delivery-notes
+#: ../includes/wcdn-template-functions.php:38
 msgid "Order"
 msgstr "Bestellung"
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:214
+#: ../includes/wcdn-template-functions.php:215
 msgid "Order Number"
 msgstr "Bestellnummer"
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:219
+#: ../includes/wcdn-template-functions.php:220
 msgid "Order Date"
 msgstr "Bestelldatum"
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:224
+#: ../includes/wcdn-template-functions.php:225
 msgid "Payment Method"
 msgstr "Zahlungsart"
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:230
+#: ../includes/wcdn-template-functions.php:231
 msgid "Email"
 msgstr "E-Mail"
 
-#: ../includes/wcdn-template-functions.php:237
+#: ../includes/wcdn-template-functions.php:238
 msgid "Telephone"
 msgstr "Telefon"
 
-#: ../includes/wcdn-template-functions.php:263
+#: ../includes/wcdn-template-functions.php:271
 msgid "SKU:"
 msgstr "Art.-Nr.:"
 
