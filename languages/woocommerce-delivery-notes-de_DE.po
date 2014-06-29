@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Print Invoice & Delivery Note\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
 "POT-Creation-Date: 2014-06-28 17:17+0100\n"
-"PO-Revision-Date: 2014-06-28 17:18+0100\n"
+"PO-Revision-Date: 2014-06-29 14:23+0100\n"
 "Last-Translator: David Decker <deckerweb.mobil@googlemail.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -224,20 +224,20 @@ msgstr ""
 
 #: ../includes/class-wcdn-settings.php:262
 msgid "Print Buttons"
-msgstr "Drucken im Theme"
+msgstr "Druck-Tasten"
 
 #: ../includes/class-wcdn-settings.php:269
 msgid "Show print button on the \"View Order\" page"
-msgstr "Drucken Knopf auf der \"Bestellung anzeigen\" Seite zeigen"
+msgstr "Auf der \"Bestellung anzeigen\"-Seite eine Druck-Taste einblenden"
 
 #: ../includes/class-wcdn-settings.php:276
 msgid "Show print buttons on the \"My Account\" page"
-msgstr "Drucken Knopf auf der \"Konto bearbeiten\" Seite zeigen"
+msgstr "Auf der \"Konto bearbeiten\"-Seite eine Druck-Taste einblenden"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:284
 msgid "Order Numbering"
-msgstr "Bestellnummer"
+msgstr "Bestellnummerierung"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:289
@@ -247,7 +247,7 @@ msgstr "Rechnungsnummer"
 
 #: ../includes/class-wcdn-settings.php:297
 msgid "Create invoice numbers"
-msgstr "Erzeuge Rechnungsnummern"
+msgstr "Rechnungsnummern erzeugen"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:304
@@ -341,7 +341,7 @@ msgstr "Lieferschein drucken"
 #: ../includes/class-wcdn-writepanel.php:116
 #: ../includes/class-wcdn-writepanel.php:207
 msgid "Print Receipt"
-msgstr "Quittung drucken"
+msgstr "Beleg drucken"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-writepanel.php:176
@@ -364,8 +364,8 @@ msgstr[1] "%s Lieferscheine erstellt."
 #, php-format
 msgid "Receipt created."
 msgid_plural "%s receipts created."
-msgstr[0] "Quittung erstellt."
-msgstr[1] "%s Quittungen erstellt."
+msgstr[0] "Beleg erstellt."
+msgstr[1] "%s Belege erstellt."
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-writepanel.php:184
@@ -399,7 +399,7 @@ msgstr "Lieferschein"
 
 #: ../includes/wcdn-template-functions.php:36
 msgid "Receipt"
-msgstr "Quittung"
+msgstr "Beleg"
 
 # @ woocommerce-delivery-notes
 #: ../includes/wcdn-template-functions.php:38

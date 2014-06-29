@@ -93,7 +93,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 			if( $order->status == 'completed' ) {
 				$type = apply_filters( 'wcdn_theme_print_button_template_type_complete_status', 'invoice' );
 			} else {
-				$type = apply_filters( 'wcdn_theme_print_button_template_type', 'receipt' );
+				$type = apply_filters( 'wcdn_theme_print_button_template_type', 'order' );
 			}			
 			return $type;
 		}
