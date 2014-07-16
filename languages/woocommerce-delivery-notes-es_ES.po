@@ -5,40 +5,36 @@ msgstr ""
 "Project-Id-Version: WooCommerce Print Invoices & Delivery Notes\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
 "POT-Creation-Date: 2014-06-28 17:13+0100\n"
-"PO-Revision-Date: 2014-06-28 17:16+0100\n"
-"Last-Translator: David Decker <deckerweb.mobil@googlemail.com>\n"
+"PO-Revision-Date: 2014-07-14 17:37+0100\n"
+"Last-Translator: César Díaz Menes
 "Language-Team: \n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.5.4\n"
 
-#: ../includes/class-wcdn-settings.php:90 ../includes/class-wcdn-theme.php:48
+#: ../includes/class-wcdn-settings.php:90
+#: ../includes/class-wcdn-theme.php:48
 #: ../includes/class-wcdn-theme.php:83
 #: ../includes/wcdn-template-functions.php:120
 msgid "Print"
 msgstr "Imprimir"
 
 #: ../includes/class-wcdn-settings.php:128
-#, fuzzy
 msgid "Print Order"
-msgstr "Imprimir"
+msgstr "Print Order"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:147
 #, php-format
-msgid ""
-"You can preview the <a href=\"%1$s\" target=\"%3$s\" class=\"%4$s\">invoice "
-"template</a> or <a href=\"%2$s\" target=\"%3$s\" class=\"%4$s\">delivery "
-"note template</a>."
+msgid "You can preview the <a href=\"%1$s\" target=\"%3$s\" class=\"%4$s\">invoice template</a> or <a href=\"%2$s\" target=\"%3$s\" class=\"%4$s\">delivery note template</a>."
 msgstr ""
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:148
-msgid ""
-"With the FAQ in the readme file you can learn how to customize the template."
+msgid "With the FAQ in the readme file you can learn how to customize the template."
 msgstr ""
 
 #: ../includes/class-wcdn-settings.php:159
@@ -70,12 +66,7 @@ msgid "Note:"
 msgstr "Nota:"
 
 #: ../includes/class-wcdn-settings.php:172
-msgid ""
-"When the image is printed, its pixel density will automatically be eight "
-"times higher than the original. This means, 1 printed inch will correspond "
-"to about 288 pixels on the screen. Example: an image with a width of 576 "
-"pixels and a height of 288 pixels will have a printed size of about 2 inches "
-"to 1 inch."
+msgid "When the image is printed, its pixel density will automatically be eight times higher than the original. This means, 1 printed inch will correspond to about 288 pixels on the screen. Example: an image with a width of 576 pixels and a height of 288 pixels will have a printed size of about 2 inches to 1 inch."
 msgstr ""
 
 #: ../includes/class-wcdn-settings.php:178
@@ -88,12 +79,8 @@ msgstr "Nombre de tu empresa/tienda para las Notas de Entrega."
 
 #: ../includes/class-wcdn-settings.php:185
 #, fuzzy
-msgid ""
-"Leave blank to use the default Website/Blog title defined in WordPress "
-"settings. The name will be ignored when a Logo is set."
-msgstr ""
-"Dejar en blanco para usar el Website por defecto/ Título del blog definido "
-"en los ajustes de WordPress."
+msgid "Leave blank to use the default Website/Blog title defined in WordPress settings. The name will be ignored when a Logo is set."
+msgstr "Dejar en blanco para usar el Website por defecto/ Título del blog definido en los ajustes de WordPress."
 
 #: ../includes/class-wcdn-settings.php:191
 msgid "Company/Shop Address"
@@ -101,12 +88,8 @@ msgstr "Empresa/Dirección de la tienda"
 
 #: ../includes/class-wcdn-settings.php:196
 #, fuzzy
-msgid ""
-"The postal address of the company/shop or even e-mail or telephone, which "
-"gets printed right after the company/shop name."
-msgstr ""
-"La dirección postal de la compañia/tienda, quedara impresa a la derecha del "
-"nombre de la compañia/tienda, debajo del listado de pedido."
+msgid "The postal address of the company/shop or even e-mail or telephone, which gets printed right after the company/shop name."
+msgstr "La dirección postal de la compañia/tienda, quedara impresa a la derecha del nombre de la compañia/tienda, debajo del listado de pedido."
 
 #: ../includes/class-wcdn-settings.php:198
 msgid "Leave blank to not print an address."
@@ -114,15 +97,11 @@ msgstr "Dejar en blanco para no imprimir la dirección."
 
 #: ../includes/class-wcdn-settings.php:204
 msgid "Complimentary Close"
-msgstr ""
+msgstr "Cierre gratuito"
 
 #: ../includes/class-wcdn-settings.php:209
-msgid ""
-"Add some personal notes, or season greetings or whatever (e.g. Thank You for "
-"Your Order!, Merry Christmas!, etc.)."
-msgstr ""
-"Añade notas personales, o felicitaciones o cualquier cosa (ej. ¡Gracias por "
-"tu pedido!, ¡Feliz Navidad!, ect.)"
+msgid "Add some personal notes, or season greetings or whatever (e.g. Thank You for Your Order!, Merry Christmas!, etc.)."
+msgstr "Añade notas personales, o felicitaciones o cualquier cosa (ej. ¡Gracias por tu pedido!, ¡Feliz Navidad!, ect.)"
 
 #: ../includes/class-wcdn-settings.php:211
 msgid "Leave blank to not print any personal notes."
@@ -134,17 +113,8 @@ msgid "Returns Policy, Conditions, etc"
 msgstr "Política de Devoluciones, Condiciones, etc.:"
 
 #: ../includes/class-wcdn-settings.php:222
-msgid ""
-"Here you can add some more policies, conditions etc. For example add a "
-"returns policy in case the client would like to send back some goods. In "
-"some countries (e.g. in the European Union) this is required so please add "
-"any required info in accordance with the statutory regulations."
-msgstr ""
-"Aquí puedes añadir algunas claúsulas, condiciones etc. Por ejemplo añade una "
-"política de de devolución en el caso de que el cliente quiera devolver "
-"algunos artículos. En algunos países (p.ej en la Unión Europea) esto es "
-"obligatorio, asi que por favor añade cualquier información obligatoria de "
-"acuerdo con las regulaciones estatutarias. "
+msgid "Here you can add some more policies, conditions etc. For example add a returns policy in case the client would like to send back some goods. In some countries (e.g. in the European Union) this is required so please add any required info in accordance with the statutory regulations."
+msgstr "Aquí puedes añadir algunas claúsulas, condiciones etc. Por ejemplo añade una política de de devolución en el caso de que el cliente quiera devolver algunos artículos. En algunos países (p.ej en la Unión Europea) esto es obligatorio, asi que por favor añade cualquier información obligatoria de acuerdo con las regulaciones estatutarias. "
 
 #: ../includes/class-wcdn-settings.php:224
 msgid "Leave blank to not print any policies or conditions."
@@ -157,12 +127,8 @@ msgstr "Pie de Página"
 
 #: ../includes/class-wcdn-settings.php:235
 #, fuzzy
-msgid ""
-"Add some further footer imprint, e-mail, telephone, copyright notes etc. "
-"This makes the printed sheets a bit more branded."
-msgstr ""
-"Añade además de notas a pie de página, notas de copyright etc. para obtener "
-"hojas impresas que se ajusten un poco mas a tu marca."
+msgid "Add some further footer imprint, e-mail, telephone, copyright notes etc. This makes the printed sheets a bit more branded."
+msgstr "Añade además de notas a pie de página, notas de copyright etc. para obtener hojas impresas que se ajusten un poco mas a tu marca."
 
 #: ../includes/class-wcdn-settings.php:237
 msgid "Leave blank to not print a footer."
@@ -170,74 +136,71 @@ msgstr "Dejar en blanco para no imprimir el pie de página."
 
 #: ../includes/class-wcdn-settings.php:244
 msgid "Front-end Options"
-msgstr ""
+msgstr "Opciones Front-end"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:249
 msgid "Print Page Endpoint"
-msgstr ""
+msgstr "Endpoint Pagina de Impresión"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:256
-msgid ""
-"The endpoint is appended to the accounts page URL to print the order. It "
-"should be unique."
-msgstr ""
+msgid "The endpoint is appended to the accounts page URL to print the order. It should be unique."
+msgstr "El Endpoint es añadido a la URL de la pagina de cuenta para ser impreso"
 
 #: ../includes/class-wcdn-settings.php:262
 msgid "Print Buttons"
-msgstr ""
+msgstr "Botones de Impresión"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:269
 msgid "Show print button on the \"View Order\" page"
-msgstr ""
+msgstr "Mostrar botón de impresión en la página \"View Order\""
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:276
 msgid "Show print buttons on the \"My Account\" page"
-msgstr ""
+msgstr "Mostrar botón de impresión en la página \"My Account\""
 
 #: ../includes/class-wcdn-settings.php:284
 #, fuzzy
 msgid "Order Numbering"
-msgstr "Numero de Orden"
+msgstr "Número de Pedido"
 
 #: ../includes/class-wcdn-settings.php:289
 #: ../includes/wcdn-template-functions.php:209
-#, fuzzy
 msgid "Invoice Number"
-msgstr "Factura"
+msgstr "Número de Factura"
 
 #: ../includes/class-wcdn-settings.php:297
 msgid "Create invoice numbers"
-msgstr ""
+msgstr "Crear números de factua"
 
 #: ../includes/class-wcdn-settings.php:304
 msgid "Invoice Number Start"
-msgstr ""
+msgstr "Comiezo de números de factura"
 
 #: ../includes/class-wcdn-settings.php:311
 msgid "Start the numbering at the specified number."
-msgstr ""
+msgstr "Empezar el conteo en un número específico"
 
 #: ../includes/class-wcdn-settings.php:313
 msgid "Use only integers."
-msgstr ""
+msgstr "Usar únicamente enteros"
 
 #: ../includes/class-wcdn-settings.php:314
 #: ../includes/class-wcdn-settings.php:330
 #: ../includes/class-wcdn-settings.php:346
 msgid "Already created invoice numbers are not affected by changes."
-msgstr ""
+msgstr "Los números de factura ya creados no están afectados por los cambios"
 
 #: ../includes/class-wcdn-settings.php:320
 msgid "Invoice Number Prefix"
-msgstr ""
+msgstr "Prefijo de Número de Factura"
 
 #: ../includes/class-wcdn-settings.php:327
 msgid "This text will be prepended to the invoice number."
-msgstr ""
+msgstr "Este texto será adjuntado al número de factura"
 
 #: ../includes/class-wcdn-settings.php:329
 #, fuzzy
@@ -246,11 +209,11 @@ msgstr "Dejar en blanco para no imprimir la dirección."
 
 #: ../includes/class-wcdn-settings.php:336
 msgid "Invoice Number Suffix"
-msgstr ""
+msgstr "Sufijo de número de factua"
 
 #: ../includes/class-wcdn-settings.php:343
 msgid "This text will be appended to the invoice number."
-msgstr ""
+msgstr "Este texto sera anexado al número de factura"
 
 #: ../includes/class-wcdn-settings.php:345
 #, fuzzy
@@ -268,12 +231,8 @@ msgstr "La numeración secuencial esta activada."
 
 #: ../includes/class-wcdn-settings.php:358
 #, php-format
-msgid ""
-"Install and activate the free <a href=\"%s\">WooCommerce Sequential Order "
-"Numbers</a> Plugin."
-msgstr ""
-"Instalar y activar el plugin gratuito <a href=\"%s\">WooCommerce Números de "
-"Pedido Secuenciales</a>."
+msgid "Install and activate the free <a href=\"%s\">WooCommerce Sequential Order Numbers</a> Plugin."
+msgstr "Instalar y activar el plugin gratuito <a href=\"%s\">WooCommerce Números de Pedido Secuenciales</a>."
 
 #: ../includes/class-wcdn-writepanel.php:83
 #: ../includes/class-wcdn-writepanel.php:84
@@ -318,13 +277,13 @@ msgstr[1] "Nota de Entrega"
 #, php-format
 msgid "Receipt created."
 msgid_plural "%s receipts created."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Recibo creado"
+msgstr[1] "%s recibos creados"
 
 #: ../includes/class-wcdn-writepanel.php:184
 #, fuzzy
 msgid "Print now"
-msgstr "Imprimir Factura"
+msgstr "Imprimir ahora"
 
 #: ../includes/class-wcdn-writepanel.php:195
 #, fuzzy
@@ -332,14 +291,13 @@ msgid "Order Printing"
 msgstr "Imprimir pedido"
 
 #: ../includes/class-wcdn-writepanel.php:218
-#, fuzzy
 msgid "Invoice number: "
-msgstr "Factura"
+msgstr "Número de factura: "
 
 #: ../includes/class-wcdn-writepanel.php:219
 #, fuzzy
 msgid "Invoice date: "
-msgstr "Factura"
+msgstr "Fecha de factura:"
 
 #: ../includes/wcdn-template-functions.php:32
 msgid "Invoice"
@@ -360,12 +318,11 @@ msgstr "Imprimir pedido"
 
 #: ../includes/wcdn-template-functions.php:215
 msgid "Order Number"
-msgstr "Numero de Orden"
+msgstr "Numero de Pedido"
 
 #: ../includes/wcdn-template-functions.php:220
-#, fuzzy
 msgid "Order Date"
-msgstr "Imprimir pedido"
+msgstr "Fecha de pedido"
 
 #: ../includes/wcdn-template-functions.php:225
 msgid "Payment Method"
@@ -374,21 +331,20 @@ msgstr "Forma de Pago"
 # @ woocommerce-delivery-notes
 #: ../includes/wcdn-template-functions.php:231
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 # @ woocommerce-delivery-notes
 #: ../includes/wcdn-template-functions.php:238
 msgid "Telephone"
-msgstr ""
+msgstr "Teléfono"
 
 #: ../includes/wcdn-template-functions.php:271
 msgid "SKU:"
 msgstr "SKU:"
 
 #: ../templates/print-order/print-content.php:28
-#, fuzzy
 msgid "Billing Address"
-msgstr "Fecha de Facturación"
+msgstr "Dirección de Facturación"
 
 #: ../templates/print-order/print-content.php:31
 #: ../templates/print-order/print-content.php:42
@@ -396,9 +352,8 @@ msgid "N/A"
 msgstr "No Disponible"
 
 #: ../templates/print-order/print-content.php:39
-#, fuzzy
 msgid "Shipping Address"
-msgstr "Fecha de Envío"
+msgstr "Dirección de Envío"
 
 #: ../templates/print-order/print-content.php:74
 msgid "Product"
@@ -415,13 +370,13 @@ msgstr "Total"
 
 #: ../templates/print-order/print-content.php:100
 msgid "Download:"
-msgstr "Descarga"
+msgstr "Descarga:"
 
 # @ woocommerce-delivery-notes
 #: ../templates/print-order/print-content.php:101
 #, php-format
 msgid "%s Files"
-msgstr ""
+msgstr "%s Ficheros"
 
 #: ../templates/print-order/print-content.php:148
 #, fuzzy
