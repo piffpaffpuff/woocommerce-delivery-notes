@@ -83,6 +83,9 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 			<a href="<?php echo wcdn_get_print_link( $order->id, 'invoice' ); ?>" class="button tips print-preview-button invoice" target="_blank" alt="<?php esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>" data-tip="<?php esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>">
 				<?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>
 			</a>
+			<a href="<?php echo wcdn_get_print_link( $order->id, 'giftinvoice' ); ?>" class="button tips print-preview-button giftinvoice" target="_blank" alt="<?php esc_attr_e( 'Print Gift Invoice', 'woocommerce-delivery-notes' ); ?>" data-tip="<?php esc_attr_e( 'Print Gift Invoice', 'woocommerce-delivery-notes' ); ?>">
+				<?php _e( 'Print Gift Invoice', 'woocommerce-delivery-notes' ); ?>
+			</a>			
 			<a href="<?php echo wcdn_get_print_link( $order->id, 'delivery-note' ); ?>" class="button tips print-preview-button delivery-note" target="_blank" alt="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>" data-tip="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>">
 				<?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>
 			</a>
@@ -107,6 +110,9 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 					jQuery(document).ready(function($) {		
 						$('<option>').val('wcdn_print_invoice').attr('title', 'invoice').text('<?php echo esc_js( __( 'Print Invoice', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action"]');
 						$('<option>').val('wcdn_print_invoice').attr('title', 'invoice').text('<?php echo esc_js( __( 'Print Invoice', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action2"]');
+						
+						$('<option>').val('wcdn_print_gift_invoice').attr('title', 'giftinvoice').text('<?php echo esc_js( __( 'Print Gift Invoice', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action"]');
+						$('<option>').val('wcdn_print_gift_invoice').attr('title', 'giftinvoice').text('<?php echo esc_js( __( 'Print Gift Invoice', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action2"]');						
 						
 						$('<option>').val('wcdn_print_delivery_note').attr('title', 'delivery-note').text('<?php echo esc_js( __( 'Print Delivery Note', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action"]');
 						$('<option>').val('wcdn_print_delivery_note').attr('title', 'delivery-note').text('<?php echo esc_js( __( 'Print Delivery Note', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action2"]');
@@ -140,6 +146,10 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 						$template_type = 'invoice';
 						$report_action = 'printed_invoice';
 						break;
+					case 'wcdn_print_gift_invoice':
+						$template_type = 'giftinvoice';
+						$report_action = 'printed_gift_invoice';
+						break;						
 					case 'wcdn_print_delivery_note':
 						$template_type = 'delivery-note';
 						$report_action = 'printed_delivery_note';
@@ -174,6 +184,8 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 					// Confirmation message
 					if( isset( $_REQUEST['printed_invoice'] ) ) {
 						$message = sprintf( _n( 'Invoice created.', '%s invoices created.', $total, 'woocommerce-delivery-notes' ), number_format_i18n( $total ) );
+					}elseif( isset( $_REQUEST['printed_gift_invoice'] ) ) {
+						$message = sprintf( _n( 'Gift Invoice created.', '%s gift invoices created.', $total, 'woocommerce-delivery-notes' ), number_format_i18n( $total ) );
 					} elseif( isset( $_REQUEST['printed_delivery_note'] ) ) {
 						$message = sprintf( _n( 'Delivery note created.', '%s delivery notes created.', $total, 'woocommerce-delivery-notes' ), number_format_i18n( $total ) );
 					} elseif( isset( $_REQUEST['printed_receipt'] ) ) {
@@ -203,6 +215,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 			?>
 			<div class="print-actions">
 				<a href="<?php echo wcdn_get_print_link( $post_id, 'invoice' ); ?>" class="button print-preview-button invoice" target="_blank" alt="<?php esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?></a>
+				<a href="<?php echo wcdn_get_print_link( $post_id, 'giftinvoice' ); ?>" class="button print-preview-button giftinvoice" target="_blank" alt="<?php esc_attr_e( 'Print Gift Invoice', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Gift Invoice', 'woocommerce-delivery-notes' ); ?></a>				
 				<a href="<?php echo wcdn_get_print_link( $post_id, 'delivery-note' ); ?>" class="button print-preview-button delivery-note" target="_blank" alt="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?></a>
 				<!-- <a href="<?php echo wcdn_get_print_link( $post_id, 'receipt' ); ?>" class="button print-preview-button receipt" target="_blank" alt="<?php esc_attr_e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?></a> -->
 				<span class="print-preview-loading spinner"></span>
