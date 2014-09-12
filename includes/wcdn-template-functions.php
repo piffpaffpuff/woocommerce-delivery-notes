@@ -30,7 +30,9 @@ function wcdn_get_print_link( $order_ids, $template_type = 'order', $order_email
 function wcdn_document_title() {
 	if( wcdn_get_template_type() == 'invoice' ) {
 		echo apply_filters( 'wcdn_document_title', __( 'Invoice', 'woocommerce-delivery-notes' ) );
-	} elseif( wcdn_get_template_type() == 'delivery-note' ) {
+	} elseif( wcdn_get_template_type() == 'giftinvoice' ) {
+		echo apply_filters( 'wcdn_document_title', __( 'Gift Invoice', 'woocommerce-delivery-notes' ) );
+	}elseif( wcdn_get_template_type() == 'delivery-note' ) {
 		echo apply_filters( 'wcdn_document_title', __( 'Delivery Note', 'woocommerce-delivery-notes' ) );
 	} elseif( wcdn_get_template_type() == 'receipt' ) {
 		echo apply_filters( 'wcdn_document_title', __( 'Receipt', 'woocommerce-delivery-notes' ) );

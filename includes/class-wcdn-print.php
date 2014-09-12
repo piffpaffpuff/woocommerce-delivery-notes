@@ -28,6 +28,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			// Set the default variables
 			$this->template_types = array(
 				'invoice',
+				'giftinvoice',
 				'delivery-note',
 				'receipt',
 				'order'
@@ -169,7 +170,11 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			} 
 						
 			// Load the print template html
-			wc_get_template( 'print-order.php', null, $this->template_path_theme, $this->template_path_plugin );
+			if($this->template_type == 'giftinvoice'){
+				wc_get_template( 'print-order-novalues.php', null, $this->template_path_theme, $this->template_path_plugin );			
+			}else{
+				wc_get_template( 'print-order.php', null, $this->template_path_theme, $this->template_path_plugin );
+			}
 			exit;
 		}
 						
