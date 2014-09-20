@@ -98,6 +98,10 @@ th {
 	padding-bottom: 1.25em;
 }
 
+tfoot {
+	display: table-row-group;
+}
+
 /* Page Margins & Basic Stylings */
 #page {
 	margin-left: auto;
@@ -241,11 +245,13 @@ h2 {
 .order-items tfoot tr:last-child .total-price {
 	font-size: 0.785em;
 	font-weight: normal;
+	line-height: 200%;
 }
 
 .order-items tfoot tr:last-child .total-price .amount:first-child {
 	font-size: 1.273em;
 	font-weight: bold;
+	line-height: 1.273em;
 }
 
 .order-items tfoot tr:last-child {
@@ -287,5 +293,10 @@ h2 {
 @media print {
 	body {
 		font-size: 8pt;
+	}
+	
+	.content {
+		/* Remove padding to not generate empty follow up pages */
+		padding-bottom: 0;
 	}
 }

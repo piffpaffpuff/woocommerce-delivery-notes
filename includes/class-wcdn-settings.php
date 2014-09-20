@@ -140,11 +140,12 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 					$results = $query->get_posts();
 					$test_id = $results[0]->ID;
 					$invoice_url = wcdn_get_print_link( $test_id, 'invoice' );
-					$note_url = wcdn_get_print_link( $test_id, 'delivery-note' );
+					$delivery_note_url = wcdn_get_print_link( $test_id, 'delivery-note' );
+					$receipt_url = wcdn_get_print_link( $test_id, 'receipt' );
 					?>
 					<input type="hidden" id="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>show_print_preview" />
 					<span class="description">
-						<?php printf( __( 'You can preview the <a href="%1$s" target="%3$s" class="%4$s">invoice template</a> or <a href="%2$s" target="%3$s" class="%4$s">delivery note template</a>.', 'woocommerce-delivery-notes' ), $invoice_url, $note_url, '_blank', '' ); ?>
+						<?php printf( __( 'You can preview the <a href="%1$s" target="%4$s" class="%5$s">invoice</a>, <a href="%2$s" target="%4$s" class="%5$s">delivery note</a> or <a href="%3$s" target="%4$s" class="%5$s">receipt</a> template.', 'woocommerce-delivery-notes' ), $invoice_url, $delivery_note_url, $receipt_url, '_blank', '' ); ?>
 						<?php _e( 'With the FAQ in the readme file you can learn how to customize the template.', 'woocommerce-delivery-notes' ); ?>
 					</span>
 				<?php endif; ?>
@@ -238,6 +239,34 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							</span>
 						</td>
 					</tr>
+					<tr>
+						<th>
+							<?php _e( 'Types', 'woocommerce-delivery-notes' ); ?>
+						</th>
+						<td>
+							<fieldset>
+								<label>
+									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>template_type_invoice" type="hidden" value="" />
+									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>template_type_invoice" type="checkbox" value="1" <?php checked( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_invoice' ), 1 ); ?> />
+									<?php _e( 'Enable Invoices', 'woocommerce-delivery-notes' ); ?>
+								</label>
+							</fieldset>
+							<fieldset>
+								<label>
+									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>template_type_delivery_note" type="hidden" value="" />
+									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>template_type_delivery_note" type="checkbox" value="1" <?php checked( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_delivery_note' ), 1 ); ?> />
+									<?php _e( 'Enable Delivery Notes', 'woocommerce-delivery-notes' ); ?>
+								</label>
+							</fieldset>
+							<fieldset>
+								<label>
+									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>template_type_receipt" type="hidden" value="" />
+									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>template_type_receipt" type="checkbox" value="1" <?php checked( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_receipt' ), 1 ); ?> />
+									<?php _e( 'Enable Receipts', 'woocommerce-delivery-notes' ); ?>
+								</label>
+							</fieldset>
+						</td>
+					</tr>
 				</tbody>
 			</table>
 
@@ -250,7 +279,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 						</th>
 						<td>
 							<p>
-								<input type="text" name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>print_order_page_endpoint" value="<?php echo get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint' ); ?>" />
+								<input type="text" name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>print_order_page_endpoint" value="<?php echo get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint', 'print-order' ); ?>" />
 							</p>
 							<span class="description">
 								<?php _e( 'The endpoint is appended to the accounts page URL to print the order. It should be unique.', 'woocommerce-delivery-notes' ); ?>
@@ -371,6 +400,13 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 */
 		public function save_settings_page() {
 			if ( isset( $_POST[ $this->hidden_submit ] ) && $_POST[ $this->hidden_submit ] == 'submitted' ) {
+				
+				if( empty( $_POST[WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_invoice'] ) &&
+					empty( $_POST[WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_delivery_note'] ) &&
+					empty( $_POST[WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_receipt'] ) ) {
+					$_POST[WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_invoice'] = 1;
+					$_POST[WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_delivery_note'] = 1;
+				}
 				
 				// Save settings
 				foreach ( $_POST as $key => $value ) {

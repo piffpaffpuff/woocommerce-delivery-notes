@@ -6,7 +6,11 @@
 if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 
 	class WooCommerce_Delivery_Notes_Writepanel {
-
+		
+		public $enable_type_invoice;
+		public $enable_type_delivery_note;
+		public $enable_type_receipt;
+		
 		/**
 		 * Constructor
 		 */
@@ -19,6 +23,12 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 		 * Load the admin hooks
 		 */
 		public function load_admin_hooks() {				
+			// Read the settings tor the types
+			$this->enable_type_invoice = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_invoice' );
+			$this->enable_type_delivery_note = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_delivery_note' );
+			$this->enable_type_receipt = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_receipt' );
+		
+			// Hooks
 			add_action( 'woocommerce_admin_order_actions_end', array( $this, 'add_listing_actions' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'add_scripts' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'add_styles' ) );
@@ -79,16 +89,25 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 		 * Add print actions to the orders listing
 		 */
 		public function add_listing_actions( $order ) {
-			?>			
+			?>
+			<?php if( $this->enable_type_invoice ) : ?>			
 			<a href="<?php echo wcdn_get_print_link( $order->id, 'invoice' ); ?>" class="button tips print-preview-button invoice" target="_blank" alt="<?php esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>" data-tip="<?php esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>">
 				<?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>
 			</a>
+			<?php endif; ?>
+			
+			<?php if( $this->enable_type_delivery_note ) : ?>			
 			<a href="<?php echo wcdn_get_print_link( $order->id, 'delivery-note' ); ?>" class="button tips print-preview-button delivery-note" target="_blank" alt="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>" data-tip="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>">
 				<?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>
 			</a>
-			<!-- <a href="<?php echo wcdn_get_print_link( $order->id, 'receipt' ); ?>" class="button tips print-preview-button receipt" target="_blank" alt="<?php esc_attr_e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?>" data-tip="<?php esc_attr_e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?>">
+			<?php endif; ?>
+
+			<?php if( $this->enable_type_receipt ) : ?>			
+			<a href="<?php echo wcdn_get_print_link( $order->id, 'receipt' ); ?>" class="button tips print-preview-button receipt" target="_blank" alt="<?php esc_attr_e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?>" data-tip="<?php esc_attr_e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?>">
 				<?php _e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?>
-			</a> -->
+			</a>
+			<?php endif; ?>
+
 			<span class="print-preview-loading spinner"></span>
 			<?php
 		}
@@ -105,16 +124,20 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 			if( $this->is_order_edit_page() ) : ?>
 				<script type="text/javascript">
 					jQuery(document).ready(function($) {		
-						$('<option>').val('wcdn_print_invoice').attr('title', 'invoice').text('<?php echo esc_js( __( 'Print Invoice', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action"]');
-						$('<option>').val('wcdn_print_invoice').attr('title', 'invoice').text('<?php echo esc_js( __( 'Print Invoice', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action2"]');
+						<?php if( $this->enable_type_invoice ) : ?>
+							$('<option>').val('wcdn_print_invoice').attr('title', 'invoice').text('<?php echo esc_js( __( 'Print Invoice', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action"]');
+							$('<option>').val('wcdn_print_invoice').attr('title', 'invoice').text('<?php echo esc_js( __( 'Print Invoice', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action2"]');
+						<?php endif; ?>						
 						
-						$('<option>').val('wcdn_print_delivery_note').attr('title', 'delivery-note').text('<?php echo esc_js( __( 'Print Delivery Note', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action"]');
-						$('<option>').val('wcdn_print_delivery_note').attr('title', 'delivery-note').text('<?php echo esc_js( __( 'Print Delivery Note', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action2"]');
+						<?php if( $this->enable_type_delivery_note ) : ?>
+							$('<option>').val('wcdn_print_delivery_note').attr('title', 'delivery-note').text('<?php echo esc_js( __( 'Print Delivery Note', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action"]');
+							$('<option>').val('wcdn_print_delivery_note').attr('title', 'delivery-note').text('<?php echo esc_js( __( 'Print Delivery Note', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action2"]');
+						<?php endif; ?>						
 						
-						/*
-						$('<option>').val('wcdn_print_receipt').attr('title', 'receipt').text('<?php echo esc_js( __( 'Print Receipt', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action"]');
-						$('<option>').val('wcdn_print_receipt').attr('title', 'receipt').text('<?php echo esc_js( __( 'Print Receipt', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action2"]');
-						*/
+						<?php if( $this->enable_type_receipt ) : ?>
+							$('<option>').val('wcdn_print_receipt').attr('title', 'receipt').text('<?php echo esc_js( __( 'Print Receipt', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action"]');
+							$('<option>').val('wcdn_print_receipt').attr('title', 'receipt').text('<?php echo esc_js( __( 'Print Receipt', 'woocommerce-delivery-notes' ) ); ?>').appendTo('select[name="action2"]');
+						<?php endif; ?>						
 					});
 				</script>
 			<?php endif;
@@ -199,12 +222,21 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 		 * Create the meta box content on the single order page
 		 */
 		public function create_box_content() {
-			global $post_id;
+			global $post_id, $wcdn;
 			?>
 			<div class="print-actions">
-				<a href="<?php echo wcdn_get_print_link( $post_id, 'invoice' ); ?>" class="button print-preview-button invoice" target="_blank" alt="<?php esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?></a>
-				<a href="<?php echo wcdn_get_print_link( $post_id, 'delivery-note' ); ?>" class="button print-preview-button delivery-note" target="_blank" alt="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?></a>
-				<!-- <a href="<?php echo wcdn_get_print_link( $post_id, 'receipt' ); ?>" class="button print-preview-button receipt" target="_blank" alt="<?php esc_attr_e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?></a> -->
+				<?php if( $this->enable_type_invoice ) : ?>
+					<a href="<?php echo wcdn_get_print_link( $post_id, 'invoice' ); ?>" class="button print-preview-button invoice" target="_blank" alt="<?php esc_attr_e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Invoice', 'woocommerce-delivery-notes' ); ?></a>
+				<?php endif; ?>
+				
+				<?php if( $this->enable_type_delivery_note ) : ?>
+					<a href="<?php echo wcdn_get_print_link( $post_id, 'delivery-note' ); ?>" class="button print-preview-button delivery-note" target="_blank" alt="<?php esc_attr_e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Delivery Note', 'woocommerce-delivery-notes' ); ?></a>
+				<?php endif; ?>
+
+				<?php if( $this->enable_type_receipt ) : ?>
+					<a href="<?php echo wcdn_get_print_link( $post_id, 'receipt' ); ?>" class="button print-preview-button receipt" target="_blank" alt="<?php esc_attr_e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?>"><?php _e( 'Print Receipt', 'woocommerce-delivery-notes' ); ?></a>
+				<?php endif; ?>
+
 				<span class="print-preview-loading spinner"></span>
 			</div>
 			<?php 

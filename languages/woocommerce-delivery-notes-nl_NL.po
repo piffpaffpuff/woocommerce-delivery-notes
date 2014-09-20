@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Print Invoices & Delivery Notes\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
-"POT-Creation-Date: 2014-06-28 17:13+0100\n"
-"PO-Revision-Date: 2014-06-28 17:17+0100\n"
+"POT-Creation-Date: 2014-09-19 21:09+0100\n"
+"PO-Revision-Date: 2014-09-19 21:14+0100\n"
 "Last-Translator: Bas Middelham <bas@middelham.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.6.9\n"
 
 #: ../includes/class-wcdn-settings.php:90 ../includes/class-wcdn-theme.php:48
 #: ../includes/class-wcdn-theme.php:83
@@ -122,9 +122,8 @@ msgstr "Laat leeg om geen adres te printen."
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:204
-#, fuzzy
 msgid "Complimentary Close"
-msgstr "Afsluiting"
+msgstr "Complimentary Close"
 
 #: ../includes/class-wcdn-settings.php:209
 msgid ""
@@ -281,7 +280,7 @@ msgstr ""
 #: ../includes/class-wcdn-writepanel.php:84
 #: ../includes/class-wcdn-writepanel.php:108
 #: ../includes/class-wcdn-writepanel.php:109
-#: ../includes/class-wcdn-writepanel.php:205
+#: ../includes/class-wcdn-writepanel.php:204
 msgid "Print Invoice"
 msgstr "Print Factuur"
 
@@ -289,56 +288,54 @@ msgstr "Print Factuur"
 #: ../includes/class-wcdn-writepanel.php:87
 #: ../includes/class-wcdn-writepanel.php:111
 #: ../includes/class-wcdn-writepanel.php:112
-#: ../includes/class-wcdn-writepanel.php:206
+#: ../includes/class-wcdn-writepanel.php:205
 msgid "Print Delivery Note"
 msgstr "Print Bestelbon"
 
 #: ../includes/class-wcdn-writepanel.php:89
 #: ../includes/class-wcdn-writepanel.php:90
+#: ../includes/class-wcdn-writepanel.php:114
 #: ../includes/class-wcdn-writepanel.php:115
-#: ../includes/class-wcdn-writepanel.php:116
-#: ../includes/class-wcdn-writepanel.php:207
-#, fuzzy
+#: ../includes/class-wcdn-writepanel.php:206
 msgid "Print Receipt"
-msgstr "Print Factuur"
+msgstr "Print Acquit"
 
-#: ../includes/class-wcdn-writepanel.php:176
+#: ../includes/class-wcdn-writepanel.php:175
 #, php-format
 msgid "Invoice created."
 msgid_plural "%s invoices created."
 msgstr[0] "Factuur is gemaakt"
 msgstr[1] "%s facturen gemaakt"
 
-#: ../includes/class-wcdn-writepanel.php:178
+#: ../includes/class-wcdn-writepanel.php:177
 #, php-format
 msgid "Delivery note created."
 msgid_plural "%s delivery notes created."
 msgstr[0] "Pakbon is gemaakt"
 msgstr[1] "%s pakbonnen zijn gemaakt"
 
-#: ../includes/class-wcdn-writepanel.php:180
-#, fuzzy, php-format
+#: ../includes/class-wcdn-writepanel.php:179
+#, php-format
 msgid "Receipt created."
 msgid_plural "%s receipts created."
-msgstr[0] "Factuur is gemaakt"
-msgstr[1] "%s facturen gemaakt"
+msgstr[0] "Receipt created."
+msgstr[1] "%s receipts created."
 
-#: ../includes/class-wcdn-writepanel.php:184
+#: ../includes/class-wcdn-writepanel.php:183
 msgid "Print now"
 msgstr "Print nu"
 
-#: ../includes/class-wcdn-writepanel.php:195
+#: ../includes/class-wcdn-writepanel.php:194
 msgid "Order Printing"
 msgstr "Print Bestelling "
 
-#: ../includes/class-wcdn-writepanel.php:218
+#: ../includes/class-wcdn-writepanel.php:217
 msgid "Invoice number: "
 msgstr "Factuurnummer:"
 
-#: ../includes/class-wcdn-writepanel.php:219
-#, fuzzy
+#: ../includes/class-wcdn-writepanel.php:218
 msgid "Invoice date: "
-msgstr "Factuur is gemaakt"
+msgstr "Invoice date:"
 
 #: ../includes/wcdn-template-functions.php:32
 msgid "Invoice"
@@ -350,7 +347,7 @@ msgstr "Pakbon"
 
 #: ../includes/wcdn-template-functions.php:36
 msgid "Receipt"
-msgstr ""
+msgstr "Receipt"
 
 #: ../includes/wcdn-template-functions.php:38
 msgid "Order"
@@ -358,7 +355,7 @@ msgstr "Bestelling"
 
 #: ../includes/wcdn-template-functions.php:215
 msgid "Order Number"
-msgstr "Bestellingsummer"
+msgstr "Bestelnummer"
 
 #: ../includes/wcdn-template-functions.php:220
 msgid "Order Date"

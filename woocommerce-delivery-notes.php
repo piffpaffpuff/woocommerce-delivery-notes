@@ -5,7 +5,7 @@
  * Plugin Name: WooCommerce Print Invoice & Delivery Note
  * Plugin URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * Description: Print Invoices & Delivery Notes for WooCommerce Orders. 
- * Version: 3.2.2
+ * Version: 3.2.3
  * Author: Triggvy Gunderson
  * Author URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * License: GPLv3 or later
@@ -99,6 +99,16 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 				// Flush the rewrite rules when a fresh install
 				set_transient( self::$plugin_prefix . 'flush_rewrite_rules', true );
 			}
+			
+			$option = get_option( self::$plugin_prefix . 'template_type_invoice' );
+			if( !$option ) {
+				update_option( self::$plugin_prefix . 'template_type_invoice', 1 );
+			}
+			
+			$option = get_option( self::$plugin_prefix . 'template_type_delivery_note' );
+			if( !$option ) {
+				update_option( self::$plugin_prefix . 'template_type_delivery_note', 1 );
+			}
 		}
 		
 		/**
@@ -141,7 +151,8 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 * Add settings link to plugin page
 		 */
 		public function add_settings_link( $links ) {
-			$settings = sprintf( '<a href="%s" title="%s">%s</a>' , admin_url( 'admin.php?page=woocommerce&tab=' . $this->settings->tab_name ) , __( 'Go to the settings page', 'woocommerce-delivery-notes' ) , __( 'Settings', 'woocommerce-delivery-notes' ) );
+			$url = esc_url( admin_url( add_query_arg( array( 'page' => 'wc-settings', 'tab' => $this->settings->tab_name ), 'admin.php' ) ) );
+			$settings = sprintf( '<a href="%s" title="%s">%s</a>' , $url, __( 'Go to the settings page', 'woocommerce-delivery-notes' ) , __( 'Settings', 'woocommerce-delivery-notes' ) );
 			array_unshift( $links, $settings );
 			return $links;	
 		}

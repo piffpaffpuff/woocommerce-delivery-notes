@@ -25,19 +25,21 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		 * Constructor
 		 */
 		public function __construct() {	
-			// Set the default variables
+			// Define the template types
 			$this->template_types = array(
 				'invoice',
-				'delivery-note',
-				'receipt',
+				'delivery-note', 
+				'receipt', 
 				'order'
 			);
-			
+
+			// Add the endpoint for the frontend
 			$this->api_endpoints = array( 
 				'print-order' => get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint', 'print-order' )
 
 			);
-						
+			
+			// Insert the query vars			
 			$this->query_vars = array(
 				'print-order-type',
 				'print-order-email'

@@ -2,11 +2,11 @@
 
 @font-face {
 	font-family: 'icons';
-	src: url('../fonts/icons.eot?99179621');
-	src: url('../fonts/icons.eot?99179621#iefix') format('embedded-opentype'),
-	   url('../fonts/icons.woff?99179621') format('woff'),
-	   url('../fonts/icons.ttf?99179621') format('truetype'),
-	   url('../fonts/icons.svg?99179621#icons') format('svg');
+	src: url('../fonts/icons.eot?-q3um4l');
+	src: url('../fonts/icons.eot?#iefix-q3um4l') format('embedded-opentype'),
+	   url('../fonts/icons.woff?-q3um4l') format('woff'),
+	   url('../fonts/icons.ttf?-q3um4l') format('truetype'),
+	   url('../fonts/icons.svg?-q3um4l#icons') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -82,11 +82,15 @@
 } 
 
 .type-shop_order .column-order_actions .print-preview-button.invoice:before {
-	content: "\e801";
+	content: "\e601";
 }
 
 .type-shop_order .column-order_actions .print-preview-button.delivery-note:before {
-	content: "\e800";
+	content: "\e600";
+}
+
+.type-shop_order .column-order_actions .print-preview-button.receipt:before {
+	content: "\e602";
 }
 
 .type-shop_order .column-order_actions span.print-preview-loading {
