@@ -102,12 +102,12 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 			
 			$option = get_option( self::$plugin_prefix . 'template_type_invoice' );
 			if( !$option ) {
-				update_option( self::$plugin_prefix . 'template_type_invoice', 1 );
+				update_option( self::$plugin_prefix . 'template_type_invoice', '1' );
 			}
 			
 			$option = get_option( self::$plugin_prefix . 'template_type_delivery_note' );
 			if( !$option ) {
-				update_option( self::$plugin_prefix . 'template_type_delivery_note', 1 );
+				update_option( self::$plugin_prefix . 'template_type_delivery_note', '1' );
 			}
 		}
 		
