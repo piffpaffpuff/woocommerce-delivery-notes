@@ -24,8 +24,8 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 		 */
 		public function load_admin_hooks() {				
 			// Read the settings tor the types
-			$this->enable_type_invoice = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_invoice' );
-			$this->enable_type_delivery_note = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_delivery_note' );
+			$this->enable_type_invoice = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_invoice', 1 );
+			$this->enable_type_delivery_note = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_delivery_note', 1 );
 			$this->enable_type_receipt = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_receipt' );
 		
 			// Hooks
