@@ -234,6 +234,9 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 
 == Changelog ==
 
+= 3.3.1 =
+* Small code improvments
+
 = 3.3 =
 * WordPress 4.0 and WooCommerce 2.2 compatibility
 * Fix an issue where the print buttons were hidden after the update
