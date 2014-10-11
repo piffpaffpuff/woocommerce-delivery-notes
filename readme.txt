@@ -234,14 +234,26 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 
 == Changelog ==
 
+
+= 3.4 =
+
+**Note: The template was modified. Please check your print-order.php if you copied it to your theme directory.**
+
+* Improved WooCommerce 2.2 compatibility
+* Fix an issue were shipping and billing addresses did not respect the WooCommerce settings
+* Better way to reset the invoice number counter
+
 = 3.3.1 =
+
 * Small code improvements
 
 = 3.3 =
+
 * WordPress 4.0 and WooCommerce 2.2 compatibility
 * Fix an issue where the print buttons were hidden after the update
 
 = 3.2.3 =
+
 * WordPress 4.0 and WooCommerce 2.2 compatibility
 * Template: Improved the CSS to generate less blank pages
 * Fixed the settings link on the Plugins page

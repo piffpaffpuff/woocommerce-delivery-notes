@@ -167,9 +167,11 @@ h2 {
 }
 
 /* Switch the addresses for invoices */
-.invoice .billing-address {
+/*
+.invoice .order-addresses.shipping-active .billing-address {
 	float: right;
 }
+*/
 
 /* Order Info */
 .order-info ul {

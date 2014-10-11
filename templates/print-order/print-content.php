@@ -23,7 +23,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 				</div><!-- .order-branding -->
 
 
-				<div class="order-addresses">
+				<div class="order-addresses <?php if( wcdn_has_shipping_address( $order ) ) : ?>shipping-active<?php endif; ?>">
 					<div class="billing-address">
 						<h3><?php _e( 'Billing Address', 'woocommerce-delivery-notes' ); ?></h3>
 						<address>
@@ -33,7 +33,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 						</address>
 					</div>
 					
-					<?php if( get_option( 'woocommerce_ship_to_billing_address_only' ) === 'no' && get_option( 'woocommerce_calc_shipping' ) !== 'no' ) : ?>
+					<?php if( wcdn_has_shipping_address( $order ) ) : ?>
 					
 						<div class="shipping-address">
 							<h3><?php _e( 'Shipping Address', 'woocommerce-delivery-notes' ); ?></h3>

@@ -276,7 +276,18 @@ function wcdn_additional_product_fields( $fields = null, $product = null, $order
 }
 
 /**
- * Remove the semicolon from the output  
+ * Check if a shipping address is enabled
+ */
+function wcdn_has_shipping_address( $order ) {
+	if( ( get_option( 'woocommerce_ship_to_destination' ) !== 'billing_only' ) && $order->needs_shipping_address() && get_option( 'woocommerce_calc_shipping' ) !== 'no' ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/**
+ * Remove the semicolon from the totals  
  */
 function wcdn_remove_semicolon_from_totals( $total_rows, $order ) {	
 	foreach( $total_rows as $key => $row ) {

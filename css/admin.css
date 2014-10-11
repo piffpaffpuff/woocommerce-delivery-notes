@@ -120,3 +120,9 @@
 #company-logo-loader.print-preview-loading {
 	display: inline-block;
 }
+
+#invoice-counter-value {
+	display: inline-block;
+	border: 1px solid #e4e4e4;
+	padding: 3px 10px;
+}
