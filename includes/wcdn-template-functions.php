@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * Exit if accessed directly
+ */
+if ( !defined( 'ABSPATH' ) ) {
+	exit; 
+}
+
+/**
  * Output the template part
  */
 function wcdn_get_template_content( $name, $args = null ) {
@@ -279,10 +286,21 @@ function wcdn_additional_product_fields( $fields = null, $product = null, $order
  * Check if a shipping address is enabled
  */
 function wcdn_has_shipping_address( $order ) {
-	if( ( get_option( 'woocommerce_ship_to_destination' ) !== 'billing_only' ) && $order->needs_shipping_address() && get_option( 'woocommerce_calc_shipping' ) !== 'no' ) {
-		return true;
+	if( version_compare( WC_VERSION, '2.2', '<' ) ) {
+		// Legacy support for WooCommerce 2.1
+		echo 'fooo';
+		if( get_option( 'woocommerce_ship_to_billing_address_only' ) === 'no' && get_option( 'woocommerce_calc_shipping' ) !== 'no' ) {
+			return true;
+		} else {
+			return false;
+		}	
 	} else {
-		return false;
+		// Future versions from 2.2
+		if( ( get_option( 'woocommerce_ship_to_destination' ) !== 'billing_only' ) && $order->needs_shipping_address() && get_option( 'woocommerce_calc_shipping' ) !== 'no' ) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 

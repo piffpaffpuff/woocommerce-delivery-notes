@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * Exit if accessed directly
+ */
+if ( !defined( 'ABSPATH' ) ) {
+	exit; 
+}
+
+/**
  * Settings class
  */
 if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {

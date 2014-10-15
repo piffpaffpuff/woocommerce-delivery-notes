@@ -234,10 +234,13 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 
 == Changelog ==
 
+= 3.4.1 =
+
+* Fix an issue where a blank page was printed in WooCommerce 2.1
 
 = 3.4 =
 
-**Note: The template was modified. Please check your print-order.php if you copied it to your theme directory.**
+**Note: The template was modified. Please check your print-content.php if you copied it to your theme directory.**
 
 * Improved WooCommerce 2.2 compatibility
 * Fix an issue were shipping and billing addresses did not respect the WooCommerce settings

@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * Exit if accessed directly
+ */
+if ( !defined( 'ABSPATH' ) ) {
+	exit; 
+}
+
+/**
  * Writepanel class
  */
 if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {

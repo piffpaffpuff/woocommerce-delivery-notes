@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * Exit if accessed directly
+ */
+if ( !defined( 'ABSPATH' ) ) {
+	exit; 
+}
+
+/**
  * Frontend Theme class
  */
 if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
