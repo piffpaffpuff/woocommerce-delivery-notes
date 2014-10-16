@@ -288,7 +288,6 @@ function wcdn_additional_product_fields( $fields = null, $product = null, $order
 function wcdn_has_shipping_address( $order ) {
 	if( version_compare( WC_VERSION, '2.2', '<' ) ) {
 		// Legacy support for WooCommerce 2.1
-		echo 'fooo';
 		if( get_option( 'woocommerce_ship_to_billing_address_only' ) === 'no' && get_option( 'woocommerce_calc_shipping' ) !== 'no' ) {
 			return true;
 		} else {

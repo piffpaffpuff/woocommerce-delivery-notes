@@ -43,10 +43,20 @@ When your language is missing you can contribute a translation to the [GitHub re
 
 == Installation ==
 
-1. Upload the entire `woocommerce-delivery-notes` folder to the `/wp-content/plugins/` directory.
-2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. Choose 'WooCommerce' then 'Settings' and the tab 'Print' to adjust the settings to your need.
-4. Print the order with the side panel on the actual order page.
+= Minimum Requirements =
+
+* WooCommerce 2.2 or later
+* WordPress 3.8 or later
+
+= Automatic installation =
+
+Automatic installation is the easiest option as WordPress handles the file transfers itself and you don’t need to leave your web browser. To do an automatic install of WooCommerce, log in to your WordPress dashboard, navigate to the Plugins menu and click Add New.
+
+In the search field type “WooCommerce Print Invoice” and click Search Plugins. Once you’ve found the plugin you can view details about it such as the the point release, rating and description. Most importantly of course, you can install it by simply clicking “Install Now”.
+
+= Manual installation =
+
+The manual installation method involves downloading the plugin and uploading it to your webserver via your favourite FTP application. The WordPress codex contains [instructions on how to do this here](http://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation).
 
 == Frequently Asked Questions ==
 
@@ -233,6 +243,10 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 6. Customers can also print the order.
 
 == Changelog ==
+
+= 3.4.2 =
+
+* Remove some left over developer comments from the print page
 
 = 3.4.1 =
 
