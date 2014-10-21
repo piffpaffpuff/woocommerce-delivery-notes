@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
 "POT-Creation-Date: 2014-06-28 17:13+0100\n"
 "PO-Revision-Date: 2014-07-14 17:37+0100\n"
-"Last-Translator: César Díaz Menes
+"Last-Translator: César Díaz Menes"
 "Language-Team: \n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"

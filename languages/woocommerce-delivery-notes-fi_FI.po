@@ -1,10 +1,3 @@
-# This German Language File: Copyright (C) 2011-2013 by David Decker of deckerweb.de & genesisthemes.de
-# This file is distributed under the same license as the WooCommerce Print Invoices & Delivery Notes Plugin package.
-#
-# Weitere deutsche Sprachdateien fuer WooCommerce und Extensions (Erweiterungen)
-# sowie fuer WordPress-Plugins und -Themes finden Sie unter:
-# --> http://deckerweb.de/sprachdateien/
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Print Invoice & Delivery Note\n"
