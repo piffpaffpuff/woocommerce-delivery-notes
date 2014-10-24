@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Print Invoices & Delivery Notes\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
 "POT-Creation-Date: 2014-09-19 21:09+0100\n"
-"PO-Revision-Date: 2014-09-19 21:14+0100\n"
+"PO-Revision-Date: 2014-10-18 15:51+0100\n"
 "Last-Translator: Bas Middelham <bas@middelham.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.6.10\n"
 
 #: ../includes/class-wcdn-settings.php:90 ../includes/class-wcdn-theme.php:48
 #: ../includes/class-wcdn-theme.php:83
@@ -123,7 +123,7 @@ msgstr "Laat leeg om geen adres te printen."
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:204
 msgid "Complimentary Close"
-msgstr "Complimentary Close"
+msgstr "Ondertekening"
 
 #: ../includes/class-wcdn-settings.php:209
 msgid ""
@@ -159,18 +159,19 @@ msgstr "Laat leeg om geen algemene voorwaarden te printen."
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:230
 msgid "Footer"
-msgstr "Footer"
+msgstr "Voettekst"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:235
 msgid ""
 "Add some further footer imprint, e-mail, telephone, copyright notes etc. "
 "This makes the printed sheets a bit more branded."
-msgstr "Voeg wat meer footer info toe zoals e-mail, telefoon, copyright, etc. "
+msgstr ""
+"Voeg wat meer voettekst info toe zoals e-mail, telefoon, copyright, etc. "
 
 #: ../includes/class-wcdn-settings.php:237
 msgid "Leave blank to not print a footer."
-msgstr "Laat leeg om geen footer te printen."
+msgstr "Laat leeg om geen voettekst te printen."
 
 #: ../includes/class-wcdn-settings.php:244
 msgid "Front-end Options"
@@ -197,12 +198,12 @@ msgstr "Printknoppen"
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:269
 msgid "Show print button on the \"View Order\" page"
-msgstr "Toon printknop op de \"View Order\" pagina"
+msgstr "Toon printknop op de \"Bekijk Bestelling\" pagina"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:276
 msgid "Show print buttons on the \"My Account\" page"
-msgstr "Toon printknop op de \"My Account\" pagina"
+msgstr "Toon printknop op de \"Mijn Account\" pagina"
 
 #: ../includes/class-wcdn-settings.php:284
 msgid "Order Numbering"
@@ -290,7 +291,7 @@ msgstr "Print Factuur"
 #: ../includes/class-wcdn-writepanel.php:112
 #: ../includes/class-wcdn-writepanel.php:205
 msgid "Print Delivery Note"
-msgstr "Print Bestelbon"
+msgstr "Print Pakbon"
 
 #: ../includes/class-wcdn-writepanel.php:89
 #: ../includes/class-wcdn-writepanel.php:90
@@ -298,28 +299,28 @@ msgstr "Print Bestelbon"
 #: ../includes/class-wcdn-writepanel.php:115
 #: ../includes/class-wcdn-writepanel.php:206
 msgid "Print Receipt"
-msgstr "Print Acquit"
+msgstr "Print Kwitantie"
 
 #: ../includes/class-wcdn-writepanel.php:175
 #, php-format
 msgid "Invoice created."
 msgid_plural "%s invoices created."
-msgstr[0] "Factuur is gemaakt"
-msgstr[1] "%s facturen gemaakt"
+msgstr[0] "Factuur is gemaakt."
+msgstr[1] "%s facturen gemaakt."
 
 #: ../includes/class-wcdn-writepanel.php:177
 #, php-format
 msgid "Delivery note created."
 msgid_plural "%s delivery notes created."
-msgstr[0] "Pakbon is gemaakt"
-msgstr[1] "%s pakbonnen zijn gemaakt"
+msgstr[0] "Pakbon is gemaakt."
+msgstr[1] "%s pakbonnen zijn gemaakt."
 
 #: ../includes/class-wcdn-writepanel.php:179
 #, php-format
 msgid "Receipt created."
 msgid_plural "%s receipts created."
-msgstr[0] "Receipt created."
-msgstr[1] "%s receipts created."
+msgstr[0] "Kwitantie is gemaakt."
+msgstr[1] "%s kwitanties zijn gemaakt."
 
 #: ../includes/class-wcdn-writepanel.php:183
 msgid "Print now"
@@ -335,7 +336,7 @@ msgstr "Factuurnummer:"
 
 #: ../includes/class-wcdn-writepanel.php:218
 msgid "Invoice date: "
-msgstr "Invoice date:"
+msgstr "Factuurdatum:"
 
 #: ../includes/wcdn-template-functions.php:32
 msgid "Invoice"
@@ -347,7 +348,7 @@ msgstr "Pakbon"
 
 #: ../includes/wcdn-template-functions.php:36
 msgid "Receipt"
-msgstr "Receipt"
+msgstr "Kwitantie"
 
 #: ../includes/wcdn-template-functions.php:38
 msgid "Order"
@@ -419,7 +420,7 @@ msgstr "%s Bestanden"
 # @ woocommerce-delivery-notes
 #: ../templates/print-order/print-content.php:148
 msgid "Customer Note"
-msgstr "Klant notitie"
+msgstr "Klantnotitie"
 
 #: ../woocommerce-delivery-notes.php:144
 msgid "Go to the settings page"
