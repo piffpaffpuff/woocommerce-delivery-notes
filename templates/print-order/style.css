@@ -115,7 +115,10 @@ tfoot {
 	padding-right: 10%;
 	padding-top: 5%;
 	padding-bottom: 5%;
-	page-break-after: always;
+}
+
+.content + .content {
+	page-break-before: always;
 }
 
 h1,
