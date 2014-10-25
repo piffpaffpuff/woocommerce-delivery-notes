@@ -33,19 +33,15 @@ if ( !defined( 'ABSPATH' ) ) exit;
 						</address>
 					</div>
 					
-					<?php if( wcdn_has_shipping_address( $order ) ) : ?>
-					
-						<div class="shipping-address">
-							<h3><?php _e( 'Shipping Address', 'woocommerce-delivery-notes' ); ?></h3>
-							<address>
-		
-								<?php if( !$order->get_formatted_shipping_address() ) _e( 'N/A', 'woocommerce-delivery-notes' ); else echo apply_filters( 'wcdn_address_shipping', $order->get_formatted_shipping_address(), $order ); ?>
-							
-							</address>
-						</div>
-					
-					<?php endif; ?>
-					
+					<div class="shipping-address">
+						<h3><?php _e( 'Shipping Address', 'woocommerce-delivery-notes' ); ?></h3>
+						<address>
+	
+							<?php if( !$order->get_formatted_shipping_address() ) _e( 'N/A', 'woocommerce-delivery-notes' ); else echo apply_filters( 'wcdn_address_shipping', $order->get_formatted_shipping_address(), $order ); ?>
+						
+						</address>
+					</div>
+										
 					<?php do_action( 'wcdn_after_addresses', $order ); ?>
 				</div><!-- .order-addresses -->
 
@@ -72,6 +68,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 						<thead>
 							<tr>
 								<th class="head-name"><span><?php _e('Product', 'woocommerce-delivery-notes'); ?></span></th>
+								<th class="head-item-price"><span><?php _e('Price', 'woocommerce-delivery-notes'); ?></span></th>
 								<th class="head-quantity"><span><?php _e('Quantity', 'woocommerce-delivery-notes'); ?></span></th>
 								<th class="head-price"><span><?php _e('Total', 'woocommerce-delivery-notes'); ?></span></th>
 							</tr>
@@ -113,6 +110,9 @@ if ( !defined( 'ABSPATH' ) ) exit;
 												<?php endforeach; ?>
 											</dl>
 										</td>
+										<td class="product-item-price">
+											<span><?php echo wcdn_get_formatted_item_price( $order, $item ); ?></span>
+										</td>
 										<td class="product-quantity">
 											<span><?php echo apply_filters( 'wcdn_order_item_quantity', $item['qty'], $item ); ?></span>
 										</td>
@@ -129,9 +129,10 @@ if ( !defined( 'ABSPATH' ) ) exit;
 								<?php foreach ( $totals as $total ) : ?>
 										
 										<tr>
-											<td class="total-name"><?php echo $total['label']; ?></td>
+											<td class="total-name"><span><?php echo $total['label']; ?></span></td>
+											<td class="total-item-price"></td>
 											<td class="total-quantity"></td>
-											<td class="total-price"><?php echo $total['value']; ?></td>
+											<td class="total-price"><span><?php echo $total['value']; ?></span></td>
 										</tr>
 								
 								<?php endforeach; ?>

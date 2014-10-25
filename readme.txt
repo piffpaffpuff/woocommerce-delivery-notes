@@ -244,6 +244,11 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 
 == Changelog ==
 
+= 4.0 =
+
+* The print page now also includes the item price
+* Customize titles with your own translation file (woocommerce-delivery-notes-xx_XX.mo). Place it in /wp-content/languages/plugins to override the plugin language. 
+
 = 3.4.2 =
 
 * Remove some left over developer comments from the print page

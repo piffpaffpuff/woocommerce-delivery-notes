@@ -141,6 +141,14 @@ function wcdn_template_stylesheet() {
 }
 
 /**
+ * Output the template print content
+ */
+function wcdn_content( $order, $template_type ) {
+	global $wcdn;
+	wcdn_get_template_content( 'print-content.php', array( 'order' => $order, 'template_type' => $template_type ) );
+}
+
+/**
  * Return logo id
  */
 function wcdn_get_company_logo_id() {
@@ -301,6 +309,30 @@ function wcdn_has_shipping_address( $order ) {
 			return false;
 		}
 	}
+}
+
+/**
+ * Gets formatted item subtotal for display.
+ */
+function wcdn_get_formatted_item_price( $order, $item, $tax_display = '' ) {
+
+	if ( ! $tax_display ) {
+		$tax_display = $order->tax_display_cart;
+	}
+
+	if ( ! isset( $item['line_subtotal'] ) || ! isset( $item['line_subtotal_tax'] ) ) {
+		return '';
+	}
+
+	if ( 'excl' == $tax_display ) {
+		$ex_tax_label = $order->prices_include_tax ? 1 : 0;
+
+		$subtotal = wc_price( $order->get_item_subtotal( $item ), array( 'ex_tax_label' => $ex_tax_label, 'currency' => $order->get_order_currency() ) );
+	} else {
+		$subtotal = wc_price( $order->get_item_subtotal( $item, true ), array('currency' => $order->get_order_currency()) );
+	}
+
+	return apply_filters( 'wcdn_formatted_item_price', $subtotal, $item, $order );
 }
 
 /**

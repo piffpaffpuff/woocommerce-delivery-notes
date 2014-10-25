@@ -28,7 +28,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 					
 				<article class="content">
 					
-					<?php wcdn_get_template_content( 'print-content.php', array( 'order' => $order ) ); ?>
+					<?php do_action( 'wcdn_loop_content', $order, wcdn_get_template_type() ); ?>
 
 				</article><!-- .content -->
 				

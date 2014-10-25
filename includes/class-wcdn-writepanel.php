@@ -158,7 +158,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 				// get the action staht should be started
 				$wp_list_table = _get_list_table('WP_Posts_List_Table');
 				$action = $wp_list_table->current_action();
-								
+											
 				// stop if there are no post ids
 				if( !isset( $_REQUEST['post'] ) ) {
 					return;
@@ -182,12 +182,43 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 						return;
 				}
 				
+				// security check
+				check_admin_referer('bulk-posts');
+				
+				// get referrer
+				if( !wp_get_referer() ) {
+					return;
+				}
+				
+				// filter the referer args
+				$referer_args = array();
+				parse_str( parse_url( wp_get_referer(), PHP_URL_QUERY ), $referer_args );
+				
+				// set the basic args for the sendback
+				$args = array(
+					'post_type' => $referer_args['post_type'] 
+				);
+				if( isset( $referer_args['post_status'] ) ) {
+					$args = wp_parse_args( array( 'post_status' => $referer_args['post_status'] ), $args );
+				}
+				if( isset( $referer_args['paged'] ) ) {
+					$args = wp_parse_args( array( 'paged' => $referer_args['paged'] ), $args );
+				}
+				if( isset( $referer_args['orderby'] ) ) {
+					$args = wp_parse_args( array( 'orderby' => $referer_args['orderby'] ), $args );
+				}
+				if( isset( $referer_args['order'] ) ) {
+					$args = wp_parse_args( array( 'orderby' => $referer_args['order'] ), $args );
+				}
+
 				// do the action
 				$post_ids = array_map( 'absint', (array) $_REQUEST['post'] );
 				$total = count( $post_ids );
 				$url = wcdn_get_print_link( $post_ids , $template_type );
-				$sendback = add_query_arg( array( 'post_type' => 'shop_order', $report_action => true, 'total' => $total, 'print_url' => urlencode( $url ) ), '' );
 				
+				// generate more args and the sendback string
+				$args = wp_parse_args( array( $report_action => true, 'total' => $total, 'print_url' => urlencode( $url ) ), $args );
+				$sendback = add_query_arg( $args, '' );
 				wp_redirect( $sendback );
 				exit;
 			}

@@ -208,10 +208,16 @@ h2 {
 .order-items .head-quantity,
 .order-items .product-quantity,
 .order-items .total-quantity,
+.order-items .head-item-price,
+.order-items .product-item-price,
+.order-items .total-item-price {
+	width: 15%;
+}
+
 .order-items .head-price,
 .order-items .product-price,
 .order-items .total-price {
-	width: 25%;
+	width: 20%;
 }
 
 .order-items tbody .name {

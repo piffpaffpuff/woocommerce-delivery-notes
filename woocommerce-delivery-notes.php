@@ -5,7 +5,7 @@
  * Plugin Name: WooCommerce Print Invoice & Delivery Note
  * Plugin URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * Description: Print Invoices & Delivery Notes for WooCommerce Orders. 
- * Version: 3.4.2
+ * Version: 4.0
  * Author: Triggvy Gunderson
  * Author URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * License: GPLv3 or later
@@ -64,7 +64,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 */
 		public function __construct() {
 			// Define the constants
-			self::$plugin_version = '3.4.2';
+			self::$plugin_version = '4.0';
 			self::$plugin_prefix = 'wcdn_';
 			self::$plugin_basefile_path = __FILE__;
 			self::$plugin_basefile = plugin_basename( self::$plugin_basefile_path );
@@ -99,6 +99,13 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 * Load the localisation 
 		 */
 		public function localise() {	
+			// Load language files from the wp-content/languages/plugins folder
+			$mo_file = WP_LANG_DIR . '/plugins/woocommerce-delivery-notes-' . get_locale() . '.mo';
+			if( is_readable( $mo_file ) ) {
+				load_textdomain( 'woocommerce-delivery-notes', $mo_file );
+			}
+
+			// Otherwise load them from the plugin folder
 			load_plugin_textdomain( 'woocommerce-delivery-notes', false, dirname( self::$plugin_basefile ) . '/languages/' );
 		}
 		
