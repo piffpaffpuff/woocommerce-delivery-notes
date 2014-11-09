@@ -39,7 +39,7 @@ If you have a patch, or stumbled upon an issue with the source code that isn't a
 
 = Translating =
 
-When your language is missing you can contribute a translation to the [GitHub repository](https://github.com/piffpaffpuff/woocommerce-delivery-notes) or [GlotPress repository](http://translate.wpautobahn.com/projects/wordpress-plugins-deckerweb/woocommerce-delivery-notes). 
+When your language is missing you can contribute a translation to the [GitHub repository](https://github.com/piffpaffpuff/woocommerce-delivery-notes). Read  
 
 == Installation ==
 
@@ -243,6 +243,10 @@ Please [contribute your translation](http://translate.wpautobahn.com/projects/wo
 6. Customers can also print the order.
 
 == Changelog ==
+
+= 4.0.1 =
+
+* Tweak: Better spacing between price columns
 
 = 4.0 =
 

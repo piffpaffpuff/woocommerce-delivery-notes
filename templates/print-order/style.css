@@ -82,7 +82,7 @@ tr {
 
 td,
 th {
-	padding: 0.375em 0.4em 0.375em 0;
+	padding: 0.375em 0.375em 0.375em 0;
 	vertical-align: top;
 }
 
@@ -170,11 +170,6 @@ h2 {
 }
 
 /* Switch the addresses for invoices */
-/*
-.invoice .order-addresses.shipping-active .billing-address {
-	float: right;
-}
-*/
 
 /* Order Info */
 .order-info ul {
