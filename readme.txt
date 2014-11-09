@@ -39,7 +39,7 @@ If you have a patch, or stumbled upon an issue with the source code that isn't a
 
 = Translating =
 
-When your language is missing you can contribute a translation to the [GitHub repository](https://github.com/piffpaffpuff/woocommerce-delivery-notes). Read  
+When your language is missing you can contribute a translation to the [GitHub repository](https://github.com/piffpaffpuff/woocommerce-delivery-notes#translating).
 
 == Installation ==
 
@@ -231,7 +231,7 @@ The plugin uses the exact same content as WooCommerce. If the content isn't avai
 
 Upload your language file to `/wp-content/languages/plugins/` (create this folder if it doesn't exist). WordPress will then load the language. Make sure you use the same locale as in your configuration and the correct plugin locale i.e. `woocommerce-delivery-notes-it_IT.mo/.po`. 
 
-Please [contribute your translation](http://translate.wpautobahn.com/projects/wordpress-plugins-deckerweb/woocommerce-delivery-notes) to include it in the distribution.
+Please [contribute your translation](https://github.com/piffpaffpuff/woocommerce-delivery-notes#translating) to include it in the distribution.
 
 == Screenshots ==
 
