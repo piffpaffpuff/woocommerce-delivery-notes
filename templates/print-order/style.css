@@ -82,7 +82,7 @@ tr {
 
 td,
 th {
-	padding: 0.375em 0.375em 0.375em 0;
+	padding: 0.375em 0.65em 0.375em 0;
 	vertical-align: top;
 }
 
@@ -187,6 +187,7 @@ h2 {
 	text-overflow: ellipsis;
 	overflow: hidden;
 	margin-bottom: 0;
+	padding-right: 0.35em;
 }
 
 /* Order Items */

@@ -113,10 +113,20 @@ An example that hides the whole price column and the totals. Paste the code in t
 function my_price_free_delivery_note() {
 	?>
 		<style>
-			.delivery-note .head-price span, 
-			.delivery-note .product-price span,
+			.delivery-note .head-item-price,
+			.delivery-note .head-price, 
+			.delivery-note .product-item-price,
+			.delivery-note .product-price,
 			.delivery-note .order-items tfoot {
 				display: none;
+			}
+			.delivery-note .head-name,
+			.delivery-note .product-name {
+				width: 50%;
+			}
+			.delivery-note .head-quantity,
+			.delivery-note .product-quantity {
+				width: 50%;
 			}
 			.delivery-note .order-items tbody tr:last-child {
 				border-bottom: 0.24em solid black;
@@ -125,6 +135,36 @@ function my_price_free_delivery_note() {
 	<?php
 }
 add_action( 'wcdn_head', 'my_price_free_delivery_note', 20 );
+`
+
+= I use the receipt in my POS, can I style it? =
+
+Sure, you can style with CSS, very much the same way as the delivery note or invoice. 
+
+An example that hides the addresses. Paste the code in the `functions.php` file of your theme:
+
+`
+function my_address_free_receipt() {
+	?>
+		<style>
+			.content {
+				padding: 4% 6%;
+			}
+			.company-address,
+			.order-addresses {
+				display: none;
+			}
+			.order-info li span {
+				display: inline-block;
+				float: right;
+			}
+			.order-thanks {
+				margin-left: inherit;
+			}
+		</style>
+	<?php
+}
+add_action( 'wcdn_head', 'my_address_free_receipt', 20 );
 `
 
 = Is it possible to remove a field from the order info section? =
@@ -244,9 +284,13 @@ Please [contribute your translation](https://github.com/piffpaffpuff/woocommerce
 
 == Changelog ==
 
+= 4.0.2 =
+
+* Tweak - Second attempt for better spacing between price columns
+
 = 4.0.1 =
 
-* Tweak: Better spacing between price columns
+* Tweak - Better spacing between price columns
 
 = 4.0 =
 
