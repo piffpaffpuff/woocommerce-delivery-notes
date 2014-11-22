@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Print Invoices & Delivery Notes\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
 "POT-Creation-Date: 2014-11-09 23:06+0100\n"
-"PO-Revision-Date: 2014-11-22 20:13+0100\n"
+"PO-Revision-Date: 2014-11-22 20:14+0100\n"
 "Last-Translator: Emil Stahl <emil@emilstahl.dk>\n"
 "Language-Team: \n"
 "Language: da_DK\n"
@@ -391,7 +391,7 @@ msgstr "Antal"
 
 #: ../templates/print-order/print-content.php:73
 msgid "Total"
-msgstr "I alt"
+msgstr "Total"
 
 #: ../templates/print-order/print-content.php:97
 msgid "Download:"
