@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Print Invoices & Delivery Notes\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
 "POT-Creation-Date: 2014-11-09 23:06+0100\n"
-"PO-Revision-Date: 2014-11-22 19:54+0100\n"
+"PO-Revision-Date: 2014-11-22 20:13+0100\n"
 "Last-Translator: Emil Stahl <emil@emilstahl.dk>\n"
 "Language-Team: \n"
 "Language: da_DK\n"
@@ -29,14 +29,15 @@ msgid "Print Order"
 msgstr "Udskriv ordre"
 
 #: ../includes/class-wcdn-settings.php:176
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You can preview the <a href=\"%1$s\" target=\"%4$s\" class=\"%5$s\">invoice</a>, <a href=\"%2$s\" target="
 "\"%4$s\" class=\"%5$s\">delivery note</a> or <a href=\"%3$s\" target=\"%4$s\" class=\"%5$s\">receipt</a> "
 "template."
 msgstr ""
-"Du kan se et eksempel på <a href=\"%1$s\" target=\"%3$s\" class=\"%4$s\">din faktura</a> eller <a href="
-"\"%2$s\" target=\"%3$s\" class=\"%4$s\">følgesedlen</a>."
+"Du kan se et eksempel på <a href=\"%1$s\" target=\"%4$s\" class=\"%5$s\">faktura</a>, <a href=\"%2$s\" "
+"target=\"%4$s\" class=\"%5$s\">følgeseddel</a> eller <a href=\"%3$s\" target=\"%4$s\" class=\"%5$s"
+"\">kvittering</a> skabelonen."
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:177
@@ -57,7 +58,7 @@ msgstr "Indsæt Logo"
 
 #: ../includes/class-wcdn-settings.php:199
 msgid "A company/shop logo representing your business."
-msgstr "Et firma/Shop Logo præsenterer din forretning"
+msgstr "Et virksomhed/butik logo der repræsenterer din virksomhed."
 
 #: ../includes/class-wcdn-settings.php:200 ../includes/class-wcdn-settings.php:213
 #: ../includes/class-wcdn-settings.php:226 ../includes/class-wcdn-settings.php:239
@@ -89,7 +90,9 @@ msgstr "Dit firma/shop navn til følgesedlen."
 msgid ""
 "Leave blank to use the default Website/Blog title defined in WordPress settings. The name will be ignored "
 "when a Logo is set."
-msgstr "Efterlad tom for at bruge standard-hjemmeside / blog titel defineret under WordPress-indstillinger."
+msgstr ""
+"Efterlad tom for at bruge standard-hjemmeside/blog titel defineret under WordPress-indstillinger.Navnet "
+"vil blive ignoreret, når et logo er valgt."
 
 #: ../includes/class-wcdn-settings.php:220
 msgid "Company/Shop Address"
@@ -103,7 +106,7 @@ msgstr "Postadressen bliver trykt til højre for Firma/Shop navn, ovenover ordre
 
 #: ../includes/class-wcdn-settings.php:227
 msgid "Leave blank to not print an address."
-msgstr "Efterlad tomt felt for ikke at udskrive en adresse."
+msgstr "Efterlad tomt for ikke at udskrive en adresse."
 
 #: ../includes/class-wcdn-settings.php:233
 msgid "Complimentary Close"
@@ -118,7 +121,7 @@ msgstr ""
 
 #: ../includes/class-wcdn-settings.php:240
 msgid "Leave blank to not print any personal notes."
-msgstr "Efterlad tomt felt for ikke at udskrive nogen besked."
+msgstr "Efterlad tomt for ikke at udskrive nogen personlige noter."
 
 #: ../includes/class-wcdn-settings.php:246
 msgid "Returns Policy, Conditions, etc"
@@ -136,7 +139,7 @@ msgstr ""
 
 #: ../includes/class-wcdn-settings.php:253
 msgid "Leave blank to not print any policies or conditions."
-msgstr "Efterlad tomt felt for ikke at policies eller conditions."
+msgstr "Efterlad tomt for ikke at udskrive betingelser."
 
 #: ../includes/class-wcdn-settings.php:259
 msgid "Footer"
@@ -150,7 +153,7 @@ msgstr "Tilføj nogle yderligere Footer imprints, ophavsret bemærkninger osv. "
 
 #: ../includes/class-wcdn-settings.php:266
 msgid "Leave blank to not print a footer."
-msgstr "Efterlad tomt felt for ikke udskrive en sidefod."
+msgstr "Efterlad tomt for ikke at udskrive sidefod."
 
 #: ../includes/class-wcdn-settings.php:272
 msgid "Types"
@@ -170,7 +173,7 @@ msgstr "Aktiver kvitteringer"
 
 #: ../includes/class-wcdn-settings.php:301
 msgid "Front-end Options"
-msgstr "Front-end indstillinger"
+msgstr "Frontend indstillinger"
 
 # @ woocommerce-delivery-notes
 #: ../includes/class-wcdn-settings.php:306
@@ -218,7 +221,7 @@ msgstr "Start faktureringen ved et specifikt nr."
 
 #: ../includes/class-wcdn-settings.php:370
 msgid "Use only integers."
-msgstr "Brug kun hele tal"
+msgstr "Brug kun hele tal."
 
 #: ../includes/class-wcdn-settings.php:376
 msgid "Invoice Number Prefix"
@@ -226,11 +229,11 @@ msgstr "Faktureringsnummer præfiks"
 
 #: ../includes/class-wcdn-settings.php:383
 msgid "This text will be prepended to the invoice number."
-msgstr "Denne tekst vil blive sat foran faktureringsnummeret"
+msgstr "Denne tekst vil blive sat foran faktureringsnummeret."
 
 #: ../includes/class-wcdn-settings.php:385
 msgid "Leave blank to not add a prefix."
-msgstr "Efterlad tomt felt for ikke at tilføje et præfiks."
+msgstr "Efterlad tomt for ikke at tilføje et præfiks."
 
 #: ../includes/class-wcdn-settings.php:391
 msgid "Invoice Number Suffix"
@@ -238,11 +241,11 @@ msgstr "Faktureringsnummer suffiks"
 
 #: ../includes/class-wcdn-settings.php:398
 msgid "This text will be appended to the invoice number."
-msgstr "Denne tekst vil blive sat bagefter faktureringsnummeret"
+msgstr "Denne tekst vil blive sat bagefter faktureringsnummeret."
 
 #: ../includes/class-wcdn-settings.php:400
 msgid "Leave blank to not add a suffix."
-msgstr "Efterlad tomt felt for ikke at tilføje et suffix."
+msgstr "Efterlad tomt for ikke at tilføje et suffix."
 
 #: ../includes/class-wcdn-settings.php:406
 msgid "Invoice Number Counter"
@@ -281,7 +284,7 @@ msgstr "Udskriv følgeseddel"
 #: ../includes/class-wcdn-writepanel.php:145 ../includes/class-wcdn-writepanel.php:146
 #: ../includes/class-wcdn-writepanel.php:275
 msgid "Print Receipt"
-msgstr "Udskriv faktura"
+msgstr "Udskriv kvittering"
 
 #: ../includes/class-wcdn-writepanel.php:237
 #, php-format
@@ -301,12 +304,12 @@ msgstr[1] "%s følgesedler oprettet."
 #, php-format
 msgid "Receipt created."
 msgid_plural "%s receipts created."
-msgstr[0] "Kvittering oprettet"
+msgstr[0] "Kvittering oprettet."
 msgstr[1] "%s kvitteringer er oprettet."
 
 #: ../includes/class-wcdn-writepanel.php:245
 msgid "Print now"
-msgstr "Udskriv faktura"
+msgstr "Udskriv nu"
 
 #: ../includes/class-wcdn-writepanel.php:256
 msgid "Order Printing"
