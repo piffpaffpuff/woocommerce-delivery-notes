@@ -4,433 +4,426 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Print Invoices & Delivery Notes\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
-"POT-Creation-Date: 2014-06-28 17:13+0100\n"
-"PO-Revision-Date: 2014-06-28 17:17+0100\n"
-"Last-Translator: Mathias Madsen <web@puf-lyx.dk>\n"
+"POT-Creation-Date: 2014-11-09 23:06+0100\n"
+"PO-Revision-Date: 2014-11-22 20:14+0100\n"
+"Last-Translator: Emil Stahl <emil@emilstahl.dk>\n"
 "Language-Team: \n"
 "Language: da_DK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.7beta2\n"
 
-#: ../includes/class-wcdn-settings.php:90 ../includes/class-wcdn-theme.php:48
-#: ../includes/class-wcdn-theme.php:83
-#: ../includes/wcdn-template-functions.php:120
+#: ../includes/class-wcdn-settings.php:72
+msgid "Do you really want to reset the counter to zero?"
+msgstr "Vil du virkelig nulstille tælleren til nul?"
+
+#: ../includes/class-wcdn-settings.php:102 ../includes/class-wcdn-theme.php:55
+#: ../includes/class-wcdn-theme.php:90 ../includes/wcdn-template-functions.php:127
 msgid "Print"
 msgstr "Udskriv"
 
-#: ../includes/class-wcdn-settings.php:128
+#: ../includes/class-wcdn-settings.php:157
 msgid "Print Order"
-msgstr "Udskriv"
+msgstr "Udskriv ordre"
 
-#: ../includes/class-wcdn-settings.php:147
+#: ../includes/class-wcdn-settings.php:176
 #, php-format
 msgid ""
-"You can preview the <a href=\"%1$s\" target=\"%3$s\" class=\"%4$s\">invoice "
-"template</a> or <a href=\"%2$s\" target=\"%3$s\" class=\"%4$s\">delivery "
-"note template</a>."
+"You can preview the <a href=\"%1$s\" target=\"%4$s\" class=\"%5$s\">invoice</a>, <a href=\"%2$s\" target="
+"\"%4$s\" class=\"%5$s\">delivery note</a> or <a href=\"%3$s\" target=\"%4$s\" class=\"%5$s\">receipt</a> "
+"template."
 msgstr ""
-"Du kan se et eksempel på <a href=\"%1$s\" target=\"%3$s\" class=\"%4$s\">din "
-"faktura</a> eller <a href=\"%2$s\" target=\"%3$s\" class=\"%4$s"
-"\">følgesedlen</a>."
+"Du kan se et eksempel på <a href=\"%1$s\" target=\"%4$s\" class=\"%5$s\">faktura</a>, <a href=\"%2$s\" "
+"target=\"%4$s\" class=\"%5$s\">følgeseddel</a> eller <a href=\"%3$s\" target=\"%4$s\" class=\"%5$s"
+"\">kvittering</a> skabelonen."
 
 # @ woocommerce-delivery-notes
-#: ../includes/class-wcdn-settings.php:148
-msgid ""
-"With the FAQ in the readme file you can learn how to customize the template."
-msgstr ""
-"I readme-filen finder du en FAQ hvor du kan lære hvordan du tilpasser "
-"skabelonerne."
+#: ../includes/class-wcdn-settings.php:177
+msgid "With the FAQ in the readme file you can learn how to customize the template."
+msgstr "I readme-filen finder du en FAQ hvor du kan lære hvordan du tilpasser skabelonerne."
 
-#: ../includes/class-wcdn-settings.php:159
+#: ../includes/class-wcdn-settings.php:188
 msgid "Company/Shop Logo"
 msgstr "Firma/Shop Logo"
 
-#: ../includes/class-wcdn-settings.php:165
+#: ../includes/class-wcdn-settings.php:194
 msgid "Remove Logo"
 msgstr "Fjern Logo"
 
-#: ../includes/class-wcdn-settings.php:166
+#: ../includes/class-wcdn-settings.php:195
 msgid "Set Logo"
 msgstr "Indsæt Logo"
 
-#: ../includes/class-wcdn-settings.php:170
+#: ../includes/class-wcdn-settings.php:199
 msgid "A company/shop logo representing your business."
-msgstr "Et firma/Shop Logo præsenterer din forretning"
+msgstr "Et virksomhed/butik logo der repræsenterer din virksomhed."
 
-#: ../includes/class-wcdn-settings.php:171
-#: ../includes/class-wcdn-settings.php:184
-#: ../includes/class-wcdn-settings.php:197
-#: ../includes/class-wcdn-settings.php:210
-#: ../includes/class-wcdn-settings.php:223
-#: ../includes/class-wcdn-settings.php:236
-#: ../includes/class-wcdn-settings.php:312
-#: ../includes/class-wcdn-settings.php:328
-#: ../includes/class-wcdn-settings.php:344
+#: ../includes/class-wcdn-settings.php:200 ../includes/class-wcdn-settings.php:213
+#: ../includes/class-wcdn-settings.php:226 ../includes/class-wcdn-settings.php:239
+#: ../includes/class-wcdn-settings.php:252 ../includes/class-wcdn-settings.php:265
+#: ../includes/class-wcdn-settings.php:369 ../includes/class-wcdn-settings.php:384
+#: ../includes/class-wcdn-settings.php:399
 msgid "Note:"
 msgstr "Note:"
 
-#: ../includes/class-wcdn-settings.php:172
+#: ../includes/class-wcdn-settings.php:201
 msgid ""
-"When the image is printed, its pixel density will automatically be eight "
-"times higher than the original. This means, 1 printed inch will correspond "
-"to about 288 pixels on the screen. Example: an image with a width of 576 "
-"pixels and a height of 288 pixels will have a printed size of about 2 inches "
-"to 1 inch."
+"When the image is printed, its pixel density will automatically be eight times higher than the original. "
+"This means, 1 printed inch will correspond to about 288 pixels on the screen. Example: an image with a "
+"width of 576 pixels and a height of 288 pixels will have a printed size of about 2 inches to 1 inch."
 msgstr ""
-"Når billedet udskrives, vil dens pixeltæthed automatisk være otte gange "
-"højere end den oprindelige. Dette betyder, at 1 cm papir er ca 113 pixels på "
-"skærmen. Eksempel: et billede med en bredde på 600 pixel og en højde på 400 "
-"pixels har en trykt størrelse på omkring 5,3 * 3,5 cm."
+"Når billedet udskrives, vil dens pixeltæthed automatisk være otte gange højere end den oprindelige. Dette "
+"betyder, at 1 cm papir er ca 113 pixels på skærmen. Eksempel: et billede med en bredde på 600 pixel og en "
+"højde på 400 pixels har en trykt størrelse på omkring 5,3 * 3,5 cm."
 
-#: ../includes/class-wcdn-settings.php:178
+#: ../includes/class-wcdn-settings.php:207
 msgid "Company/Shop Name"
 msgstr "Firme/Shop Navn"
 
-#: ../includes/class-wcdn-settings.php:183
+#: ../includes/class-wcdn-settings.php:212
 msgid "Your company/shop name for the Delivery Note."
-msgstr "Dit firma/shop navn for Følgesedlen."
+msgstr "Dit firma/shop navn til følgesedlen."
 
-#: ../includes/class-wcdn-settings.php:185
+#: ../includes/class-wcdn-settings.php:214
 msgid ""
-"Leave blank to use the default Website/Blog title defined in WordPress "
-"settings. The name will be ignored when a Logo is set."
+"Leave blank to use the default Website/Blog title defined in WordPress settings. The name will be ignored "
+"when a Logo is set."
 msgstr ""
-"Efterlad tom for at bruge standard-hjemmeside / blog titel defineret under "
-"WordPress-indstillinger."
+"Efterlad tom for at bruge standard-hjemmeside/blog titel defineret under WordPress-indstillinger.Navnet "
+"vil blive ignoreret, når et logo er valgt."
 
-#: ../includes/class-wcdn-settings.php:191
+#: ../includes/class-wcdn-settings.php:220
 msgid "Company/Shop Address"
 msgstr "Firma/Shop Adresse"
 
-#: ../includes/class-wcdn-settings.php:196
+#: ../includes/class-wcdn-settings.php:225
 msgid ""
-"The postal address of the company/shop or even e-mail or telephone, which "
-"gets printed right after the company/shop name."
-msgstr ""
-"Postadressen bliver trykt til højre for Firma/Shop navn, ovenover "
-"ordrelisten."
+"The postal address of the company/shop or even e-mail or telephone, which gets printed right after the "
+"company/shop name."
+msgstr "Postadressen bliver trykt til højre for Firma/Shop navn, ovenover ordrelisten."
 
-#: ../includes/class-wcdn-settings.php:198
+#: ../includes/class-wcdn-settings.php:227
 msgid "Leave blank to not print an address."
-msgstr "Efterlad tomt felt for ikke at udskrive en adresse."
+msgstr "Efterlad tomt for ikke at udskrive en adresse."
 
-#: ../includes/class-wcdn-settings.php:204
+#: ../includes/class-wcdn-settings.php:233
 msgid "Complimentary Close"
 msgstr "Personlig afslutning"
 
-#: ../includes/class-wcdn-settings.php:209
+#: ../includes/class-wcdn-settings.php:238
 msgid ""
-"Add some personal notes, or season greetings or whatever (e.g. Thank You for "
-"Your Order!, Merry Christmas!, etc.)."
+"Add some personal notes, or season greetings or whatever (e.g. Thank You for Your Order!, Merry "
+"Christmas!, etc.)."
 msgstr ""
-"Tilføj nogle personlige beskeder, eller lignende (f.eks Tak for din "
-"bestilling!, Glædelig Jul!, Osv.)."
+"Tilføj nogle personlige beskeder, eller lignende (f.eks Tak for din bestilling!, Glædelig Jul!, Osv.)."
 
-#: ../includes/class-wcdn-settings.php:211
+#: ../includes/class-wcdn-settings.php:240
 msgid "Leave blank to not print any personal notes."
-msgstr "Efterlad tomt felt for ikke at udskrive nogen besked."
+msgstr "Efterlad tomt for ikke at udskrive nogen personlige noter."
 
-#: ../includes/class-wcdn-settings.php:217
+#: ../includes/class-wcdn-settings.php:246
 msgid "Returns Policy, Conditions, etc"
 msgstr "Returpolitik, Salgsbetingelser mv:"
 
-#: ../includes/class-wcdn-settings.php:222
+#: ../includes/class-wcdn-settings.php:251
 msgid ""
-"Here you can add some more policies, conditions etc. For example add a "
-"returns policy in case the client would like to send back some goods. In "
-"some countries (e.g. in the European Union) this is required so please add "
-"any required info in accordance with the statutory regulations."
+"Here you can add some more policies, conditions etc. For example add a returns policy in case the client "
+"would like to send back some goods. In some countries (e.g. in the European Union) this is required so "
+"please add any required info in accordance with the statutory regulations."
 msgstr ""
-"Her kan du tilføje vilkår mv. For eksempel tilføje en returpolitik i "
-"tilfælde af at kunden gerne vil sende varer tilbage. I nogle lande (f.eks i "
-"Den Europæiske Union) dette er påkrævet, så kan du tilføje alle nødvendige "
-"oplysninger i overensstemmelse med de lovmæssige bestemmelser."
+"Her kan du tilføje vilkår mv. For eksempel tilføje en returpolitik i tilfælde af at kunden gerne vil sende "
+"varer tilbage. I nogle lande (f.eks i Den Europæiske Union) dette er påkrævet, så kan du tilføje alle "
+"nødvendige oplysninger i overensstemmelse med de lovmæssige bestemmelser."
 
-#: ../includes/class-wcdn-settings.php:224
+#: ../includes/class-wcdn-settings.php:253
 msgid "Leave blank to not print any policies or conditions."
-msgstr "Efterlad tomt felt for ikke at udskrive noget."
+msgstr "Efterlad tomt for ikke at udskrive betingelser."
 
-#: ../includes/class-wcdn-settings.php:230
+#: ../includes/class-wcdn-settings.php:259
 msgid "Footer"
 msgstr "Sidefod"
 
-#: ../includes/class-wcdn-settings.php:235
+#: ../includes/class-wcdn-settings.php:264
 msgid ""
-"Add some further footer imprint, e-mail, telephone, copyright notes etc. "
-"This makes the printed sheets a bit more branded."
+"Add some further footer imprint, e-mail, telephone, copyright notes etc. This makes the printed sheets a "
+"bit more branded."
 msgstr "Tilføj nogle yderligere Footer imprints, ophavsret bemærkninger osv. "
 
-#: ../includes/class-wcdn-settings.php:237
+#: ../includes/class-wcdn-settings.php:266
 msgid "Leave blank to not print a footer."
-msgstr "Efterlad tomt felt for ikke at udskrive footer."
+msgstr "Efterlad tomt for ikke at udskrive sidefod."
 
-#: ../includes/class-wcdn-settings.php:244
+#: ../includes/class-wcdn-settings.php:272
+msgid "Types"
+msgstr "Typer"
+
+#: ../includes/class-wcdn-settings.php:279
+msgid "Enable Invoices"
+msgstr "Aktiver fakturaer"
+
+#: ../includes/class-wcdn-settings.php:286
+msgid "Enable Delivery Notes"
+msgstr "Aktiver følgesedler"
+
+#: ../includes/class-wcdn-settings.php:293
+msgid "Enable Receipts"
+msgstr "Aktiver kvitteringer"
+
+#: ../includes/class-wcdn-settings.php:301
 msgid "Front-end Options"
-msgstr "Front-end indstillinger"
+msgstr "Frontend indstillinger"
 
 # @ woocommerce-delivery-notes
-#: ../includes/class-wcdn-settings.php:249
+#: ../includes/class-wcdn-settings.php:306
 msgid "Print Page Endpoint"
 msgstr "Print-sidens slutpunkt"
 
 # @ woocommerce-delivery-notes
-#: ../includes/class-wcdn-settings.php:256
-msgid ""
-"The endpoint is appended to the accounts page URL to print the order. It "
-"should be unique."
-msgstr ""
-"Dette slutpunkt bliver tilføjet på konto-sidens URL når der printes en "
-"ordre. Dette skal være unikt."
+#: ../includes/class-wcdn-settings.php:313
+msgid "The endpoint is appended to the accounts page URL to print the order. It should be unique."
+msgstr "Dette slutpunkt bliver tilføjet på konto-sidens URL når der printes en ordre. Dette skal være unikt."
 
-#: ../includes/class-wcdn-settings.php:262
+#: ../includes/class-wcdn-settings.php:319
 msgid "Print Buttons"
 msgstr "Print-knapper"
 
 # @ woocommerce-delivery-notes
-#: ../includes/class-wcdn-settings.php:269
+#: ../includes/class-wcdn-settings.php:326
 msgid "Show print button on the \"View Order\" page"
 msgstr "Vis print-knapper på  \"Vis ordre\" -siden"
 
 # @ woocommerce-delivery-notes
-#: ../includes/class-wcdn-settings.php:276
+#: ../includes/class-wcdn-settings.php:333
 msgid "Show print buttons on the \"My Account\" page"
 msgstr "Vis print-knapperne by \"Min Konto\" -siden"
 
-#: ../includes/class-wcdn-settings.php:284
+#: ../includes/class-wcdn-settings.php:341
 msgid "Order Numbering"
-msgstr "Ordrenr."
+msgstr "Ordre nummerering"
 
-#: ../includes/class-wcdn-settings.php:289
-#: ../includes/wcdn-template-functions.php:209
+#: ../includes/class-wcdn-settings.php:346 ../includes/wcdn-template-functions.php:224
 msgid "Invoice Number"
-msgstr "Faktura"
+msgstr "Fakturanummer"
 
-#: ../includes/class-wcdn-settings.php:297
+#: ../includes/class-wcdn-settings.php:354
 msgid "Create invoice numbers"
 msgstr "Opret fakturerings-numre"
 
-#: ../includes/class-wcdn-settings.php:304
+#: ../includes/class-wcdn-settings.php:361
 msgid "Invoice Number Start"
 msgstr "Fakturerings-start nr."
 
-#: ../includes/class-wcdn-settings.php:311
+#: ../includes/class-wcdn-settings.php:368
 msgid "Start the numbering at the specified number."
 msgstr "Start faktureringen ved et specifikt nr."
 
-#: ../includes/class-wcdn-settings.php:313
+#: ../includes/class-wcdn-settings.php:370
 msgid "Use only integers."
-msgstr "Brug kun hele tal"
+msgstr "Brug kun hele tal."
 
-#: ../includes/class-wcdn-settings.php:314
-#: ../includes/class-wcdn-settings.php:330
-#: ../includes/class-wcdn-settings.php:346
-msgid "Already created invoice numbers are not affected by changes."
-msgstr "Allerede oprettede faktureringsnumre er ikke påvirket af ændringerne"
-
-#: ../includes/class-wcdn-settings.php:320
+#: ../includes/class-wcdn-settings.php:376
 msgid "Invoice Number Prefix"
-msgstr "Faktureringsnr. præfiks"
+msgstr "Faktureringsnummer præfiks"
 
-#: ../includes/class-wcdn-settings.php:327
+#: ../includes/class-wcdn-settings.php:383
 msgid "This text will be prepended to the invoice number."
-msgstr "Denne tekst vil blive sat foran faktureringsnummeret"
+msgstr "Denne tekst vil blive sat foran faktureringsnummeret."
 
-#: ../includes/class-wcdn-settings.php:329
+#: ../includes/class-wcdn-settings.php:385
 msgid "Leave blank to not add a prefix."
-msgstr "Efterlad tomt felt for ikke at udskrive en adresse."
+msgstr "Efterlad tomt for ikke at tilføje et præfiks."
 
-#: ../includes/class-wcdn-settings.php:336
+#: ../includes/class-wcdn-settings.php:391
 msgid "Invoice Number Suffix"
-msgstr "Faktureringsnr. suffiks"
+msgstr "Faktureringsnummer suffiks"
 
-#: ../includes/class-wcdn-settings.php:343
+#: ../includes/class-wcdn-settings.php:398
 msgid "This text will be appended to the invoice number."
-msgstr "Denne tekst vil blive sat bagefter faktureringsnummeret"
+msgstr "Denne tekst vil blive sat bagefter faktureringsnummeret."
 
-#: ../includes/class-wcdn-settings.php:345
+#: ../includes/class-wcdn-settings.php:400
 msgid "Leave blank to not add a suffix."
-msgstr "Efterlad tomt felt for ikke at udskrive footer."
+msgstr "Efterlad tomt for ikke at tilføje et suffix."
 
-#: ../includes/class-wcdn-settings.php:352
+#: ../includes/class-wcdn-settings.php:406
+msgid "Invoice Number Counter"
+msgstr "Fakturanummer tæller"
+
+#: ../includes/class-wcdn-settings.php:415
+msgid "Reset Counter"
+msgstr "﻿Nulstil tæller"
+
+#: ../includes/class-wcdn-settings.php:421
 msgid "Sequential Order Number"
 msgstr "Sekventiel ordrenummer"
 
-#: ../includes/class-wcdn-settings.php:356
+#: ../includes/class-wcdn-settings.php:426
 msgid "Sequential numbering is enabled."
 msgstr "Sekventiel ordrenummer er aktiveret"
 
-#: ../includes/class-wcdn-settings.php:358
+#: ../includes/class-wcdn-settings.php:428
 #, php-format
-msgid ""
-"Install and activate the free <a href=\"%s\">WooCommerce Sequential Order "
-"Numbers</a> Plugin."
-msgstr ""
-"Installer og aktiver den gratis <a href=\"%s\">WooCommerce Sekventil "
-"ordrenummer</ a>Plugin."
+msgid "Install and activate the free <a href=\"%s\">WooCommerce Sequential Order Numbers</a> Plugin."
+msgstr "Installer og aktiver den gratis <a href=\"%s\">WooCommerce Sekventil ordrenummer</ a>Plugin."
 
-#: ../includes/class-wcdn-writepanel.php:83
-#: ../includes/class-wcdn-writepanel.php:84
-#: ../includes/class-wcdn-writepanel.php:108
-#: ../includes/class-wcdn-writepanel.php:109
-#: ../includes/class-wcdn-writepanel.php:205
+#: ../includes/class-wcdn-writepanel.php:101 ../includes/class-wcdn-writepanel.php:102
+#: ../includes/class-wcdn-writepanel.php:135 ../includes/class-wcdn-writepanel.php:136
+#: ../includes/class-wcdn-writepanel.php:267
 msgid "Print Invoice"
-msgstr "Udskriv Faktura"
+msgstr "Udskriv faktura"
 
-#: ../includes/class-wcdn-writepanel.php:86
-#: ../includes/class-wcdn-writepanel.php:87
-#: ../includes/class-wcdn-writepanel.php:111
-#: ../includes/class-wcdn-writepanel.php:112
-#: ../includes/class-wcdn-writepanel.php:206
+#: ../includes/class-wcdn-writepanel.php:107 ../includes/class-wcdn-writepanel.php:108
+#: ../includes/class-wcdn-writepanel.php:140 ../includes/class-wcdn-writepanel.php:141
+#: ../includes/class-wcdn-writepanel.php:271
 msgid "Print Delivery Note"
-msgstr "Udskriv Følgeseddel"
+msgstr "Udskriv følgeseddel"
 
-#: ../includes/class-wcdn-writepanel.php:89
-#: ../includes/class-wcdn-writepanel.php:90
-#: ../includes/class-wcdn-writepanel.php:115
-#: ../includes/class-wcdn-writepanel.php:116
-#: ../includes/class-wcdn-writepanel.php:207
-#, fuzzy
+#: ../includes/class-wcdn-writepanel.php:113 ../includes/class-wcdn-writepanel.php:114
+#: ../includes/class-wcdn-writepanel.php:145 ../includes/class-wcdn-writepanel.php:146
+#: ../includes/class-wcdn-writepanel.php:275
 msgid "Print Receipt"
-msgstr "Udskriv Faktura"
+msgstr "Udskriv kvittering"
 
-#: ../includes/class-wcdn-writepanel.php:176
+#: ../includes/class-wcdn-writepanel.php:237
 #, php-format
 msgid "Invoice created."
 msgid_plural "%s invoices created."
-msgstr[0] "Faktura oprettet"
+msgstr[0] "Faktura oprettet."
 msgstr[1] "%s fakturaer er oprettet."
 
-#: ../includes/class-wcdn-writepanel.php:178
+#: ../includes/class-wcdn-writepanel.php:239
 #, php-format
 msgid "Delivery note created."
 msgid_plural "%s delivery notes created."
 msgstr[0] "Følgeseddel oprettet."
 msgstr[1] "%s følgesedler oprettet."
 
-#: ../includes/class-wcdn-writepanel.php:180
-#, fuzzy, php-format
+#: ../includes/class-wcdn-writepanel.php:241
+#, php-format
 msgid "Receipt created."
 msgid_plural "%s receipts created."
-msgstr[0] "Faktura oprettet"
-msgstr[1] "%s fakturaer er oprettet."
+msgstr[0] "Kvittering oprettet."
+msgstr[1] "%s kvitteringer er oprettet."
 
-#: ../includes/class-wcdn-writepanel.php:184
+#: ../includes/class-wcdn-writepanel.php:245
 msgid "Print now"
-msgstr "Udskriv Faktura"
+msgstr "Udskriv nu"
 
-#: ../includes/class-wcdn-writepanel.php:195
+#: ../includes/class-wcdn-writepanel.php:256
 msgid "Order Printing"
-msgstr "Udskriv Ordrer"
+msgstr "Ordre udskrivning"
 
-#: ../includes/class-wcdn-writepanel.php:218
+#: ../includes/class-wcdn-writepanel.php:288
 msgid "Invoice number: "
-msgstr "Faktura"
+msgstr "Fakturanummer:"
 
-#: ../includes/class-wcdn-writepanel.php:219
-#, fuzzy
+#: ../includes/class-wcdn-writepanel.php:289
 msgid "Invoice date: "
-msgstr "Faktura oprettet"
+msgstr "Faktura dato:"
 
-#: ../includes/wcdn-template-functions.php:32
+#: ../includes/wcdn-template-functions.php:39
 msgid "Invoice"
 msgstr "Faktura"
 
-#: ../includes/wcdn-template-functions.php:34
+#: ../includes/wcdn-template-functions.php:41
 msgid "Delivery Note"
 msgstr "Følgeseddel"
 
-#: ../includes/wcdn-template-functions.php:36
+#: ../includes/wcdn-template-functions.php:43
 msgid "Receipt"
-msgstr ""
+msgstr "Kvittering"
 
-#: ../includes/wcdn-template-functions.php:38
+#: ../includes/wcdn-template-functions.php:45
 msgid "Order"
-msgstr "Udskriv Ordrer"
+msgstr "Ordre"
 
-#: ../includes/wcdn-template-functions.php:215
+#: ../includes/wcdn-template-functions.php:230
 msgid "Order Number"
-msgstr "Ordrenr."
+msgstr "Ordrenummer"
 
-#: ../includes/wcdn-template-functions.php:220
+#: ../includes/wcdn-template-functions.php:235
 msgid "Order Date"
-msgstr "Udskriv Ordrer"
+msgstr "Ordre dato"
 
-#: ../includes/wcdn-template-functions.php:225
+#: ../includes/wcdn-template-functions.php:240
 msgid "Payment Method"
-msgstr "Betalingsmiddel"
+msgstr "Betalingsmetode"
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:231
+#: ../includes/wcdn-template-functions.php:246
 msgid "Email"
-msgstr "Email"
+msgstr "E-mail"
 
 # @ woocommerce-delivery-notes
-#: ../includes/wcdn-template-functions.php:238
+#: ../includes/wcdn-template-functions.php:253
 msgid "Telephone"
 msgstr "Telefon"
 
-#: ../includes/wcdn-template-functions.php:271
+#: ../includes/wcdn-template-functions.php:286
 msgid "SKU:"
 msgstr "SKU:"
 
 #: ../templates/print-order/print-content.php:28
 msgid "Billing Address"
-msgstr "Faktureringsdato"
+msgstr "Faktureringsadresse"
 
-#: ../templates/print-order/print-content.php:31
-#: ../templates/print-order/print-content.php:42
+#: ../templates/print-order/print-content.php:31 ../templates/print-order/print-content.php:40
 msgid "N/A"
 msgstr "N/A"
 
-#: ../templates/print-order/print-content.php:39
+#: ../templates/print-order/print-content.php:37
 msgid "Shipping Address"
-msgstr "Leveringsdato"
+msgstr "Leveringsadresse"
 
-#: ../templates/print-order/print-content.php:74
+#: ../templates/print-order/print-content.php:70
 msgid "Product"
 msgstr "Produkt"
 
-#: ../templates/print-order/print-content.php:75
+#: ../templates/print-order/print-content.php:71
+msgid "Price"
+msgstr "Pris"
+
+#: ../templates/print-order/print-content.php:72
 msgid "Quantity"
 msgstr "Antal"
 
-#: ../templates/print-order/print-content.php:76
+#: ../templates/print-order/print-content.php:73
 msgid "Total"
-msgstr "I alt"
+msgstr "Total"
 
-#: ../templates/print-order/print-content.php:100
+#: ../templates/print-order/print-content.php:97
 msgid "Download:"
 msgstr "Download:"
 
 # @ woocommerce-delivery-notes
-#: ../templates/print-order/print-content.php:101
+#: ../templates/print-order/print-content.php:98
 #, php-format
 msgid "%s Files"
 msgstr "%s filer"
 
-#: ../templates/print-order/print-content.php:148
+#: ../templates/print-order/print-content.php:149
 msgid "Customer Note"
 msgstr "Kundebemærkninger"
 
-#: ../woocommerce-delivery-notes.php:144
+#: ../woocommerce-delivery-notes.php:180
 msgid "Go to the settings page"
 msgstr "Gå til indstillinger"
 
-#: ../woocommerce-delivery-notes.php:144
+#: ../woocommerce-delivery-notes.php:180
 msgid "Settings"
 msgstr "Indstillinger"
 
+#~ msgid "Already created invoice numbers are not affected by changes."
+#~ msgstr "Allerede oprettede faktureringsnumre er ikke påvirket af ændringerne"
+
 #~ msgid ""
-#~ "For more advanced control copy <code>woocommerce-delivery-notes/templates/"
-#~ "print/style.css</code> to <code>your-theme-name/woocommerce/print/style."
-#~ "css</code>."
+#~ "For more advanced control copy <code>woocommerce-delivery-notes/templates/print/style.css</code> to "
+#~ "<code>your-theme-name/woocommerce/print/style.css</code>."
 #~ msgstr ""
-#~ "For mere avanceret kontrol, kopier <code>woocommerce-delivery-notes/"
-#~ "templates/print-order/style.css</code> til <code>dit-tema/woocommerce/"
-#~ "print-order/style.css</code>."
+#~ "For mere avanceret kontrol, kopier <code>woocommerce-delivery-notes/templates/print-order/style.css</"
+#~ "code> til <code>dit-tema/woocommerce/print-order/style.css</code>."
 
 #~ msgid "2.0"
 #~ msgstr "2.0"
@@ -487,42 +480,34 @@ msgstr "Indstillinger"
 #~ msgstr "WooCommerce Udskriver Faktura og Følgeseddel"
 
 #~ msgid ""
-#~ "Print order invoices & delivery notes for WooCommerce shop plugin. You "
-#~ "can add company/shop info as well as personal notes & policies to print "
-#~ "pages."
+#~ "Print order invoices & delivery notes for WooCommerce shop plugin. You can add company/shop info as "
+#~ "well as personal notes & policies to print pages."
 #~ msgstr ""
-#~ "Udskriv ordrer, fakturaer og følgesedler for WooCommerce butik plugin. Du "
-#~ "kan tilføje firma/shop info samt personlige noter og politikker til de "
-#~ "udskrivne sider."
+#~ "Udskriv ordrer, fakturaer og følgesedler for WooCommerce butik plugin. Du kan tilføje firma/shop info "
+#~ "samt personlige noter og politikker til de udskrivne sider."
 
 #~ msgid "Steve Clark, Triggvy Gunderson, David Decker"
 #~ msgstr "Steve Clark, Triggvy Gunderson, David Decker"
 
 #~ msgid ""
-#~ "This plugin enables you to add a Invoice or simple Delivery Note page for "
-#~ "printing for your orders in WooCommerce shop plugin. You can add your "
-#~ "company postal address, further add personal notes, refund or other "
-#~ "policies and a footer note/branding. This helps speed up your daily shop "
-#~ "and order management. In some countries (e.g. in the European Union) it "
-#~ "is also required to advice the customer with proper refund policies so "
-#~ "this little plugin might help you a bit with that too."
+#~ "This plugin enables you to add a Invoice or simple Delivery Note page for printing for your orders in "
+#~ "WooCommerce shop plugin. You can add your company postal address, further add personal notes, refund or "
+#~ "other policies and a footer note/branding. This helps speed up your daily shop and order management. In "
+#~ "some countries (e.g. in the European Union) it is also required to advice the customer with proper "
+#~ "refund policies so this little plugin might help you a bit with that too."
 #~ msgstr ""
-#~ "Dette plugin giver dig mulighed for at tilføje en Faktura eller "
-#~ "Leveringsbetingelse til udskrift af dine ordre i WooCommerce shop plugin. "
-#~ "Du kan tilføje dit firma's post-adresse og andre personlige meddelelser, "
-#~ "politik om refundering og andet, fodnoter og andet. Dette kan hjælpe dig "
-#~ "i den daglige administration af din shop. \n"
-#~ "I nogle lande (f.eks i Den Europæiske Union) er det også nødvendigt at "
-#~ "rådgive kunden med rette tilbagebetaling politikker, så det kan denne "
-#~ "lille plugin også hjælpe dig med."
+#~ "Dette plugin giver dig mulighed for at tilføje en Faktura eller Leveringsbetingelse til udskrift af "
+#~ "dine ordre i WooCommerce shop plugin. Du kan tilføje dit firma's post-adresse og andre personlige "
+#~ "meddelelser, politik om refundering og andet, fodnoter og andet. Dette kan hjælpe dig i den daglige "
+#~ "administration af din shop. \n"
+#~ "I nogle lande (f.eks i Den Europæiske Union) er det også nødvendigt at rådgive kunden med rette "
+#~ "tilbagebetaling politikker, så det kan denne lille plugin også hjælpe dig med."
 
 #~ msgid ""
-#~ "Just look under <a href=\"%1$s\">WooCommerce > Orders</a> and there go to "
-#~ "a single order view. On the right side you will see the Order Print meta "
-#~ "box. Click one of the buttons and you get the invoice or delivery note "
-#~ "printing page. Yes, it is that easy :-)."
+#~ "Just look under <a href=\"%1$s\">WooCommerce > Orders</a> and there go to a single order view. On the "
+#~ "right side you will see the Order Print meta box. Click one of the buttons and you get the invoice or "
+#~ "delivery note printing page. Yes, it is that easy :-)."
 #~ msgstr ""
-#~ "Se under <a href=\"%1$s\"> WooCommerce> Ordrer </ a>, og derfra gå til "
-#~ "den enkelte ordre udsigt. På højre side vil du se Udskriv Ordrer meta "
-#~ "boks. Klik på en af knapperne, og du får en faktura eller følgeseddel "
-#~ "udskrivning side. Ja, det er faktisk så let :-)."
+#~ "Se under <a href=\"%1$s\"> WooCommerce> Ordrer </ a>, og derfra gå til den enkelte ordre udsigt. På "
+#~ "højre side vil du se Udskriv Ordrer meta boks. Klik på en af knapperne, og du får en faktura eller "
+#~ "følgeseddel udskrivning side. Ja, det er faktisk så let :-)."
