@@ -1,0 +1,471 @@
+# This German Language File: Copyright (C) 2011-2013 by David Decker of deckerweb.de & genesisthemes.de
+# This file is distributed under the same license as the WooCommerce Print Invoices & Delivery Notes Plugin package.
+#
+# Weitere deutsche Sprachdateien fuer WooCommerce und Extensions (Erweiterungen)
+# sowie fuer WordPress-Plugins und -Themes finden Sie unter:
+# --> http://deckerweb.de/sprachdateien/
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Print Invoice & Delivery Note\n"
+"Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
+"POT-Creation-Date: 2014-12-29 12:21+0200\n"
+"PO-Revision-Date: 2014-12-29 13:07+0200\n"
+"Last-Translator: Risto Niinemets <risto@konekt.ee>\n"
+"Language-Team: \n"
+"Language: et_EE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;"
+"_nx:4c,1,2;_nx_noop:4c,1,2;esc_attr_e;esc_attr__\n"
+"X-Poedit-Basepath: .\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../includes/class-wcdn-settings.php:72
+msgid "Do you really want to reset the counter to zero?"
+msgstr "Kas oled kindel, et soovid algseadistada arvenumbri?"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:102 ../includes/class-wcdn-theme.php:55 ../includes/class-wcdn-theme.php:90
+#: ../includes/wcdn-template-functions.php:127
+msgid "Print"
+msgstr "Prindi"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:157
+msgid "Print Order"
+msgstr "Tellimuste printimine"
+
+#: ../includes/class-wcdn-settings.php:176
+#, php-format
+msgid ""
+"You can preview the <a href=\"%1$s\" target=\"%4$s\" class=\"%5$s\">invoice</a>, <a href=\"%2$s\" target=\"%4$s\" "
+"class=\"%5$s\">delivery note</a> or <a href=\"%3$s\" target=\"%4$s\" class=\"%5$s\">receipt</a> template."
+msgstr ""
+"Eelvaates on võimalik vaadata <a href=\"%1$s\" target=\"%4$s\" class=\"%5$s\">arve</a>, <a href=\"%2$s\" target="
+"\"%4$s\" class=\"%5$s\">saatepaberi</a> ning <a href=\"%3$s\" target=\"%4$s\" class=\"%5$s\">kviitungi</a> "
+"kujundust."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:177
+msgid "With the FAQ in the readme file you can learn how to customize the template."
+msgstr "Arvete, saatepaberite ning kviitungite kujunduse muutmise kohta on kirjas readme failis FAQ sektsioonis."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:188
+msgid "Company/Shop Logo"
+msgstr "Ettevõtte logo"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:194
+msgid "Remove Logo"
+msgstr "Eemalda logo"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:195
+msgid "Set Logo"
+msgstr "Määra logo"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:199
+msgid "A company/shop logo representing your business."
+msgstr "Ettevõtte/poe tunnusgraafika."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:200 ../includes/class-wcdn-settings.php:213
+#: ../includes/class-wcdn-settings.php:226 ../includes/class-wcdn-settings.php:239
+#: ../includes/class-wcdn-settings.php:252 ../includes/class-wcdn-settings.php:265
+#: ../includes/class-wcdn-settings.php:369 ../includes/class-wcdn-settings.php:384
+#: ../includes/class-wcdn-settings.php:399
+msgid "Note:"
+msgstr "Märkus:"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:201
+msgid ""
+"When the image is printed, its pixel density will automatically be eight times higher than the original. This "
+"means, 1 printed inch will correspond to about 288 pixels on the screen. Example: an image with a width of 576 "
+"pixels and a height of 288 pixels will have a printed size of about 2 inches to 1 inch."
+msgstr ""
+"Logo printimisel on pikslite tihedus automaatselt 8 korda kõrgem kui originaalis. See tähendab, et prinditud 1 "
+"toll (2.54cm) on vastav umbes 288 pikslile arvuti ekraanil. Näiteks: logo laiusega 576 pikslit ning kõrgusega 288 "
+"pikslit, on prinditult umbes 2 tolli laiune ning 1 tolli kõrgune."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:207
+msgid "Company/Shop Name"
+msgstr "Ettevõtte nimi"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:212
+msgid "Your company/shop name for the Delivery Note."
+msgstr "Sinu ettevõtte/poe nimetus saatepaberil."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:214
+msgid ""
+"Leave blank to use the default Website/Blog title defined in WordPress settings. The name will be ignored when a "
+"Logo is set."
+msgstr ""
+"Tühjaks jätmisel kasutatakse lehekülje vaikimisi pealkirja, mis on seadistatud sätetes. Nime ei näidata juhul, "
+"kui logo on määratud."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:220
+msgid "Company/Shop Address"
+msgstr "Ettevõtte aadress"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:225
+msgid ""
+"The postal address of the company/shop or even e-mail or telephone, which gets printed right after the company/"
+"shop name."
+msgstr "Ettevõtte/poe postiaadress, e-post või hoopis telefoni number, mis prinditakse nime järele."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:227
+msgid "Leave blank to not print an address."
+msgstr "Aadressi mitte printimiseks jäta see tühjaks."
+
+#: ../includes/class-wcdn-settings.php:233
+msgid "Complimentary Close"
+msgstr "Täiendav informatsioon"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:238
+msgid ""
+"Add some personal notes, or season greetings or whatever (e.g. Thank You for Your Order!, Merry Christmas!, etc.)."
+msgstr "Lisa näiteks tänutähed, hooajaline tervitus või midagi sarnast (näiteks Aitäh tellimuse eest! vms)."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:240
+msgid "Leave blank to not print any personal notes."
+msgstr "Täiendava informatsiooni mitte printimiseks jäta see tühjaks."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:246
+msgid "Returns Policy, Conditions, etc"
+msgstr "Tingimused"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:251
+msgid ""
+"Here you can add some more policies, conditions etc. For example add a returns policy in case the client would "
+"like to send back some goods. In some countries (e.g. in the European Union) this is required so please add any "
+"required info in accordance with the statutory regulations."
+msgstr ""
+"Siia on võimalik lisada tagastamise ja ostutingimused või muud taolist. Näiteks lisa tagastamise tingimused "
+"juhuks, kui klient soovib saata midagi tagasi. Euroopa liidus on selline informatsioon nõutud."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:253
+msgid "Leave blank to not print any policies or conditions."
+msgstr "Kasutustingimuste mitte printimiseks jäta see tühjaks."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:259
+msgid "Footer"
+msgstr "Jalus"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:264
+msgid ""
+"Add some further footer imprint, e-mail, telephone, copyright notes etc. This makes the printed sheets a bit more "
+"branded."
+msgstr ""
+"Lisa jalusesse veel lisaks informatsiooni, nagu näiteks e-posti aadress, telefon, kasutusõigused (copyright) või "
+"muud taolist. See muudab prinditud leheküljed rohkem esinduslikumaks."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:266
+msgid "Leave blank to not print a footer."
+msgstr "Jaluse mitte printimiseks jäta see tühjaks."
+
+#: ../includes/class-wcdn-settings.php:272
+msgid "Types"
+msgstr "Funktsioonid"
+
+#: ../includes/class-wcdn-settings.php:279
+msgid "Enable Invoices"
+msgstr "Aktiveeri arved"
+
+#: ../includes/class-wcdn-settings.php:286
+msgid "Enable Delivery Notes"
+msgstr "Aktiveeri saatekirjad"
+
+#: ../includes/class-wcdn-settings.php:293
+msgid "Enable Receipts"
+msgstr "Aktiveeri kviitungid"
+
+#: ../includes/class-wcdn-settings.php:301
+msgid "Front-end Options"
+msgstr "Avalehe seadistused"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:306
+msgid "Print Page Endpoint"
+msgstr "Printimise sihtpunkt"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:313
+msgid "The endpoint is appended to the accounts page URL to print the order. It should be unique."
+msgstr "Sihtpunkt lisatakse \"Minu Konto\" aadressi lõppu. See peab olema unikaalne."
+
+#: ../includes/class-wcdn-settings.php:319
+msgid "Print Buttons"
+msgstr "Printimise nupud"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:326
+msgid "Show print button on the \"View Order\" page"
+msgstr "Näita printimise nuppu \"Vaata tellimust\" leheküljel"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:333
+msgid "Show print buttons on the \"My Account\" page"
+msgstr "Näita printimise nuppu \"Minu konto\" leheküljel"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:341
+msgid "Order Numbering"
+msgstr "Tellimuste nummerdamine"
+
+#: ../includes/class-wcdn-settings.php:346 ../includes/wcdn-template-functions.php:224
+msgid "Invoice Number"
+msgstr "Arve number"
+
+#: ../includes/class-wcdn-settings.php:354
+msgid "Create invoice numbers"
+msgstr "Aktiveeri arvete nummerdamine"
+
+#: ../includes/class-wcdn-settings.php:361
+msgid "Invoice Number Start"
+msgstr "Arvete algusnumber"
+
+#: ../includes/class-wcdn-settings.php:368
+msgid "Start the numbering at the specified number."
+msgstr "Nummerdamist alustatakse sellest numbrist alates."
+
+#: ../includes/class-wcdn-settings.php:370
+msgid "Use only integers."
+msgstr "Kasuta ainult numbrilisi väärtuseid"
+
+#: ../includes/class-wcdn-settings.php:376
+msgid "Invoice Number Prefix"
+msgstr "Arvenumbri eesliide"
+
+#: ../includes/class-wcdn-settings.php:383
+msgid "This text will be prepended to the invoice number."
+msgstr "See tekst lisatakse arvenumbri ette."
+
+#: ../includes/class-wcdn-settings.php:385
+msgid "Leave blank to not add a prefix."
+msgstr "Eesliite mitte lisamiseks jäta see tühjaks."
+
+#: ../includes/class-wcdn-settings.php:391
+msgid "Invoice Number Suffix"
+msgstr "Arvenumbri järelliide"
+
+#: ../includes/class-wcdn-settings.php:398
+msgid "This text will be appended to the invoice number."
+msgstr "See tekst lisatakse arvenumbri lõppu."
+
+#: ../includes/class-wcdn-settings.php:400
+msgid "Leave blank to not add a suffix."
+msgstr "Järelliite mitte lisamiseks jäta see tühjaks."
+
+#: ../includes/class-wcdn-settings.php:406
+msgid "Invoice Number Counter"
+msgstr "Arvenumbri hetkeväärtus"
+
+#: ../includes/class-wcdn-settings.php:415
+msgid "Reset Counter"
+msgstr "Algseadista nummerdus"
+
+#: ../includes/class-wcdn-settings.php:421
+msgid "Sequential Order Number"
+msgstr "Järjestikune tellimuste nummerdamine"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:426
+msgid "Sequential numbering is enabled."
+msgstr "Järjestikune nummerdamine on aktiveeritud."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:428
+#, php-format
+msgid "Install and activate the free <a href=\"%s\">WooCommerce Sequential Order Numbers</a> Plugin."
+msgstr "Lae alla ja aktiveeri tasuta <a href=\"%s\">WooCommerce Sequential Order Numbers</a> plugin."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-writepanel.php:101 ../includes/class-wcdn-writepanel.php:102
+#: ../includes/class-wcdn-writepanel.php:135 ../includes/class-wcdn-writepanel.php:136
+#: ../includes/class-wcdn-writepanel.php:267
+msgid "Print Invoice"
+msgstr "Prindi arve"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-writepanel.php:107 ../includes/class-wcdn-writepanel.php:108
+#: ../includes/class-wcdn-writepanel.php:140 ../includes/class-wcdn-writepanel.php:141
+#: ../includes/class-wcdn-writepanel.php:271
+msgid "Print Delivery Note"
+msgstr "Prindi saatepaber"
+
+#: ../includes/class-wcdn-writepanel.php:113 ../includes/class-wcdn-writepanel.php:114
+#: ../includes/class-wcdn-writepanel.php:145 ../includes/class-wcdn-writepanel.php:146
+#: ../includes/class-wcdn-writepanel.php:275
+msgid "Print Receipt"
+msgstr "Prindi kviitung"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-writepanel.php:237
+#, php-format
+msgid "Invoice created."
+msgid_plural "%s invoices created."
+msgstr[0] "Arve on loodud."
+msgstr[1] "Kokku loodi %s arvet."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-writepanel.php:239
+#, php-format
+msgid "Delivery note created."
+msgid_plural "%s delivery notes created."
+msgstr[0] "Saatepaber on loodud."
+msgstr[1] "Kokku loodi %s saatepaberit."
+
+#: ../includes/class-wcdn-writepanel.php:241
+#, php-format
+msgid "Receipt created."
+msgid_plural "%s receipts created."
+msgstr[0] "Kviitung on loodud."
+msgstr[1] "Kokku loodi %s kviitungit."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-writepanel.php:245
+msgid "Print now"
+msgstr "Prindi välja"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-writepanel.php:256
+msgid "Order Printing"
+msgstr "Tellimuse printimine"
+
+#: ../includes/class-wcdn-writepanel.php:288
+msgid "Invoice number: "
+msgstr "Arve number:"
+
+#: ../includes/class-wcdn-writepanel.php:289
+msgid "Invoice date: "
+msgstr "Arve kuupäev:"
+
+# @ woocommerce-delivery-notes
+#: ../includes/wcdn-template-functions.php:39
+msgid "Invoice"
+msgstr "Arve"
+
+# @ woocommerce-delivery-notes
+#: ../includes/wcdn-template-functions.php:41
+msgid "Delivery Note"
+msgstr "Saatepaber"
+
+#: ../includes/wcdn-template-functions.php:43
+msgid "Receipt"
+msgstr "Kviitung"
+
+# @ woocommerce-delivery-notes
+#: ../includes/wcdn-template-functions.php:45
+msgid "Order"
+msgstr "Tellimus"
+
+# @ woocommerce-delivery-notes
+#: ../includes/wcdn-template-functions.php:230
+msgid "Order Number"
+msgstr "Tellimuse nr"
+
+# @ woocommerce-delivery-notes
+#: ../includes/wcdn-template-functions.php:235
+msgid "Order Date"
+msgstr "Tellimuse kuupäev"
+
+# @ woocommerce-delivery-notes
+#: ../includes/wcdn-template-functions.php:240
+msgid "Payment Method"
+msgstr "Maksemeetod"
+
+# @ woocommerce-delivery-notes
+#: ../includes/wcdn-template-functions.php:246
+msgid "Email"
+msgstr "E-post"
+
+# @ woocommerce-delivery-notes
+#: ../includes/wcdn-template-functions.php:253
+msgid "Telephone"
+msgstr "Telefon"
+
+#: ../includes/wcdn-template-functions.php:286
+msgid "SKU:"
+msgstr "SKU:"
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:28
+msgid "Billing Address"
+msgstr "Arvelduse aadress"
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:31 ../templates/print-order/print-content.php:40
+msgid "N/A"
+msgstr "N/A"
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:37
+msgid "Shipping Address"
+msgstr "Tarneaadress"
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:70
+msgid "Product"
+msgstr "Toote"
+
+#: ../templates/print-order/print-content.php:71
+msgid "Price"
+msgstr "Hind"
+
+#: ../templates/print-order/print-content.php:72
+msgid "Quantity"
+msgstr "Kogus"
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:73
+msgid "Total"
+msgstr "Kokku"
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:97
+msgid "Download:"
+msgstr "Lae alla:"
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:98
+#, php-format
+msgid "%s Files"
+msgstr "%s faili"
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:149
+msgid "Customer Note"
+msgstr "Kliendi märkmed"
+
+# @ woocommerce-delivery-notes
+#: ../woocommerce-delivery-notes.php:180
+msgid "Go to the settings page"
+msgstr "Mine seadete leheküljele"
+
+# @ woocommerce-delivery-notes
+#: ../woocommerce-delivery-notes.php:180
+msgid "Settings"
+msgstr "Seaded"
