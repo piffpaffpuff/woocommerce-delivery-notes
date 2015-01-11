@@ -72,7 +72,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 			self::$plugin_path = trailingslashit( dirname( self::$plugin_basefile_path ) );	
 			
 			// Set hooks and wait for WooCommerce to load
-			add_action( 'plugins_loaded', array( $this, 'localise' ) );
+			add_action( 'init', array( $this, 'localise' ) );
 			add_action( 'woocommerce_init', array( $this, 'load' ) );
 		}
 		
@@ -99,14 +99,16 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 * Load the localisation 
 		 */
 		public function localise() {	
+			$domain = 'woocommerce-delivery-notes';
+						
 			// Load language files from the wp-content/languages/plugins folder
 			$mo_file = WP_LANG_DIR . '/plugins/woocommerce-delivery-notes-' . get_locale() . '.mo';
 			if( is_readable( $mo_file ) ) {
-				load_textdomain( 'woocommerce-delivery-notes', $mo_file );
+				load_textdomain( $domain, $mo_file );
 			}
 
 			// Otherwise load them from the plugin folder
-			load_plugin_textdomain( 'woocommerce-delivery-notes', false, dirname( self::$plugin_basefile ) . '/languages/' );
+			load_plugin_textdomain( $domain, false, dirname( self::$plugin_basefile ) . '/languages/' );
 		}
 		
 		/**
