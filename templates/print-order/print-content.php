@@ -23,7 +23,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 				</div><!-- .order-branding -->
 
 
-				<div class="order-addresses <?php if( wcdn_has_shipping_address( $order ) ) : ?>shipping-active<?php endif; ?>">
+				<div class="order-addresses<?php if( !wcdn_has_shipping_address( $order ) ) : ?> no-shipping-address<?php endif; ?>">
 					<div class="billing-address">
 						<h3><?php _e( 'Billing Address', 'woocommerce-delivery-notes' ); ?></h3>
 						<address>
@@ -33,7 +33,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 						</address>
 					</div>
 					
-					<div class="shipping-address">
+					<div class="shipping-address">						
 						<h3><?php _e( 'Shipping Address', 'woocommerce-delivery-notes' ); ?></h3>
 						<address>
 	
@@ -124,17 +124,15 @@ if ( !defined( 'ABSPATH' ) ) exit;
 							<?php endif; ?>
 						</tbody>
 						
-						<tfoot>
+						<tfoot>							
 							<?php if( $totals = $order->get_order_item_totals() ) : ?>
-								<?php foreach ( $totals as $total ) : ?>
-										
-										<tr>
-											<td class="total-name"><span><?php echo $total['label']; ?></span></td>
-											<td class="total-item-price"></td>
-											<td class="total-quantity"></td>
-											<td class="total-price"><span><?php echo $total['value']; ?></span></td>
-										</tr>
-								
+								<?php foreach( $totals as $total ) : ?>
+									<tr>
+										<td class="total-name"><span><?php echo $total['label']; ?></span></td>
+										<td class="total-item-price"></td>
+										<td class="total-quantity"></td>
+										<td class="total-price"><span><?php echo $total['value']; ?></span></td>
+									</tr>
 								<?php endforeach; ?>
 							<?php endif; ?>
 						</tfoot>

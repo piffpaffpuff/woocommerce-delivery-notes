@@ -32,6 +32,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 			add_action( 'woocommerce_view_order', array( $this, 'create_print_button_order_page' ) );
 			add_action( 'woocommerce_thankyou', array( $this, 'create_print_button_order_page' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ) );
+			add_action( 'woocommerce_email_after_order_table', array( $this, 'add_email_print_url' ), 100, 3 );
 		}
 
 		/**
@@ -90,6 +91,27 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 					<a href="<?php echo $print_url; ?>" class="button print"><?php _e( 'Print', 'woocommerce-delivery-notes' ); ?></a>
 				</p>
 				<?php
+			}
+		}
+				
+		/**
+		 * Add a print url to the emails that are sent to the customer
+		 */		
+		public function add_email_print_url( $order, $sent_to_admin, $plain_text ) {
+			if( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'email_print_link' ) ) {				
+				if( $order->billing_email && !$sent_to_admin ) {
+					$url = wcdn_get_print_link( $order->id, $this->get_template_type( $order ), $order->billing_email, true );
+					
+					if( $plain_text ) :
+echo __( 'Print your order', 'woocommerce-delivery-notes' ) . "\n\n";
+
+echo $url . "\n";
+ 
+echo "\n****************************************************\n\n";
+					else : ?>
+						<p><strong><?php _e( 'Print:', 'woocommerce-delivery-notes' ); ?></strong> <a href="<?php echo $url; ?>"><?php _e( 'Open print view in browser', 'woocommerce-delivery-notes' ); ?></a></p>
+					<?php endif; 
+				}
 			}
 		}
 		

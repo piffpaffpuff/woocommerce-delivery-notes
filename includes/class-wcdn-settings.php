@@ -69,7 +69,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			wp_enqueue_script( 'woocommerce-delivery-notes-admin', WooCommerce_Delivery_Notes::$plugin_url . 'js/admin.js', array( 'jquery', 'custom-header', 'woocommerce-delivery-notes-print-link' ) );
 
 			// Localize the script strings
-			$translation = array( 'resetCounter' => __( 'Do you really want to reset the counter to zero?' ) );
+			$translation = array( 'resetCounter' => __( 'Do you really want to reset the counter to zero? This process can\'t be undone.', 'woocommerce-delivery-notes' ) );
 			wp_localize_script( 'woocommerce-delivery-notes-admin', 'WCDNText', $translation );
 		}
 		
@@ -163,7 +163,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 					'posts_per_page' => 1
 				);
 				$query = new WP_Query( $args );
-			
+
 				if($query->have_posts()) : ?>
 					<?php
 					$results = $query->get_posts();
@@ -267,38 +267,34 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							</span>
 						</td>
 					</tr>
+				</tbody>
+			</table>
+
+			<h3><?php _e( 'Print Options', 'woocommerce-delivery-notes' ); ?></h3>
+			<table class="form-table">
+				<tbody>	
 					<tr>
 						<th>
 							<?php _e( 'Types', 'woocommerce-delivery-notes' ); ?>
 						</th>
 						<td>
-							<fieldset>
-								<label>
-									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>template_type_invoice" type="hidden" value="" />
-									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>template_type_invoice" type="checkbox" value="1" <?php checked( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_invoice' ), 1 ); ?> />
-									<?php _e( 'Enable Invoices', 'woocommerce-delivery-notes' ); ?>
-								</label>
-							</fieldset>
-							<fieldset>
-								<label>
-									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>template_type_delivery_note" type="hidden" value="" />
-									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>template_type_delivery_note" type="checkbox" value="1" <?php checked( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_delivery_note' ), 1 ); ?> />
-									<?php _e( 'Enable Delivery Notes', 'woocommerce-delivery-notes' ); ?>
-								</label>
-							</fieldset>
-							<fieldset>
-								<label>
-									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>template_type_receipt" type="hidden" value="" />
-									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>template_type_receipt" type="checkbox" value="1" <?php checked( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_receipt' ), 1 ); ?> />
-									<?php _e( 'Enable Receipts', 'woocommerce-delivery-notes' ); ?>
-								</label>
-							</fieldset>
+							<?php foreach( WooCommerce_Delivery_Notes_Print::$templates as $template ) : ?>
+																	
+								<fieldset>
+									<label>
+										<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>template_type_<?php echo $template['type']; ?>" type="hidden" value="" />
+										<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>template_type_<?php echo $template['type']; ?>" type="checkbox" value="1" <?php checked( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_' . $template['type'] ), 1 ); ?> />
+										<?php _e( $template['labels']['setting'], 'woocommerce-delivery-notes' ); ?>
+									</label>
+								</fieldset>
+								
+							<?php endforeach; ?>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 
-			<h3><?php _e( 'Front-end Options', 'woocommerce-delivery-notes' ); ?></h3>
+			<h3><?php _e( 'Theme Options', 'woocommerce-delivery-notes' ); ?></h3>
 			<table class="form-table">
 				<tbody>	
 					<tr>
@@ -316,7 +312,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 					</tr>
 					<tr>
 						<th>
-							<?php _e( 'Print Buttons', 'woocommerce-delivery-notes' ); ?>
+							<?php _e( 'My Account', 'woocommerce-delivery-notes' ); ?>
 						</th>
 						<td>
 							<fieldset>
@@ -335,6 +331,23 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							</fieldset>
 						</td>
 					</tr>
+					<tr>
+						<th>
+							<?php _e( 'Email', 'woocommerce-delivery-notes' ); ?>
+						</th>
+						<td>
+							<fieldset>
+								<label>
+									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>email_print_link" type="hidden" value="" />
+									<input name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>email_print_link" type="checkbox" value="1" <?php checked( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'email_print_link' ), 1 ); ?> />
+									<?php _e( 'Show print link in customer emails', 'woocommerce-delivery-notes' ); ?>
+								</label>
+							</fieldset>
+							<span class="description">
+								<?php _e( 'This includes the emails for a new, processing and completed order. On top of that the customer invoice email also includes the link.', 'woocommerce-delivery-notes' ); ?>
+							</span>
+						</td>
+					</tr>
 				</tbody>
 			</table>
 			
@@ -343,7 +356,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 				<tbody>
 					<tr>
 						<th>
-							<?php _e( 'Invoice Number', 'woocommerce-delivery-notes' ); ?>
+							<?php _e( 'Invoice Numbering', 'woocommerce-delivery-notes' ); ?>
 						</th>
 						<td>
 							<p>
@@ -412,7 +425,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 									$invoice_counter = intval( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_counter', 0 ) );
 								?>
 								<span id="invoice-counter-value"><?php echo $invoice_counter; ?></span>
-								<a href="#" id="reset-invoice-counter" class="button"><?php _e( 'Reset Counter', 'woocommerce-delivery-notes' ); ?></a>
+								<a href="#" id="reset-invoice-counter" class="button"><?php _e( 'Reset Counter …', 'woocommerce-delivery-notes' ); ?></a>
 							</p>
 						</td>
 					</tr>

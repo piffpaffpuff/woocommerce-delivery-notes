@@ -82,7 +82,7 @@ tr {
 
 td,
 th {
-	padding: 0.375em 0.65em 0.375em 0;
+	padding: 0.375em 0.75em 0.375em 0;
 	vertical-align: top;
 }
 
@@ -169,6 +169,16 @@ h2 {
 	float: left;
 }
 
+.order-addresses.no-shipping-address .shipping-address {
+	display: none;
+}
+
+/*
+.order-addresses.no-shipping-address .billing-address {
+	margin-left: 50%;
+}
+*/
+
 /* Switch the addresses for invoices */
 
 /* Order Info */
@@ -182,6 +192,7 @@ h2 {
 
 .order-info li strong {
 	min-width: 18%;
+	font-weight: normal;
 	display: inline-block;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -216,10 +227,6 @@ h2 {
 	width: 20%;
 }
 
-.order-items tbody .name {
-	font-weight: bold;
-}
-
 .order-items p {
 	display: inline;
 }
@@ -245,20 +252,13 @@ h2 {
 	padding-right: 0.2em;
 }
 
+.order-items tfoot tr:first-child,
 .order-items tfoot tr:last-child {
 	font-weight: bold;
 }
 
-.order-items tfoot tr:last-child .total-price {
-	font-size: 0.785em;
-	font-weight: normal;
-	line-height: 200%;
-}
-
 .order-items tfoot tr:last-child .total-price .amount:first-child {
-	font-size: 1.273em;
 	font-weight: bold;
-	line-height: 1.273em;
 }
 
 .order-items tfoot tr:last-child {
@@ -267,8 +267,7 @@ h2 {
 
 /* Order Notes */
 .order-notes {
-	font-size: 0.785em;
-	line-height: 150%;
+	margin-top: 3em;
 	margin-bottom: 6em;
 }
 

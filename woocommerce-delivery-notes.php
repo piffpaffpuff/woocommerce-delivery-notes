@@ -5,7 +5,7 @@
  * Plugin Name: WooCommerce Print Invoice & Delivery Note
  * Plugin URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * Description: Print Invoices & Delivery Notes for WooCommerce Orders. 
- * Version: 4.0.2
+ * Version: 4.1
  * Author: Triggvy Gunderson
  * Author URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * License: GPLv3 or later
@@ -64,7 +64,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 */
 		public function __construct() {
 			// Define the constants
-			self::$plugin_version = '4.0.2';
+			self::$plugin_version = '4.1';
 			self::$plugin_prefix = 'wcdn_';
 			self::$plugin_basefile_path = __FILE__;
 			self::$plugin_basefile = plugin_basename( self::$plugin_basefile_path );
@@ -141,10 +141,9 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 			
 			add_filter( 'plugin_action_links_' . self::$plugin_basefile, array( $this, 'add_settings_link') );
 		}
-		
 				
 		/**
-		 * Install ord update the default settings
+		 * Install or update the default settings
 		 */
 		public function update() {
 			// Define default settings
@@ -159,14 +158,14 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 				}
 				
 				// Template types
-				$invoice = get_option( self::$plugin_prefix . 'template_type_invoice' );
-				if( !$invoice ) {
-					update_option( self::$plugin_prefix . 'template_type_invoice', 1 );
-				}
-				
-				$delivery_note = get_option( self::$plugin_prefix . 'template_type_delivery_note' );
-				if( !$delivery_note ) {
-					update_option( self::$plugin_prefix . 'template_type_delivery_note', 1 );
+				foreach( WooCommerce_Delivery_Notes_Print::$template_types2 as $template_type ) {
+					// Enable 'invoice' and 'delivery_note' by default
+					if( $template_type['type'] == 'invoice' || $template_type['type'] == 'delivery-note' ) {
+						$option = get_option( self::$plugin_prefix . 'template_type_' . $template_type['type'] );
+						if( !$option ) {
+							update_option( self::$plugin_prefix . 'template_type_' . $template_type['type'], 1 );
+						}
+					}
 				}
 				
 				// Update the settings to the latest version

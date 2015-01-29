@@ -85,7 +85,7 @@ You can change the font with CSS. Use the `wcdn_head` hook and then write your o
 An example that changes the font and makes the addresses very large. Paste the code in the `functions.php` file of your theme:
 
 `
-function my_serif_font_and_large_address() {
+function example_serif_font_and_large_address() {
 	?>
 		<style>
 			#page {
@@ -100,7 +100,7 @@ function my_serif_font_and_large_address() {
 		</style>
 	<?php
 }
-add_action( 'wcdn_head', 'my_serif_font_and_large_address', 20 );
+add_action( 'wcdn_head', 'example_serif_font_and_large_address', 20 );
 `
 
 = Can I hide the prices on the delivery note? =
@@ -110,7 +110,7 @@ Sure, the easiest way is to hide them with some CSS that is hooked in with `wcdn
 An example that hides the whole price column and the totals. Paste the code in the `functions.php` file of your theme:
 
 `
-function my_price_free_delivery_note() {
+function example_price_free_delivery_note() {
 	?>
 		<style>
 			.delivery-note .head-item-price,
@@ -134,7 +134,7 @@ function my_price_free_delivery_note() {
 		</style>
 	<?php
 }
-add_action( 'wcdn_head', 'my_price_free_delivery_note', 20 );
+add_action( 'wcdn_head', 'example_price_free_delivery_note', 20 );
 `
 
 = I use the receipt in my POS, can I style it? =
@@ -144,7 +144,7 @@ Sure, you can style with CSS, very much the same way as the delivery note or inv
 An example that hides the addresses. Paste the code in the `functions.php` file of your theme:
 
 `
-function my_address_free_receipt() {
+function example_address_free_receipt() {
 	?>
 		<style>
 			.content {
@@ -164,7 +164,7 @@ function my_address_free_receipt() {
 		</style>
 	<?php
 }
-add_action( 'wcdn_head', 'my_address_free_receipt', 20 );
+add_action( 'wcdn_head', 'example_address_free_receipt', 20 );
 `
 
 = Is it possible to remove a field from the order info section? =
@@ -174,11 +174,11 @@ Yes, use the `wcdn_order_info_fields` filter hook. It returns all the fields as 
 An example that removes the 'Payment Method' field. Paste the code in the `functions.php` file of your theme:
 
 `
-function my_removed_payment_method( $fields ) {
+function example_removed_payment_method( $fields ) {
 	unset( $fields['payment_method'] );
 	return $fields;
 }
-add_filter( 'wcdn_order_info_fields', 'my_removed_payment_method' );
+add_filter( 'wcdn_order_info_fields', 'example_removed_payment_method' );
 `
 
 =  How can I add some more fields to the order info section? =
@@ -188,7 +188,7 @@ Use the `wcdn_order_info_fields` filter hook. It returns all the fields as array
 An example that adds a 'VAT' and 'Customer Number' field to the end of the list. Paste the code in the `functions.php` file of your theme:
 
 `
-function my_custom_order_fields( $fields, $order ) {
+function example_custom_order_fields( $fields, $order ) {
 	$new_fields = array();
 		
 	if( get_post_meta( $order->id, 'your_meta_field_name', true ) ) {
@@ -207,7 +207,7 @@ function my_custom_order_fields( $fields, $order ) {
 	
 	return array_merge( $fields, $new_fields );
 }
-add_filter( 'wcdn_order_info_fields', 'my_custom_order_fields', 10, 2 );
+add_filter( 'wcdn_order_info_fields', 'example_custom_order_fields', 10, 2 );
 `
 
 =  What about the product image, can I add it to the invoice and delivery note? =
@@ -217,12 +217,12 @@ Yes, use the `wcdn_order_item_before` action hook. It allows you to add html con
 An example that adds a 40px large product image. Paste the code in the `functions.php` file of your theme:
 
 `
-function my_product_image( $product ) {	
+function example_product_image( $product ) {	
 	if( isset( $product->id ) && has_post_thumbnail( $product->id ) ) {
 		echo get_the_post_thumbnail( $product->id, array( 40, 40 ) );
 	}
 }
-add_action( 'wcdn_order_item_before', 'my_product_image' );
+add_action( 'wcdn_order_item_before', 'example_product_image' );
 `
 
 = How can I differentiate between invoice and delivery note through CSS? =
@@ -283,6 +283,12 @@ Please [contribute your translation](https://github.com/piffpaffpuff/woocommerce
 6. Customers can also print the order.
 
 == Changelog ==
+
+= 4.1 =
+
+* Feature - Support for WooCommerce 2.2 refunds 
+* Feature - Option to add a print link to customer emails
+* Tweak - Code improvements and some new hooks
 
 = 4.0.2 =
 

@@ -20,30 +20,30 @@ function wcdn_get_template_content( $name, $args = null ) {
  */
 function wcdn_get_template_type() {
 	global $wcdn;
-	return apply_filters( 'wcdn_template_type', $wcdn->print->template_type );
+	return apply_filters( 'wcdn_template_type', $wcdn->print->template['type'] );
+}
+
+/**
+ * Return Title of the print template
+ */
+function wcdn_get_template_title() {
+	global $wcdn;
+	return apply_filters( 'wcdn_template_type', __( $wcdn->print->template['labels']['name'], 'woocommerce-delivery-notes' ) );
 }
 
 /**
  * Return print page link
  */
-function wcdn_get_print_link( $order_ids, $template_type = 'order', $order_email = null ) {
+function wcdn_get_print_link( $order_ids, $template_type = 'order', $order_email = null, $permalink = false ) {
 	global $wcdn;
-	return $wcdn->print->get_print_page_url( $order_ids, $template_type, $order_email );
+	return $wcdn->print->get_print_page_url( $order_ids, $template_type, $order_email, $permalink );
 }
 
 /**
  * Output the document title depending on type
  */
 function wcdn_document_title() {
-	if( wcdn_get_template_type() == 'invoice' ) {
-		echo apply_filters( 'wcdn_document_title', __( 'Invoice', 'woocommerce-delivery-notes' ) );
-	} elseif( wcdn_get_template_type() == 'delivery-note' ) {
-		echo apply_filters( 'wcdn_document_title', __( 'Delivery Note', 'woocommerce-delivery-notes' ) );
-	} elseif( wcdn_get_template_type() == 'receipt' ) {
-		echo apply_filters( 'wcdn_document_title', __( 'Receipt', 'woocommerce-delivery-notes' ) );
-	} else {
-		echo apply_filters( 'wcdn_document_title', __( 'Order', 'woocommerce-delivery-notes' ) );
-	} 
+	echo apply_filters( 'wcdn_document_title', wcdn_get_template_title() );
 }
 
 /**
@@ -145,6 +145,14 @@ function wcdn_template_stylesheet() {
  */
 function wcdn_content( $order, $template_type ) {
 	global $wcdn;
+	
+	// Add WooCommerce hooks here to not 
+	// make global changes to the totals 
+	add_filter( 'woocommerce_get_order_item_totals', 'wcdn_remove_semicolon_from_totals', 10, 2 );
+	add_filter( 'woocommerce_get_order_item_totals', 'wcdn_remove_payment_method_from_totals', 20, 2 );
+	add_filter( 'woocommerce_get_order_item_totals', 'wcdn_add_refunded_order_totals', 30, 2 );
+	
+	// Load the template
 	wcdn_get_template_content( 'print-content.php', array( 'order' => $order, 'template_type' => $template_type ) );
 }
 
@@ -294,21 +302,28 @@ function wcdn_additional_product_fields( $fields = null, $product = null, $order
  * Check if a shipping address is enabled
  */
 function wcdn_has_shipping_address( $order ) {
-	if( version_compare( WC_VERSION, '2.2', '<' ) ) {
-		// Legacy support for WooCommerce 2.1
-		if( get_option( 'woocommerce_ship_to_billing_address_only' ) === 'no' && get_option( 'woocommerce_calc_shipping' ) !== 'no' ) {
-			return true;
-		} else {
-			return false;
-		}	
-	} else {
-		// Future versions from 2.2
-		if( ( get_option( 'woocommerce_ship_to_destination' ) !== 'billing_only' ) && $order->needs_shipping_address() && get_option( 'woocommerce_calc_shipping' ) !== 'no' ) {
+	// Works only with WooCommerce 2.2 and higher
+	if( function_exists( 'wc_ship_to_billing_address_only' ) ) {
+		if( ! wc_ship_to_billing_address_only() && $order->needs_shipping_address() && get_option( 'woocommerce_calc_shipping' ) !== 'no' ) {
 			return true;
 		} else {
 			return false;
 		}
 	}
+	return true;
+}
+
+/**
+ * Check if an order contains a refund
+ */
+function wcdn_has_refund( $order ) {
+	// Works only with WooCommerce 2.2 and higher
+	if( method_exists( $order, 'get_total_refunded' ) ) {
+		if( $order->get_total_refunded() !== null ) {
+			return true;
+		}
+	}
+	return false;
 }
 
 /**
@@ -336,9 +351,36 @@ function wcdn_get_formatted_item_price( $order, $item, $tax_display = '' ) {
 }
 
 /**
+ * Add refund totals
+ */
+function wcdn_add_refunded_order_totals( $total_rows, $order ) {		
+	if( wcdn_has_refund( $order ) ) {
+		// Make some substring juggling because WC 2.3-bleeding 
+		// does not yet include the tax label.
+		//$tax_label = substr( $total_rows['order_total']['value'], strpos( $total_rows['order_total']['value'], ' (' ) );
+
+		// Add new totals rows
+		$total_rows['wcdn_refunded_total'] = array(
+			'label' => __( 'Refund', 'woocommerce-delivery-notes' ), 
+			'value' => wc_price( -$order->get_total_refunded(), array( 'currency' => $order->get_order_currency() ) )
+		);
+		
+		$total_rows['wcdn_order_total'] = array(
+			'label' => $total_rows['order_total']['label'], 
+			'value' => wc_price( $order->get_total() - $order->get_total_refunded(), array( 'currency' => $order->get_order_currency() ) )
+		);
+		
+		// Rename the 'Order Total' to 'Order Subtotal'
+		$total_rows['order_total']['label'] = __( 'Order Subtotal', 'woocommerce-delivery-notes' );
+	}
+	
+	return $total_rows;
+}
+
+/**
  * Remove the semicolon from the totals  
  */
-function wcdn_remove_semicolon_from_totals( $total_rows, $order ) {	
+function wcdn_remove_semicolon_from_totals( $total_rows, $order ) {		
 	foreach( $total_rows as $key => $row ) {
 		$label = $row['label'];
 		$colon = strrpos( $label, ':' );
@@ -347,6 +389,14 @@ function wcdn_remove_semicolon_from_totals( $total_rows, $order ) {
 		}		
 		$total_rows[$key]['label'] = $label;
 	}
+	return $total_rows;
+}
+
+/**
+ * Remove the payment method text from the totals  
+ */
+function wcdn_remove_payment_method_from_totals( $total_rows, $order ) {		
+	unset($total_rows['payment_method']);
 	return $total_rows;
 }
 

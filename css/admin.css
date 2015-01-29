@@ -79,18 +79,24 @@
 	text-align: center;
 	content: "";
 	line-height: 1.85;
+	
+	content: "\e603";
 } 
 
 .type-shop_order .column-order_actions .print-preview-button.invoice:before {
-	content: "\e601";
+	content: "\e602";
 }
 
 .type-shop_order .column-order_actions .print-preview-button.delivery-note:before {
-	content: "\e600";
+	content: "\e601";
 }
 
 .type-shop_order .column-order_actions .print-preview-button.receipt:before {
-	content: "\e602";
+	content: "\e604";
+}
+
+.type-shop_order .column-order_actions .print-preview-button.credit-note:before {
+	content: "\e600";
 }
 
 .type-shop_order .column-order_actions span.print-preview-loading {

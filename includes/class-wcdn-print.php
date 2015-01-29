@@ -14,6 +14,9 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 
 	class WooCommerce_Delivery_Notes_Print {
 
+		public static $templates;
+
+		public $template;
 		public $template_directory_name;
 		public $template_path_theme;
 		public $template_path_plugin;
@@ -21,8 +24,6 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		
 		public $api_endpoints;
 		public $query_vars;
-		public $template_types;
-		public $template_type;
 
 		public $order_ids;
 		public $order_email;
@@ -32,18 +33,63 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		 * Constructor
 		 */
 		public function __construct() {	
-			// Define the template types
-			$this->template_types = array(
-				'invoice',
-				'delivery-note', 
-				'receipt', 
-				'order'
+			// Define the templates
+			self::$templates = apply_filters( 'wcdn_template_registration', array(
+				apply_filters( 'wcdn_template_registration_invoice', array(
+					'type' => 'invoice',
+					'labels' => array(
+						'name' => __( 'Invoice', 'woocommerce-delivery-notes' ),
+						'name_plural' => __( 'Invoices', 'woocommerce-delivery-notes' ),
+						'print' => __( 'Print Invoice', 'woocommerce-delivery-notes' ),
+						'print_plural' => __( 'Print Invoices', 'woocommerce-delivery-notes' ),
+						'message' => __( 'Invoice created.', 'woocommerce-delivery-notes' ),
+						'message_plural' => __( 'Invoices created.', 'woocommerce-delivery-notes' ),
+						'setting' => __( 'Enable Invoices', 'woocommerce-delivery-notes' )
+					)
+				) ),
+				apply_filters( 'wcdn_template_registration_delivery_note', array(
+					'type' => 'delivery-note',
+					'labels' => array(
+						'name' => __( 'Delivery Note', 'woocommerce-delivery-notes' ),
+						'name_plural' => __( 'Delivery Notes', 'woocommerce-delivery-notes' ),
+						'print' => __( 'Print Delivery Note', 'woocommerce-delivery-notes' ),
+						'print_plural' => __( 'Print Delivery Notes', 'woocommerce-delivery-notes' ),
+						'message' => __( 'Delivery Note created.', 'woocommerce-delivery-notes' ),
+						'message_plural' => __( 'Delivery Notes created.', 'woocommerce-delivery-notes' ),
+						'setting' => __( 'Enable Delivery Notes', 'woocommerce-delivery-notes' )
+					)
+				) ),
+				apply_filters( 'wcdn_template_registration_receipt', array(
+					'type' => 'receipt',
+					'labels' => array(
+						'name' => __( 'Receipt', 'woocommerce-delivery-notes' ),
+						'name_plural' => __( 'Receipts', 'woocommerce-delivery-notes' ),
+						'print' => __( 'Print Receipt', 'woocommerce-delivery-notes' ),
+						'print_plural' => __( 'Print Receipts', 'woocommerce-delivery-notes' ),
+						'message' => __( 'Receipt created.', 'woocommerce-delivery-notes' ),
+						'message_plural' => __( 'Receipts created.', 'woocommerce-delivery-notes' ),
+						'setting' => __( 'Enable Receipts', 'woocommerce-delivery-notes' )
+					)
+				) )
+			) );
+			
+			// Default empty template
+			$this->template = array(
+				'type' => 'order',
+				'labels' => array(
+					'name' => __( 'Order', 'woocommerce-delivery-notes' ),
+					'name_plural' => __( 'Orders', 'woocommerce-delivery-notes' ),
+					'print' => __( 'Print Order', 'woocommerce-delivery-notes' ),
+					'print_plural' => __( 'Print Orders', 'woocommerce-delivery-notes' ),
+					'message' => null,
+					'message_plural' => null,
+					'setting' => null
+				)
 			);
 
 			// Add the endpoint for the frontend
 			$this->api_endpoints = array( 
 				'print-order' => get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint', 'print-order' )
-
 			);
 			
 			// Insert the query vars			
@@ -58,7 +104,6 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			add_action( 'parse_request', array( $this, 'parse_request' ) );
 			add_action( 'template_redirect', array( $this, 'template_redirect_theme' ) );
 			add_action( 'wp_ajax_print_order', array( $this, 'template_redirect_admin' ) );
-			//add_action( 'woocommerce_email_after_order_table', array( $this, 'add_email_print_url' ), 10, 3 );
 		}
 		
 		/**
@@ -156,14 +201,15 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 				$this->order_ids = array_filter( explode('-', $order_ids ) );
 			}
 			
-			// Default type 			
-			if( empty( $template_type ) || !in_array( $template_type, $this->template_types ) ) {
-				$this->template_type = 'order';
-			} else {
-				$this->template_type = $template_type;
+			// Set the template 
+			foreach( self::$templates as $template ) {
+				if( $template_type == $template['type'] ) {
+					$this->template = $template;
+					break;
+				}
 			}
 			
-			// Default email 
+			// Set the email 
 			if( empty( $order_email ) ) {
 				$this->order_email = null;
 			} else {
@@ -191,14 +237,19 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			if( !is_array( $order_ids ) ) {
 				$order_ids = array_filter( explode( '-', $order_ids ) );
 			}
-
-			// Default args
+			
+			// Build the args
 			$args = array();
 			
-			if( in_array( $template_type, $this->template_types ) && $template_type != 'order' ) {
-				$args = wp_parse_args( array( 'print-order-type' => $template_type ), $args );
+			// Set the template type arg
+			foreach( self::$templates as $template ) {
+				if( $template_type == $template['type'] && $template_type != 'order' ) {
+					$args = wp_parse_args( array( 'print-order-type' => $template_type ), $args );
+					break;
+				}
 			}
 			
+			// Set the email arg
 			if( !empty( $order_email ) ) {
 				$args = wp_parse_args( array( 'print-order-email' => $order_email ), $args );
 			}
@@ -234,17 +285,6 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			$url = add_query_arg( $args, $url );
 			
 			return $url;
-		}
-		
-		/**
-		 * Add a print url to the emails that are sent to the customer.
-		 */		
-		public function add_email_print_url( $order, $sent_to_admin, $plain_text ) {
-			if( $order->billing_email ) {
-				$url = $this->get_print_page_url( $order->id, 'invoice', $order->billing_email, true );
-				echo $url;
-			}
-			
 		}
 		
 		/**
