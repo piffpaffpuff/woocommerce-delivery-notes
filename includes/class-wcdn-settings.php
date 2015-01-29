@@ -457,10 +457,10 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			if ( isset( $_POST[ $this->hidden_submit ] ) && $_POST[ $this->hidden_submit ] == 'submitted' ) {
 				
 				if( empty( $_POST[WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_invoice'] ) &&
-					empty( $_POST[WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_delivery_note'] ) &&
+					empty( $_POST[WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_delivery-note'] ) &&
 					empty( $_POST[WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_receipt'] ) ) {
 					$_POST[WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_invoice'] = 1;
-					$_POST[WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_delivery_note'] = 1;
+					$_POST[WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_delivery-note'] = 1;
 				}
 				
 				// Save settings

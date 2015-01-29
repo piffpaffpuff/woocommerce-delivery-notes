@@ -284,6 +284,11 @@ Please [contribute your translation](https://github.com/piffpaffpuff/woocommerce
 
 == Changelog ==
 
+= 4.1.2 =
+
+* Fix - For a fatal error caused by an unknown property in the plugin update system
+* Fix - Where the 'Types' options didn't stick in some cases
+
 = 4.1.1 =
 
 * Fix - For a fatal error caused by an unknown property in the plugin update system
