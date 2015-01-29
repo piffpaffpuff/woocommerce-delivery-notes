@@ -284,6 +284,10 @@ Please [contribute your translation](https://github.com/piffpaffpuff/woocommerce
 
 == Changelog ==
 
+= 4.1.1 =
+
+* Fix - For a fatal error caused by an unknown property in the plugin update system
+
 = 4.1 =
 
 * Feature - Support for WooCommerce 2.2 refunds 

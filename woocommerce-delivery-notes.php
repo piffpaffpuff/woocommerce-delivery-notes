@@ -158,12 +158,12 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 				}
 				
 				// Template types
-				foreach( WooCommerce_Delivery_Notes_Print::$template_types2 as $template_type ) {
+				foreach( WooCommerce_Delivery_Notes_Print::$templates as $template ) {
 					// Enable 'invoice' and 'delivery_note' by default
-					if( $template_type['type'] == 'invoice' || $template_type['type'] == 'delivery-note' ) {
-						$option = get_option( self::$plugin_prefix . 'template_type_' . $template_type['type'] );
+					if( $template['type'] == 'invoice' || $template['type'] == 'delivery-note' ) {
+						$option = get_option( self::$plugin_prefix . 'template_type_' . $template['type'] );
 						if( !$option ) {
-							update_option( self::$plugin_prefix . 'template_type_' . $template_type['type'], 1 );
+							update_option( self::$plugin_prefix . 'template_type_' . $template['type'], 1 );
 						}
 					}
 				}
