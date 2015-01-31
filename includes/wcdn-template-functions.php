@@ -303,7 +303,7 @@ function wcdn_additional_product_fields( $fields = null, $product = null, $order
  */
 function wcdn_has_shipping_address( $order ) {
 	// Works only with WooCommerce 2.2 and higher
-	if( function_exists( 'wc_ship_to_billing_address_only' ) ) {
+	if( version_compare( WC_VERSION, '2.2.0', '>=' ) ) {
 		if( ! wc_ship_to_billing_address_only() && $order->needs_shipping_address() && get_option( 'woocommerce_calc_shipping' ) !== 'no' ) {
 			return true;
 		} else {
@@ -318,8 +318,8 @@ function wcdn_has_shipping_address( $order ) {
  */
 function wcdn_has_refund( $order ) {
 	// Works only with WooCommerce 2.2 and higher
-	if( method_exists( $order, 'get_total_refunded' ) ) {
-		if( $order->get_total_refunded() !== null ) {
+	if( version_compare( WC_VERSION, '2.2.0', '>=' ) ) {
+		if( $order->get_total_refunded() ) {
 			return true;
 		}
 	}
@@ -355,23 +355,63 @@ function wcdn_get_formatted_item_price( $order, $item, $tax_display = '' ) {
  */
 function wcdn_add_refunded_order_totals( $total_rows, $order ) {		
 	if( wcdn_has_refund( $order ) ) {
-		// Make some substring juggling because WC 2.3-bleeding 
-		// does not yet include the tax label.
-		//$tax_label = substr( $total_rows['order_total']['value'], strpos( $total_rows['order_total']['value'], ' (' ) );
-
-		// Add new totals rows
+		if( version_compare( WC_VERSION, '2.3.0', '>=' ) ) {
+			$refunded_tax_del = '';
+			$refunded_tax_ins = '';
+			
+			// Tax for inclusive prices
+			if ( wc_tax_enabled() && 'incl' == $order->tax_display_cart ) {
+				$tax_del_array = array();
+				$tax_ins_array = array();
+	
+				if ( 'itemized' == get_option( 'woocommerce_tax_total_display' ) ) {
+	
+					foreach ( $order->get_tax_totals() as $code => $tax ) {
+						$tax_del_array[] = sprintf( '%s %s', $tax->formatted_amount, $tax->label );
+						$tax_ins_array[] = sprintf( '%s %s', wc_price( $tax->amount - $order->get_total_tax_refunded_by_rate_id( $tax->rate_id ), array( 'currency' => $order->get_order_currency() ) ), $tax->label );
+					}
+	
+				} else {
+					$tax_del_array[] = sprintf( '%s %s', wc_price( $order->get_total_tax(), array( 'currency' => $order->get_order_currency() ) ), WC()->countries->tax_or_vat() );
+					$tax_ins_array[] = sprintf( '%s %s', wc_price( $order->get_total_tax() - $order->get_total_tax_refunded(), array( 'currency' => $order->get_order_currency() ) ), WC()->countries->tax_or_vat() );
+				}
+	
+				if ( ! empty( $tax_del_array ) ) {
+					$refunded_tax_del .= ' ' . sprintf( __( '(Includes %s)', 'woocommerce' ), implode( ', ', $tax_del_array ) );
+				}
+	
+				if ( ! empty( $tax_ins_array ) ) {
+					$refunded_tax_ins .= ' ' . sprintf( __( '(Includes %s)', 'woocommerce' ), implode( ', ', $tax_ins_array ) );
+				}
+			}
+			
+			// use only the number for new wc versions
+			$order_subtotal = wc_price( $order->get_total(), array( 'currency' => $order->get_order_currency() ) );
+		} else {
+			$refunded_tax_del = '';
+			$refunded_tax_ins = '';
+			
+			// use the normal total for older wc versions
+			$order_subtotal = $total_rows['order_total']['value'];
+		}		
+		
+		// Add refunded totals row
 		$total_rows['wcdn_refunded_total'] = array(
 			'label' => __( 'Refund', 'woocommerce-delivery-notes' ), 
 			'value' => wc_price( -$order->get_total_refunded(), array( 'currency' => $order->get_order_currency() ) )
 		);
 		
+		// Add new order totals row
 		$total_rows['wcdn_order_total'] = array(
 			'label' => $total_rows['order_total']['label'], 
-			'value' => wc_price( $order->get_total() - $order->get_total_refunded(), array( 'currency' => $order->get_order_currency() ) )
+			'value' => wc_price( $order->get_total() - $order->get_total_refunded(), array( 'currency' => $order->get_order_currency() ) ) . $refunded_tax_ins
 		);
 		
-		// Rename the 'Order Total' to 'Order Subtotal'
-		$total_rows['order_total']['label'] = __( 'Order Subtotal', 'woocommerce-delivery-notes' );
+		// Edit the original order total row
+		$total_rows['order_total'] = array(
+			'label' => __( 'Order Subtotal', 'woocommerce-delivery-notes' ), 
+			'value' => $order_subtotal
+		);
 	}
 	
 	return $total_rows;

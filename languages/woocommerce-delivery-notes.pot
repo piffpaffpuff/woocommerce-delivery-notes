@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Print Invoice & Delivery Note\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
-"POT-Creation-Date: 2015-01-29 16:54+0100\n"
-"PO-Revision-Date: 2015-01-29 16:54+0100\n"
+"POT-Creation-Date: 2015-01-31 15:44+0100\n"
+"PO-Revision-Date: 2015-01-31 15:44+0100\n"
 "Last-Translator: David Decker <deckerweb.mobil@googlemail.com>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -399,15 +399,15 @@ msgstr ""
 msgid "Install and activate the free <a href=\"%s\">WooCommerce Sequential Order Numbers</a> Plugin."
 msgstr ""
 
-#: ../includes/class-wcdn-theme.php:105
+#: ../includes/class-wcdn-theme.php:106
 msgid "Print your order"
 msgstr ""
 
-#: ../includes/class-wcdn-theme.php:111
+#: ../includes/class-wcdn-theme.php:112
 msgid "Print:"
 msgstr ""
 
-#: ../includes/class-wcdn-theme.php:111
+#: ../includes/class-wcdn-theme.php:112
 msgid "Open print view in browser"
 msgstr ""
 
@@ -457,11 +457,16 @@ msgstr ""
 msgid "SKU:"
 msgstr ""
 
-#: ../includes/wcdn-template-functions.php:364
+#: ../includes/wcdn-template-functions.php:380 ../includes/wcdn-template-functions.php:384
+#, php-format
+msgid "(Includes %s)"
+msgstr ""
+
+#: ../includes/wcdn-template-functions.php:400
 msgid "Refund"
 msgstr ""
 
-#: ../includes/wcdn-template-functions.php:374
+#: ../includes/wcdn-template-functions.php:412
 msgid "Order Subtotal"
 msgstr ""
 
