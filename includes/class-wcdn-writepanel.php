@@ -151,6 +151,9 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 						break;
 					}
 				}
+				if( !isset( $report_action ) ) {
+					return;
+				}
 				
 				// security check
 				check_admin_referer('bulk-posts');

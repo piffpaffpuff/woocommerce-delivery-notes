@@ -286,6 +286,11 @@ Please [contribute your translation](https://github.com/piffpaffpuff/woocommerce
 
 == Changelog ==
 
+= 4.1.4 =
+
+* Fix - Double check the bulk action type to improve bulk order deletion
+* Fix - Default arguments for the E-Mail hook
+
 = 4.1.3 =
 
 * Feature - Better support for WooCommerce 2.3 refunds

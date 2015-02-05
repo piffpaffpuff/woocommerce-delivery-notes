@@ -97,7 +97,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 		/**
 		 * Add a print url to the emails that are sent to the customer
 		 */		
-		public function add_email_print_url( $order, $sent_to_admin, $plain_text = false ) {
+		public function add_email_print_url( $order, $sent_to_admin = true, $plain_text = false ) {
 			if( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'email_print_link' ) ) {				
 				if( $order->billing_email && !$sent_to_admin ) {
 					$url = wcdn_get_print_link( $order->id, $this->get_template_type( $order ), $order->billing_email, true );
