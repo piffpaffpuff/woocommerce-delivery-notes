@@ -181,7 +181,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		 */
 		public function template_redirect_admin() {	
 			// Let the backend only access the page
-			if( is_admin() && current_user_can('manage_woocommerce') && !empty( $_REQUEST['print-order'] ) && !empty( $_REQUEST['action'] ) ) {
+			if( is_admin() && current_user_can( 'edit_shop_orders' ) && !empty( $_REQUEST['print-order'] ) && !empty( $_REQUEST['action'] ) ) {
 				$type = !empty( $_REQUEST['print-order-type'] ) ? $_REQUEST['print-order-type'] : null;
 				$email = !empty( $_REQUEST['print-order-email'] ) ? $_REQUEST['print-order-email'] : null;
 				$this->generate_template( $_GET['print-order'], $type, $email );
@@ -260,7 +260,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			// Create another url depending on where the user prints. This
 			// prevents some issues with ssl when the my-account page is 
 			// secured with ssl but the admin isn't.
-			if( is_admin() && current_user_can('manage_woocommerce') && $permalink == false ) {
+			if( is_admin() && current_user_can( 'edit_shop_orders' ) && $permalink == false ) {
 				// For the admin we use the ajax.php for better security
 				$args = wp_parse_args( array( 'action' => 'print_order' ), $args );
 				$base_url = admin_url( 'admin-ajax.php' );
