@@ -238,7 +238,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 			$site_plugins = get_site_option( 'active_sitewide_plugins', array() );
 			$woocommerce_basename = plugin_basename( WC_PLUGIN_FILE );
 					
-			if( ( in_array( $woocommerce_basename, $blog_plugins ) || isset( $site_plugins[$woocommerce_basename] ) ) && version_compare( WC_VERSION, '2.1', '>=' )) {
+			if( ( in_array( $woocommerce_basename, $blog_plugins ) || isset( $site_plugins[$woocommerce_basename] ) ) && version_compare( WC_VERSION, '2.2', '>=' )) {
 				return true;
 			} else {
 				return false;
