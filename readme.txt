@@ -3,7 +3,7 @@
 Contributors: piffpaffpuff
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=K2JKYEASQBBSQ&lc=US&item_name=WooCommerce%20Print%20Invoice%20%26%20Delivery%20Note&item_number=WCDN&amount=20%2e00&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHostedGuest
 Tags: delivery note, packing slip, invoice, delivery, shipping, print, order, woocommerce, woothemes, shop
-Requires at least: 3.8
+Requires at least: 4.0
 Tested up to: 4.2
 Stable tag: trunk
 License: GPLv3 or later
@@ -48,7 +48,7 @@ When your language is missing you can contribute a translation to the [GitHub re
 = Minimum Requirements =
 
 * WooCommerce 2.2 or later
-* WordPress 3.8 or later
+* WordPress 4.0 or later
 
 = Automatic installation =
 
@@ -285,6 +285,12 @@ Please [contribute your translation](https://github.com/piffpaffpuff/woocommerce
 6. Customers can also print the order.
 
 == Changelog ==
+
+**Attention: The minimum Requirements are WooCommerce 2.2 and WordPress 4.0
+
+= 4.1.5 =
+
+* Fix - Check protocol of email permalinks
 
 = 4.1.4 =
 

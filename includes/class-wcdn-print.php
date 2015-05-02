@@ -111,7 +111,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		 */
 		public function load_hooks() {	
 			// Define default variables
-			$this->template_directory_name = 'print-order';
+			$this->template_directory_name = apply_filters( 'wcdn_template_directory_name', 'print-order' );
 			$this->template_path_theme = WC_TEMPLATE_PATH . $this->template_directory_name . '/';
 			$this->template_path_plugin = WooCommerce_Delivery_Notes::$plugin_path . 'templates/' . $this->template_directory_name . '/';
 			$this->template_url_plugin = WooCommerce_Delivery_Notes::$plugin_url . 'templates/' . $this->template_directory_name . '/';
@@ -260,7 +260,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			// Create another url depending on where the user prints. This
 			// prevents some issues with ssl when the my-account page is 
 			// secured with ssl but the admin isn't.
-			if( is_admin() && current_user_can('manage_woocommerce') && !$permalink ) {
+			if( is_admin() && current_user_can('manage_woocommerce') && $permalink == false ) {
 				// For the admin we use the ajax.php for better security
 				$args = wp_parse_args( array( 'action' => 'print_order' ), $args );
 				$base_url = admin_url( 'admin-ajax.php' );
@@ -268,10 +268,20 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 				
 				// Add the order ids and create the url
 				$url = add_query_arg( $endpoint, $order_ids_slug, $base_url );
-			} else {
+			} else {				
 				// For the theme
 				$base_url = get_permalink( wc_get_page_id( 'myaccount' ) );
 				$endpoint = $this->api_endpoints['print-order'];
+				
+				// The permalink function can return a faulty protocol when 
+				// the front-end uses ssl but the back-end doesn't. This 
+				// depends on which plugin is used for ssl. To fix this, the
+				// home_url is checked for the correct protocol.
+				$home_url_scheme = parse_url(home_url(), PHP_URL_SCHEME);
+				$base_url_scheme = parse_url($base_url, PHP_URL_SCHEME);
+				if( $base_url_scheme != $home_url_scheme ) {
+					$base_url = str_replace( $base_url_scheme . '://', $home_url_scheme . '://', $base_url );
+				}	
 				
 				// Add the order ids and create the url
 				if( get_option( 'permalink_structure' ) ) {
@@ -284,7 +294,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			// Add all other args	
 			$url = add_query_arg( $args, $url );
 			
-			return $url;
+			return esc_url( $url );
 		}
 		
 		/**

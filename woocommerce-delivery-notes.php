@@ -5,15 +5,15 @@
  * Plugin Name: WooCommerce Print Invoice & Delivery Note
  * Plugin URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * Description: Print Invoices & Delivery Notes for WooCommerce Orders. 
- * Version: 4.1.4
+ * Version: 4.1.5
  * Author: Triggvy Gunderson
  * Author URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * License: GPLv3 or later
  * License URI: http://www.opensource.org/licenses/gpl-license.php
  * Text Domain: woocommerce-delivery-notes
- * Domain Path: /languages/
+ * Domain Path: /languages
  *
- * Copyright 2014 Triggvy Gunderson, David Decker
+ * Copyright 2015 Triggvy Gunderson
  *		
  *     This file is part of WooCommerce Print Invoices & Delivery Notes,
  *     a plugin for WordPress.
@@ -46,34 +46,85 @@ if ( !defined( 'ABSPATH' ) ) {
 if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 
 	final class WooCommerce_Delivery_Notes {
+
+		/**
+		 * The single instance of the class
+		 */
+		protected static $_instance = null;
 	
+		/**
+		 * Default properties
+		 */
 		public static $plugin_version;
 		public static $plugin_prefix;
 		public static $plugin_url;
 		public static $plugin_path;
 		public static $plugin_basefile;
 		public static $plugin_basefile_path;
+		public static $plugin_text_domain;
 		
+		/**
+		 * Sub class instances
+		 */
 		public $writepanel;
 		public $settings;
 		public $print;
 		public $theme;
 
 		/**
+		 * Main Instance
+		 */
+		public static function instance() {
+			if( is_null( self::$_instance ) ) {
+				self::$_instance = new self();
+			}
+			return self::$_instance;
+		}
+	
+		/**
+		 * Cloning is forbidden
+		 */
+		public function __clone() {
+			_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-delivery-notes' ), '4.1' );
+		}
+	
+		/**
+		 * Unserializing instances of this class is forbidden
+		 */
+		public function __wakeup() {
+			_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-delivery-notes' ), '4.1' );
+		}
+
+		/**
 		 * Constructor
 		 */
 		public function __construct() {
-			// Define the constants
-			self::$plugin_version = '4.1.4';
+			$this->define_constants();
+			$this->init_hooks();
+			
+			// Send out the load action
+			do_action( 'wcdn_load');
+		}
+
+		/**
+		 * Hook into actions and filters
+		 */
+		public function init_hooks() {
+			add_action( 'init', array( $this, 'localise' ) );
+			add_action( 'woocommerce_init', array( $this, 'load' ) );
+		}
+
+		/**
+		 * Define WC Constants
+		 */
+		private function define_constants() {
+			self::$plugin_version = '4.1.5';
 			self::$plugin_prefix = 'wcdn_';
 			self::$plugin_basefile_path = __FILE__;
 			self::$plugin_basefile = plugin_basename( self::$plugin_basefile_path );
 			self::$plugin_url = plugin_dir_url( self::$plugin_basefile );
 			self::$plugin_path = trailingslashit( dirname( self::$plugin_basefile_path ) );	
-			
-			// Set hooks and wait for WooCommerce to load
-			add_action( 'init', array( $this, 'localise' ) );
-			add_action( 'woocommerce_init', array( $this, 'load' ) );
+			self::$plugin_text_domain = trim( dirname( self::$plugin_basefile ) );
 		}
 		
 		/**
@@ -98,21 +149,19 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		/**
 		 * Load the localisation 
 		 */
-		public function localise() {	
-			$domain = 'woocommerce-delivery-notes';
-						
+		public function localise() {							
 			// Load language files from the wp-content/languages/plugins folder
-			$mo_file = WP_LANG_DIR . '/plugins/woocommerce-delivery-notes-' . get_locale() . '.mo';
+			$mo_file = WP_LANG_DIR . '/plugins/' . self::$plugin_text_domain . '-' . get_locale() . '.mo';
 			if( is_readable( $mo_file ) ) {
-				load_textdomain( $domain, $mo_file );
+				load_textdomain( self::$plugin_text_domain, $mo_file );
 			}
 
 			// Otherwise load them from the plugin folder
-			load_plugin_textdomain( $domain, false, dirname( self::$plugin_basefile ) . '/languages/' );
+			load_plugin_textdomain( self::$plugin_text_domain, false, dirname( self::$plugin_basefile ) . '/languages/' );
 		}
 		
 		/**
-		 * Include the main plugin classes and functions
+		 * Load the main plugin classes and functions
 		 */
 		public function load() {
 			// WooCommerce activation required
@@ -126,20 +175,18 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 				$this->writepanel = new WooCommerce_Delivery_Notes_Writepanel();
 				$this->theme = new WooCommerce_Delivery_Notes_Theme();
 
+				// Check for database updates
+				$this->update();
+
 				// Load the hooks for the template after the objetcs.
 				// Like this the template has full access to all objects.
-				add_action( 'admin_init', array( $this, 'load_admin_hooks' ) );
+				add_filter( 'plugin_action_links_' . self::$plugin_basefile, array( $this, 'add_settings_link') );
+				add_action( 'admin_init', array( $this, 'update' ) );
 				add_action( 'init', array( $this, 'include_template_functions' ) );
+				
+				// Send out the init action
+				do_action( 'wcdn_init');
 			}
-		}
-			
-		/**
-		 * Load the admin hooks
-		 */
-		public function load_admin_hooks() {
-			$this->update();
-			
-			add_filter( 'plugin_action_links_' . self::$plugin_basefile, array( $this, 'add_settings_link') );
 		}
 				
 		/**
@@ -202,8 +249,15 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 }
 
 /**
- * Instance of the plugin
+ * Returns the main instance of teh plugin to prevent the need to use globals
  */
-$wcdn = new WooCommerce_Delivery_Notes();
+function WCDN() {
+	return WooCommerce_Delivery_Notes::instance();
+}
+
+/**
+ * Global for backwards compatibility
+ */
+$GLOBALS['wcdn'] = WCDN();
 
 ?>

@@ -155,29 +155,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			
 			?>
 			<h3><?php _e( 'Print Order', 'woocommerce-delivery-notes' ); ?></h3>
-			<p>
-				<?php 
-				// show template preview links when an order is available	
-				$args = array(
-					'post_type' => 'shop_order',
-					'posts_per_page' => 1
-				);
-				$query = new WP_Query( $args );
-
-				if($query->have_posts()) : ?>
-					<?php
-					$results = $query->get_posts();
-					$test_id = $results[0]->ID;
-					$invoice_url = wcdn_get_print_link( $test_id, 'invoice' );
-					$delivery_note_url = wcdn_get_print_link( $test_id, 'delivery-note' );
-					$receipt_url = wcdn_get_print_link( $test_id, 'receipt' );
-					?>
-					<span class="description">
-						<?php printf( __( 'You can preview the <a href="%1$s" target="%4$s" class="%5$s">invoice</a>, <a href="%2$s" target="%4$s" class="%5$s">delivery note</a> or <a href="%3$s" target="%4$s" class="%5$s">receipt</a> template.', 'woocommerce-delivery-notes' ), $invoice_url, $delivery_note_url, $receipt_url, '_blank', '' ); ?>
-						<?php _e( 'With the FAQ in the readme file you can learn how to customize the template.', 'woocommerce-delivery-notes' ); ?>
-					</span>
-				<?php endif; ?>
-			</p>
 			<table class="form-table">
 				<tbody>
 					<tr class="hide-if-no-js">
@@ -271,8 +248,74 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			</table>
 
 			<h3><?php _e( 'Print Options', 'woocommerce-delivery-notes' ); ?></h3>
+			<p>
+				<?php 
+				// show template preview links when an order is available	
+				$args = array(
+					'post_type' => 'shop_order',
+					'post_status' => array_keys( wc_get_order_statuses() ),
+					'posts_per_page' => 1
+				);
+				$query = new WP_Query( $args );
+				
+				if( $query->have_posts() ) : ?>
+					<?php
+					$results = $query->get_posts();
+					$test_id = $results[0]->ID;
+					$invoice_url = wcdn_get_print_link( $test_id, 'invoice' );
+					$delivery_note_url = wcdn_get_print_link( $test_id, 'delivery-note' );
+					$receipt_url = wcdn_get_print_link( $test_id, 'receipt' );
+					?>
+					<span class="description">
+						<?php printf( __( 'You can preview the <a href="%1$s" target="%4$s" class="%5$s">invoice</a>, <a href="%2$s" target="%4$s" class="%5$s">delivery note</a> or <a href="%3$s" target="%4$s" class="%5$s">receipt</a> template.', 'woocommerce-delivery-notes' ), $invoice_url, $delivery_note_url, $receipt_url, '_blank', '' ); ?>
+						<?php _e( 'With the FAQ in the readme file you can learn how to customize the template.', 'woocommerce-delivery-notes' ); ?>
+					</span>
+				<?php endif; ?>
+			</p>
 			<table class="form-table">
 				<tbody>	
+<!--
+					<tr>
+						<th>
+							<label><?php _e( 'Style', 'woocommerce-delivery-notes' ); ?></label>
+						</th>
+						<td>
+							<p>
+								<input type="text" name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>template_style" value="<?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_style' ) ) ); ?>" />
+							</p>
+							<span class="description">
+								<?php _e( 'The default template style.', 'woocommerce-delivery-notes' ); ?>
+								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
+								<?php _e( 'Get more styles and advanced options with <a href="#">WooCommerce Print Invoice & Delivery Note Pro</a>.', 'woocommerce-delivery-notes' ); ?>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label><?php _e( 'Order fields', 'woocommerce-delivery-notes' ); ?></label>
+						</th>
+						<td>
+							<p>
+								
+							</p>
+							<span class="description">
+								<?php _e( 'The information that is shown for every Product.', 'woocommerce-delivery-notes' ); ?>
+							</span>
+						</td>
+					</tr>					<tr>
+						<th>
+							<label><?php _e( 'Product fields', 'woocommerce-delivery-notes' ); ?></label>
+						</th>
+						<td>
+							<p>
+								coupon name, dimensions
+							</p>
+							<span class="description">
+								<?php _e( 'The information that is shown for every Product.', 'woocommerce-delivery-notes' ); ?>
+							</span>
+						</td>
+					</tr>
+-->
 					<tr>
 						<th>
 							<?php _e( 'Types', 'woocommerce-delivery-notes' ); ?>
