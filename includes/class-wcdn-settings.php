@@ -137,7 +137,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 */
 		public function reset_invoice_counter_ajax() {
 			if( !wp_verify_nonce( $_POST['nonce'], WooCommerce_Delivery_Notes::$plugin_prefix . 'settings_nonce' ) || !isset( $_POST['reset'] ) ) {
-				print_r('no reset');
 				exit;
 			}
 
@@ -253,7 +252,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 				// show template preview links when an order is available	
 				$args = array(
 					'post_type' => 'shop_order',
-					'post_status' => array_keys( wc_get_order_statuses() ),
+					'post_status' => array( 'wc-pending', 'wc-processing', 'wc-on-hold', 'wc-completed', 'wc-cancelled', 'wc-refunded', 'wc-failed' ),
 					'posts_per_page' => 1
 				);
 				$query = new WP_Query( $args );

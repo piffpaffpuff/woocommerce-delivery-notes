@@ -16,6 +16,8 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 
 		public static $templates;
 
+		public $template_paths;
+
 		public $template;
 		public $template_directory_name;
 		public $template_path_theme;
@@ -111,7 +113,15 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		 */
 		public function load_hooks() {	
 			// Define default variables
-			$this->template_directory_name = apply_filters( 'wcdn_template_directory_name', 'print-order' );
+			$this->template_directory_name = 'print-order';
+/*
+			
+			$this->template_paths = array(
+				WC_TEMPLATE_PATH . $this->template_directory_name . '/',
+				WooCommerce_Delivery_Notes::$plugin_path . 'templates/' . $this->template_directory_name . '/'
+			);
+*/
+			
 			$this->template_path_theme = WC_TEMPLATE_PATH . $this->template_directory_name . '/';
 			$this->template_path_plugin = WooCommerce_Delivery_Notes::$plugin_path . 'templates/' . $this->template_directory_name . '/';
 			$this->template_url_plugin = WooCommerce_Delivery_Notes::$plugin_url . 'templates/' . $this->template_directory_name . '/';
@@ -270,18 +280,20 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 				$url = add_query_arg( $endpoint, $order_ids_slug, $base_url );
 			} else {				
 				// For the theme
-				$base_url = get_permalink( wc_get_page_id( 'myaccount' ) );
+				$base_url = wc_get_page_permalink( 'myaccount' );
 				$endpoint = $this->api_endpoints['print-order'];
 				
+/*
 				// The permalink function can return a faulty protocol when 
 				// the front-end uses ssl but the back-end doesn't. This 
 				// depends on which plugin is used for ssl. To fix this, the
 				// home_url is checked for the correct protocol.
 				$home_url_scheme = parse_url(home_url(), PHP_URL_SCHEME);
 				$base_url_scheme = parse_url($base_url, PHP_URL_SCHEME);
-				if( $base_url_scheme != $home_url_scheme ) {
+				if( !empty($home_url_scheme) && $base_url_scheme != $home_url_scheme ) {
 					$base_url = str_replace( $base_url_scheme . '://', $home_url_scheme . '://', $base_url );
 				}	
+*/
 				
 				// Add the order ids and create the url
 				if( get_option( 'permalink_structure' ) ) {
@@ -307,7 +319,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			$theme_path = get_template_directory() . '/' . $this->template_path_theme;
 			$theme_uri = get_template_directory_uri() . '/' . $this->template_path_theme;
 			
-			// buld the url depenind on where the file is
+			// build the url depending on where the file is
 			if( file_exists( $child_theme_path . $name ) ) {
 				$uri = $child_theme_uri . $name;
 			} elseif( file_exists( $theme_path . $name ) ) {

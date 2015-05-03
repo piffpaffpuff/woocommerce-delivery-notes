@@ -5,7 +5,7 @@
  * Plugin Name: WooCommerce Print Invoice & Delivery Note
  * Plugin URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * Description: Print Invoices & Delivery Notes for WooCommerce Orders. 
- * Version: 4.1.5
+ * Version: 4.1.6
  * Author: Triggvy Gunderson
  * Author URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * License: GPLv3 or later
@@ -55,7 +55,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		/**
 		 * Default properties
 		 */
-		public static $plugin_version;
+		public static $plugin_version = '4.1.6';
 		public static $plugin_prefix;
 		public static $plugin_url;
 		public static $plugin_path;
@@ -118,7 +118,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 * Define WC Constants
 		 */
 		private function define_constants() {
-			self::$plugin_version = '4.1.5';
 			self::$plugin_prefix = 'wcdn_';
 			self::$plugin_basefile_path = __FILE__;
 			self::$plugin_basefile = plugin_basename( self::$plugin_basefile_path );
@@ -249,7 +248,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 }
 
 /**
- * Returns the main instance of teh plugin to prevent the need to use globals
+ * Returns the main instance of the plugin to prevent the need to use globals
  */
 function WCDN() {
 	return WooCommerce_Delivery_Notes::instance();
