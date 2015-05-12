@@ -15,11 +15,9 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 	class WooCommerce_Delivery_Notes_Print {
 
 		public static $templates;
-
-		public $template_paths;
+		public static $template_styles;
 
 		public $template;
-		public $template_directory_name;
 		public $template_path_theme;
 		public $template_path_plugin;
 		public $template_url_plugin;
@@ -46,7 +44,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 						'print_plural' => __( 'Print Invoices', 'woocommerce-delivery-notes' ),
 						'message' => __( 'Invoice created.', 'woocommerce-delivery-notes' ),
 						'message_plural' => __( 'Invoices created.', 'woocommerce-delivery-notes' ),
-						'setting' => __( 'Enable Invoices', 'woocommerce-delivery-notes' )
+						'setting' => __( 'Show "Print Invoice" button', 'woocommerce-delivery-notes' )
 					)
 				) ),
 				apply_filters( 'wcdn_template_registration_delivery_note', array(
@@ -58,7 +56,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 						'print_plural' => __( 'Print Delivery Notes', 'woocommerce-delivery-notes' ),
 						'message' => __( 'Delivery Note created.', 'woocommerce-delivery-notes' ),
 						'message_plural' => __( 'Delivery Notes created.', 'woocommerce-delivery-notes' ),
-						'setting' => __( 'Enable Delivery Notes', 'woocommerce-delivery-notes' )
+						'setting' => __( 'Show "Print Delivery Note" button', 'woocommerce-delivery-notes' )
 					)
 				) ),
 				apply_filters( 'wcdn_template_registration_receipt', array(
@@ -70,7 +68,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 						'print_plural' => __( 'Print Receipts', 'woocommerce-delivery-notes' ),
 						'message' => __( 'Receipt created.', 'woocommerce-delivery-notes' ),
 						'message_plural' => __( 'Receipts created.', 'woocommerce-delivery-notes' ),
-						'setting' => __( 'Enable Receipts', 'woocommerce-delivery-notes' )
+						'setting' => __( 'Show "Print Receipt" button', 'woocommerce-delivery-notes' )
 					)
 				) )
 			) );
@@ -89,17 +87,28 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 				)
 			);
 
+			// Template styles
+			self::$template_styles = apply_filters( 'wcdn_template_styles', array() );
+			
+			// Add the default style as first item
+			array_unshift( self::$template_styles, array(
+				'name' => __( 'Default', 'woocommerce-delivery-notes' ),
+				'type' => 'default',
+				'path' => WooCommerce_Delivery_Notes::$plugin_path . 'templates/print-order/',
+				'url' => WooCommerce_Delivery_Notes::$plugin_url . 'templates/print-order/'
+			) );
+
 			// Add the endpoint for the frontend
 			$this->api_endpoints = array( 
 				'print-order' => get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint', 'print-order' )
 			);
 			
-			// Insert the query vars			
+			// Insert the query vars
 			$this->query_vars = array(
 				'print-order-type',
 				'print-order-email'
 			);
-			
+
 			// Load the hooks
 			add_action( 'init', array( $this, 'load_hooks' ) );
 			add_filter( 'query_vars', array( $this, 'add_query_vars' ) );
@@ -107,24 +116,24 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			add_action( 'template_redirect', array( $this, 'template_redirect_theme' ) );
 			add_action( 'wp_ajax_print_order', array( $this, 'template_redirect_admin' ) );
 		}
-		
+	
 		/**
 		 * Load the init hooks
 		 */
 		public function load_hooks() {	
 			// Define default variables
-			$this->template_directory_name = 'print-order';
-/*
+			$this->template_path_theme = WC_TEMPLATE_PATH . 'print-order/';
+			$this->template_path_plugin = apply_filters( 'wcdn_template_path_plugin', null );
+			$this->template_url_plugin = apply_filters( 'template_url_plugin', null );
 			
-			$this->template_paths = array(
-				WC_TEMPLATE_PATH . $this->template_directory_name . '/',
-				WooCommerce_Delivery_Notes::$plugin_path . 'templates/' . $this->template_directory_name . '/'
-			);
-*/
+			// Fallback to default style
+			if( empty( $this->template_path_plugin ) ) {
+				$this->template_path_plugin = self::$template_styles[0]['path'];
+			}
 			
-			$this->template_path_theme = WC_TEMPLATE_PATH . $this->template_directory_name . '/';
-			$this->template_path_plugin = WooCommerce_Delivery_Notes::$plugin_path . 'templates/' . $this->template_directory_name . '/';
-			$this->template_url_plugin = WooCommerce_Delivery_Notes::$plugin_url . 'templates/' . $this->template_directory_name . '/';
+			if( empty( $this->template_url_plugin ) ) {
+				$this->template_url_plugin = self::$template_styles[0]['url'];
+			}
 			
 			// Add the endpoints
 			$this->add_endpoints();
@@ -282,19 +291,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 				// For the theme
 				$base_url = wc_get_page_permalink( 'myaccount' );
 				$endpoint = $this->api_endpoints['print-order'];
-				
-/*
-				// The permalink function can return a faulty protocol when 
-				// the front-end uses ssl but the back-end doesn't. This 
-				// depends on which plugin is used for ssl. To fix this, the
-				// home_url is checked for the correct protocol.
-				$home_url_scheme = parse_url(home_url(), PHP_URL_SCHEME);
-				$base_url_scheme = parse_url($base_url, PHP_URL_SCHEME);
-				if( !empty($home_url_scheme) && $base_url_scheme != $home_url_scheme ) {
-					$base_url = str_replace( $base_url_scheme . '://', $home_url_scheme . '://', $base_url );
-				}	
-*/
-				
+								
 				// Add the order ids and create the url
 				if( get_option( 'permalink_structure' ) ) {
 					$url = trailingslashit( trailingslashit( $base_url ) . $endpoint . '/' . $order_ids_slug );
@@ -315,20 +312,23 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		 */
 		public function get_template_url( $name ) {			
 			$child_theme_path = get_stylesheet_directory() . '/' . $this->template_path_theme;
-			$child_theme_uri = get_stylesheet_directory_uri() . '/' . $this->template_path_theme;
+			$child_theme_url = get_stylesheet_directory_uri() . '/' . $this->template_path_theme;
 			$theme_path = get_template_directory() . '/' . $this->template_path_theme;
-			$theme_uri = get_template_directory_uri() . '/' . $this->template_path_theme;
+			$theme_url = get_template_directory_uri() . '/' . $this->template_path_theme;
 			
 			// build the url depending on where the file is
 			if( file_exists( $child_theme_path . $name ) ) {
-				$uri = $child_theme_uri . $name;
+				// Look in the child theme folder
+				$url = $child_theme_url . $name;
 			} elseif( file_exists( $theme_path . $name ) ) {
-				$uri = $theme_uri . $name;
+				// Look in the theme folder
+				$url = $theme_url . $name;
 			} else {
-				$uri = $this->template_url_plugin . $name;
+				// look in the plugin folder
+				$url = $this->template_url_plugin . $name;
 			}
 			
-			return $uri;
+			return $url;
 		}
 		
 		/**
@@ -390,18 +390,17 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		 * Get the order invoice number
 		 */
 		public function get_order_invoice_number( $order_id ) {						
-			$invoice_start = intval( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_start', 1 ) );
-			$invoice_counter = intval( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_counter', 0 ) );
+			$invoice_count = intval( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_count', 1 ) );
 			$invoice_prefix = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_prefix' );
 			$invoice_suffix = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_suffix' );
 	
 			// Add the invoice number to the order when it doesn't yet exist
 			$meta_key = '_' . WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number';
-			$meta_added = add_post_meta( $order_id, $meta_key, $invoice_prefix . ( $invoice_start + $invoice_counter ) . $invoice_suffix, true );
+			$meta_added = add_post_meta( $order_id, $meta_key, $invoice_prefix . $invoice_count . $invoice_suffix, true );
 						
 			// Update the total count
 			if( $meta_added ) {
-				update_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_counter', $invoice_counter + 1  );
+				update_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_count', $invoice_count + 1  );
 			}
 			
 			// Get the invoice number

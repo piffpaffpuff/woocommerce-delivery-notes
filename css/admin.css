@@ -110,25 +110,73 @@
 
 /* Settings */
 
-#company-logo-placeholder {
+.wcdn-image-select-field {
+	position: relative;
+	background-color: white;
+	width: 125px;
+	height: 125px;
 }
 
-#company-logo-placeholder img {
+.wcdn-image-select-placeholder {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	border: 1px solid #ddd;
 	cursor: pointer;
-	max-width: 200px;
-	height: auto;
 }
 
-#company-logo-loader.spinner {
+.wcdn-image-select-placeholder .thumbnail {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	-webkit-transform: translate( 50%, 50% );
+	-ms-transform: translate(50%,50%);
+	transform: translate( 50%, 50% );
+}
+
+.wcdn-image-select-placeholder img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	max-width: 100%;
+	-webkit-transform: translate( -50%, -50% );
+	-ms-transform: translate(-50%,-50%);
+	transform: translate( -50%, -50% );
+}
+
+.wcdn-image-select-spinner {
 	float: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 10px;
+} 
+
+.wcdn-image-select-buttons {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	padding-left: 10px;
+	padding-bottom: 10px;
 }
 
-#company-logo-loader.print-preview-loading {
-	display: inline-block;
+.wcdn-image-select-buttons .button {
+	max-width: 105px;
+	white-space: nowrap;
+	overflow: hidden;
+	-webkit-text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+	text-overflow: ellipsis;
 }
 
+
+/*
 #invoice-counter-value {
 	display: inline-block;
 	border: 1px solid #e4e4e4;
 	padding: 3px 10px;
 }
+*/

@@ -68,6 +68,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 */
 		public $writepanel;
 		public $settings;
+		public $settings2;
 		public $print;
 		public $theme;
 
@@ -132,6 +133,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		public function include_classes() {
 			include_once( 'includes/class-wcdn-print.php' );
 			include_once( 'includes/class-wcdn-settings.php' );
+			include_once( 'includes/class-wcdn-settings2.php' );
 			include_once( 'includes/class-wcdn-writepanel.php' );
 			include_once( 'includes/class-wcdn-theme.php' );
 		}
@@ -171,11 +173,9 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 				// Create the instances
 				$this->print = new WooCommerce_Delivery_Notes_Print();
 				$this->settings = new WooCommerce_Delivery_Notes_Settings();
+				$this->settings2 = new WooCommerce_Delivery_Notes_Settings2();
 				$this->writepanel = new WooCommerce_Delivery_Notes_Writepanel();
 				$this->theme = new WooCommerce_Delivery_Notes_Theme();
-
-				// Check for database updates
-				$this->update();
 
 				// Load the hooks for the template after the objetcs.
 				// Like this the template has full access to all objects.
@@ -192,28 +192,42 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 * Install or update the default settings
 		 */
 		public function update() {
-			// Define default settings
-			if( get_option( self::$plugin_prefix . 'version' ) != self::$plugin_version ) {
-				// Print slug for the frontend
-				$endpoint = get_option( self::$plugin_prefix . 'print_order_page_endpoint' );
-				if( !$endpoint ) {
-					update_option( self::$plugin_prefix . 'print_order_page_endpoint', 'print-order' );
-	
-					// Flush the rewrite rules when a fresh install
-					set_transient( self::$plugin_prefix . 'flush_rewrite_rules', true );
+			$option_version = get_option( self::$plugin_prefix . 'version', '1' );
+
+			// Update the settings
+			if( version_compare( $option_version, self::$plugin_version, '<' ) ) {
+				// Legacy updates
+				if( version_compare( $option_version, '4.2.0', '<' ) ) {
+					// Group invoice numbering
+					$invoice_start = intval( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_start', 1 ) );
+					$invoice_counter = intval( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_counter', 0 ) );
+					update_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_count', $invoice_start + $invoice_counter );	
+					
+					// Translate checkbox values
+					foreach( $this->settings2->get_settings() as $value ) {
+						if( isset( $value['id'] ) && isset( $value['type'] ) && $value['type'] == 'checkbox' ) {
+							$autoload = isset( $value['autoload'] ) ? (bool) $value['autoload'] : true;
+							$option = get_option( $value['id'] );
+							if( (bool)$option ) {
+								update_option( $value['id'], 'yes' );	
+							} else {
+								update_option( $value['id'], 'no' );	
+							}
+						}
+					}				
 				}
 				
-				// Template types
-				foreach( WooCommerce_Delivery_Notes_Print::$templates as $template ) {
-					// Enable 'invoice' and 'delivery_note' by default
-					if( $template['type'] == 'invoice' || $template['type'] == 'delivery-note' ) {
-						$option = get_option( self::$plugin_prefix . 'template_type_' . $template['type'] );
-						if( !$option ) {
-							update_option( self::$plugin_prefix . 'template_type_' . $template['type'], 1 );
-						}
+				// Set all options that have default values
+				foreach( $this->settings2->get_settings() as $value ) {
+					if( isset( $value['default'] ) && isset( $value['id'] ) ) {
+						$autoload = isset( $value['autoload'] ) ? (bool) $value['autoload'] : true;
+						add_option( $value['id'], $value['default'], '', ( $autoload ? 'yes' : 'no' ) );
 					}
 				}
 				
+				// Flush the transients in case the endpoint changed
+				set_transient( self::$plugin_prefix . 'flush_rewrite_rules', true );
+
 				// Update the settings to the latest version
 				update_option( self::$plugin_prefix . 'version', self::$plugin_version );
 			}
@@ -237,7 +251,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 			$site_plugins = get_site_option( 'active_sitewide_plugins', array() );
 			$woocommerce_basename = plugin_basename( WC_PLUGIN_FILE );
 					
-			if( ( in_array( $woocommerce_basename, $blog_plugins ) || isset( $site_plugins[$woocommerce_basename] ) ) && version_compare( WC_VERSION, '2.2', '>=' )) {
+			if( ( in_array( $woocommerce_basename, $blog_plugins ) || isset( $site_plugins[$woocommerce_basename] ) ) && version_compare( WC_VERSION, '2.2', '>=' ) ) {
 				return true;
 			} else {
 				return false;

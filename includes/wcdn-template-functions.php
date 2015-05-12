@@ -227,7 +227,7 @@ function wcdn_get_order_info( $order ) {
 	$fields = array();
 	$create_invoice_number = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'create_invoice_number' );
 	
-	if( wcdn_get_template_type() == 'invoice' && !empty( $create_invoice_number ) ) {
+	if( wcdn_get_template_type() == 'invoice' && !empty( $create_invoice_number ) && $create_invoice_number == 'yes' ) {
 		$fields['invoice_number'] = array( 
 			'label' => __( 'Invoice Number', 'woocommerce-delivery-notes' ),
 			'value' => wcdn_get_order_invoice_number( $order->id )

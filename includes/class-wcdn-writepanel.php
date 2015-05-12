@@ -251,7 +251,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 			<?php 
 			$create_invoice_number = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'create_invoice_number' );
 			$has_invoice_number = get_post_meta( $post_id, '_' . WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number', true );
-			if( !empty( $create_invoice_number ) && $has_invoice_number ) : 
+			if( !empty( $create_invoice_number ) && $create_invoice_number == 'yes' && $has_invoice_number ) : 
 				$invoice_number = wcdn_get_order_invoice_number( $post_id );
 				$invoice_date = wcdn_get_order_invoice_date( $post_id ); ?>
 				

@@ -273,19 +273,25 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			</p>
 			<table class="form-table">
 				<tbody>	
-<!--
 					<tr>
 						<th>
 							<label><?php _e( 'Style', 'woocommerce-delivery-notes' ); ?></label>
 						</th>
 						<td>
 							<p>
-								<input type="text" name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>template_style" value="<?php echo stripslashes( wp_kses_stripslashes( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_style' ) ) ); ?>" />
+								<select name="<?php echo WooCommerce_Delivery_Notes::$plugin_prefix; ?>template_style">
+									<?php
+									foreach( WooCommerce_Delivery_Notes_Print::$template_styles as $style ) : ?>
+										<?php if( is_array( $style ) && isset( $style['type'] ) && isset( $style['name'] ) ) : ?>
+											<option value="<?php echo $style['type']; ?>" <?php selected( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_style' ), $style['type'] ); ?>><?php echo $style['name']; ?></option>
+										<?php endif; ?>
+									<?php endforeach; ?>
+								</select>
 							</p>
 							<span class="description">
-								<?php _e( 'The default template style.', 'woocommerce-delivery-notes' ); ?>
+								<?php printf( __( 'The default print style. Read the <a href="%s" target="_blank">FAQ</a> to learn how to customize it.', 'woocommerce-delivery-notes' ), 'https://wordpress.org/plugins/woocommerce-delivery-notes/faq/' ); ?>
 								<strong><?php _e( 'Note:', 'woocommerce-delivery-notes' ); ?></strong>
-								<?php _e( 'Get more styles and advanced options with <a href="#">WooCommerce Print Invoice & Delivery Note Pro</a>.', 'woocommerce-delivery-notes' ); ?>
+								<?php printf( __( 'Get more styles with %s.', 'woocommerce-delivery-notes' ), '<a href="#">WooCommerce Print Invoice & Delivery Note Pro</a>' ); ?>
 							</span>
 						</td>
 					</tr>
@@ -295,7 +301,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 						</th>
 						<td>
 							<p>
-								
+								no address, address left/right
 							</p>
 							<span class="description">
 								<?php _e( 'The information that is shown for every Product.', 'woocommerce-delivery-notes' ); ?>
@@ -314,7 +320,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							</span>
 						</td>
 					</tr>
--->
 					<tr>
 						<th>
 							<?php _e( 'Types', 'woocommerce-delivery-notes' ); ?>
