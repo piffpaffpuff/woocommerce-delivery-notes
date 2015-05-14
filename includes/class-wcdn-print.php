@@ -14,14 +14,12 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 
 	class WooCommerce_Delivery_Notes_Print {
 
-		public static $templates;
+		public static $template_registrations;
 		public static $template_styles;
 
+		public $template_locations;
 		public $template;
-		public $template_path_theme;
-		public $template_path_plugin;
-		public $template_url_plugin;
-		
+
 		public $api_endpoints;
 		public $query_vars;
 
@@ -34,7 +32,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		 */
 		public function __construct() {	
 			// Define the templates
-			self::$templates = apply_filters( 'wcdn_template_registration', array(
+			self::$template_registrations = apply_filters( 'wcdn_template_registration', array(
 				apply_filters( 'wcdn_template_registration_invoice', array(
 					'type' => 'invoice',
 					'labels' => array(
@@ -73,8 +71,8 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 				) )
 			) );
 			
-			// Default empty template
-			$this->template = array(
+			// Add the default template as first item
+			array_unshift( self::$template_registrations, array(
 				'type' => 'order',
 				'labels' => array(
 					'name' => __( 'Order', 'woocommerce-delivery-notes' ),
@@ -85,7 +83,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 					'message_plural' => null,
 					'setting' => null
 				)
-			);
+			) );
 
 			// Template styles
 			self::$template_styles = apply_filters( 'wcdn_template_styles', array() );
@@ -97,6 +95,12 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 				'path' => WooCommerce_Delivery_Notes::$plugin_path . 'templates/print-order/',
 				'url' => WooCommerce_Delivery_Notes::$plugin_url . 'templates/print-order/'
 			) );
+
+			// Default template
+			$this->template = self::$template_registrations[0];
+			
+			// Build all template locations
+			$this->template_locations = $this->build_template_locations();
 
 			// Add the endpoint for the frontend
 			$this->api_endpoints = array( 
@@ -121,32 +125,6 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		 * Load the init hooks
 		 */
 		public function load_hooks() {	
-			// Define default variables
-			$this->template_path_theme = WC_TEMPLATE_PATH . 'print-order/';
-			$this->template_path_plugin = null;
-			$this->template_url_plugin = null;
-			
-			// Read the template style from the settings
-			$style_type = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_style' );
-			if( isset( $style_type ) ) {
-				foreach( self::$template_styles as $style ) {
-					if( isset( $style['type'] ) && $style['type'] === $style_type ) {
-						$this->template_path_plugin = $style['path'];
-						$this->template_url_plugin = $style['url'];
-						break;
-					}
-				}
-			}
-
-			// Fallback to default style
-			if( empty( $this->template_path_plugin ) ) {
-				$this->template_path_plugin = self::$template_styles[0]['path'];
-			}
-			
-			if( empty( $this->template_url_plugin ) ) {
-				$this->template_url_plugin = self::$template_styles[0]['url'];
-			}
-			
 			// Add the endpoints
 			$this->add_endpoints();
 		}
@@ -192,7 +170,53 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 				}
 			}
 		}
+
+		/**
+		 * Build the template locations
+		 */
+		public function build_template_locations() {
+			$wc_template_directory = WC_TEMPLATE_PATH . 'print-order/';
+			
+			// Get the paths for custom styles
+			$custom_type = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_style' );
+			$custom_path = null;
+			$custom_url = null;
+			if( isset( $custom_type ) && $custom_type !== 'default' ) {
+				foreach( self::$template_styles as $template_style ) {
+					if( $custom_type === $template_style['type'] ) {
+						$custom_path = $template_style['path'];
+						$custom_url = $template_style['url'];
+						break;
+					}
+				}
+			}
+			
+			// Build the loactions
+			$locations = array(
+				'child_theme' => array(
+					'path' => trailingslashit( get_stylesheet_directory() ) . $wc_template_directory,
+					'url' => trailingslashit( get_stylesheet_directory_uri() ) . $wc_template_directory
+				),
+				
+				'theme' => array(
+					'path' => trailingslashit( get_template_directory() ) . $wc_template_directory,
+					'url' => trailingslashit( get_template_directory_uri() ) . $wc_template_directory
+				),
+				
+				'custom' => array(
+					'path' => $custom_path,
+					'url' => $custom_url
+				),
+				
+				'plugin' => array(
+					'path' => self::$template_styles[0]['path'],
+					'url' => self::$template_styles[0]['url']
+				)
+			);					
 		
+			return $locations;
+		}
+				
 		/**
 		 * Template handling in the front-end
 		 */
@@ -232,10 +256,10 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 				$this->order_ids = array_filter( explode('-', $order_ids ) );
 			}
 			
-			// Set the template 
-			foreach( self::$templates as $template ) {
-				if( $template_type == $template['type'] ) {
-					$this->template = $template;
+			// Set the current template 
+			foreach( self::$template_registrations as $template_registration ) {
+				if( $template_type == $template_registration['type'] ) {
+					$this->template = $template_registration;
 					break;
 				}
 			}
@@ -249,17 +273,36 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			
 			// Create the orders and check permissions
 			$populated = $this->populate_orders();
-			
+		
 			// Only continue if the orders are populated
 			if( !$populated ) {
 				die();
 			} 
-						
+			
 			// Load the print template html
-			wc_get_template( 'print-order.php', null, $this->template_path_theme, $this->template_path_plugin );
+			$location = $this->get_template_file_location( 'print-order.php' );
+			wc_get_template( 'print-order.php', null, $location, $location );
 			exit;
 		}
-						
+		
+		/**
+		 * Find the location of a template file 
+		 */
+		public function get_template_file_location( $name, $url_mode = false ) {
+			$found = '';
+			foreach( $this->template_locations as $template_location ) {
+				if( isset( $template_location['path'] ) && file_exists( trailingslashit( $template_location['path'] ) . $name ) ) {
+					if( $url_mode ) {
+						$found = $template_location['url'];
+					} else {
+						$found = $template_location['path'];
+					}
+					break;
+				} 
+			}
+			return $found;
+		}
+							
 		/**
 		 * Get print page url
 		 */
@@ -273,8 +316,8 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			$args = array();
 			
 			// Set the template type arg
-			foreach( self::$templates as $template ) {
-				if( $template_type == $template['type'] && $template_type != 'order' ) {
+			foreach( self::$template_registrations as $template_registration ) {
+				if( $template_type == $template_registration['type'] && $template_type != 'order' ) {
 					$args = wp_parse_args( array( 'print-order-type' => $template_type ), $args );
 					break;
 				}
@@ -316,31 +359,6 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			$url = add_query_arg( $args, $url );
 			
 			return esc_url( $url );
-		}
-		
-		/**
-		 * Get the template url for a file. locate by file existence
-		 * and then return the corresponding url.
-		 */
-		public function get_template_url( $name ) {			
-			$child_theme_path = get_stylesheet_directory() . '/' . $this->template_path_theme;
-			$child_theme_url = get_stylesheet_directory_uri() . '/' . $this->template_path_theme;
-			$theme_path = get_template_directory() . '/' . $this->template_path_theme;
-			$theme_url = get_template_directory_uri() . '/' . $this->template_path_theme;
-			
-			// build the url depending on where the file is
-			if( file_exists( $child_theme_path . $name ) ) {
-				// Look in the child theme folder
-				$url = $child_theme_url . $name;
-			} elseif( file_exists( $theme_path . $name ) ) {
-				// Look in the theme folder
-				$url = $theme_url . $name;
-			} else {
-				// look in the plugin folder
-				$url = $this->template_url_plugin . $name;
-			}
-			
-			return $url;
 		}
 		
 		/**

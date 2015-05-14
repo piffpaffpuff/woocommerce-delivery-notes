@@ -287,39 +287,41 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 */
 		public function add_settings_template_type( $settings ) {
 			$position = $this->get_setting_position( WooCommerce_Delivery_Notes::$plugin_prefix . 'email_print_link', $settings );
-			
-			if( $position != false ) {
-				$length = count( WooCommerce_Delivery_Notes_Print::$templates );
-				for( $i = $length - 1; $i >= 0; $i-- ) {
-					$template = WooCommerce_Delivery_Notes_Print::$templates[$i];
-					$title = '';
-					$desc_tip = '';
-					$checkboxgroup = '';
-					
-					// Define the group settings
-					if( $i == 0 ) {
-						$title = __( 'Admin', 'woocommerce-delivery-notes' );
-						$checkboxgroup = 'start';
-					} else if( $i == $length - 1 ) {
-						$desc_tip = __( 'The print buttons are available on the order listing and on the order detail screen.', 'woocommerce-delivery-notes' );
-						$checkboxgroup = 'end';
-					}
-					
-					// Create the setting
-					$setting = array(
-						array(
-							'title'           => $title,
-							'desc'            => $template['labels']['setting'],
-							'id'              => WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_' . $template['type'],
-							'default'         => 'no',
-							'type'            => 'checkbox',
-							'checkboxgroup'   => $checkboxgroup,
-							'desc_tip'        => $desc_tip
-						)
-					);
-									
-					// Insert setting
-					$this->array_insert( $settings, $setting, $position );
+			if( $position !== false ) {
+				// Go through all registrations but remove the default 'order' type
+				$template_registrations = WooCommerce_Delivery_Notes_Print::$template_registrations;
+				array_splice( $template_registrations, 0, 1 );
+				$end = count( $template_registrations ) - 1;
+				foreach( $template_registrations as $index => $template_registration ) {
+						$title = '';
+						$desc_tip = '';
+						$checkboxgroup = '';
+						
+						// Define the group settings
+						if( $index == 0 ) {
+							$title = __( 'Admin', 'woocommerce-delivery-notes' );
+							$checkboxgroup = 'start';
+						} else if( $index == $end ) {
+							$desc_tip = __( 'The print buttons are available on the order listing and on the order detail screen.', 'woocommerce-delivery-notes' );
+							$checkboxgroup = 'end';
+						}
+						
+						// Create the setting
+						$setting = array(
+							array(
+								'title'           => $title,
+								'desc'            => $template_registration['labels']['setting'],
+								'id'              => WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_' . $template_registration['type'],
+								'default'         => 'no',
+								'type'            => 'checkbox',
+								'checkboxgroup'   => $checkboxgroup,
+								'desc_tip'        => $desc_tip
+							)
+						);
+										
+						// Insert setting
+						$this->array_insert( $settings, $setting, $position );
+						$position++;
 				}
 			}
 
@@ -357,9 +359,9 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		public function get_options_styles() {
 			$options = array();
 			
-			foreach( WooCommerce_Delivery_Notes_Print::$template_styles as $style ) {
-				if( is_array( $style ) && isset( $style['type'] ) && isset( $style['name'] ) ) {
-					$options[$style['type']] = $style['name'];
+			foreach( WooCommerce_Delivery_Notes_Print::$template_styles as $template_style ) {
+				if( is_array( $template_style ) && isset( $template_style['type'] ) && isset( $template_style['name'] ) ) {
+					$options[$template_style['type']] = $template_style['name'];
 				}
 			}
 			

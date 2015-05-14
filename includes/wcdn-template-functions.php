@@ -12,7 +12,8 @@ if ( !defined( 'ABSPATH' ) ) {
  */
 function wcdn_get_template_content( $name, $args = null ) {
 	global $wcdn;
-	wc_get_template( $name, $args, $wcdn->print->template_path_theme, $wcdn->print->template_path_plugin );
+	$location = $wcdn->print->get_template_file_location( $name );
+	wc_get_template( $name, $args, $location, $location );
 }
 
 /**
@@ -28,7 +29,7 @@ function wcdn_get_template_type() {
  */
 function wcdn_get_template_title() {
 	global $wcdn;
-	return apply_filters( 'wcdn_template_type', __( $wcdn->print->template['labels']['name'], 'woocommerce-delivery-notes' ) );
+	return apply_filters( 'wcdn_template_title', __( $wcdn->print->template['labels']['name'], 'woocommerce-delivery-notes' ) );
 }
 
 /**
@@ -136,7 +137,7 @@ function wcdn_template_stylesheet() {
 	global $wcdn;
 	$name = apply_filters( 'wcdn_template_stylesheet_name', 'style.css' );
 	?>
-	<link rel="stylesheet" href="<?php echo $wcdn->print->get_template_url( $name ); ?>" type="text/css" media="screen,print" />
+	<link rel="stylesheet" href="<?php echo $wcdn->print->get_template_file_location( $name, true ) . $name; ?>" type="text/css" media="screen,print" />
 	<?php
 }
 

@@ -29,13 +29,7 @@
 #woocommerce-delivery-notes-box span.print-preview-loading {
 	position: absolute;
 	right: 2.5em;
-	top: -2.35em;
-}
-
-#woocommerce-delivery-notes-box span.print-preview-loading,
-.type-shop_order .column-order_actions span.print-preview-loading {
-	display: none;
-	vertical-align: middle;
+	top: -2.1em;
 }
 
 #woocommerce-delivery-notes-box .print-actions {
@@ -51,6 +45,7 @@
 }
 
 /* All orders */
+
 .type-shop_order .column-order_actions .print-preview-button {
 	display: block;
 	text-indent: -9999px;
@@ -106,6 +101,16 @@
 
 .type-shop_order .column-order_actions .print-preview-button span {
 	display:  none;
+}
+
+.print-preview-loading {
+	visibility: hidden;
+	vertical-align: middle;
+	margin: 0;
+}
+
+.print-preview-loading.is-active {
+	visibility: visible;
 }
 
 /* Settings */
@@ -177,12 +182,3 @@
 	-ms-text-overflow: ellipsis;
 	text-overflow: ellipsis;
 }
-
-
-/*
-#invoice-counter-value {
-	display: inline-block;
-	border: 1px solid #e4e4e4;
-	padding: 3px 10px;
-}
-*/

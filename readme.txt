@@ -294,8 +294,9 @@ Please [contribute your translation](https://github.com/piffpaffpuff/woocommerce
 
 = 4.2.0 =
 
-* Support for WooCommerce Print Invoice & Delivery Note Pro
-* Refactored settings screen
+* Feature - Support for WooCommerce Print Invoice & Delivery Note Pro
+* Tweak - Refactored settings screen
+* Fix - Print preview loading indicators
 
 = 4.1.6 =
 
