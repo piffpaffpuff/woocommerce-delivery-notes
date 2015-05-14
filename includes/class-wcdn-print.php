@@ -123,9 +123,21 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		public function load_hooks() {	
 			// Define default variables
 			$this->template_path_theme = WC_TEMPLATE_PATH . 'print-order/';
-			$this->template_path_plugin = apply_filters( 'wcdn_template_path_plugin', null );
-			$this->template_url_plugin = apply_filters( 'template_url_plugin', null );
+			$this->template_path_plugin = null;
+			$this->template_url_plugin = null;
 			
+			// Read the template style from the settings
+			$style_type = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_style' );
+			if( isset( $style_type ) ) {
+				foreach( self::$template_styles as $style ) {
+					if( isset( $style['type'] ) && $style['type'] === $style_type ) {
+						$this->template_path_plugin = $style['path'];
+						$this->template_url_plugin = $style['url'];
+						break;
+					}
+				}
+			}
+
 			// Fallback to default style
 			if( empty( $this->template_path_plugin ) ) {
 				$this->template_path_plugin = self::$template_styles[0]['path'];

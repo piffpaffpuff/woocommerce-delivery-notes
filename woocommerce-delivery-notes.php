@@ -5,7 +5,7 @@
  * Plugin Name: WooCommerce Print Invoice & Delivery Note
  * Plugin URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * Description: Print Invoices & Delivery Notes for WooCommerce Orders. 
- * Version: 4.1.6
+ * Version: 4.2.0
  * Author: Triggvy Gunderson
  * Author URI: https://github.com/piffpaffpuff/woocommerce-delivery-notes
  * License: GPLv3 or later
@@ -55,7 +55,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		/**
 		 * Default properties
 		 */
-		public static $plugin_version = '4.1.6';
+		public static $plugin_version = '4.2.0';
 		public static $plugin_prefix;
 		public static $plugin_url;
 		public static $plugin_path;
@@ -68,7 +68,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 */
 		public $writepanel;
 		public $settings;
-		public $settings2;
 		public $print;
 		public $theme;
 
@@ -133,7 +132,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		public function include_classes() {
 			include_once( 'includes/class-wcdn-print.php' );
 			include_once( 'includes/class-wcdn-settings.php' );
-			include_once( 'includes/class-wcdn-settings2.php' );
 			include_once( 'includes/class-wcdn-writepanel.php' );
 			include_once( 'includes/class-wcdn-theme.php' );
 		}
@@ -173,7 +171,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 				// Create the instances
 				$this->print = new WooCommerce_Delivery_Notes_Print();
 				$this->settings = new WooCommerce_Delivery_Notes_Settings();
-				$this->settings2 = new WooCommerce_Delivery_Notes_Settings2();
 				$this->writepanel = new WooCommerce_Delivery_Notes_Writepanel();
 				$this->theme = new WooCommerce_Delivery_Notes_Theme();
 
@@ -204,7 +201,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 					update_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_count', $invoice_start + $invoice_counter );	
 					
 					// Translate checkbox values
-					foreach( $this->settings2->get_settings() as $value ) {
+					foreach( $this->settings->get_settings() as $value ) {
 						if( isset( $value['id'] ) && isset( $value['type'] ) && $value['type'] == 'checkbox' ) {
 							$autoload = isset( $value['autoload'] ) ? (bool) $value['autoload'] : true;
 							$option = get_option( $value['id'] );
@@ -218,7 +215,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 				}
 				
 				// Set all options that have default values
-				foreach( $this->settings2->get_settings() as $value ) {
+				foreach( $this->settings->get_settings() as $value ) {
 					if( isset( $value['default'] ) && isset( $value['id'] ) ) {
 						$autoload = isset( $value['autoload'] ) ? (bool) $value['autoload'] : true;
 						add_option( $value['id'], $value['default'], '', ( $autoload ? 'yes' : 'no' ) );

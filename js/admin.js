@@ -35,7 +35,7 @@ jQuery(document).ready(function($) {
 	var media_modal;
  
 	// Button to open the media uploader
-	$('.wcdn-image-select-add-button, .wcdn-image-select-placeholder').on('click', function(event) {
+	$('.wcdn-image-select-add-button, .wcdn-image-select-attachment').on('click', function(event) {
 		event.preventDefault();
 		
 		// If the modal already exists, reopen it.
@@ -86,7 +86,7 @@ jQuery(document).ready(function($) {
 		
 		$.post(ajaxurl, data, function(response) {
 			$('.wcdn-image-select-image-id').val(data.attachment_id);		
-			$('.wcdn-image-select-placeholder .thumbnail').html(response);
+			$('.wcdn-image-select-attachment .thumbnail').html(response);
 			$('.wcdn-image-select-spinner').removeClass('is-active');
 			$('.wcdn-image-select-add-button').addClass('hidden');
 			$('.wcdn-image-select-remove-button').removeClass('hidden');
@@ -99,7 +99,7 @@ jQuery(document).ready(function($) {
 	// remove media 
 	function removeImage() {
 		$('.wcdn-image-select-image-id').val('');		
-		$('.wcdn-image-select-placeholder .thumbnail').empty();
+		$('.wcdn-image-select-attachment .thumbnail').empty();
 		$('.wcdn-image-select-spinner').removeClass('is-active');
 		$('.wcdn-image-select-add-button').removeClass('hidden');
 		$('.wcdn-image-select-remove-button').addClass('hidden');

@@ -17,6 +17,9 @@ You can print out invoices and delivery notes for the [WooCommerce](http://wordp
 
 The plugin adds a new side panel on the order page to allow shop administrators to print out the invoice or delivery note. Registered customers can also print their order with a button that is added to the order screen.
 
+Check out [WooCommerce Print Invoice & Delivery Note Pro](#) for more advanced features.
+
+
 = Features =
 
 * Print invoices and delivery notes via the side panel on the "Order Edit" page
@@ -30,6 +33,7 @@ The plugin adds a new side panel on the order page to allow shop administrators 
 * Supports sequential order numbers
 * Supports the WooCommerce refund system
 * Intelligent invoice and delivery note template system with hooks and functions.php support  
+* Get even more features with [WooCommerce Print Invoice & Delivery Note Pro](#)
 
 = Support =
 
@@ -287,6 +291,11 @@ Please [contribute your translation](https://github.com/piffpaffpuff/woocommerce
 == Changelog ==
 
 = Minimum Requirements: WooCommerce 2.2 =
+
+= 4.2.0 =
+
+* Support for WooCommerce Print Invoice & Delivery Note Pro
+* Refactored settings screen
 
 = 4.1.6 =
 
