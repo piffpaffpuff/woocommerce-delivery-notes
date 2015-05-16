@@ -49,7 +49,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 		 * Create a print button for the 'My Account' page
 		 */
 		public function create_print_button_account_page( $actions, $order ) {			
-			if( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_my_account_page' ) == 'yes' ) {				
+			if( get_option( 'wcdn_print_button_on_my_account_page' ) == 'yes' ) {				
 				// Add the print button
 				$actions['print'] = array(
 					'url'  => wcdn_get_print_link( $order->id, $this->get_template_type( $order ) ),
@@ -66,7 +66,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 			$order = new WC_Order( $order_id );
 			
 			// Output the button only when the option is enabled
-			if( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_view_order_page' ) == 'yes' ) {				
+			if( get_option( 'wcdn_print_button_on_view_order_page' ) == 'yes' ) {				
 				// Default button for all pages and logged in users					
 				$print_url = wcdn_get_print_link( $order_id, $this->get_template_type( $order ) );
 				
@@ -98,7 +98,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Theme' ) ) {
 		 * Add a print url to the emails that are sent to the customer
 		 */		
 		public function add_email_print_url( $order, $sent_to_admin = true, $plain_text = false ) {
-			if( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'email_print_link' ) == 'yes' ) {				
+			if( get_option( 'wcdn_email_print_link' ) == 'yes' ) {				
 				if( $order->billing_email && !$sent_to_admin ) {
 					$url = wcdn_get_print_link( $order->id, $this->get_template_type( $order ), $order->billing_email, true );
 					

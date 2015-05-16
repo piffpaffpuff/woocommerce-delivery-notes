@@ -71,7 +71,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 				) )
 			) );
 			
-			// Add the default template as first item
+			// Add the default template as first item after filter hooks passed
 			array_unshift( self::$template_registrations, array(
 				'type' => 'order',
 				'labels' => array(
@@ -88,7 +88,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			// Template styles
 			self::$template_styles = apply_filters( 'wcdn_template_styles', array() );
 			
-			// Add the default style as first item
+			// Add the default style as first item after filter hooks passed
 			array_unshift( self::$template_styles, array(
 				'name' => __( 'Default', 'woocommerce-delivery-notes' ),
 				'type' => 'default',
@@ -104,7 +104,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 
 			// Add the endpoint for the frontend
 			$this->api_endpoints = array( 
-				'print-order' => get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint', 'print-order' )
+				'print-order' => get_option( 'wcdn_print_order_page_endpoint', 'print-order' )
 			);
 			
 			// Insert the query vars
@@ -141,8 +141,8 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 
 			// Flush the rules when the transient is set.
 			// This is important to make the endpoint work.
-			if( get_transient( WooCommerce_Delivery_Notes::$plugin_prefix . 'flush_rewrite_rules' ) == true ) {
-				delete_transient( WooCommerce_Delivery_Notes::$plugin_prefix . 'flush_rewrite_rules' );
+			if( get_transient( 'wcdn_flush_rewrite_rules' ) == true ) {
+				delete_transient( 'wcdn_flush_rewrite_rules' );
 				flush_rewrite_rules();
 			}
 		}
@@ -178,14 +178,14 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			$wc_template_directory = WC_TEMPLATE_PATH . 'print-order/';
 			
 			// Get the paths for custom styles
-			$custom_type = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'template_style' );
-			$custom_path = null;
-			$custom_url = null;
-			if( isset( $custom_type ) && $custom_type !== 'default' ) {
+			$settings_type = get_option( 'wcdn_template_style' );
+			$settings_path = null;
+			$settings_url = null;
+			if( isset( $settings_type ) && $settings_type !== 'default' ) {
 				foreach( self::$template_styles as $template_style ) {
-					if( $custom_type === $template_style['type'] ) {
-						$custom_path = $template_style['path'];
-						$custom_url = $template_style['url'];
+					if( $settings_type === $template_style['type'] ) {
+						$settings_path = $template_style['path'];
+						$settings_url = $template_style['url'];
 						break;
 					}
 				}
@@ -203,9 +203,9 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 					'url' => trailingslashit( get_template_directory_uri() ) . $wc_template_directory
 				),
 				
-				'custom' => array(
-					'path' => $custom_path,
-					'url' => $custom_url
+				'settings' => array(
+					'path' => $settings_path,
+					'url' => $settings_url
 				),
 				
 				'plugin' => array(
@@ -420,17 +420,17 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		 * Get the order invoice number
 		 */
 		public function get_order_invoice_number( $order_id ) {						
-			$invoice_count = intval( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_count', 1 ) );
-			$invoice_prefix = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_prefix' );
-			$invoice_suffix = get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_suffix' );
+			$invoice_count = intval( get_option( 'wcdn_invoice_number_count', 1 ) );
+			$invoice_prefix = get_option( 'wcdn_invoice_number_prefix' );
+			$invoice_suffix = get_option( 'wcdn_invoice_number_suffix' );
 	
 			// Add the invoice number to the order when it doesn't yet exist
-			$meta_key = '_' . WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number';
+			$meta_key = '_wcdn_invoice_number';
 			$meta_added = add_post_meta( $order_id, $meta_key, $invoice_prefix . $invoice_count . $invoice_suffix, true );
 						
 			// Update the total count
 			if( $meta_added ) {
-				update_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_count', $invoice_count + 1  );
+				update_option( 'wcdn_invoice_number_count', $invoice_count + 1  );
 			}
 			
 			// Get the invoice number
@@ -442,7 +442,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		 */
 		public function get_order_invoice_date( $order_id ) {	
 			// Add the invoice date to the order when it doesn't yet exist
-			$meta_key = '_' . WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_date';
+			$meta_key = '_wcdn_invoice_date';
 			$meta_added = add_post_meta( $order_id, $meta_key, time(), true );
 	
 			// Get the invoice date

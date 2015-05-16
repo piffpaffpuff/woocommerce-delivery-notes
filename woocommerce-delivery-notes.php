@@ -189,16 +189,16 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 * Install or update the default settings
 		 */
 		public function update() {
-			$option_version = get_option( self::$plugin_prefix . 'version', '1' );
+			$option_version = get_option( 'wcdn_version', '1' );
 
 			// Update the settings
 			if( version_compare( $option_version, self::$plugin_version, '<' ) ) {
 				// Legacy updates
 				if( version_compare( $option_version, '4.2.0', '<' ) ) {
 					// Group invoice numbering
-					$invoice_start = intval( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_start', 1 ) );
-					$invoice_counter = intval( get_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_counter', 0 ) );
-					update_option( WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_count', $invoice_start + $invoice_counter );	
+					$invoice_start = intval( get_option( 'wcdn_invoice_number_start', 1 ) );
+					$invoice_counter = intval( get_option( 'wcdn_invoice_number_counter', 0 ) );
+					update_option( 'wcdn_invoice_number_count', $invoice_start + $invoice_counter );	
 					
 					// Translate checkbox values
 					foreach( $this->settings->get_settings() as $value ) {
@@ -223,10 +223,10 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 				}
 				
 				// Flush the transients in case the endpoint changed
-				set_transient( self::$plugin_prefix . 'flush_rewrite_rules', true );
+				set_transient( 'wcdn_flush_rewrite_rules', true );
 
 				// Update the settings to the latest version
-				update_option( self::$plugin_prefix . 'version', self::$plugin_version );
+				update_option( 'wcdn_version', self::$plugin_version );
 			}
 		}
 		
@@ -234,7 +234,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 * Add settings link to plugin page
 		 */
 		public function add_settings_link( $links ) {
-			$url = esc_url( admin_url( add_query_arg( array( 'page' => 'wc-settings', 'tab' => $this->settings->tab_name ), 'admin.php' ) ) );
+			$url = esc_url( admin_url( add_query_arg( array( 'page' => 'wc-settings', 'tab' => $this->settings->id ), 'admin.php' ) ) );
 			$settings = sprintf( '<a href="%s" title="%s">%s</a>' , $url, __( 'Go to the settings page', 'woocommerce-delivery-notes' ) , __( 'Settings', 'woocommerce-delivery-notes' ) );
 			array_unshift( $links, $settings );
 			return $links;	

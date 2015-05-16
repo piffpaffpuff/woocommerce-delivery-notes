@@ -14,25 +14,25 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 
 	class WooCommerce_Delivery_Notes_Settings {
 			
-		public $tab_name;
+		public $id;
 		
 		/**
 		 * Constructor
 		 */
 		public function __construct() {	
 			// Define default variables
-			$this->tab_name = WooCommerce_Delivery_Notes::$plugin_prefix . 'settings';			
+			$this->id = 'wcdn_settings';			
 						
 			// Load the hooks
+			add_filter( 'woocommerce_settings_tabs_array', array( $this, 'add_settings_page' ), 200 );
 			add_action( 'woocommerce_settings_start', array( $this, 'add_assets' ) );
-			add_filter( 'woocommerce_settings_tabs_array', array( $this, 'add_settings_tab' ), 200 );
-			add_action( 'woocommerce_settings_tabs_' . $this->tab_name, array( $this, 'settings_tab' ) );
-			add_action( 'woocommerce_update_options_' . $this->tab_name, array( $this, 'update_settings' ) );
-			
-			// Custom fields hooks
-			add_action( 'woocommerce_admin_field_' . WooCommerce_Delivery_Notes::$plugin_prefix . 'image_select', array( $this, 'output_image_select' ) );
+			//add_action( 'woocommerce_sections_' . $this->id, array( $this, 'output_sections' ) );
+			add_action( 'woocommerce_settings_' . $this->id, array( $this, 'output' ) );
+			add_action( 'woocommerce_settings_save_' . $this->id, array( $this, 'save' ) );
+
+			add_action( 'woocommerce_admin_field_wcdn_image_select', array( $this, 'output_image_select' ) );
 			add_action( 'wp_ajax_wcdn_settings_load_image', array( $this, 'load_image_ajax' ) );
-			add_action( WooCommerce_Delivery_Notes::$plugin_prefix . 'settings', array( $this, 'add_settings_template_type' ) );
+			add_action( 'wcdn_get_settings', array( $this, 'add_settings_template_type' ) );
 		}
 			
 		/**
@@ -55,224 +55,253 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		/**
 		 * Create a new settings tab
 		 */
-		public function add_settings_tab( $settings_tabs ) {
-			$settings_tabs[$this->tab_name] = __( 'Print', 'woocommerce-delivery-notes' );
+		public function add_settings_page( $settings_tabs ) {
+			$settings_tabs[$this->id] = __( 'Print', 'woocommerce-delivery-notes' );
 			return $settings_tabs;
 		}
 		
 		/**
-		 * Insert the settings fields in the tab
+		 * Output the settings fields into the tab
 		 */
-		public function settings_tab() {
-		    woocommerce_admin_fields( $this->get_settings() );
+/*
+		public function output_sections() {
+		}
+*/
+				
+		/**
+		 * Output the settings fields into the tab
+		 */
+		public function output() {
+			global $current_section;
+			$settings = $this->get_settings( $current_section );
+		    woocommerce_admin_fields( $settings );
 		}
 		
 		/**
-		 * Update the settings
+		 * Save the settings
 		 */
-		function update_settings() {
-			set_transient( WooCommerce_Delivery_Notes::$plugin_prefix . 'flush_rewrite_rules', true );
-		    woocommerce_update_options( $this->get_settings() );
+		function save() {
+		    global $current_section;
+			set_transient( 'wcdn_flush_rewrite_rules', true );
+			$settings = $this->get_settings( $current_section );
+		    woocommerce_update_options( $settings );
 		}
+		
+		/**
+		 * Get sections
+		 */
+/*
+		public function get_sections() {
+			$sections = array(
+				''          	=> __( 'General', 'woocommerce-delivery-notes' ),
+				'display'       => __( 'Display', 'woocommerce-delivery-notes' ),
+				'inventory' 	=> __( 'Inventory', 'woocommerce-delivery-notes' ),
+				'downloadable' 	=> __( 'Downloadable Products', 'woocommerce-delivery-notes' ),
+			);
+			return apply_filters( 'wcdn_settings_sections', $sections );
+		}
+*/
 		
 		/**
 		 * Get the settings fields
 		 */
-		public function get_settings() {			
-		    $settings = array(
-		        array( 
-			        'title' => __( 'Template', 'woocommerce-delivery-notes' ), 
-			        'type'  => 'title', 
-			        'desc'  => $this->get_template_description(), 
-			        'id'    => 'general_options' 
-		        ),
-
-				array(
-					'title'    => __( 'Style', 'woocommerce-delivery-notes' ),
-					'desc'     => sprintf( __( 'The default print style. Read the <a href="%1$s">FAQ</a> to learn how to customize it or get more styles with <a href="%2$s">WooCommerce Print Invoice & Delivery Note Pro</a>.', 'woocommerce-delivery-notes' ), 'https://wordpress.org/plugins/woocommerce-delivery-notes/faq/', '#' ),
-					'id'       => WooCommerce_Delivery_Notes::$plugin_prefix . 'template_style',
-					'class'    => 'wc-enhanced-select',
-					'default'  => '',
-					'type'     => 'select',
-					'options'  => $this->get_options_styles(),
-					'desc_tip' =>  false,
-				),
-
-				array(
-					'title'        => __( 'Shop Logo', 'woocommerce-delivery-notes' ),
-					'desc'         => '',
-					'id'           => WooCommerce_Delivery_Notes::$plugin_prefix . 'company_logo_image_id',
-					'css'          => '',
-					'default'      => '',
-					'type'         => WooCommerce_Delivery_Notes::$plugin_prefix . 'image_select',
-					'desc_tip'     =>  __( 'A shop logo representing your business. When the image is printed, its pixel density will automatically be eight times higher than the original. This means, 1 printed inch will correspond to about 288 pixels on the screen.', 'woocommerce-delivery-notes' )
-				),
-				
-				array(
-					'title'    => __( 'Shop Name', 'woocommerce-delivery-notes' ),
-					'desc'     => '',
-					'id'       => WooCommerce_Delivery_Notes::$plugin_prefix . 'custom_company_name',
-					'css'      => 'min-width:100%;',
-					'default'  => '',
-					'type'     => 'text',
-					'desc_tip'     => __( 'The shop name. Leave blank to use the default Website or Blog title defined in WordPress settings. The name will be ignored when a Logo is set.', 'woocommerce-delivery-notes' ),
-				),
-				
-				array(
-					'title'    => __( 'Shop Address', 'woocommerce-delivery-notes' ),
-					'desc'     => __( 'The postal address of the shop or even e-mail or telephone.', 'woocommerce-delivery-notes' ),
-					'id'       => WooCommerce_Delivery_Notes::$plugin_prefix . 'company_address',
-					'css'      => 'min-width:100%;min-height:100px;',
-					'default'  => '',
-					'type'     => 'textarea',
-					'desc_tip' =>  true,
-				),
-
-				array(
-					'title'    => __( 'Complimentary Close', 'woocommerce-delivery-notes' ),
-					'desc'     => __( 'Add a personal close, notes or season greetings.', 'woocommerce-delivery-notes' ),
-					'id'       => WooCommerce_Delivery_Notes::$plugin_prefix . 'personal_notes',
-					'css'      => 'min-width:100%;min-height:100px;',
-					'default'  => '',
-					'type'     => 'textarea',
-					'desc_tip' =>  true,
-				),
-
-				array(
-					'title'    => __( 'Policies', 'woocommerce-delivery-notes' ),
-					'desc'     => __( 'Add the shop policies, conditions, etc.', 'woocommerce-delivery-notes' ),
-					'id'       => WooCommerce_Delivery_Notes::$plugin_prefix . 'policies_conditions',
-					'css'      => 'min-width:100%;min-height:100px;',
-					'default'  => '',
-					'type'     => 'textarea',
-					'desc_tip' =>  true,
-				),
-
-				array(
-					'title'    => __( 'Footer', 'woocommerce-delivery-notes' ),
-					'desc'     => __( 'Add a footer imprint, instructions, copyright notes, e-mail, telephone, etc.', 'woocommerce-delivery-notes' ),
-					'id'       => WooCommerce_Delivery_Notes::$plugin_prefix . 'footer_imprint',
-					'css'      => 'min-width:100%;min-height:100px;',
-					'default'  => '',
-					'type'     => 'textarea',
-					'desc_tip' =>  true,
-				),
-				
-				array(
-					'type' 	=> 'sectionend',
-					'id' 	=> 'general_options'
-				),
-				
-				array( 
-			        'title' => __( 'Interface', 'woocommerce-delivery-notes' ), 
-			        'type'  => 'title', 
-			        'desc'  => '', 
-			        'id'    => 'interface_options' 
-		        ),
-		        
-		        array(
-					'title'    => __( 'Print Page Endpoint', 'woocommerce-delivery-notes' ),
-					'desc'     => '',
-					'id'       => WooCommerce_Delivery_Notes::$plugin_prefix . 'print_order_page_endpoint',
-					'css'      => '',
-					'default'  => 'print-order',
-					'type'     => 'text',
-					'desc_tip' => __( 'The endpoint is appended to the accounts page URL to print the order. It should be unique.', 'woocommerce-delivery-notes' ),
-				),
-
-				array(
-					'title'           => __( 'E-mail', 'woocommerce-delivery-notes' ),
-					'desc'            => __( 'Show print link in customer emails', 'woocommerce-delivery-notes' ),
-					'id'              => WooCommerce_Delivery_Notes::$plugin_prefix . 'email_print_link',
-					'default'         => 'no',
-					'type'            => 'checkbox',
-					'desc_tip'        => __( 'This includes the emails for a new, processing and completed order. On top of that the customer invoice email also includes the link.', 'woocommerce-delivery-notes' )
-				),
-		        				
-				array(
-					'title'           => __( 'My Account', 'woocommerce-delivery-notes' ),
-					'desc'            => __( 'Show print button on the "View Order" page', 'woocommerce-delivery-notes' ),
-					'id'              => WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_view_order_page',
-					'default'         => 'no',
-					'type'            => 'checkbox',
-					'checkboxgroup'   => 'start'
-				),
-
-				array(
-					'desc'            => __( 'Show print buttons on the "My Account" page', 'woocommerce-delivery-notes' ),
-					'id'              => WooCommerce_Delivery_Notes::$plugin_prefix . 'print_button_on_my_account_page',
-					'default'         => 'no',
-					'type'            => 'checkbox',
-					'checkboxgroup'   => 'end'
-				),
-
-		        array(
-					'type' 	=> 'sectionend',
-					'id' 	=> 'interface_options'
-				),
-				
-				array( 
-			        'title' => __( 'Invoice', 'woocommerce-delivery-notes' ), 
-			        'type'  => 'title', 
-			        'desc'  => '', 
-			        'id'    => 'invoice_options' 
-		        ),
-		        
-		        array(
-					'title'           => __( 'Numbering', 'woocommerce-delivery-notes' ),
-					'desc'            => __( 'Create invoice numbers', 'woocommerce-delivery-notes' ),
-					'id'              => WooCommerce_Delivery_Notes::$plugin_prefix . 'create_invoice_number',
-					'default'         => 'no',
-					'type'            => 'checkbox',
-					'desc_tip'        => ''
-				),
-		        
-				array(
-					'title'    => __( 'Next Number', 'woocommerce-delivery-notes' ),
-					'desc'     => '',
-					'id'       => WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_count',
-					'class'    => 'create-invoice',
-					'css'      => '',
-					'default'  => 1,
-					'type'     => 'number',
-					'desc_tip' =>  __( 'The next invoice number.', 'woocommerce-delivery-notes' )
-				),
-				
-				array(
-					'title'    => __( 'Number Prefix', 'woocommerce-delivery-notes' ),
-					'desc'     => '',
-					'id'       => WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_prefix',
-					'class'    => 'create-invoice',
-					'css'      => '',
-					'default'  => '',
-					'type'     => 'text',
-					'desc_tip' =>  __( 'This text will be prepended to the invoice number.', 'woocommerce-delivery-notes' )
-				),
-				
-				array(
-					'title'    => __( 'Number Suffix', 'woocommerce-delivery-notes' ),
-					'desc'     => '',
-					'id'       => WooCommerce_Delivery_Notes::$plugin_prefix . 'invoice_number_suffix',
-					'class'    => 'create-invoice',
-					'css'      => '',
-					'default'  => '',
-					'type'     => 'text',
-					'desc_tip' =>  __( 'This text will be appended to the invoice number.', 'woocommerce-delivery-notes' )
-				),
-		        
-		        array(
-					'type' 	=> 'sectionend',
-					'id' 	=> 'invoice_options'
-				),
+		public function get_settings( $section = '' ) {			
+		    $settings = apply_filters( 'wcdn_get_settings_all', 
+			    array(
+			        array( 
+				        'title' => __( 'Template', 'woocommerce-delivery-notes' ), 
+				        'type'  => 'title', 
+				        'desc'  => $this->get_template_description(), 
+				        'id'    => 'general_options' 
+			        ),
+	
+					array(
+						'title'    => __( 'Style', 'woocommerce-delivery-notes' ),
+						'desc'     => sprintf( __( 'The default print style. Read the <a href="%1$s">FAQ</a> to learn how to customize it or get more styles with <a href="%2$s">WooCommerce Print Invoice & Delivery Note Pro</a>.', 'woocommerce-delivery-notes' ), 'https://wordpress.org/plugins/woocommerce-delivery-notes/faq/', '#' ),
+						'id'       => 'wcdn_template_style',
+						'class'    => 'wc-enhanced-select',
+						'default'  => '',
+						'type'     => 'select',
+						'options'  => $this->get_options_styles(),
+						'desc_tip' =>  false,
+					),
+	
+					array(
+						'title'        => __( 'Shop Logo', 'woocommerce-delivery-notes' ),
+						'desc'         => '',
+						'id'           => 'wcdn_company_logo_image_id',
+						'css'          => '',
+						'default'      => '',
+						'type'         => 'wcdn_image_select',
+						'desc_tip'     =>  __( 'A shop logo representing your business. When the image is printed, its pixel density will automatically be eight times higher than the original. This means, 1 printed inch will correspond to about 288 pixels on the screen.', 'woocommerce-delivery-notes' )
+					),
+					
+					array(
+						'title'    => __( 'Shop Name', 'woocommerce-delivery-notes' ),
+						'desc'     => '',
+						'id'       => 'wcdn_custom_company_name',
+						'css'      => 'min-width:100%;',
+						'default'  => '',
+						'type'     => 'text',
+						'desc_tip'     => __( 'The shop name. Leave blank to use the default Website or Blog title defined in WordPress settings. The name will be ignored when a Logo is set.', 'woocommerce-delivery-notes' ),
+					),
+					
+					array(
+						'title'    => __( 'Shop Address', 'woocommerce-delivery-notes' ),
+						'desc'     => __( 'The postal address of the shop or even e-mail or telephone.', 'woocommerce-delivery-notes' ),
+						'id'       => 'wcdn_company_address',
+						'css'      => 'min-width:100%;min-height:100px;',
+						'default'  => '',
+						'type'     => 'textarea',
+						'desc_tip' =>  true,
+					),
+	
+					array(
+						'title'    => __( 'Complimentary Close', 'woocommerce-delivery-notes' ),
+						'desc'     => __( 'Add a personal close, notes or season greetings.', 'woocommerce-delivery-notes' ),
+						'id'       => 'wcdn_personal_notes',
+						'css'      => 'min-width:100%;min-height:100px;',
+						'default'  => '',
+						'type'     => 'textarea',
+						'desc_tip' =>  true,
+					),
+	
+					array(
+						'title'    => __( 'Policies', 'woocommerce-delivery-notes' ),
+						'desc'     => __( 'Add the shop policies, conditions, etc.', 'woocommerce-delivery-notes' ),
+						'id'       => 'wcdn_policies_conditions',
+						'css'      => 'min-width:100%;min-height:100px;',
+						'default'  => '',
+						'type'     => 'textarea',
+						'desc_tip' =>  true,
+					),
+	
+					array(
+						'title'    => __( 'Footer', 'woocommerce-delivery-notes' ),
+						'desc'     => __( 'Add a footer imprint, instructions, copyright notes, e-mail, telephone, etc.', 'woocommerce-delivery-notes' ),
+						'id'       => 'wcdn_footer_imprint',
+						'css'      => 'min-width:100%;min-height:100px;',
+						'default'  => '',
+						'type'     => 'textarea',
+						'desc_tip' =>  true,
+					),
+					
+					array(
+						'type' 	=> 'sectionend',
+						'id' 	=> 'general_options'
+					),
+					
+					array( 
+				        'title' => __( 'Interface', 'woocommerce-delivery-notes' ), 
+				        'type'  => 'title', 
+				        'desc'  => '', 
+				        'id'    => 'interface_options' 
+			        ),
+			        
+			        array(
+						'title'    => __( 'Print Page Endpoint', 'woocommerce-delivery-notes' ),
+						'desc'     => '',
+						'id'       => 'wcdn_print_order_page_endpoint',
+						'css'      => '',
+						'default'  => 'print-order',
+						'type'     => 'text',
+						'desc_tip' => __( 'The endpoint is appended to the accounts page URL to print the order. It should be unique.', 'woocommerce-delivery-notes' ),
+					),
+	
+					array(
+						'title'           => __( 'E-mail', 'woocommerce-delivery-notes' ),
+						'desc'            => __( 'Show print link in customer emails', 'woocommerce-delivery-notes' ),
+						'id'              => 'wcdn_email_print_link',
+						'default'         => 'no',
+						'type'            => 'checkbox',
+						'desc_tip'        => __( 'This includes the emails for a new, processing and completed order. On top of that the customer invoice email also includes the link.', 'woocommerce-delivery-notes' )
+					),
+			        				
+					array(
+						'title'           => __( 'My Account', 'woocommerce-delivery-notes' ),
+						'desc'            => __( 'Show print button on the "View Order" page', 'woocommerce-delivery-notes' ),
+						'id'              => 'wcdn_print_button_on_view_order_page',
+						'default'         => 'no',
+						'type'            => 'checkbox',
+						'checkboxgroup'   => 'start'
+					),
+	
+					array(
+						'desc'            => __( 'Show print buttons on the "My Account" page', 'woocommerce-delivery-notes' ),
+						'id'              => 'wcdn_print_button_on_my_account_page',
+						'default'         => 'no',
+						'type'            => 'checkbox',
+						'checkboxgroup'   => 'end'
+					),
+	
+			        array(
+						'type' 	=> 'sectionend',
+						'id' 	=> 'interface_options'
+					),
+					
+					array( 
+				        'title' => __( 'Invoice', 'woocommerce-delivery-notes' ), 
+				        'type'  => 'title', 
+				        'desc'  => '', 
+				        'id'    => 'invoice_options' 
+			        ),
+			        
+			        array(
+						'title'           => __( 'Numbering', 'woocommerce-delivery-notes' ),
+						'desc'            => __( 'Create invoice numbers', 'woocommerce-delivery-notes' ),
+						'id'              => 'wcdn_create_invoice_number',
+						'default'         => 'no',
+						'type'            => 'checkbox',
+						'desc_tip'        => ''
+					),
+			        
+					array(
+						'title'    => __( 'Next Number', 'woocommerce-delivery-notes' ),
+						'desc'     => '',
+						'id'       => 'wcdn_invoice_number_count',
+						'class'    => 'create-invoice',
+						'css'      => '',
+						'default'  => 1,
+						'type'     => 'number',
+						'desc_tip' =>  __( 'The next invoice number.', 'woocommerce-delivery-notes' )
+					),
+					
+					array(
+						'title'    => __( 'Number Prefix', 'woocommerce-delivery-notes' ),
+						'desc'     => '',
+						'id'       => 'wcdn_invoice_number_prefix',
+						'class'    => 'create-invoice',
+						'css'      => '',
+						'default'  => '',
+						'type'     => 'text',
+						'desc_tip' =>  __( 'This text will be prepended to the invoice number.', 'woocommerce-delivery-notes' )
+					),
+					
+					array(
+						'title'    => __( 'Number Suffix', 'woocommerce-delivery-notes' ),
+						'desc'     => '',
+						'id'       => 'wcdn_invoice_number_suffix',
+						'class'    => 'create-invoice',
+						'css'      => '',
+						'default'  => '',
+						'type'     => 'text',
+						'desc_tip' =>  __( 'This text will be appended to the invoice number.', 'woocommerce-delivery-notes' )
+					),
+			        
+			        array(
+						'type' 	=> 'sectionend',
+						'id' 	=> 'invoice_options'
+					),
+			    ) 
 		    );
 		    
-		    return apply_filters( WooCommerce_Delivery_Notes::$plugin_prefix . 'settings' , $settings );
+		    return apply_filters( 'wcdn_get_settings', $settings, $section );
 		}
 		
 		/**
 		 * Get the position of a setting inside the array
 		 */
-		public function get_setting_position( $id, $settings ) {			
+		public function get_setting_position( $id, $settings, $type = null ) {			
 			foreach( $settings as $key => $value ) {
 				if( isset( $value['id'] ) && $value['id'] == $id ) {
 					return $key;
@@ -286,7 +315,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 * Add the template type settings
 		 */
 		public function add_settings_template_type( $settings ) {
-			$position = $this->get_setting_position( WooCommerce_Delivery_Notes::$plugin_prefix . 'email_print_link', $settings );
+			$position = $this->get_setting_position( 'wcdn_email_print_link', $settings );
 			if( $position !== false ) {
 				// Go through all registrations but remove the default 'order' type
 				$template_registrations = WooCommerce_Delivery_Notes_Print::$template_registrations;
@@ -311,7 +340,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 							array(
 								'title'           => $title,
 								'desc'            => $template_registration['labels']['setting'],
-								'id'              => WooCommerce_Delivery_Notes::$plugin_prefix . 'template_type_' . $template_registration['type'],
+								'id'              => 'wcdn_template_type_' . $template_registration['type'],
 								'default'         => 'no',
 								'type'            => 'checkbox',
 								'checkboxgroup'   => $checkboxgroup,
