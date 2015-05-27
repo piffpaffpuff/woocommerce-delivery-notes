@@ -1,0 +1,547 @@
+# This German Language File: Copyright (C) 2011-2013 by David Decker of deckerweb.de & genesisthemes.de
+# This file is distributed under the same license as the WooCommerce Print Invoices & Delivery Notes Plugin package.
+#
+# Weitere deutsche Sprachdateien fuer WooCommerce und Extensions (Erweiterungen)
+# sowie fuer WordPress-Plugins und -Themes finden Sie unter:
+# --> http://deckerweb.de/sprachdateien/
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Print Invoice & Delivery Note\n"
+"Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
+"POT-Creation-Date: 2015-01-31 15:44+0100\n"
+"PO-Revision-Date: 2015-05-27 15:27+0100\n"
+"Last-Translator: David Decker <deckerweb.mobil@googlemail.com>\n"
+"Language-Team: \n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.7.6\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;"
+"_nx:4c,1,2;_nx_noop:4c,1,2;esc_attr_e;esc_attr__\n"
+"X-Poedit-Basepath: .\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-print.php:41
+msgid "Invoice"
+msgstr "Faktura"
+
+#: ../includes/class-wcdn-print.php:42
+msgid "Invoices"
+msgstr "Fakturor"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-print.php:43
+msgid "Print Invoice"
+msgstr "Skriv ut faktura"
+
+#: ../includes/class-wcdn-print.php:44
+msgid "Print Invoices"
+msgstr "Skriv ut fakturor"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-print.php:45
+msgid "Invoice created."
+msgstr "Faktura skapad"
+
+#: ../includes/class-wcdn-print.php:46
+msgid "Invoices created."
+msgstr "Fakturor skapade."
+
+#: ../includes/class-wcdn-print.php:47
+msgid "Enable Invoices"
+msgstr "Aktivera fakturor"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-print.php:53
+msgid "Delivery Note"
+msgstr "Följesedel"
+
+#: ../includes/class-wcdn-print.php:54
+msgid "Delivery Notes"
+msgstr "Följesedlar"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-print.php:55
+msgid "Print Delivery Note"
+msgstr "Skriv ut följesedel"
+
+#: ../includes/class-wcdn-print.php:56
+msgid "Print Delivery Notes"
+msgstr "Skriv ut följesedlar"
+
+#: ../includes/class-wcdn-print.php:57
+msgid "Delivery Note created."
+msgstr "Följesedel skapad"
+
+#: ../includes/class-wcdn-print.php:58
+msgid "Delivery Notes created."
+msgstr "Följesedlar skapade"
+
+#: ../includes/class-wcdn-print.php:59
+msgid "Enable Delivery Notes"
+msgstr "Aktivera följesedlar"
+
+#: ../includes/class-wcdn-print.php:65
+msgid "Receipt"
+msgstr "Kvitto"
+
+#: ../includes/class-wcdn-print.php:66
+msgid "Receipts"
+msgstr "Kvitton"
+
+#: ../includes/class-wcdn-print.php:67
+msgid "Print Receipt"
+msgstr "Skriv ut kvitto"
+
+#: ../includes/class-wcdn-print.php:68
+msgid "Print Receipts"
+msgstr "Skriv ut kvitton"
+
+#: ../includes/class-wcdn-print.php:69
+msgid "Receipt created."
+msgstr "Kvitto skapad"
+
+#: ../includes/class-wcdn-print.php:70
+msgid "Receipts created."
+msgstr "Kvitton skapade"
+
+#: ../includes/class-wcdn-print.php:71
+msgid "Enable Receipts"
+msgstr "Aktivera kvitton"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-print.php:80
+msgid "Order"
+msgstr "Order"
+
+#: ../includes/class-wcdn-print.php:81
+msgid "Orders"
+msgstr "Ordrar"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-print.php:82 ../includes/class-wcdn-settings.php:157
+msgid "Print Order"
+msgstr "Skriv ut order"
+
+#: ../includes/class-wcdn-print.php:83
+msgid "Print Orders"
+msgstr "Skriv ut ordrar"
+
+#: ../includes/class-wcdn-settings.php:72
+msgid "Do you really want to reset the counter to zero? This process can't be undone."
+msgstr "Vill du verkligen nollställa räknaren? Detta kan inte ångras."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:102 ../includes/class-wcdn-theme.php:56 ../includes/class-wcdn-theme.php:91
+#: ../includes/wcdn-template-functions.php:127
+msgid "Print"
+msgstr "Skriv ut"
+
+#: ../includes/class-wcdn-settings.php:176
+#, php-format
+msgid ""
+"You can preview the <a href=\"%1$s\" target=\"%4$s\" class=\"%5$s\">invoice</a>, <a href=\"%2$s\" target=\"%4$s\" "
+"class=\"%5$s\">delivery note</a> or <a href=\"%3$s\" target=\"%4$s\" class=\"%5$s\">receipt</a> template."
+msgstr ""
+"Du kan förhandgranska <a href=\"%1$s\" target=\"%4$s\" class=\"%5$s\">invoice</a>, <a href=\"%2$s\" target=\"%4$s"
+"\" class=\"%5$s\">delivery note</a> or <a href=\"%3$s\" target=\"%4$s\" class=\"%5$s\">receipt</a> template."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:177
+msgid "With the FAQ in the readme file you can learn how to customize the template."
+msgstr "I FAQ i readme filen kan du lära dig hur du skräddarsyr template."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:188
+msgid "Company/Shop Logo"
+msgstr "Företags/affärs logotype"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:194
+msgid "Remove Logo"
+msgstr "Ta bort logotype"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:195
+msgid "Set Logo"
+msgstr "Ange logotype"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:199
+msgid "A company/shop logo representing your business."
+msgstr "En Företags/affärs logotype som representerar ditt företag"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:200 ../includes/class-wcdn-settings.php:213
+#: ../includes/class-wcdn-settings.php:226 ../includes/class-wcdn-settings.php:239
+#: ../includes/class-wcdn-settings.php:252 ../includes/class-wcdn-settings.php:265
+#: ../includes/class-wcdn-settings.php:382 ../includes/class-wcdn-settings.php:397
+#: ../includes/class-wcdn-settings.php:412
+msgid "Note:"
+msgstr "Anteckning:"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:201
+msgid ""
+"When the image is printed, its pixel density will automatically be eight times higher than the original. This "
+"means, 1 printed inch will correspond to about 288 pixels on the screen. Example: an image with a width of 576 "
+"pixels and a height of 288 pixels will have a printed size of about 2 inches to 1 inch."
+msgstr ""
+"När bilden skrivs ut, kommer dess pixeltätheten automatiskt vara åtta gånger högre än den ursprungliga. Detta "
+"innebär, 2,54 cm tryckt motsvarar cirka 288 pixlar på skärmen. Exempel: en bild med en bredd på 576 pixlar och en "
+"höjd av 288 bildpunkter kommer att ha en tryckt storlek på ca 5 cm X 2.54 cm."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:207
+msgid "Company/Shop Name"
+msgstr "Företags/Affärsnamn"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:212
+msgid "Your company/shop name for the Delivery Note."
+msgstr "Företags/Affärsnamn för följesedeln"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:214
+msgid ""
+"Leave blank to use the default Website/Blog title defined in WordPress settings. The name will be ignored when a "
+"Logo is set."
+msgstr ""
+"Lämna tomt för att använda standard webbsida / blogg titel som definieras i Wordpress inställningarna. Namnet "
+"kommer att ignoreras när en logotyp är vald."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:220
+msgid "Company/Shop Address"
+msgstr "Företag/affärsadress"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:225
+msgid ""
+"The postal address of the company/shop or even e-mail or telephone, which gets printed right after the company/"
+"shop name."
+msgstr ""
+"Företagets/affärens postadressen  eller e-post eller telefon, som blir tryckt direkt efter företaget/affärsnamnet."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:227
+msgid "Leave blank to not print an address."
+msgstr "Lämnas tomt för att inte skriva ut adressen."
+
+#: ../includes/class-wcdn-settings.php:233
+msgid "Complimentary Close"
+msgstr "Artighetsfras slut"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:238
+msgid ""
+"Add some personal notes, or season greetings or whatever (e.g. Thank You for Your Order!, Merry Christmas!, etc.)."
+msgstr ""
+"Lägg till några personliga anteckningar, eller säsongs hälsning eller vad som helst (t.ex. Tack för din "
+"beställning !, god jul !, etc.)."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:240
+msgid "Leave blank to not print any personal notes."
+msgstr "Lämnas tomt för att inte skriva ut några personliga anteckningar."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:246
+msgid "Returns Policy, Conditions, etc"
+msgstr "Returpolicy, villkor, etc"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:251
+msgid ""
+"Here you can add some more policies, conditions etc. For example add a returns policy in case the client would "
+"like to send back some goods. In some countries (e.g. in the European Union) this is required so please add any "
+"required info in accordance with the statutory regulations."
+msgstr ""
+"Här kan du lägga till några fler regler, villkor etc. Till exempel lägga till en returpolicy i fall kunden vill "
+"skicka tillbaka en del varor. I vissa länder (t.ex. i EU) krävs detta, så lägg den obligatorisk information i "
+"enlighet med de lagstadgade reglerna."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:253
+msgid "Leave blank to not print any policies or conditions."
+msgstr "Lämna tomt för att inte skriva ut några regler eller villkor."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:259
+msgid "Footer"
+msgstr "Sidfot"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:264
+msgid ""
+"Add some further footer imprint, e-mail, telephone, copyright notes etc. This makes the printed sheets a bit more "
+"branded."
+msgstr ""
+"Lägg till några ytterligare sidfotstillägg, e-post, telefon, copyright anteckningar etc. Det gör de tryckta "
+"sidorna bli lite mer personliga."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:266
+msgid "Leave blank to not print a footer."
+msgstr "Lämna tomt för att inte skriva ut en sidfot."
+
+#: ../includes/class-wcdn-settings.php:273
+msgid "Print Options"
+msgstr "Utskriftsalternativ"
+
+#: ../includes/class-wcdn-settings.php:278
+msgid "Types"
+msgstr "Typer"
+
+#: ../includes/class-wcdn-settings.php:297
+msgid "Theme Options"
+msgstr "Alternativ för tema"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:302
+msgid "Print Page Endpoint"
+msgstr "Utskriftsidans slutpunkt"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:309
+msgid "The endpoint is appended to the accounts page URL to print the order. It should be unique."
+msgstr "Slutpunkten läggs till sidan kontots URL för att skriva ut ordern. Det bör vara unikt."
+
+#: ../includes/class-wcdn-settings.php:315
+msgid "My Account"
+msgstr "Mitt konto"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:322
+msgid "Show print button on the \"View Order\" page"
+msgstr "Visa utskriftsknappen på \"View Order\" sidan"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:329
+msgid "Show print buttons on the \"My Account\" page"
+msgstr "Visa utskriftsknappen på \"My Account\" sidan"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:336 ../includes/wcdn-template-functions.php:254
+msgid "Email"
+msgstr "E-post"
+
+#: ../includes/class-wcdn-settings.php:343
+msgid "Show print link in customer emails"
+msgstr "Visa utskriftslänken i kund e-post"
+
+#: ../includes/class-wcdn-settings.php:347
+msgid ""
+"This includes the emails for a new, processing and completed order. On top of that the customer invoice email "
+"also includes the link."
+msgstr ""
+"Detta inkluderar e-post för en ny, bearbetning och avslutade order. Utöver det innehåller även kundfakturan även "
+"länken."
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:354
+msgid "Order Numbering"
+msgstr "Ordenumrering"
+
+#: ../includes/class-wcdn-settings.php:359
+msgid "Invoice Numbering"
+msgstr "Fakturanumrering"
+
+#: ../includes/class-wcdn-settings.php:367
+msgid "Create invoice numbers"
+msgstr "Skapa fakturanummer"
+
+#: ../includes/class-wcdn-settings.php:374
+msgid "Invoice Number Start"
+msgstr "Faktruranummer start"
+
+#: ../includes/class-wcdn-settings.php:381
+msgid "Start the numbering at the specified number."
+msgstr "Börja numreringen vid det angivna numret."
+
+#: ../includes/class-wcdn-settings.php:383
+msgid "Use only integers."
+msgstr "Använd endast heltal."
+
+#: ../includes/class-wcdn-settings.php:389
+msgid "Invoice Number Prefix"
+msgstr "Fakturanummer prefix"
+
+#: ../includes/class-wcdn-settings.php:396
+msgid "This text will be prepended to the invoice number."
+msgstr "Denna text kommer att infogas till fakturanumret."
+
+#: ../includes/class-wcdn-settings.php:398
+msgid "Leave blank to not add a prefix."
+msgstr "Lämna tomt för att inte lägga till ett prefix."
+
+#: ../includes/class-wcdn-settings.php:404
+msgid "Invoice Number Suffix"
+msgstr "Fakturanummer suffix"
+
+#: ../includes/class-wcdn-settings.php:411
+msgid "This text will be appended to the invoice number."
+msgstr "Denna text kommer att läggas till fakturanumret."
+
+#: ../includes/class-wcdn-settings.php:413
+msgid "Leave blank to not add a suffix."
+msgstr "Lämna tomt för att inte lägga till ett suffix."
+
+#: ../includes/class-wcdn-settings.php:419
+msgid "Invoice Number Counter"
+msgstr "Räknare för fakturanummer"
+
+#: ../includes/class-wcdn-settings.php:428
+msgid "Reset Counter …"
+msgstr "Nollställ räknaren..."
+
+#: ../includes/class-wcdn-settings.php:434
+msgid "Sequential Order Number"
+msgstr "Sekventiellt ordernummer"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:439
+msgid "Sequential numbering is enabled."
+msgstr "Sekventiellt ordernummer aktiverat"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-settings.php:441
+#, php-format
+msgid "Install and activate the free <a href=\"%s\">WooCommerce Sequential Order Numbers</a> Plugin."
+msgstr "Installera och aktivera <a href=\"%s\">WooCommerce Sequential Order Numbers</a> pluginen som är gratis."
+
+#: ../includes/class-wcdn-theme.php:106
+msgid "Print your order"
+msgstr "Skriv ut din order"
+
+#: ../includes/class-wcdn-theme.php:112
+msgid "Print:"
+msgstr "Skriv ut:"
+
+#: ../includes/class-wcdn-theme.php:112
+msgid "Open print view in browser"
+msgstr "Öppna utskriftsvy i webbläsaren"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-writepanel.php:214
+msgid "Print now"
+msgstr "Skriv ut nu"
+
+# @ woocommerce-delivery-notes
+#: ../includes/class-wcdn-writepanel.php:228
+msgid "Order Printing"
+msgstr "Order utskrift"
+
+#: ../includes/class-wcdn-writepanel.php:256
+msgid "Invoice number: "
+msgstr "Fakturanummer:"
+
+#: ../includes/class-wcdn-writepanel.php:257
+msgid "Invoice date: "
+msgstr "Fakturadatum"
+
+#: ../includes/wcdn-template-functions.php:232
+msgid "Invoice Number"
+msgstr "Fakturanummer"
+
+# @ woocommerce-delivery-notes
+#: ../includes/wcdn-template-functions.php:238
+msgid "Order Number"
+msgstr "Ordernummer"
+
+# @ woocommerce-delivery-notes
+#: ../includes/wcdn-template-functions.php:243
+msgid "Order Date"
+msgstr "Orderdatum"
+
+# @ woocommerce-delivery-notes
+#: ../includes/wcdn-template-functions.php:248
+msgid "Payment Method"
+msgstr "Betalmetod"
+
+# @ woocommerce-delivery-notes
+#: ../includes/wcdn-template-functions.php:261
+msgid "Telephone"
+msgstr "Telefon"
+
+#: ../includes/wcdn-template-functions.php:294
+msgid "SKU:"
+msgstr "Artikelnr:"
+
+#: ../includes/wcdn-template-functions.php:380 ../includes/wcdn-template-functions.php:384
+#, php-format
+msgid "(Includes %s)"
+msgstr "(Includes %s)"
+
+#: ../includes/wcdn-template-functions.php:400
+msgid "Refund"
+msgstr "Återbetalning"
+
+#: ../includes/wcdn-template-functions.php:412
+msgid "Order Subtotal"
+msgstr "Order delsumma"
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:28
+msgid "Billing Address"
+msgstr "Faktureringsadress"
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:31 ../templates/print-order/print-content.php:40
+msgid "N/A"
+msgstr "Ej tillgängligt"
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:37
+msgid "Shipping Address"
+msgstr "Leveransadress"
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:70
+msgid "Product"
+msgstr "Produkt"
+
+#: ../templates/print-order/print-content.php:71
+msgid "Price"
+msgstr "Pris"
+
+#: ../templates/print-order/print-content.php:72
+msgid "Quantity"
+msgstr "Antal"
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:73
+msgid "Total"
+msgstr "Totalt"
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:97
+msgid "Download:"
+msgstr "Ladda ner:"
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:98
+#, php-format
+msgid "%s Files"
+msgstr ""
+
+# @ woocommerce-delivery-notes
+#: ../templates/print-order/print-content.php:147
+msgid "Customer Note"
+msgstr "Kundnotering"
+
+# @ woocommerce-delivery-notes
+#: ../woocommerce-delivery-notes.php:181
+msgid "Go to the settings page"
+msgstr "Gå till inställningssidan"
+
+# @ woocommerce-delivery-notes
+#: ../woocommerce-delivery-notes.php:181
+msgid "Settings"
+msgstr "Inställningar"
