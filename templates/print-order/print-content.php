@@ -7,8 +7,16 @@
  */
 
 if ( !defined( 'ABSPATH' ) ) exit;
+
+// get current user ID
+$current_user_id = get_current_user_id();
+// get the author of the order
+$author_id = get_post($post_id)->post_author;
+
 ?>
 
+<?php //check if the one, who wants to see the order data is a) the one who ordered it, b) an admin ?>
+<?php if(($current_user_id == $author_id) || (current_user_can( 'manage_options' ))) { ?>
 				<div class="order-branding">
 					<div class="company-logo">
 						<?php if( wcdn_get_company_logo_id() ) : ?><?php wcdn_company_logo(); ?><?php endif; ?>
@@ -170,4 +178,5 @@ if ( !defined( 'ABSPATH' ) ) exit;
 					
 					<?php do_action( 'wcdn_after_colophon', $order ); ?>
 				</div><!-- .order-colophon -->
-				
+
+<?php } else { wp_die(); } ?>
