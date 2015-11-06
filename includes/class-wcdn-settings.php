@@ -21,18 +21,17 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		 */
 		public function __construct() {	
 			// Define default variables
-			$this->id = 'wcdn_settings';			
+			$this->id = 'wcdn-settings';			
 						
 			// Load the hooks
 			add_filter( 'woocommerce_settings_tabs_array', array( $this, 'add_settings_page' ), 200 );
 			add_action( 'woocommerce_settings_start', array( $this, 'add_assets' ) );
-			//add_action( 'woocommerce_sections_' . $this->id, array( $this, 'output_sections' ) );
 			add_action( 'woocommerce_settings_' . $this->id, array( $this, 'output' ) );
 			add_action( 'woocommerce_settings_save_' . $this->id, array( $this, 'save' ) );
 
 			add_action( 'woocommerce_admin_field_wcdn_image_select', array( $this, 'output_image_select' ) );
 			add_action( 'wp_ajax_wcdn_settings_load_image', array( $this, 'load_image_ajax' ) );
-			add_action( 'wcdn_get_settings', array( $this, 'add_settings_template_type' ) );
+			add_filter( 'wcdn_get_settings', array( $this, 'generate_template_type_fields' ), 10, 2 );
 		}
 			
 		/**
@@ -63,14 +62,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		/**
 		 * Output the settings fields into the tab
 		 */
-/*
-		public function output_sections() {
-		}
-*/
-				
-		/**
-		 * Output the settings fields into the tab
-		 */
 		public function output() {
 			global $current_section;
 			$settings = $this->get_settings( $current_section );
@@ -86,27 +77,12 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			$settings = $this->get_settings( $current_section );
 		    woocommerce_update_options( $settings );
 		}
-		
-		/**
-		 * Get sections
-		 */
-/*
-		public function get_sections() {
-			$sections = array(
-				''          	=> __( 'General', 'woocommerce-delivery-notes' ),
-				'display'       => __( 'Display', 'woocommerce-delivery-notes' ),
-				'inventory' 	=> __( 'Inventory', 'woocommerce-delivery-notes' ),
-				'downloadable' 	=> __( 'Downloadable Products', 'woocommerce-delivery-notes' ),
-			);
-			return apply_filters( 'wcdn_settings_sections', $sections );
-		}
-*/
-		
+
 		/**
 		 * Get the settings fields
 		 */
 		public function get_settings( $section = '' ) {			
-		    $settings = apply_filters( 'wcdn_get_settings_all', 
+		    $settings = apply_filters( 'wcdn_get_settings_no_section', 
 			    array(
 			        array( 
 				        'title' => __( 'Template', 'woocommerce-delivery-notes' ), 
@@ -192,10 +168,10 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 					),
 					
 					array( 
-				        'title' => __( 'Interface', 'woocommerce-delivery-notes' ), 
+				        'title' => __( 'Pages & Buttons', 'woocommerce-delivery-notes' ), 
 				        'type'  => 'title', 
 				        'desc'  => '', 
-				        'id'    => 'interface_options' 
+				        'id'    => 'display_options' 
 			        ),
 			        
 			        array(
@@ -207,9 +183,9 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 						'type'     => 'text',
 						'desc_tip' => __( 'The endpoint is appended to the accounts page URL to print the order. It should be unique.', 'woocommerce-delivery-notes' ),
 					),
-	
+					
 					array(
-						'title'           => __( 'E-mail', 'woocommerce-delivery-notes' ),
+						'title'           => __( 'Email', 'woocommerce-delivery-notes' ),
 						'desc'            => __( 'Show print link in customer emails', 'woocommerce-delivery-notes' ),
 						'id'              => 'wcdn_email_print_link',
 						'default'         => 'no',
@@ -236,7 +212,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 	
 			        array(
 						'type' 	=> 'sectionend',
-						'id' 	=> 'interface_options'
+						'id' 	=> 'display_options'
 					),
 					
 					array( 
@@ -312,46 +288,45 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		}
 
 		/**
-		 * Add the template type settings
+		 * Generate the template type setting fields
 		 */
-		public function add_settings_template_type( $settings ) {
+		public function generate_template_type_fields( $settings, $section = '' ) {
 			$position = $this->get_setting_position( 'wcdn_email_print_link', $settings );
 			if( $position !== false ) {
+				$new_settings = array();
+				
 				// Go through all registrations but remove the default 'order' type
 				$template_registrations = WooCommerce_Delivery_Notes_Print::$template_registrations;
 				array_splice( $template_registrations, 0, 1 );
 				$end = count( $template_registrations ) - 1;
 				foreach( $template_registrations as $index => $template_registration ) {
-						$title = '';
-						$desc_tip = '';
-						$checkboxgroup = '';
-						
-						// Define the group settings
-						if( $index == 0 ) {
-							$title = __( 'Admin', 'woocommerce-delivery-notes' );
-							$checkboxgroup = 'start';
-						} else if( $index == $end ) {
-							$desc_tip = __( 'The print buttons are available on the order listing and on the order detail screen.', 'woocommerce-delivery-notes' );
-							$checkboxgroup = 'end';
-						}
-						
-						// Create the setting
-						$setting = array(
-							array(
-								'title'           => $title,
-								'desc'            => $template_registration['labels']['setting'],
-								'id'              => 'wcdn_template_type_' . $template_registration['type'],
-								'default'         => 'no',
-								'type'            => 'checkbox',
-								'checkboxgroup'   => $checkboxgroup,
-								'desc_tip'        => $desc_tip
-							)
-						);
-										
-						// Insert setting
-						$this->array_insert( $settings, $setting, $position );
-						$position++;
+					$title = '';
+					$desc_tip = '';
+					$checkboxgroup = '';
+					
+					// Define the group settings
+					if( $index == 0 ) {
+						$title = __( 'Admin', 'woocommerce-delivery-notes' );
+						$checkboxgroup = 'start';
+					} else if( $index == $end ) {
+						$desc_tip = __( 'The print buttons are available on the order listing and on the order detail screen.', 'woocommerce-delivery-notes' );
+						$checkboxgroup = 'end';
+					}
+					
+					// Create the setting
+					$new_settings[] = array(
+						'title'           => $title,
+						'desc'            => $template_registration['labels']['setting'],
+						'id'              => 'wcdn_template_type_' . $template_registration['type'],
+						'default'         => 'no',
+						'type'            => 'checkbox',
+						'checkboxgroup'   => $checkboxgroup,
+						'desc_tip'        => $desc_tip
+					);
 				}
+				
+				// Add the settings
+				$settings = $this->array_merge_at( $settings, $new_settings, $position );
 			}
 
 			return $settings;
@@ -487,23 +462,25 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 		}
 		
 		/**
-		 * Insert an item into an array at given position
+		 * Merge array at given position
 		 */		
-		public function array_insert( &$array, $insert, $position ) {
+		public function array_merge_at( $array, $insert, $position ) {
+			$new_array = array();
 			// if pos is start, just merge them
 			if( $position == 0 ) {
-				$array = array_merge( $insert, $array );
+				$new_array = array_merge( $insert, $array );
 			} else {
 				// if pos is end just merge them
 				if( $position >= ( count( $array ) - 1 ) ) {
-					$array = array_merge($array, $insert);
+					$new_array = array_merge($array, $insert);
 				} else {
 					// split into head and tail, then merge head+inserted bit+tail
 					$head = array_slice( $array, 0, $position );
 					$tail = array_slice( $array, $position );
-					$array = array_merge( $head, $insert, $tail );
+					$new_array = array_merge( $head, $insert, $tail );
 				}
 			}
+			return $new_array;
 		}
 	}
 	

@@ -56,7 +56,6 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 * Default properties
 		 */
 		public static $plugin_version = '4.2.0';
-		public static $plugin_prefix;
 		public static $plugin_url;
 		public static $plugin_path;
 		public static $plugin_basefile;
@@ -118,12 +117,20 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes' ) ) {
 		 * Define WC Constants
 		 */
 		private function define_constants() {
-			self::$plugin_prefix = 'wcdn_';
 			self::$plugin_basefile_path = __FILE__;
 			self::$plugin_basefile = plugin_basename( self::$plugin_basefile_path );
 			self::$plugin_url = plugin_dir_url( self::$plugin_basefile );
 			self::$plugin_path = trailingslashit( dirname( self::$plugin_basefile_path ) );	
-			self::$plugin_text_domain = trim( dirname( self::$plugin_basefile ) );
+			self::$plugin_text_domain = trim( dirname( self::$plugin_basefile ) );		
+		}
+		
+		/**
+		 * Define constant if not already set
+		 */
+		private function define( $name, $value ) {
+			if( !defined( $name ) ) {
+				define( $name, $value );
+			}
 		}
 		
 		/**

@@ -13,7 +13,9 @@ if ( !defined( 'ABSPATH' ) ) {
 function wcdn_get_template_content( $name, $args = null ) {
 	global $wcdn;
 	$location = $wcdn->print->get_template_file_location( $name );
-	wc_get_template( $name, $args, $location, $location );
+	if( $location ) {
+		wc_get_template( $name, $args, $location, $location );
+	}
 }
 
 /**
@@ -178,7 +180,7 @@ function wcdn_company_logo() {
 		// resize the image to a 1/4 of the original size
 		// to have a printing point density of about 288ppi.
 		?>
-		<img src="<?php echo $attachment_src[0]; ?>" width="<?php echo $attachment_src[1] / 4; ?>" height="<?php echo $attachment_src[2] / 4; ?>" alt="<?php echo esc_attr( $company ); ?>" />
+		<img src="<?php echo $attachment_src[0]; ?>" width="<?php echo round( $attachment_src[1] / 4 ); ?>" height="<?php echo round( $attachment_src[2] / 4 ); ?>" alt="<?php echo esc_attr( $company ); ?>" />
 		<?php
 	}
 }
@@ -232,6 +234,13 @@ function wcdn_get_order_info( $order ) {
 		$fields['invoice_number'] = array( 
 			'label' => __( 'Invoice Number', 'woocommerce-delivery-notes' ),
 			'value' => wcdn_get_order_invoice_number( $order->id )
+		);
+	}
+	
+	if( wcdn_get_template_type() == 'invoice' ) {	
+		$fields['invoice_date'] = array( 
+			'label' => __( 'Invoice Date', 'woocommerce-delivery-notes' ),
+			'value' => wcdn_get_order_invoice_date( $order->id )
 		);
 	}
 	
@@ -291,7 +300,7 @@ function wcdn_additional_product_fields( $fields = null, $product = null, $order
 	
 	// Stock keeping unit
 	if( $product && $product->exists() && $product->get_sku() ) {
-		$fields[] = array(
+		$fields['sku'] = array(
 			'label' => __( 'SKU:', 'woocommerce-delivery-notes' ),
 			'value' => $product->get_sku()
 		);

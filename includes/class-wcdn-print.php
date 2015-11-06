@@ -191,7 +191,7 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 				}
 			}
 			
-			// Build the loactions
+			// Build the locations
 			$locations = array(
 				'child_theme' => array(
 					'path' => trailingslashit( get_stylesheet_directory() ) . $wc_template_directory,

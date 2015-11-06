@@ -10,6 +10,11 @@
 if ( !defined( 'ABSPATH' ) ) exit;
 ?>
 
+<?php
+	// wcdn_before_template hook
+	do_action( 'wcdn_before_template' );
+?>	
+
 <?php wcdn_get_template_content( 'print-header.php' ); ?>
 
 	<?php
@@ -47,3 +52,8 @@ if ( !defined( 'ABSPATH' ) ) exit;
 	?>
 
 <?php wcdn_get_template_content( 'print-footer.php' ); ?>
+
+<?php
+	// wcdn_after_template hook
+	do_action( 'wcdn_after_template' );
+?>	

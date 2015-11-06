@@ -294,9 +294,14 @@ Please [contribute your translation](https://github.com/piffpaffpuff/woocommerce
 
 = 4.2.0 =
 
-* Feature - Support for WooCommerce Print Invoice & Delivery Note Pro
+** Announcement: The development of this plugin has ceased. Thanks to everybody who supported it and please contact me on GitHub if you want to take over the project.
+
 * Tweak - Refactored settings screen
+* Fix - Compatibility with latest WooCommerce
 * Fix - Print preview loading indicators
+* Fix - Icon font embed
+* Dev - Load only one instance of the plugin (singleton class)
+* Dev - New settings hooks that work better with WooCommerce
 
 = 4.1.6 =
 
