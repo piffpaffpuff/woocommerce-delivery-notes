@@ -294,7 +294,7 @@ Please [contribute your translation](https://github.com/piffpaffpuff/woocommerce
 
 = 4.2.0 =
 
-** Announcement: The development of this plugin has ceased. Thanks to everybody who supported it and please contact me on GitHub if you want to take over the project.
+** Announcement: The development of this plugin has been ceased. Thanks to everybody who supported it! Please contact me on GitHub if you want to take over the project.
 
 * Tweak - Refactored settings screen
 * Fix - Compatibility with latest WooCommerce
