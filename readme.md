@@ -1,3 +1,7 @@
+# Announcement
+
+	The development of this plugin has ceased. Thanks to everybody who supported it and please contact me if you want to take over the project.
+
 # WooCommerce Print Invoice & Delivery Note
 
 This is the WooCommerce Print Invoice & Delivery Note repository on GitHub. Here you can browse the source, look at open issues and keep track of development.
