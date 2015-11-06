@@ -1,6 +1,6 @@
 # Announcement
 
-	The development of this plugin has ceased. Thanks to everybody who supported it and please contact me if you want to take over the project.
+> The development of this plugin has ceased. Thanks to everybody who supported it. Please contact me if you want to take over the project.
 
 # WooCommerce Print Invoice & Delivery Note
 
