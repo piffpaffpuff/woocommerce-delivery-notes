@@ -13,6 +13,8 @@ Print invoices and delivery notes for WooCommerce orders.
 
 == Description ==
 
+** Announcement: The development of this plugin has been ceased. Thanks to everybody who supported it! Please contact me on GitHub if you want to take over the project.
+
 You can print out invoices and delivery notes for the [WooCommerce](http://wordpress.org/plugins/woocommerce/) orders. You can also edit the Company/Shop name, Company/Shop postal address and also add personal notes, conditions/policies (like a refund policy) and a footer imprint.
 
 The plugin adds a new side panel on the order page to allow shop administrators to print out the invoice or delivery note. Registered customers can also print their order with a button that is added to the order screen.
