@@ -420,6 +420,12 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 		 * Get the order invoice number
 		 */
 		public function get_order_invoice_number( $order_id ) {						
+			// Let third-party numbering plugins set the invoice number, otherwise use sequential numbers
+			$invnum = apply_filters( 'woocommerce_invoice_number', null, $order_id );
+			if ($invnum) {
+				return apply_filters( 'wcdn_order_invoice_number', $invnum);
+			}
+
 			$invoice_count = intval( get_option( 'wcdn_invoice_number_count', 1 ) );
 			$invoice_prefix = get_option( 'wcdn_invoice_number_prefix' );
 			$invoice_suffix = get_option( 'wcdn_invoice_number_suffix' );
