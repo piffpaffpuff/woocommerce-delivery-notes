@@ -215,14 +215,14 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 						'id' 	=> 'display_options'
 					),
 					
-					array( 
+					'invoice_options' => array(
 				        'title' => __( 'Invoice', 'woocommerce-delivery-notes' ), 
 				        'type'  => 'title', 
 				        'desc'  => '', 
 				        'id'    => 'invoice_options' 
 			        ),
 			        
-			        array(
+			        'create_invoice_number' => array(
 						'title'           => __( 'Numbering', 'woocommerce-delivery-notes' ),
 						'desc'            => __( 'Create invoice numbers', 'woocommerce-delivery-notes' ),
 						'id'              => 'wcdn_create_invoice_number',
@@ -231,7 +231,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 						'desc_tip'        => ''
 					),
 			        
-					array(
+					'invoice_number_count' => array(
 						'title'    => __( 'Next Number', 'woocommerce-delivery-notes' ),
 						'desc'     => '',
 						'id'       => 'wcdn_invoice_number_count',
@@ -242,7 +242,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 						'desc_tip' =>  __( 'The next invoice number.', 'woocommerce-delivery-notes' )
 					),
 					
-					array(
+					'invoice_number_prefix' => array(
 						'title'    => __( 'Number Prefix', 'woocommerce-delivery-notes' ),
 						'desc'     => '',
 						'id'       => 'wcdn_invoice_number_prefix',
@@ -253,7 +253,7 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 						'desc_tip' =>  __( 'This text will be prepended to the invoice number.', 'woocommerce-delivery-notes' )
 					),
 					
-					array(
+					'invoice_number_suffix' => array(
 						'title'    => __( 'Number Suffix', 'woocommerce-delivery-notes' ),
 						'desc'     => '',
 						'id'       => 'wcdn_invoice_number_suffix',
@@ -271,6 +271,21 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Settings' ) ) {
 			    ) 
 		    );
 		    
+			// If a third-party numbering plugin is taking responsibility for invoice numbers,
+			// show a link to the config page and remove the counter settings
+			if (apply_filters('woocommerce_invoice_number_by_plugin', false)) {
+				$config_link = esc_attr(apply_filters('woocommerce_invoice_number_configuration_link', null));
+				$desc = __( 'Invoice numbers are created by a third-party extension.', 'woocommerce-delivery-notes');
+				if ($config_link) {
+					$desc .= ' '.sprintf(__( 'Configure it <a href="%s">here</a>.', 'woocommerce-delivery-notes'), $config_link);
+				}
+				$settings['invoice_options']['desc'] = '<i>'.$desc.'</i>';
+				unset($settings['create_invoice_number']);
+				unset($settings['invoice_number_count']);
+				unset($settings['invoice_number_prefix']);
+				unset($settings['invoice_number_suffix']);
+			}
+
 		    return apply_filters( 'wcdn_get_settings', $settings, $section );
 		}
 		
