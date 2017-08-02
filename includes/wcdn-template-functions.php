@@ -229,20 +229,31 @@ function wcdn_get_order_info( $order ) {
 	global $wcdn;
 	$fields = array();
 	$create_invoice_number = get_option( 'wcdn_create_invoice_number' );
-	
+
+	// Get woocommerce variables based on woocommerce version;
+	$o_id =  ( version_compare( get_option( 'woocommerce_version' ), '3.0.0', ">="  ) ) ? $order->get_id() : $order->id;
+	$o_post = get_post( $o_id );
+	$o_date =  ( version_compare( get_option( 'woocommerce_version' ), '3.0.0', ">="  ) ) ? $o_post->post_date : $order->order_date;
+	$o_title =  ( version_compare( get_option( 'woocommerce_version' ), '3.0.0', ">="  ) ) ? $order->get_payment_method_title() : $order->payment_method_title;
+ 	$o_email  =  ( version_compare( get_option( 'woocommerce_version' ), '3.0.0', ">="  ) ) ? $order->get_billing_email() : $order->billing_email;
+    $o_phone  =  ( version_compare( get_option( 'woocommerce_version' ), '3.0.0', ">="  ) ) ? $order->get_billing_phone() : $order->billing_phone;
+
+
 	if( wcdn_get_template_type() == 'invoice' && !empty( $create_invoice_number ) && $create_invoice_number == 'yes' ) {
 		$fields['invoice_number'] = array( 
 			'label' => __( 'Invoice Number', 'woocommerce-delivery-notes' ),
-			'value' => wcdn_get_order_invoice_number( $order->id )
+			'value' => wcdn_get_order_invoice_number( $o_id )
 		);
 	}
 	
 	if( wcdn_get_template_type() == 'invoice' ) {	
 		$fields['invoice_date'] = array( 
 			'label' => __( 'Invoice Date', 'woocommerce-delivery-notes' ),
-			'value' => wcdn_get_order_invoice_date( $order->id )
+			'value' => wcdn_get_order_invoice_date( $o_id )
 		);
 	}
+
+
 	
 	$fields['order_number'] = array( 
 		'label' => __( 'Order Number', 'woocommerce-delivery-notes' ),
@@ -251,25 +262,25 @@ function wcdn_get_order_info( $order ) {
 	
 	$fields['order_date'] = array( 
 		'label' => __( 'Order Date', 'woocommerce-delivery-notes' ),
-		'value' => date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) )
+		'value' => date_i18n( get_option( 'date_format' ), strtotime( $o_date ) )
 	);
 	
 	$fields['payment_method'] = array( 
 		'label' => __( 'Payment Method', 'woocommerce-delivery-notes' ),
-		'value' => __( $order->payment_method_title, 'woocommerce' )
+		'value' => __( $o_title, 'woocommerce' )
 	);
 	
 	if( $order->billing_email ) {
 		$fields['billing_email'] = array(
 			'label' => __( 'Email', 'woocommerce-delivery-notes' ),
-			'value' => $order->billing_email
+			'value' => $o_email
 		);
 	}
 	
 	if( $order->billing_phone ) {
 		$fields['billing_phone'] = array(
 			'label' => __( 'Telephone', 'woocommerce-delivery-notes' ),
-			'value' => $order->billing_phone
+			'value' => $o_phone
 		);
 	}
 	
@@ -342,6 +353,9 @@ function wcdn_has_refund( $order ) {
 function wcdn_get_formatted_item_price( $order, $item, $tax_display = '' ) {
 
 	if ( ! $tax_display ) {
+		
+		$o_tax = ( version_compare( get_option( 'woocommerce_version' ), '3.0.0', ">="  ) ) ? get_option( 'woocommerce_tax_display_cart' ) : $order->tax_display_cart;
+
 		$tax_display = $order->tax_display_cart;
 	}
 
@@ -349,12 +363,20 @@ function wcdn_get_formatted_item_price( $order, $item, $tax_display = '' ) {
 		return '';
 	}
 
-	if ( 'excl' == $tax_display ) {
-		$ex_tax_label = $order->prices_include_tax ? 1 : 0;
+	$o_currency = ( version_compare( get_option( 'woocommerce_version' ), '3.0.0', ">="  ) ) ? $order->get_currency() : $order->get_order_currency();
 
-		$subtotal = wc_price( $order->get_item_subtotal( $item ), array( 'ex_tax_label' => $ex_tax_label, 'currency' => $order->get_order_currency() ) );
+	if ( 'excl' == $tax_display ) {
+
+
+		if ( version_compare( get_option( 'woocommerce_version' ), '3.0.0', ">="  ) ){
+			$ex_tax_label = wc_prices_include_tax() ? 1 : 0; 
+		}else{
+			$ex_tax_label = $order->prices_include_tax ? 1 : 0;     
+		}
+
+		$subtotal = wc_price( $order->get_item_subtotal( $item ), array( 'ex_tax_label' => $ex_tax_label, 'currency' => $o_currency ) );
 	} else {
-		$subtotal = wc_price( $order->get_item_subtotal( $item, true ), array('currency' => $order->get_order_currency()) );
+		$subtotal = wc_price( $order->get_item_subtotal( $item, true ), array('currency' => $o_currency) );
 	}
 
 	return apply_filters( 'wcdn_formatted_item_price', $subtotal, $item, $order );
@@ -455,7 +477,9 @@ function wcdn_remove_payment_method_from_totals( $total_rows, $order ) {
  */
 function wcdn_get_customer_notes( $order ) {
 	global $wcdn;
-	return stripslashes( wpautop( wptexturize( $order->customer_note ) ) );
+
+	$o_notes = ( version_compare( get_option( 'woocommerce_version' ), '3.0.0', ">="  ) ) ? $order->get_customer_note() : $order->customer_note;
+	return stripslashes( wpautop( wptexturize( $o_notes ) ) );
 }
 
 /**

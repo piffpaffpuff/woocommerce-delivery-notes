@@ -388,14 +388,20 @@ if ( ! class_exists( 'WooCommerce_Delivery_Notes_Print' ) ) {
 			foreach( $posts as $post ) {
 				$order = new WC_Order( $post->ID );
 				
+				// Get the ID of the order, but first check which version of woocommerce is running for backwards compatibility;
+				$o_id = ( version_compare( get_option( 'woocommerce_version' ), '3.0.0', ">="  ) ) ? $order->get_id() : $order->id;
+
 				// Logged in users			
-				if( is_user_logged_in() && ( !current_user_can( 'edit_shop_orders' ) && !current_user_can( 'view_order', $order->id ) ) ) {
+				if( is_user_logged_in() && ( !current_user_can( 'edit_shop_orders' ) && !current_user_can( 'view_order', $o_id ) ) ) {
 					$this->orders = null;
 					return false;
 				} 
 
+				// Get the ID of the order, but first check which version of woocommerce is running for backwards compatibility;
+				$o_email_addy = ( version_compare( get_option( 'woocommerce_version' ), '3.0.0', ">="  ) ) ? $order->get_billing_email() : $order->billing_email;
+
 				// An email is required for not logged in users  
-				if( !is_user_logged_in() && ( empty( $this->order_email ) || strtolower( $order->billing_email ) != $this->order_email ) ) {
+				if( !is_user_logged_in() && ( empty( $this->order_email ) || strtolower( $o_email_addy ) != $this->order_email ) ) {
 					$this->orders = null;
 					return false;
 				}

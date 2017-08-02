@@ -90,8 +90,10 @@ if ( !class_exists( 'WooCommerce_Delivery_Notes_Writepanel' ) ) {
 			?>
 			<?php foreach( WooCommerce_Delivery_Notes_Print::$template_registrations as $template_registration ) : ?>
 				<?php if( get_option( 'wcdn_template_type_' . $template_registration['type'] ) == 'yes' && $template_registration['type'] !== 'order' ) : ?>
-				
-					<a href="<?php echo wcdn_get_print_link( $order->id, $template_registration['type'] ); ?>" class="button tips print-preview-button <?php echo $template_registration['type']; ?>" target="_blank" alt="<?php esc_attr_e( __( $template_registration['labels']['print'], 'woocommerce-delivery-notes' ) ); ?>" data-tip="<?php esc_attr_e( __( $template_registration['labels']['print'], 'woocommerce-delivery-notes' ) ); ?>">
+
+					<?php $o_id =  ( version_compare( get_option( 'woocommerce_version' ), '3.0.0', ">="  ) ) ? $order->get_id() : $order->id; ?>
+
+					<a href="<?php echo wcdn_get_print_link( $o_id, $template_registration['type'] ); ?>" class="button tips print-preview-button <?php echo $template_registration['type']; ?>" target="_blank" alt="<?php esc_attr_e( __( $template_registration['labels']['print'], 'woocommerce-delivery-notes' ) ); ?>" data-tip="<?php esc_attr_e( __( $template_registration['labels']['print'], 'woocommerce-delivery-notes' ) ); ?>">
 						<?php _e( $template_registration['labels']['print'], 'woocommerce-delivery-notes' ); ?>
 					</a>
 					
